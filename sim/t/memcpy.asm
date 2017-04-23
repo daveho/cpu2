@@ -10,7 +10,7 @@
 	; load src into r7:r8
 	; TODO: support symbolic constants
 	mov r7, 333
-	mov r7, 444
+	mov r8, 444
 
 	; note: bytes are copied backwards!
 again:
