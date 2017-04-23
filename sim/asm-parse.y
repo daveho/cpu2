@@ -22,12 +22,18 @@
 %%
 
 instruction_list :
-	  instruction_list opt_label instruction EOL	{ }
+	  instruction_list instruction_or_label { }
 	| /* epsilon */
 	;
 
-opt_label :
-	   IDENTIFIER ':' EOL		{ }
+instruction_or_label :
+	  label EOL			{ }
+	| instruction EOL		{ }
+	| EOL				{ }
+	;
+
+label :
+	  IDENTIFIER ':'		{ }
 	;
 
 instruction :

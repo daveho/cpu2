@@ -1,0 +1,5 @@
+/*.o
+/*.tab.h
+/asm-parse.c
+/asm-lexer.c
+/asm
