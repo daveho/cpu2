@@ -22,4 +22,17 @@ public class DeviceUtil {
 		device.addInput(13, "4B");
 		device.addVcc(14);
 	}
+
+	public static Unit getQuadGateUnit(Device device, String unitName) {
+		if (unitName.length() != 1 || unitName.charAt(0) < '1' || unitName.charAt(0) > '4') {
+			throw new IllegalArgumentException("Invalid unit: " + unitName);
+		}
+		Pin[] inputs = new Pin[]{device.getPin(unitName + "A"), device.getPin(unitName + "B")};
+		Pin output = device.getPin(unitName + "Y");
+		Unit unit = new Unit();
+		unit.setDevice(device);
+		unit.setInputs(inputs);
+		unit.setOutput(output);
+		return unit;
+	}
 }

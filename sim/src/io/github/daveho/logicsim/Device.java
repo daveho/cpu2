@@ -101,4 +101,8 @@ public abstract class Device {
 	}
 	
 	public abstract void update(Simulation sim);
+	
+	public Unit getUnit(String unitName) {
+		throw new UnsupportedOperationException("Device does not have units");
+	}
 }

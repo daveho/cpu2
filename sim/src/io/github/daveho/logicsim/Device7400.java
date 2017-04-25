@@ -19,4 +19,9 @@ public class Device7400 extends Device {
 		int val2 = getPinValue(gate + "B");
 		sim.drive(this, gate + "Y", Logic.nand(val1, val2));
 	}
+	
+	@Override
+	public Unit getUnit(String unitName) {
+		return DeviceUtil.getQuadGateUnit(this, unitName);
+	}
 }

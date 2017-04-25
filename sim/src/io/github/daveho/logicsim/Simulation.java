@@ -115,7 +115,7 @@ public class Simulation {
 			}
 			for (Device device : devices) {
 				if (device.isDirty()) {
-					System.out.println("Updating device" + device.getName());
+					System.out.println("Updating device " + device.getName());
 					device.setDirty(false);
 					device.update(this);
 				}
