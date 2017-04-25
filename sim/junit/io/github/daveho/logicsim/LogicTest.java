@@ -26,4 +26,12 @@ public class LogicTest {
 		assertEquals(1, Logic.not(0));
 		assertEquals(0, Logic.not(1));
 	}
+	
+	@Test
+	public void testAnd() throws Exception {
+		assertEquals(0, Logic.and(0, 0));
+		assertEquals(0, Logic.and(1, 0));
+		assertEquals(0, Logic.and(0, 1));
+		assertEquals(1, Logic.and(1, 1));
+	}
 }
