@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SimulationTest {
+public class SimulationTestNand {
 	private Simulation sim;
 	private Device dev7400;
 	private Device gen;
@@ -49,7 +49,7 @@ public class SimulationTest {
 		sim.drive(gen, "1", 1);
 		sim.drive(gen, "2", 0);
 		sim.step();
-		assertEquals(0, dev7400.getPinValue("1Y"));
+		assertEquals(1, dev7400.getPinValue("1Y"));
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class SimulationTest {
 		sim.drive(gen, "1", 0);
 		sim.drive(gen, "2", 1);
 		sim.step();
-		assertEquals(0, dev7400.getPinValue("1Y"));
+		assertEquals(1, dev7400.getPinValue("1Y"));
 	}
 	
 	@Test

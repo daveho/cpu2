@@ -126,12 +126,7 @@ public class Simulation {
 	}
 
 	private boolean quiescent() {
-		for (Device device : devices) {
-			if (device.isDirty()) {
-				return false;
-			}
-		}
-		return true;
+		return devices.stream().allMatch(d -> !d.isDirty());
 	}
 	
 	public void logDiagnostic(String msg) {
