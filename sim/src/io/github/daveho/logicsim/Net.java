@@ -8,7 +8,7 @@ public class Net {
 	private List<Connection> connections;
 	private int value;
 	
-	public Net() {
+	private Net() {
 		this.connections = new ArrayList<>();
 	}
 	
@@ -16,7 +16,7 @@ public class Net {
 		this();
 		this.name = name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}

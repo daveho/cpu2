@@ -14,11 +14,17 @@ public class Simulation {
 		nets = new ArrayList<>();
 	}
 	
+	public Net createNet(String name) {
+		Net net = new Net(name);
+		addNet(net);
+		return net;
+	}
+	
 	public void addDevice(Device device) {
 		devices.add(device);
 	}
 	
-	public void addNet(Net net) {
+	private void addNet(Net net) {
 		nets.add(net);
 	}
 	
@@ -38,15 +44,20 @@ public class Simulation {
 		pin.setNet(net);
 	}
 	
+	/**
+	 * Prepare to run simulation.
+	 * All unconnected pins are connected to a dummy net.
+	 */
 	public void prepare() {
-		int count = 0;
+		int count = 1;
 		// Add a dummy net to every unconnected pin
 		for (Device device : devices) {
 			List<Pin> pins = device.getPins();
 			for (Pin pin : pins) {
 				Net net = pin.getNet();
 				if (net == null) {
-					Net dummyNet = new Net("dummy" + (++count));
+					Net dummyNet = new Net("dummy" + count);
+					count++;
 					dummyNet.setValue(1); // appropriate for floating input
 					pin.setNet(dummyNet);
 				}
@@ -91,6 +102,12 @@ public class Simulation {
 	}
 	
 	public void step() {
+		// Mark all devices as dirty
+		for (Device device : devices) {
+			device.setDirty(true);
+		}
+		
+		// Propagate updates until equilibrium is reached
 		int updates = 0;
 		while (!quiescent()) {
 			if (updates > MAX_UPDATES) {

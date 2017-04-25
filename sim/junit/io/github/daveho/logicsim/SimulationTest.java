@@ -14,20 +14,26 @@ public class SimulationTest {
 	@Before
 	public void setUp() {
 		sim = new Simulation();
+		
+		// create devices
 		dev7400 = new Device7400("U1");
 		sim.addDevice(dev7400);
 		gen = new DeviceGen("gen", 2);
 		sim.addDevice(gen);
-		Net in1 = new Net("in1");
-		Net in2 = new Net("in2");
+		
+		// create nets
+		Net in1 = sim.createNet("in1");
+		Net in2 = sim.createNet("in2");
+		this.out = sim.createNet("out");
+		
+		// connect device pins to nets
 		sim.connect(gen, "1", in1);
 		sim.connect(gen, "2", in2);
 		sim.connect(dev7400, "1A", in1);
 		sim.connect(dev7400, "1B", in2);
-		this.out = new Net("out");
 		sim.connect(dev7400, "1Y", out);
+
 		sim.prepare();
-		dev7400.setDirty(true); // ensure at least one update occurs
 	}
 	
 	@Test
