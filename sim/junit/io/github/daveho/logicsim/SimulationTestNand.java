@@ -15,26 +15,6 @@ public class SimulationTestNand {
 	public void setUp() {
 		sim = new Simulation();
 		
-		/*
-		// create devices
-		dev7400 = new Device7400("U1");
-		sim.addDevice(dev7400);
-		gen = new DeviceGen("gen", 2);
-		sim.addDevice(gen);
-		
-		// create nets
-		Net in1 = sim.createNet("in1");
-		Net in2 = sim.createNet("in2");
-		this.out = sim.createNet("out");
-		
-		// connect device pins to nets
-		sim.connect(gen, "1", in1);
-		sim.connect(gen, "2", in2);
-		sim.connect(dev7400, "1A", in1);
-		sim.connect(dev7400, "1B", in2);
-		sim.connect(dev7400, "1Y", out);
-		*/
-		
 		dev7400 = new Device7400("U1");
 		sim.addDevice(dev7400);
 		
