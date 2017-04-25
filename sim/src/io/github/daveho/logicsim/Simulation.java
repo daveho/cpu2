@@ -122,6 +122,7 @@ public class Simulation {
 			}
 			updates++;
 		}
+		System.out.println("Reached equilibrium after " + updates + " update(s)");
 	}
 
 	private boolean quiescent() {
