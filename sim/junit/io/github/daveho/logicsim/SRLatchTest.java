@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Test nand gates configured as an SR latch.
  */
-public class SimulationTestSRLatch {
+public class SRLatchTest {
 	private Simulation sim;
 	private Device dev7400;
 	private Device gen;

@@ -3,7 +3,7 @@ package io.github.daveho.logicsim;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SimulationTestNand extends QuadGateTest {
+public class Device7400Test extends QuadGateTest {
 	@Before
 	public void setUp() {
 		super.setUp();
