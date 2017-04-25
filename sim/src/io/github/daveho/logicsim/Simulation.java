@@ -67,10 +67,6 @@ public class Simulation {
 			throw new IllegalStateException("Attempt to drive pin " + pin.getName() + " while in " + pin.getMode() + " mode");
 		}
 		Net net = pin.getNet();
-		if (net == null) {
-			logDiagnostic("No net connected to pin " + pin.getName());
-			return;
-		}
 		int currentValue = net.getValue();
 		if (currentValue != value) {
 			net.setValue(value);
