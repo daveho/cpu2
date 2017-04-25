@@ -3,7 +3,7 @@ package io.github.daveho.logicsim;
 public class Device7400 extends Device {
 	public Device7400(String name) {
 		super(name);
-		DeviceUtil.createQuadGatePins(this);
+		DeviceUtil.createQuadTwoInputGatePins(this);
 	}
 	
 	@Override
@@ -22,6 +22,6 @@ public class Device7400 extends Device {
 	
 	@Override
 	public Unit getUnit(String unitName) {
-		return DeviceUtil.getQuadGateUnit(this, unitName);
+		return DeviceUtil.getQuadTwoInputGateUnit(this, unitName);
 	}
 }

@@ -8,4 +8,8 @@ public class Logic {
 	public static int nor(int val1, int val2) {
 		return (val1 | val2) ^ 1;
 	}
+
+	public static int not(int val1) {
+		return val1 ^ 1;
+	}
 }

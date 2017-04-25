@@ -20,4 +20,10 @@ public class LogicTest {
 		assertEquals(0, Logic.nor(0, 1));
 		assertEquals(0, Logic.nor(1, 1));
 	}
+	
+	@Test
+	public void testNot() throws Exception {
+		assertEquals(1, Logic.not(0));
+		assertEquals(0, Logic.not(1));
+	}
 }
