@@ -74,8 +74,8 @@ public class Simulation {
 	}
 
 	private void doDrive(Pin pin, int value) {
-		if (pin.getMode() != PinMode.OUTPUT) {
-			throw new IllegalStateException("Attempt to drive pin " + pin.getName() + " while in " + pin.getMode() + " mode");
+		if (!pin.getType().canSetMode(PinMode.OUTPUT)) {
+			throw new IllegalStateException("Cannot drive output on a pin of type " + pin.getType());
 		}
 		Net net = pin.getNet();
 		int currentValue = net.getValue();
@@ -101,6 +101,45 @@ public class Simulation {
 		}
 	}
 	
+	public void tristate(Device device, int pinNumber) {
+		doTristate(device.getPin(pinNumber));
+	}
+	
+	public void tristate(Device device, String pinName) {
+		doTristate(device.getPin(pinName));
+	}
+	
+	private void doTristate(Pin pin) {
+		if (!pin.getType().canSetMode(PinMode.HI_Z)) {
+			throw new IllegalStateException("Cannot tristate a pin of type " + pin.getType());
+		}
+		
+		if (pin.getMode() == PinMode.HI_Z) {
+			return; // pin is already tristated
+		}
+		
+		pin.setMode(PinMode.HI_Z);
+		Net net = pin.getNet();
+		List<Connection> connections = net.getConnections();
+		
+		// Propagate the change to all devices connected to this net
+		boolean anyDriving = false;
+		for (Connection conn : connections) {
+			Pin connPin = conn.getPin();
+			if (connPin != pin) {
+				if (connPin.getMode() == PinMode.OUTPUT) {
+					anyDriving = true;
+				}
+				conn.getDevice().setDirty(true);
+			}
+		}
+		
+		if (!anyDriving) {
+			// Let the net float high
+			net.setValue(1);
+		}
+	}
+
 	public void step() {
 		// Mark all devices as dirty
 		for (Device device : devices) {

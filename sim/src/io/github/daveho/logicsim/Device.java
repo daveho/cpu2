@@ -84,6 +84,10 @@ public abstract class Device {
 		addPin(pinNumber, name, PinType.OUTPUT);
 	}
 	
+	public void addTristateOutput(int pinNumber, String name) {
+		addPin(pinNumber, name, PinType.OUTPUT_TRISTATE);
+	}
+	
 	public void addVcc(int pinNumber) {
 		addPin(pinNumber, "VCC", PinType.POWER_VCC);
 	}
