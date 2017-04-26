@@ -16,4 +16,8 @@ public class Logic {
 	public static int and(int val1, int val2) {
 		return val1 & val2;
 	}
+
+	public static int or(int val1, int val2) {
+		return val1 | val2;
+	}
 }

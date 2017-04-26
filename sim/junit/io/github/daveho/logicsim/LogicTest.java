@@ -34,4 +34,12 @@ public class LogicTest {
 		assertEquals(0, Logic.and(0, 1));
 		assertEquals(1, Logic.and(1, 1));
 	}
+	
+	@Test
+	public void testOr() throws Exception {
+		assertEquals(0, Logic.or(0, 0));
+		assertEquals(1, Logic.or(1, 0));
+		assertEquals(1, Logic.or(0, 1));
+		assertEquals(1, Logic.or(1, 1));
+	}
 }
