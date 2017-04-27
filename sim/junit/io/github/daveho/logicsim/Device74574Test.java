@@ -52,7 +52,7 @@ public class Device74574Test {
 		driveCP(1);
 		sim.step(); // should clock in data
 		assertIsTristated();
-		assertEquals(0xFF, readData()); // outputs still tristated, inputs are floating
+		assertEquals(0xFF, readData()); // outputs still tristated, nets are floating
 		driveOEInv(0); // enable output
 		sim.step();
 		assertEquals(0xCA, readData());
