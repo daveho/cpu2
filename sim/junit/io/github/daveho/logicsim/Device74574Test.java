@@ -48,8 +48,13 @@ public class Device74574Test {
 		driveData(0xCA);
 		driveCP(0);
 		sim.step();
+		assertIsTristated();
 		driveCP(1);
 		sim.step(); // should clock in data
+		assertIsTristated();
+		assertEquals(0xFF, readData()); // outputs still tristated, inputs are floating
+		driveOEInv(0); // enable output
+		sim.step();
 		assertEquals(0xCA, readData());
 	}
 
@@ -71,9 +76,15 @@ public class Device74574Test {
 	private int readData() {
 		int data = 0;
 		for (int i = 0; i < 8; i++) {
-			int val = dev74574.getPinValue("D" + i);
+			int val = dev74574.getPinValue("Q" + i);
 			data |= (val << i);
 		}
 		return data;
+	}
+	
+	public void assertIsTristated() {
+		for (int i = 0; i < 8; i++) {
+			assertEquals(PinMode.HI_Z, dev74574.getPin("Q" + i).getMode());
+		}
 	}
 }

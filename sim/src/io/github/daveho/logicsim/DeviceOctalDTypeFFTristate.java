@@ -35,7 +35,7 @@ public abstract class DeviceOctalDTypeFFTristate extends Device {
 		lastClock = curClock;
 		
 		int oeInv = getPinValue("-OE");
-		if (oeInv == 0) {
+		if (oeInv == 1) {
 			// Output is disabled: tristate the outputs
 			for (int i = 0; i < 8; i++) {
 				sim.tristate(this, "Q" + i);
