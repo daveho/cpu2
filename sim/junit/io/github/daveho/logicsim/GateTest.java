@@ -51,10 +51,11 @@ public abstract class GateTest {
 		for (int i = 0; i < inputsPerGate; i++) {
 			inputNets[i] = new Net("net" + unitIndex + String.valueOf((char)('A' + i)));
 		}
-		Pin[] inputs = unit.getInputs();
+		//Pin[] inputs = unit.getInputs();
 		for (int i = 0; i < inputsPerGate; i++) {
 			sim.connect(gen, i+1, inputNets[i]);
-			sim.connect(theDevice, inputs[i].getName(), inputNets[i]);
+			Pin inputPin = unit.getInput().getPin(i);
+			sim.connect(theDevice, inputPin.getName(), inputNets[i]);
 		}
 	}
 	
@@ -64,7 +65,8 @@ public abstract class GateTest {
 			sim.drive(gens[i], "1", val1);
 			sim.drive(gens[i], "2", val2);
 			sim.step();
-			assertEquals(expected, unit.getOutputValue());
+//			assertEquals(expected, unit.getOutputValue());
+			assertEquals(expected, unit.getOutput().read());
 		}
 	}
 	
@@ -73,7 +75,8 @@ public abstract class GateTest {
 			Unit unit = units[i];
 			sim.drive(gens[i], "1", val1);
 			sim.step();
-			assertEquals(expected, unit.getOutputValue());
+//			assertEquals(expected, unit.getOutputValue());
+			assertEquals(expected, unit.getOutput().read());
 		}
 	}
 }

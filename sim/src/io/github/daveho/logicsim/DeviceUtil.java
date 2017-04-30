@@ -65,10 +65,19 @@ public class DeviceUtil {
 	}
 
 	private static Unit createUnit(Device device, Pin[] inputs, Pin output) {
+		Port inputPort = new Port(device);
+		for (int i = 0; i < inputs.length; i++) {
+			inputPort.addPin(inputs[i]);
+		}
+		Port outputPort = new Port(device);
+		outputPort.addPin(output);
+		
 		Unit unit = new Unit();
 		unit.setDevice(device);
-		unit.setInputs(inputs);
-		unit.setOutput(output);
+//		unit.setInputs(inputs);
+//		unit.setOutput(output);
+		unit.setInput(inputPort);
+		unit.setOutput(outputPort);
 		return unit;
 	}
 }
