@@ -17,4 +17,8 @@ public class DeviceGen extends Device {
 		// nothing to do?
 	}
 
+	@Override
+	public Unit createUnit(String unitName) {
+		throw new UnsupportedOperationException("Device does not have units");
+	}
 }

@@ -11,6 +11,7 @@ public abstract class Device {
 	private Map<String, Pin> byName;
 	private Map<Integer, Pin> byNumber;
 	private boolean dirty;
+	private Map<String, Unit> unitMap;
 	
 	public Device(String name) {
 		this.name = name;
@@ -18,6 +19,7 @@ public abstract class Device {
 		this.byName = new HashMap<>();
 		this.byNumber = new HashMap<>();
 		this.dirty = false;
+		this.unitMap = new HashMap<>();
 	}
 	
 	public String getName() {
@@ -107,6 +109,13 @@ public abstract class Device {
 	public abstract void update(Simulation sim);
 	
 	public Unit getUnit(String unitName) {
-		throw new UnsupportedOperationException("Device does not have units");
+		Unit unit = unitMap.get(unitName);
+		if (unit == null) {
+			unit = createUnit(unitName);
+			unitMap.put(unitName, unit);
+		}
+		return unit;
 	}
+	
+	public abstract Unit createUnit(String unitName);
 }

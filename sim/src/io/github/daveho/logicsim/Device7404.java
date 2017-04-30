@@ -19,7 +19,7 @@ public class Device7404 extends Device {
 	}
 	
 	@Override
-	public Unit getUnit(String unitName) {
+	public Unit createUnit(String unitName) {
 		return DeviceUtil.getHexSingleInputGateUnit(this, unitName);
 	}
 }

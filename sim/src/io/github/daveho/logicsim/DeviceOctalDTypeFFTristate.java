@@ -48,4 +48,9 @@ public abstract class DeviceOctalDTypeFFTristate extends Device {
 			}
 		}
 	}
+	
+	@Override
+	public Unit createUnit(String unitName) {
+		throw new UnsupportedOperationException("Device does not have units");
+	}
 }
