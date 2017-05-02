@@ -98,4 +98,8 @@ public class Port {
 			sim.tristate(device, pin.getNumber());
 		}
 	}
+
+	public boolean allPinsAre(PinMode mode) {
+		return pins.stream().allMatch(p -> p.getMode() == mode);
+	}
 }

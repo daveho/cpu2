@@ -117,5 +117,10 @@ public abstract class Device {
 		return unit;
 	}
 	
+	public Unit getUnit() {
+		// Devices with a single unit should always name that unit "1"
+		return getUnit("1");
+	}
+	
 	public abstract Unit createUnit(String unitName);
 }

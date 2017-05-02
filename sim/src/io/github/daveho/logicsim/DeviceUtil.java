@@ -96,6 +96,32 @@ public class DeviceUtil {
 		unit.setOutput(outputPort);
 		return unit;
 	}
+
+	/**
+	 * Create a unit that only has an input port.
+	 * (The output port will not have any pins.)
+	 * 
+	 * @param device the {@link Device}
+	 * @param inputPfx the input prefix (e.g., "D" if the input pins are D0, D1, ...)
+	 * @param inputCount number of input pins
+	 * @return the {@link Unit}
+	 */
+	public static Unit getInputUnit(Device device, String inputPfx, int inputCount) {
+		return getIOUnit(device, inputPfx, inputCount, "", 0);
+	}
+
+	/**
+	 * Create a unit that only has an output port.
+	 * (The input port will not have any pins.)
+	 * 
+	 * @param device the {@link Device}
+	 * @param outputPfx the output prefix (e.g., "Q" if the output pins are Q0, Q1, ...)
+	 * @param outputCount number of output pins
+	 * @return the {@link Unit}
+	 */
+	public static Unit getOutputUnit(Device device, String outputPfx, int outputCount) {
+		return getIOUnit(device, "", 0, outputPfx, outputCount);
+	}
 	
 	private static void checkUnitName(String unitName, char low, char high) {
 		if (unitName.length() != 1 || unitName.charAt(0) < low || unitName.charAt(0) > high) {
