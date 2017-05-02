@@ -46,6 +46,6 @@ public abstract class DeviceOctalDTypeFFTristate extends Device {
 		if (!unitName.equals("1")) {
 			throw new IllegalArgumentException("Only unit 1 is supported");
 		}
-		return DeviceUtil.getOctalPassThroughUnit(this, "D", "Q");
+		return DeviceUtil.getOctalIOUnit(this, "D", "Q");
 	}
 }

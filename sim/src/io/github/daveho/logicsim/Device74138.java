@@ -23,12 +23,27 @@ public class Device74138 extends Device {
 
 	@Override
 	public void update(Simulation sim) {
-		throw new UnsupportedOperationException("Not implemented yet");
+		Unit unit = getUnit("1");
+		
+		// Check whether output is enabled
+		boolean enabled = getPinValue("-E1") == 0
+				&& getPinValue("-E2") == 0
+				&& getPinValue("E3") == 1;
+		if (!enabled) {
+			// Output is disabled, so all outputs are high
+			unit.getOutput().write(0xFF, sim);
+		} else {
+			// Output is enabled, so make selected output low
+			int select = unit.getInput().read();
+			unit.getOutput().write(0xFF ^ (1 << select), sim);
+		}
 	}
 
 	@Override
 	public Unit createUnit(String unitName) {
-		throw new UnsupportedOperationException("Not implemented yet");
+		if (!unitName.equals("1")) {
+			throw new IllegalArgumentException("Only unit 1 is supported");
+		}
+		return DeviceUtil.getIOUnit(this, "A", 3, "-Y", 8);
 	}
-
 }

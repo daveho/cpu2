@@ -67,13 +67,29 @@ public class DeviceUtil {
 	 * @param outputPfx the output prefix (e.g., "Q" if the output pins are Q0, Q1, ...)
 	 * @return the {@link Unit}
 	 */
-	public static Unit getOctalPassThroughUnit(Device device, String inputPfx, String outputPfx) {
+	public static Unit getOctalIOUnit(Device device, String inputPfx, String outputPfx) {
+		return getIOUnit(device, inputPfx, 8, outputPfx, 8);
+	}
+
+	/**
+	 * Create a unit with a specified number of input and output pins.
+	 * 
+	 * @param device the {@link Device}
+	 * @param inputPfx the input prefix (e.g., "D" if the input pins are D0, D1, ...)
+	 * @param inputCount number of input pins
+	 * @param outputPfx the output prefix (e.g., "Q" if the output pins are Q0, Q1, ...)
+	 * @param outputCount number of output pins
+	 * @return the {@link Unit}
+	 */
+	public static Unit getIOUnit(Device device, String inputPfx, int inputCount, String outputPfx, int outputCount) {
 		Unit unit = new Unit();
 		unit.setDevice(device);
 		Port inputPort = new Port(device);
 		Port outputPort = new Port(device);
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < inputCount; i++) {
 			inputPort.addPin(device.getPin(inputPfx + i));
+		}
+		for (int i = 0; i < outputCount; i++) {
 			outputPort.addPin(device.getPin(outputPfx + i));
 		}
 		unit.setInput(inputPort);
