@@ -22,35 +22,30 @@ public abstract class DeviceOctalDTypeFFTristate extends Device {
 	public void update(Simulation sim) {
 		int curClock = getPinValue("CP");
 		
+		Unit unit = getUnit("1");
+		
 		// If there is a rising clock edge,
 		// clock in the data
 		if (lastClock == 0 && curClock == 1) {
-			int curData = 0;
-			for (int i = 0; i < 8; i++) {
-				int val = getPinValue("D" + i);
-				curData |= (val << i);
-			}
-			data = curData;
+			data = unit.getInput().read();
 		}
 		lastClock = curClock;
 		
 		int oeInv = getPinValue("-OE");
 		if (oeInv == 1) {
 			// Output is disabled: tristate the outputs
-			for (int i = 0; i < 8; i++) {
-				sim.tristate(this, "Q" + i);
-			}
+			unit.getOutput().tristate(sim);
 		} else {
 			// Output is enabled: drive output data
-			for (int i = 0; i < 8; i++) {
-				int val = (data & (1 << i)) != 0 ? 1 : 0;
-				sim.drive(this, "Q" + i, val);
-			}
+			unit.getOutput().write(data, sim);
 		}
 	}
 	
 	@Override
 	public Unit createUnit(String unitName) {
+		if (!unitName.equals("1")) {
+			throw new IllegalArgumentException("Only unit 1 is supported");
+		}
 		return DeviceUtil.getOctalPassThroughUnit(this, "D", "Q");
 	}
 }

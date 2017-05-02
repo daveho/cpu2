@@ -87,4 +87,15 @@ public class Port {
 			sim.drive(device, pin.getNumber(), bitval);
 		}
 	}
+
+	/**
+	 * Tristate all of this port's {@link Pin}s.
+	 * @param sim the {@link Simulation}
+	 */
+	public void tristate(Simulation sim) {
+		for (int i = 0; i < pins.size(); i++) {
+			Pin pin = pins.get(i);
+			sim.tristate(device, pin.getNumber());
+		}
+	}
 }
