@@ -23,7 +23,7 @@ public class Device74138 extends Device {
 
 	@Override
 	public void update(Simulation sim) {
-		Unit unit = getUnit("1");
+		Unit unit = getUnit();
 		
 		// Check whether output is enabled
 		boolean enabled = getPinValue("-E1") == 0

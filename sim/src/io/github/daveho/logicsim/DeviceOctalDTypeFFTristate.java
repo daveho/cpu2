@@ -22,7 +22,7 @@ public abstract class DeviceOctalDTypeFFTristate extends Device {
 	public void update(Simulation sim) {
 		int curClock = getPinValue("CP");
 		
-		Unit unit = getUnit("1");
+		Unit unit = getUnit();
 		
 		// If there is a rising clock edge,
 		// clock in the data

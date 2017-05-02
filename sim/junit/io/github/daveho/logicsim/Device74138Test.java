@@ -40,9 +40,9 @@ public class Device74138Test {
 			sim.connect(dev, "A" + i, addr);
 		}
 		
-		enablePort = enableGen.getUnit("1").getOutput();
-		addrPort = addrGen.getUnit("1").getOutput();
-		outputPort = dev.getUnit("1").getOutput();
+		enablePort = enableGen.getUnit().getOutput();
+		addrPort = addrGen.getUnit().getOutput();
+		outputPort = dev.getUnit().getOutput();
 		
 		sim.prepare();
 	}

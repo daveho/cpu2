@@ -117,8 +117,14 @@ public abstract class Device {
 		return unit;
 	}
 	
+	/**
+	 * If this is a device that has only a single {@link Unit},
+	 * returns that unit.  A single unit should always be named
+	 * "1".
+	 * 
+	 * @return the single {@link Unit}
+	 */
 	public Unit getUnit() {
-		// Devices with a single unit should always name that unit "1"
 		return getUnit("1");
 	}
 	
