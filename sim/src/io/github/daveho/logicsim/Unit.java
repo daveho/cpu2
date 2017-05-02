@@ -1,5 +1,10 @@
 package io.github.daveho.logicsim;
 
+/**
+ * A unit represents a specific, independent internal function of a
+ * {@link Device}.  It has input and output {@link Port}s.
+ * A device may have multiple units.
+ */
 public class Unit {
 	private Device device;
 //	private Pin[] inputs;

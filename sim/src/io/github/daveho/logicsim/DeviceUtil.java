@@ -58,6 +58,29 @@ public class DeviceUtil {
 		return createUnit(device, inputs, output);
 	}
 	
+	/**
+	 * Create a unit with 8 input pins and 8 output pins.
+	 * Useful for buffers, latches, etc.
+	 * 
+	 * @param device the {@link Device}
+	 * @param inputPfx the input prefix (e.g., "D" if the input pins are D0, D1, ...)
+	 * @param outputPfx the output prefix (e.g., "Q" if the output pins are Q0, Q1, ...)
+	 * @return the {@link Unit}
+	 */
+	public static Unit getOctalPassThroughUnit(Device device, String inputPfx, String outputPfx) {
+		Unit unit = new Unit();
+		unit.setDevice(device);
+		Port inputPort = new Port(device);
+		Port outputPort = new Port(device);
+		for (int i = 0; i < 8; i++) {
+			inputPort.addPin(device.getPin(inputPfx + i));
+			outputPort.addPin(device.getPin(outputPfx + i));
+		}
+		unit.setInput(inputPort);
+		unit.setOutput(outputPort);
+		return unit;
+	}
+	
 	private static void checkUnitName(String unitName, char low, char high) {
 		if (unitName.length() != 1 || unitName.charAt(0) < low || unitName.charAt(0) > high) {
 			throw new IllegalArgumentException("Invalid unit: " + unitName);
