@@ -12,14 +12,6 @@ import java.util.regex.Pattern;
 
 // Class to do lexical analysis of a Kicad netlist.
 public class KicadNetlistLexer {
-	enum TokenType {
-		LPAREN,
-		RPAREN,
-		IDENT,
-		INT_LITERAL,
-		STRING_LITERAL,
-	}
-	
 	private static final Pattern ALL_DIGITS = Pattern.compile("^[0-9]+$");
 	
 	private PushbackReader reader;
