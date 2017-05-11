@@ -5,5 +5,9 @@ public enum TokenType {
 	RPAREN,
 	IDENT,
 	INT_LITERAL,
-	STRING_LITERAL,
+	STRING_LITERAL,;
+
+	public boolean isValueType() {
+		return this == IDENT || this == INT_LITERAL || this == STRING_LITERAL;
+	}
 }
