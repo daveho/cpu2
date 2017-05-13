@@ -20,7 +20,18 @@ public class STuple extends SExp {
 		children.add(child);
 	}
 	
+	@Override
 	public List<SExp> getChildren() {
 		return Collections.unmodifiableList(children);
+	}
+	
+	@Override
+	public boolean isNamed(String name) {
+		return label.lexeme.equals(name);
+	}
+	
+	@Override
+	public SExp getChild(String name) {
+		return children.stream().filter(e -> e.isNamed(name)).findFirst().get();
 	}
 }
