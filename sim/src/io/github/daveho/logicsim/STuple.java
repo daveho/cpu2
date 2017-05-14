@@ -34,4 +34,14 @@ public class STuple extends SExp {
 	public SExp getChild(String name) {
 		return children.stream().filter(e -> e.isNamed(name)).findFirst().get();
 	}
+	
+	@Override
+	public String asString() {
+		throw new IllegalStateException("Can't get string value of tuple");
+	}
+	
+	@Override
+	public int asInt() {
+		throw new IllegalStateException("Can't get integer value of tuple");
+	}
 }

@@ -2,6 +2,7 @@ package io.github.daveho.logicsim;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Simulation {
 	private static final int MAX_UPDATES = 2000;
@@ -24,8 +25,26 @@ public class Simulation {
 		devices.add(device);
 	}
 	
+	public Device getDevice(String devName) {
+		for (Device dev : devices) {
+			if (dev.getName().equals(devName)) {
+				return dev;
+			}
+		}
+		throw new NoSuchElementException("No device with name " + devName);
+	}
+	
 	private void addNet(Net net) {
 		nets.add(net);
+	}
+	
+	public Net getNet(String netName) {
+		for (Net net : nets) {
+			if (net.getName().equals(netName)) {
+				return net;
+			}
+		}
+		throw new NoSuchElementException("No net with name " + netName);
 	}
 	
 	public void connect(Device device, int pinNumber, Net net) {

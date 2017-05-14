@@ -27,7 +27,12 @@ public class SValue extends SExp {
 	}
 	
 	@Override
-	public String toString() {
+	public String asString() {
 		return token.lexeme;
+	}
+	
+	@Override
+	public int asInt() {
+		return Integer.parseInt(asString());
 	}
 }
