@@ -390,4 +390,100 @@ NoConn ~ 6800 4600
 NoConn ~ 6800 4700
 Text Notes 7100 6750 0    60   ~ 0
 opcode fetch logic
+$Comp
+L 74LS574 U?
+U 1 1 5922FE92
+P 9100 5150
+F 0 "U?" H 9100 5150 50  0000 C CNN
+F 1 "74LS574" H 9150 4800 50  0000 C CNN
+F 2 "" H 9100 5150 50  0001 C CNN
+F 3 "" H 9100 5150 50  0001 C CNN
+	1    9100 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8400 5650 8200 5650
+Wire Wire Line
+	8200 5650 8200 6000
+$Comp
+L GND #PWR?
+U 1 1 59230080
+P 8200 6000
+F 0 "#PWR?" H 8200 5750 50  0001 C CNN
+F 1 "GND" H 8200 5850 50  0000 C CNN
+F 2 "" H 8200 6000 50  0001 C CNN
+F 3 "" H 8200 6000 50  0001 C CNN
+	1    8200 6000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8400 4650 8000 4650
+Wire Wire Line
+	8400 4750 8000 4750
+Wire Wire Line
+	8400 4850 8000 4850
+Wire Wire Line
+	8400 4950 8000 4950
+Wire Wire Line
+	8400 5050 8000 5050
+Wire Wire Line
+	8400 5150 8000 5150
+Wire Wire Line
+	8400 5250 8000 5250
+Wire Wire Line
+	8400 5350 8000 5350
+Text Label 8050 4650 0    60   ~ 0
+D0
+Text Label 8050 4750 0    60   ~ 0
+D1
+Text Label 8050 4850 0    60   ~ 0
+D2
+Text Label 8050 4950 0    60   ~ 0
+D3
+Text Label 8050 5050 0    60   ~ 0
+D4
+Text Label 8050 5150 0    60   ~ 0
+D5
+Text Label 8050 5250 0    60   ~ 0
+D6
+Text Label 8050 5350 0    60   ~ 0
+D7
+Wire Wire Line
+	7400 4300 7400 5550
+Wire Wire Line
+	7400 5550 8400 5550
+Text Notes 8750 4450 0    60   ~ 0
+opcode register
+Wire Wire Line
+	9800 4650 10350 4650
+Wire Wire Line
+	9800 4750 10350 4750
+Wire Wire Line
+	9800 4850 10350 4850
+Wire Wire Line
+	9800 4950 10350 4950
+Wire Wire Line
+	9800 5050 10350 5050
+Wire Wire Line
+	9800 5150 10350 5150
+Wire Wire Line
+	9800 5250 10350 5250
+Wire Wire Line
+	9800 5350 10350 5350
+Text Label 10050 4650 0    60   ~ 0
+OPC0
+Text Label 10050 4750 0    60   ~ 0
+OPC1
+Text Label 10050 4850 0    60   ~ 0
+OPC2
+Text Label 10050 4950 0    60   ~ 0
+OPC3
+Text Label 10050 5050 0    60   ~ 0
+OPC4
+Text Label 10050 5150 0    60   ~ 0
+OPC5
+Text Label 10050 5250 0    60   ~ 0
+OPC6
+Text Label 10050 5350 0    60   ~ 0
+OPC7
 $EndSCHEMATC
