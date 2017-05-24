@@ -229,8 +229,8 @@ F 3 "" H 2750 6650 50  0001 C CNN
 	6    2750 6650
 	1    0    0    -1  
 $EndComp
-Text Notes 9700 1350 0    60   ~ 0
--pcLoad asserts the initial PC\nupper/lower byte value on the\nALU data bus
+Text Notes 9550 1300 0    60   ~ 0
+-pcLoad asserts the initial PC\nupper/lower byte value on the\nALU data bus, and also drives\nthe parallel load input on the\nPC register
 Text Notes 9850 3150 0    60   ~ 0
 -lateRST is the active-low\nreset signal for all other\ndevices
 $Comp
