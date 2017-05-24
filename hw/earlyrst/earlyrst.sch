@@ -106,62 +106,58 @@ NoConn ~ 4900 2800
 $Comp
 L 74LS32 U?
 U 1 1 592592CC
-P 5850 2600
-F 0 "U?" H 5850 2650 50  0000 C CNN
-F 1 "74LS32" H 5850 2550 50  0000 C CNN
-F 2 "" H 5850 2600 50  0001 C CNN
-F 3 "" H 5850 2600 50  0001 C CNN
-	1    5850 2600
+P 6750 2600
+F 0 "U?" H 6750 2650 50  0000 C CNN
+F 1 "74LS32" H 6750 2550 50  0000 C CNN
+F 2 "" H 6750 2600 50  0001 C CNN
+F 3 "" H 6750 2600 50  0001 C CNN
+	1    6750 2600
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS04 U?
 U 3 1 59259341
-P 7050 2600
-F 0 "U?" H 7245 2715 50  0000 C CNN
-F 1 "74LS04" H 7240 2475 50  0000 C CNN
-F 2 "" H 7050 2600 50  0001 C CNN
-F 3 "" H 7050 2600 50  0001 C CNN
-	3    7050 2600
+P 5550 2500
+F 0 "U?" H 5745 2615 50  0000 C CNN
+F 1 "74LS04" H 5740 2375 50  0000 C CNN
+F 2 "" H 5550 2500 50  0001 C CNN
+F 3 "" H 5550 2500 50  0001 C CNN
+	3    5550 2500
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS175 U?
 U 1 1 59259407
-P 8350 3050
-F 0 "U?" H 8350 3050 50  0000 C CNN
-F 1 "74LS175" H 8450 2650 50  0000 C CNN
-F 2 "" H 8350 3050 50  0001 C CNN
-F 3 "" H 8350 3050 50  0001 C CNN
-	1    8350 3050
+P 8550 3050
+F 0 "U?" H 8550 3050 50  0000 C CNN
+F 1 "74LS175" H 8650 2650 50  0000 C CNN
+F 2 "" H 8550 3050 50  0001 C CNN
+F 3 "" H 8550 3050 50  0001 C CNN
+	1    8550 3050
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS32 U?
 U 2 1 59259471
-P 5850 3350
-F 0 "U?" H 5850 3400 50  0000 C CNN
-F 1 "74LS32" H 5850 3300 50  0000 C CNN
-F 2 "" H 5850 3350 50  0001 C CNN
-F 3 "" H 5850 3350 50  0001 C CNN
-	2    5850 3350
+P 6750 3100
+F 0 "U?" H 6750 3150 50  0000 C CNN
+F 1 "74LS32" H 6750 3050 50  0000 C CNN
+F 2 "" H 6750 3100 50  0001 C CNN
+F 3 "" H 6750 3100 50  0001 C CNN
+	2    6750 3100
 	1    0    0    -1  
 $EndComp
-Text Label 4650 2500 0    60   ~ 0
-CT0
-Text Label 4650 2600 0    60   ~ 0
-CT1
-Text Label 9900 2800 0    60   ~ 0
+Text Label 10100 2800 0    60   ~ 0
 -lateRST
 $Comp
 L GND #PWR?
 U 1 1 59259887
-P 6800 3500
-F 0 "#PWR?" H 6800 3250 50  0001 C CNN
-F 1 "GND" H 6800 3350 50  0000 C CNN
-F 2 "" H 6800 3500 50  0001 C CNN
-F 3 "" H 6800 3500 50  0001 C CNN
-	1    6800 3500
+P 7700 4500
+F 0 "#PWR?" H 7700 4250 50  0001 C CNN
+F 1 "GND" H 7700 4350 50  0000 C CNN
+F 2 "" H 7700 4500 50  0001 C CNN
+F 3 "" H 7700 4500 50  0001 C CNN
+	1    7700 4500
 	1    0    0    -1  
 $EndComp
 Text Label 600  1050 0    60   ~ 0
@@ -172,19 +168,6 @@ Text Label 2200 2950 0    60   ~ 0
 RST
 Text Label 2250 3300 0    60   ~ 0
 INVCLK
-$Comp
-L 74LS32 U?
-U 3 1 59259CFD
-P 10050 1600
-F 0 "U?" H 10050 1650 50  0000 C CNN
-F 1 "74LS32" H 10050 1550 50  0000 C CNN
-F 2 "" H 10050 1600 50  0001 C CNN
-F 3 "" H 10050 1600 50  0001 C CNN
-	3    10050 1600
-	1    0    0    -1  
-$EndComp
-Text Label 10700 1600 0    60   ~ 0
--pcLoad
 $Comp
 L 74LS32 U?
 U 4 1 5925A3F5
@@ -199,12 +182,12 @@ $EndComp
 $Comp
 L 74LS04 U?
 U 4 1 5925A468
-P 2750 5950
-F 0 "U?" H 2945 6065 50  0000 C CNN
-F 1 "74LS04" H 2940 5825 50  0000 C CNN
-F 2 "" H 2750 5950 50  0001 C CNN
-F 3 "" H 2750 5950 50  0001 C CNN
-	4    2750 5950
+P 5550 3000
+F 0 "U?" H 5745 3115 50  0000 C CNN
+F 1 "74LS04" H 5740 2875 50  0000 C CNN
+F 2 "" H 5550 3000 50  0001 C CNN
+F 3 "" H 5550 3000 50  0001 C CNN
+	4    5550 3000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -229,10 +212,8 @@ F 3 "" H 2750 6650 50  0001 C CNN
 	6    2750 6650
 	1    0    0    -1  
 $EndComp
-Text Notes 9550 1300 0    60   ~ 0
--pcLoad asserts the initial PC\nupper/lower byte value on the\nALU data bus, and also drives\nthe parallel load input on the\nPC register
-Text Notes 9850 3150 0    60   ~ 0
--lateRST is the active-low\nreset signal for all other\ndevices
+Text Notes 10050 3250 0    60   ~ 0
+-lateRST is the\nactive-low reset\nsignal for all other\ndevices
 $Comp
 L GND #PWR?
 U 1 1 5925AADF
@@ -245,7 +226,6 @@ F 3 "" H 1900 6950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 3750 5500
-NoConn ~ 3750 5950
 NoConn ~ 3750 6300
 NoConn ~ 3750 6650
 Text Notes 2400 5150 0    60   ~ 0
@@ -317,71 +297,22 @@ Wire Wire Line
 Wire Wire Line
 	4600 2700 4900 2700
 Wire Wire Line
-	6600 2600 6450 2600
+	7350 2600 7850 2600
 Wire Wire Line
-	5250 2700 5100 2700
+	9250 2800 10600 2800
 Wire Wire Line
-	5100 2600 5100 3250
+	9850 3850 9850 2800
+Connection ~ 9850 2800
 Wire Wire Line
-	5100 3250 5250 3250
-Connection ~ 5100 2700
-Wire Wire Line
-	4600 2500 5250 2500
-Wire Wire Line
-	4600 2600 5100 2600
-Wire Wire Line
-	7500 2600 7650 2600
-Wire Wire Line
-	9050 2800 10400 2800
-Wire Wire Line
-	5250 3450 5100 3450
-Wire Wire Line
-	5100 3450 5100 3850
-Wire Wire Line
-	5100 3850 9650 3850
-Wire Wire Line
-	9650 3850 9650 2800
-Connection ~ 9650 2800
-Wire Wire Line
-	7650 2800 7350 2800
-Wire Wire Line
-	7350 2800 7350 3350
-Wire Wire Line
-	7350 3350 6450 3350
-Wire Wire Line
-	7650 3000 6800 3000
-Wire Wire Line
-	6800 3000 6800 3500
-Wire Wire Line
-	7650 3200 6800 3200
-Connection ~ 6800 3200
-Wire Wire Line
-	7650 3500 7550 3500
-Wire Wire Line
-	7550 3500 7550 4300
-Wire Wire Line
-	7550 4300 750  4300
+	750  4300 7550 4300
 Connection ~ 750  3300
-Wire Wire Line
-	9300 1500 9300 2700
 Wire Wire Line
 	1000 1050 550  1050
 Wire Wire Line
 	750  1400 550  1400
 Wire Wire Line
-	7650 3400 7450 3400
-Wire Wire Line
-	7450 3400 7450 4150
-Wire Wire Line
-	7450 4150 1000 4150
+	1000 4150 7450 4150
 Connection ~ 1000 2950
-Wire Wire Line
-	9450 1700 9450 2800
-Connection ~ 9450 2800
-Wire Wire Line
-	9300 1500 9450 1500
-Wire Wire Line
-	10650 1600 11100 1600
 Wire Wire Line
 	2300 5400 1900 5400
 Wire Wire Line
@@ -389,9 +320,6 @@ Wire Wire Line
 Wire Wire Line
 	2300 5600 1900 5600
 Connection ~ 1900 5600
-Wire Wire Line
-	2300 5950 1900 5950
-Connection ~ 1900 5950
 Wire Wire Line
 	2300 6300 1900 6300
 Connection ~ 1900 6300
@@ -401,13 +329,9 @@ Connection ~ 1900 6650
 Wire Wire Line
 	3500 5500 3750 5500
 Wire Wire Line
-	3200 5950 3750 5950
-Wire Wire Line
 	3200 6300 3750 6300
 Wire Wire Line
 	3200 6650 3750 6650
-Wire Wire Line
-	9300 2700 9050 2700
 Wire Wire Line
 	6100 5600 4950 5600
 Wire Wire Line
@@ -490,4 +414,54 @@ Text Label 7600 5600 0    60   ~ 0
 ALU7
 Text Notes 6350 6300 0    60   ~ 0
 the initial PC value is\n0xC0C0
+Wire Wire Line
+	9250 2600 10600 2600
+Text Label 10100 2600 0    60   ~ 0
+-pcLoad
+Wire Wire Line
+	6150 2500 6000 2500
+Wire Wire Line
+	7850 3000 7700 3000
+Wire Wire Line
+	7700 3000 7700 4500
+Wire Wire Line
+	7850 3200 7700 3200
+Connection ~ 7700 3200
+Wire Wire Line
+	4600 2500 5100 2500
+Wire Wire Line
+	4600 2600 5100 2600
+Wire Wire Line
+	5100 2600 5100 3000
+Text Label 4600 2500 0    60   ~ 0
+CT0
+Text Label 4600 2600 0    60   ~ 0
+CT1
+Wire Wire Line
+	6000 3000 6150 3000
+Wire Wire Line
+	7850 3500 7550 3500
+Wire Wire Line
+	7550 3500 7550 4300
+Wire Wire Line
+	7850 3400 7450 3400
+Wire Wire Line
+	7450 3400 7450 4150
+Wire Wire Line
+	9850 3850 6050 3850
+Wire Wire Line
+	6050 3850 6050 2700
+Wire Wire Line
+	6050 2700 6150 2700
+Wire Wire Line
+	6150 3200 6050 3200
+Connection ~ 6050 3200
+Wire Wire Line
+	7350 3100 7500 3100
+Wire Wire Line
+	7500 3100 7500 2800
+Wire Wire Line
+	7500 2800 7850 2800
+Text Notes 9600 2450 0    60   ~ 0
+-pcLoad asserts the initial PC\nupper/lower byte value on the\nALU data bus
 $EndSCHEMATC
