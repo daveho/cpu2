@@ -33,7 +33,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title ""
 Date ""
 Rev ""
@@ -76,5 +76,11 @@ F20 "OPC4" O R 2450 3450 60
 F21 "OPC5" O R 2450 3550 60 
 F22 "OPC6" O R 2450 3650 60 
 F23 "OPC7" O R 2450 3750 60 
+$EndSheet
+$Sheet
+S 3000 2000 1100 2050
+U 5929A488
+F0 "phase" 60
+F1 "phase.sch" 60
 $EndSheet
 $EndSCHEMATC
