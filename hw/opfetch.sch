@@ -28,6 +28,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -187,23 +188,23 @@ wrOpReg
 $Comp
 L 74LS00 U?
 U 3 1 59286333
-P 8100 3250
-F 0 "U?" H 8100 3300 50  0000 C CNN
-F 1 "74LS00" H 8100 3150 50  0000 C CNN
-F 2 "" H 8100 3250 50  0001 C CNN
-F 3 "" H 8100 3250 50  0001 C CNN
-	3    8100 3250
+P 3150 5900
+F 0 "U?" H 3150 5950 50  0000 C CNN
+F 1 "74LS00" H 3150 5800 50  0000 C CNN
+F 2 "" H 3150 5900 50  0001 C CNN
+F 3 "" H 3150 5900 50  0001 C CNN
+	3    3150 5900
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS00 U?
 U 4 1 5928636E
-P 9600 3250
-F 0 "U?" H 9600 3300 50  0000 C CNN
-F 1 "74LS00" H 9600 3150 50  0000 C CNN
-F 2 "" H 9600 3250 50  0001 C CNN
-F 3 "" H 9600 3250 50  0001 C CNN
-	4    9600 3250
+P 3150 6400
+F 0 "U?" H 3150 6450 50  0000 C CNN
+F 1 "74LS00" H 3150 6300 50  0000 C CNN
+F 2 "" H 3150 6400 50  0001 C CNN
+F 3 "" H 3150 6400 50  0001 C CNN
+	4    3150 6400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -319,34 +320,9 @@ Wire Wire Line
 Wire Wire Line
 	10200 2150 10700 2150
 Wire Wire Line
-	7500 3350 6400 3350
-Wire Wire Line
-	6400 3350 6400 1600
-Connection ~ 6400 1600
-Wire Wire Line
-	7500 3150 6550 3150
-Wire Wire Line
-	6550 3150 6550 1500
-Connection ~ 6550 1500
-Wire Wire Line
-	9000 3150 8900 3150
-Wire Wire Line
-	8900 3150 8900 3350
-Wire Wire Line
-	8900 3250 8700 3250
-Wire Wire Line
-	8900 3350 9000 3350
-Connection ~ 8900 3250
-Wire Wire Line
-	10200 3250 10700 3250
-Text Label 10250 3250 0    60   ~ 0
-opFetchEndCmp
-Wire Wire Line
 	4700 3750 4100 3750
 Wire Wire Line
 	4700 3950 4100 3950
-Wire Wire Line
-	4700 4150 4100 4150
 Wire Wire Line
 	4700 4350 4450 4350
 Wire Wire Line
@@ -366,8 +342,6 @@ Text Label 4150 3750 0    60   ~ 0
 opReadMem
 Text Label 4150 3950 0    60   ~ 0
 wrOpReg
-Text Label 4050 4150 0    60   ~ 0
-opFetchEndCmp
 Wire Wire Line
 	6100 3850 10000 3850
 Wire Wire Line
@@ -466,4 +440,48 @@ Wire Wire Line
 	9400 5350 9900 5350
 Wire Wire Line
 	9400 5450 9900 5450
+Wire Wire Line
+	6150 1700 6450 1700
+Wire Wire Line
+	6450 1700 6450 3250
+Wire Wire Line
+	6450 3250 3850 3250
+Wire Wire Line
+	3850 3250 3850 4150
+Wire Wire Line
+	3850 4150 4700 4150
+Text Label 6200 1700 0    60   ~ 0
+CT2
+Wire Wire Line
+	2550 5800 2250 5800
+Wire Wire Line
+	2250 5800 2250 6850
+Wire Wire Line
+	2550 6000 2250 6000
+Connection ~ 2250 6000
+Wire Wire Line
+	2550 6300 2250 6300
+Connection ~ 2250 6300
+Wire Wire Line
+	2550 6500 2250 6500
+Connection ~ 2250 6500
+$Comp
+L GND #PWR?
+U 1 1 59296CBE
+P 2250 6850
+F 0 "#PWR?" H 2250 6600 50  0001 C CNN
+F 1 "GND" H 2250 6700 50  0000 C CNN
+F 2 "" H 2250 6850 50  0001 C CNN
+F 3 "" H 2250 6850 50  0001 C CNN
+	1    2250 6850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 5900 4050 5900
+Wire Wire Line
+	3750 6400 4050 6400
+NoConn ~ 4050 5900
+NoConn ~ 4050 6400
+Text Notes 2850 5550 0    60   ~ 0
+unused gates
 $EndSCHEMATC
