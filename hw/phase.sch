@@ -43,8 +43,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text HLabel 1150 3600 0    60   Input ~ 0
-opfetchEnd
 Text HLabel 1150 3250 0    60   Input ~ 0
 ucodeEnd
 Text HLabel 9000 3550 2    60   Output ~ 0
@@ -53,12 +51,8 @@ Text HLabel 9000 3350 2    60   Output ~ 0
 -ucode
 Text HLabel 1200 1550 0    60   Input ~ 0
 -RST
-Text HLabel 1200 1750 0    60   Input ~ 0
-RST
 Text HLabel 1200 2150 0    60   Input ~ 0
 CLK
-Text HLabel 1200 2400 0    60   Input ~ 0
--CLK
 $Comp
 L 74LS175 U?
 U 1 1 5929A5F9
@@ -117,8 +111,6 @@ Wire Wire Line
 	4500 3350 4650 3350
 Text HLabel 1150 3750 0    60   Input ~ 0
 -opfetchEnd
-Text HLabel 1150 3400 0    60   Input ~ 0
--ucodeEnd
 Wire Wire Line
 	7700 3550 9000 3550
 Wire Wire Line

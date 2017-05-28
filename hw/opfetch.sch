@@ -47,7 +47,7 @@ Text HLabel 1100 900  0    60   Input ~ 0
 -RST
 Text HLabel 1100 1800 0    60   Input ~ 0
 CLK
-Text HLabel 1100 2050 0    60   Input ~ 0
+Text HLabel 1100 2100 0    60   Input ~ 0
 -CLK
 Text HLabel 1100 1450 0    60   Input ~ 0
 -DIS
@@ -65,12 +65,12 @@ $EndComp
 $Comp
 L 74LS00 U?
 U 2 1 59284C82
-P 2650 2000
-F 0 "U?" H 2650 2050 50  0000 C CNN
-F 1 "74LS00" H 2650 1900 50  0000 C CNN
-F 2 "" H 2650 2000 50  0001 C CNN
-F 3 "" H 2650 2000 50  0001 C CNN
-	2    2650 2000
+P 2650 1600
+F 0 "U?" H 2650 1650 50  0000 C CNN
+F 1 "74LS00" H 2650 1500 50  0000 C CNN
+F 2 "" H 2650 1600 50  0001 C CNN
+F 3 "" H 2650 1600 50  0001 C CNN
+	2    2650 1600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -218,41 +218,24 @@ Wire Wire Line
 Wire Wire Line
 	3250 1000 4300 1000
 Wire Wire Line
-	3400 1000 3400 1650
+	1850 1600 1950 1600
 Wire Wire Line
-	3400 1650 1850 1650
+	1950 1500 1950 1700
 Wire Wire Line
-	1850 1650 1850 2000
+	1950 1500 2050 1500
 Wire Wire Line
-	1850 2000 1950 2000
-Wire Wire Line
-	1950 1900 1950 2100
-Wire Wire Line
-	1950 1900 2050 1900
-Wire Wire Line
-	1950 2100 2050 2100
-Connection ~ 1950 2000
+	1950 1700 2050 1700
+Connection ~ 1950 1600
 Wire Wire Line
 	4750 2300 4300 2300
 Wire Wire Line
 	4300 2300 4300 1000
-Connection ~ 3400 1000
 Wire Wire Line
-	3250 2000 3400 2000
-Wire Wire Line
-	3400 2000 3400 4650
+	3400 1600 3400 4650
 Wire Wire Line
 	3400 4650 4700 4650
 Wire Wire Line
-	4750 2100 3850 2100
-Wire Wire Line
-	3850 2100 3850 2300
-Wire Wire Line
-	3850 2300 1600 2300
-Wire Wire Line
-	1600 2300 1600 2050
-Wire Wire Line
-	1600 2050 1100 2050
+	1100 2100 4750 2100
 Wire Wire Line
 	1500 4550 4700 4550
 Wire Wire Line
@@ -346,22 +329,14 @@ Wire Wire Line
 	6100 3850 10000 3850
 Wire Wire Line
 	6100 4050 7000 4050
-Wire Wire Line
-	6100 4150 6250 4150
-Wire Wire Line
-	6250 4150 6250 4250
-Wire Wire Line
-	6250 4250 10000 4250
-Text Label 6350 3850 0    60   ~ 0
+Text Label 6200 3850 0    60   ~ 0
 -opReadMem
-Text Label 6350 4050 0    60   ~ 0
+Text Label 6200 4050 0    60   ~ 0
 -wrOpReg
-Text Label 6400 4250 0    60   ~ 0
-opFetchEnd
 Text HLabel 10000 3850 2    60   Output ~ 0
 -opReadMem
-Text HLabel 10000 4250 2    60   Output ~ 0
-opFetchEnd
+Text HLabel 10000 4150 2    60   Output ~ 0
+opfetchEnd
 $Comp
 L 74LS574 U?
 U 1 1 59287645
@@ -484,4 +459,25 @@ NoConn ~ 4050 5900
 NoConn ~ 4050 6400
 Text Notes 2850 5550 0    60   ~ 0
 unused gates
+Text HLabel 10000 4250 2    60   Input ~ 0
+-opfetchEnd
+Wire Wire Line
+	10000 4150 6100 4150
+Wire Wire Line
+	10000 4250 6100 4250
+Wire Wire Line
+	1850 1600 1850 1300
+Wire Wire Line
+	1850 1300 3400 1300
+Wire Wire Line
+	3400 1300 3400 1000
+Connection ~ 3400 1000
+Wire Wire Line
+	3250 1600 3400 1600
+Text Label 6200 4150 0    60   ~ 0
+opfetchEnd
+Text Label 6200 4250 0    60   ~ 0
+-opfetchEnd
+Text Notes 8350 4600 0    60   ~ 0
+opcode register
 $EndSCHEMATC
