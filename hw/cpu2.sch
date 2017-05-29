@@ -33,7 +33,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 6
+Sheet 1 7
 Title ""
 Date ""
 Rev ""
@@ -143,5 +143,11 @@ F27 "RIGHT4" O R 5200 4300 60
 F28 "RIGHT5" O R 5200 4400 60 
 F29 "RIGHT6" O R 5200 4500 60 
 F30 "RIGHT7" O R 5200 4600 60 
+$EndSheet
+$Sheet
+S 1300 5100 1100 1900
+U 592C71D0
+F0 "ucode" 60
+F1 "ucode.sch" 60
 $EndSheet
 $EndSCHEMATC
