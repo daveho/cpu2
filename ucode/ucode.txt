@@ -1,0 +1,31 @@
+# cpu2 microcode
+
+def r0 0000;
+def r2 0001;
+def r3 0010;
+def r4 0011;
+def r1 0100;
+def r3 0101;
+def r5 0110;
+def r7 0111;
+
+def arlo 1000;
+def arhi 1001;
+def pclo 1010;
+def pchi 1011;
+def mem 1100;
+
+signal rd_dev[0..3] default 1111;
+signal wr_dev[4..7] default 1111;
+signal end default 0;
+
+template mov(dest_dev, src_dev) {
+  rd_dev=src_dev;
+  wr_dev=dest_dev;
+  wr_dev=default;
+  rd_dev=default, end=1;
+}
+
+ins(0) {
+  mov(r0, r1);
+}
