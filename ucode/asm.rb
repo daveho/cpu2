@@ -29,6 +29,7 @@ class Lexer
     [ /^\]/, :rbracket ],
     [ /^\(/, :lparen ],
     [ /^\)/, :rparen ],
+    [ /^=/, :eq ],
     [ /^0b\d+/, :binary_literal ],
     [ /^\d+/, :int_literal ],
     [ /^def/, :kw_def ],
@@ -38,6 +39,8 @@ class Lexer
     [ /^ins/, :kw_ins ],
     [ /^[A-Za-z][A-Za-z0-9_]*/, :ident ],
   ]
+
+  COMMENT = /^\s*#/
 
   # Read and consume next token
   def next
@@ -58,7 +61,7 @@ class Lexer
     return if @eof || !@t.nil?
 
     # read a line of input
-    while @line.nil? || @line.lstrip() == ''
+    while @line.nil? || @line.lstrip() == '' || COMMENT.match(@line)
       @line = @f.gets()
       if @line.nil?  # end of file?
         @eof = true
