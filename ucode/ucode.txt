@@ -2,8 +2,8 @@
 
 def r0 0b0000;
 def r2 0b0001;
-def r3 0b0010;
-def r4 0b0011;
+def r4 0b0010;
+def r6 0b0011;
 def r1 0b0100;
 def r3 0b0101;
 def r5 0b0110;
