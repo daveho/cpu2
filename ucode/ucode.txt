@@ -1,23 +1,23 @@
 # cpu2 microcode
 
-def r0 0000;
-def r2 0001;
-def r3 0010;
-def r4 0011;
-def r1 0100;
-def r3 0101;
-def r5 0110;
-def r7 0111;
+def r0 0b0000;
+def r2 0b0001;
+def r3 0b0010;
+def r4 0b0011;
+def r1 0b0100;
+def r3 0b0101;
+def r5 0b0110;
+def r7 0b0111;
 
-def arlo 1000;
-def arhi 1001;
-def pclo 1010;
-def pchi 1011;
-def mem 1100;
+def arlo 0b1000;
+def arhi 0b1001;
+def pclo 0b1010;
+def pchi 0b1011;
+def mem 0b1100;
 
-signal rd_dev[0..3] default 1111;
-signal wr_dev[4..7] default 1111;
-signal end default 0;
+signal rd_dev[4] default 0b1111;
+signal wr_dev[4] default 0b1111;
+signal end[1] default 0b0;
 
 template mov(dest_dev, src_dev) {
   rd_dev=src_dev;
@@ -27,5 +27,9 @@ template mov(dest_dev, src_dev) {
 }
 
 ins(0) {
+  end=1;
+}
+
+ins(1) {
   mov(r0, r1);
 }
