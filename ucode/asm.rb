@@ -106,6 +106,14 @@ class Op
   end
 end
 
+# Call class: call to expand a template
+class Call
+  def initialize(tname, args)
+    @tname = tname
+    @args = args
+  end
+end
+
 # Body class: list of ops
 class Body
   def initialize
@@ -122,6 +130,13 @@ end
 class Value
 end
 
+class Instruction
+  def initialize(opcode, body)
+    @opcode = opcode
+    @body = body
+  end
+end
+
 class Ucode
   def initialize
   end
@@ -135,6 +150,10 @@ class Ucode
   end
 
   def add_template(ident, params, body)
+    # TODO
+  end
+
+  def add_ins(ins)
     # TODO
   end
 end
@@ -201,7 +220,13 @@ class Parser
   end
 
   def _parse_ins
-    raise "Instruction not supported yet"
+    self._expect(:kw_ins)
+    self._expect(:lparen)
+    opcode = self._expect(:int_literal)
+    self._expect(:rparen)
+    body = self._parse_body
+    ins = Instruction.new(opcode.lexeme.to_i, body)
+    @ucode.add_ins(ins)
   end
 
   def _parse_param_list
@@ -242,6 +267,16 @@ class Parser
       break if t.type == :semi
       self._expect(:comma) if !first
       signame = self._expect(:ident)
+
+      if first and self._next_is(:lparen)
+        # Special case: this is a call to expand a template
+        self._expect(:lparen)
+        args = self._parse_args
+        self._expect(:rparen)
+        self._expect(:semi)
+        return Call.new(signame.lexeme, args)
+      end
+
       self._expect(:eq)
       val = self._parse_value
       op.add_pair(signame, val)
@@ -279,12 +314,30 @@ class Parser
     return result
   end
 
+  def _parse_args
+    args = []
+    first = true
+    while true
+      break if self._next_is(:rparen)
+      self._expect(:comma) if !first
+      args.push(self._parse_value)
+      first = false
+    end
+    return args
+  end
+
   def _expect(expected_type)
     t = @lexer.next
     if t.type != expected_type
       self._error("Unexpected token #{t.lexeme} looking for #{expected_type}")
     end
     return t
+  end
+
+  def _next_is(ttype)
+    t = @lexer.peek
+    return false if t.nil?
+    return t.type == ttype
   end
 
   def _error(msg)
