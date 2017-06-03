@@ -30,12 +30,12 @@ class Lexer
     [ /^\(/, :lparen ],
     [ /^\)/, :rparen ],
     [ /^=/, :eq ],
-    [ /^0b\d+/, :binary_literal ],
+    [ /^0b[01]+/, :binary_literal ],
     [ /^\d+/, :int_literal ],
-    [ /^def/, :kw_def ],
     [ /^signal/, :kw_signal ],
     [ /^template/, :kw_template ],
     [ /^default/, :kw_default ],
+    [ /^def/, :kw_def ],
     [ /^ins/, :kw_ins ],
     [ /^[A-Za-z][A-Za-z0-9_]*/, :ident ],
   ]
@@ -76,7 +76,7 @@ class Lexer
     PATTERNS.each do |pat|
       if m = pat[0].match(@line)
         # Found a match!
-        @t = Token::new(pat[1], m[0])
+        @t = Token.new(pat[1], m[0])
         @line = m.post_match().lstrip()
         return
       end
@@ -91,8 +91,103 @@ class Lexer
   end
 end
 
-l = Lexer.new(STDIN)
-while !l.peek.nil?
-  t = l.next
-  puts "#{t.type}: #{t.lexeme}"
+# Bitstring class
+class Bitstring
+  def initialize(s)
+    @str = s
+  end
 end
+
+# Microcode assembler class
+class Ucode
+  def initialize
+  end
+
+  def add_def(ident, val)
+    # TODO
+  end
+
+  def add_signal(ident, nbits, val)
+    # TODO
+  end
+end
+
+# Parser class
+class Parser
+  def initialize(lexer, ucode)
+    @lexer = lexer
+    @ucode = ucode
+  end
+
+  def parse
+    while true
+      break if !self._parse_top_level()
+    end
+  end
+
+  def _parse_top_level
+    t = @lexer.peek
+    return false if t.nil?
+
+    if t.type == :kw_def
+      self._parse_def
+    elsif t.type == :kw_signal
+      self._parse_signal
+    elsif t.type == :kw_template
+      self._parse_template
+    elsif t.type == :kw_ins
+      self._parse_ins
+    else
+      raise "Unexpected token #{t.lexeme} looking for top-level item"
+    end
+
+    return true
+  end
+
+  def _parse_def
+    self._expect(:kw_def)
+    id = self._expect(:ident)
+    val = self._expect(:binary_literal)
+    self._expect(:semi)
+    @ucode.add_def(id.lexeme, Bitstring.new(val.lexeme))
+  end
+
+  def _parse_signal
+    self._expect(:kw_signal)
+    id = self._expect(:ident)
+    self._expect(:lbracket)
+    nbits = self._expect(:int_literal)
+    self._expect(:rbracket)
+    self._expect(:kw_default)
+    val = self._expect(:binary_literal)
+    self._expect(:semi)
+    @ucode.add_signal(id.lexeme, nbits.lexeme.to_i, Bitstring.new(val.lexeme))
+  end
+
+  def _parse_template
+    raise "Template not supported yet"
+  end
+
+  def parse_ins
+    raise "Instruction not supported yet"
+  end
+
+  def _expect(expected_type)
+    t = @lexer.next
+    if t.type != expected_type
+      raise "Unexpected token #{t.lexeme} looking for #{expected_type}"
+    end
+    return t
+  end
+end
+
+l = Lexer.new(STDIN)
+
+ucode = Ucode.new
+p = Parser.new(l, ucode)
+p.parse
+
+#while !l.peek.nil?
+#  t = l.next
+#  puts "#{t.type}: #{t.lexeme}"
+#end
