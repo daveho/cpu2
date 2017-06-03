@@ -1,6 +1,5 @@
 #! /usr/bin/env ruby
 
-# Token class
 class Token
   attr_accessor :type, :lexeme
 
@@ -10,7 +9,6 @@ class Token
   end
 end
 
-# Lexical analyzer class
 class Lexer
   def initialize(f)
     @f = f
@@ -83,7 +81,7 @@ class Lexer
     end
 
     # None of the patterns matched
-    raise "Unrecognized token: #{@line}"
+    raise "Unrecognized token at line #{@lineno}: #{@line}"
   end
 
   def lineno
@@ -91,14 +89,39 @@ class Lexer
   end
 end
 
-# Bitstring class
 class Bitstring
   def initialize(s)
     @str = s
   end
 end
 
-# Microcode assembler class
+# Op class: list of pairs of signal name, value
+class Op
+  def initialize
+    @pairs = []
+  end
+
+  def add_pair(signame, val)
+    @pairs.push([signame, val])
+  end
+end
+
+# Body class: list of ops
+class Body
+  def initialize
+    @ops = []
+  end
+
+  def add_op(op)
+    @ops.push(op)
+  end
+end
+
+# Value class: represents a bit string value, which could
+# be literal, an identifier, or "default"
+class Value
+end
+
 class Ucode
   def initialize
   end
@@ -110,9 +133,12 @@ class Ucode
   def add_signal(ident, nbits, val)
     # TODO
   end
+
+  def add_template(ident, params, body)
+    # TODO
+  end
 end
 
-# Parser class
 class Parser
   def initialize(lexer, ucode)
     @lexer = lexer
@@ -165,11 +191,92 @@ class Parser
   end
 
   def _parse_template
-    raise "Template not supported yet"
+    self._expect(:kw_template)
+    id = self._expect(:ident)
+    self._expect(:lparen)
+    params = self._parse_param_list
+    self._expect(:rparen)
+    body = self._parse_body
+    @ucode.add_template(id.lexeme, params, body)
   end
 
-  def parse_ins
+  def _parse_ins
     raise "Instruction not supported yet"
+  end
+
+  def _parse_param_list
+    params = []
+    first = true
+    while true
+      t = @lexer.peek
+      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      break if t.type == :rparen
+      self._expect(:comma) if !first
+      param = self._expect(:ident)
+      params.push(param.lexeme)
+      first = false
+    end
+    return params
+  end
+
+  def _parse_body
+    self._expect(:lbrace)
+    body = Body.new
+    while true
+      t = @lexer.peek
+      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      break if t.type == :rbrace
+      op = self._parse_op
+      body.add_op(op)
+    end
+    self._expect(:rbrace)
+    return body
+  end
+
+  def _parse_op
+    op = Op.new
+    first = true
+    while true
+      t = @lexer.peek
+      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      break if t.type == :semi
+      self._expect(:comma) if !first
+      signame = self._expect(:ident)
+      self._expect(:eq)
+      val = self._parse_value
+      op.add_pair(signame, val)
+      first = false
+    end
+    self._expect(:semi)
+    return op
+  end
+
+  def _parse_value
+    t = @lexer.next
+    result = nil
+    case t.type
+    when :binary_literal
+      # TODO: construct proper Value
+      result = Value.new
+    when :ident
+      # TODO: construct proper Value
+      result = Value.new
+    when :kw_default
+      # TODO: construct proper Value
+      result = Value.new
+    when :int_literal
+      # For convenience, 0 and 1 are accepted as synonyms for
+      # 0b0 and 0b1
+      if t.lexeme == '0' || t.lexeme == '1'
+        # TODO: construct proper Value
+        result = Value.new
+      else
+        raise "Invalid bit literal: #{t.lexeme}"
+      end
+    else
+      raise "Invalid signal value: #{t.lexeme}"
+    end
+    return result
   end
 
   def _expect(expected_type)
