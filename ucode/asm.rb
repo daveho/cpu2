@@ -43,7 +43,7 @@ class Lexer
   # Read and consume next token
   def next
     _fill()
-    raise "Unexpected end of input" if @t.nil?
+    self._error("Unexpected end of input") if @t.nil?
     tok, @t = @t, nil
     return tok
   end
@@ -81,7 +81,7 @@ class Lexer
     end
 
     # None of the patterns matched
-    raise "Unrecognized token at line #{@lineno}: #{@line}"
+    self._error("Unrecognized token #{@line}")
   end
 
   def lineno
@@ -164,7 +164,7 @@ class Parser
     elsif t.type == :kw_ins
       self._parse_ins
     else
-      raise "Unexpected token #{t.lexeme} looking for top-level item"
+      self._error("Unexpected token #{t.lexeme} looking for top-level item")
     end
 
     return true
@@ -209,7 +209,7 @@ class Parser
     first = true
     while true
       t = @lexer.peek
-      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      self._error("Unexpected EOF") if t.nil?
       break if t.type == :rparen
       self._expect(:comma) if !first
       param = self._expect(:ident)
@@ -224,7 +224,7 @@ class Parser
     body = Body.new
     while true
       t = @lexer.peek
-      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      self._error("Unexpected EOF") if t.nil?
       break if t.type == :rbrace
       op = self._parse_op
       body.add_op(op)
@@ -238,7 +238,7 @@ class Parser
     first = true
     while true
       t = @lexer.peek
-      raise "Unexpected EOF at #{@lexer.lineno}" if t.nil?
+      self._error("Unexpected EOF") if t.nil?
       break if t.type == :semi
       self._expect(:comma) if !first
       signame = self._expect(:ident)
@@ -271,10 +271,10 @@ class Parser
         # TODO: construct proper Value
         result = Value.new
       else
-        raise "Invalid bit literal: #{t.lexeme}"
+        self._error("Invalid bit literal: #{t.lexeme}")
       end
     else
-      raise "Invalid signal value: #{t.lexeme}"
+      self._error("Invalid signal value: #{t.lexeme}")
     end
     return result
   end
@@ -282,9 +282,14 @@ class Parser
   def _expect(expected_type)
     t = @lexer.next
     if t.type != expected_type
-      raise "Unexpected token #{t.lexeme} looking for #{expected_type}"
+      self._error("Unexpected token #{t.lexeme} looking for #{expected_type}")
     end
     return t
+  end
+
+  def _error(msg)
+    STDERR.puts "Line #{@lexer.lineno}: #{msg}"
+    exit 1
   end
 end
 
