@@ -95,6 +95,14 @@ class Bitstring
   def initialize(s)
     @str = s
   end
+
+  def nbits
+    return @str.length - 2
+  end
+
+  def to_s
+    return @str
+  end
 end
 
 # A variable reference
@@ -151,6 +159,17 @@ class Body
   end
 end
 
+# This class can't be called "Signal" because there is a
+# built-in class with that name.
+class USignal
+  def initialize(name, nbits, def_val)
+    @name = name
+    @nbits = nbits
+    @def_val = def_val
+    raise "Default value #{def_val.to_s} for signal #{name} has wrong number of bits" if def_val.nbits != nbits
+  end
+end
+
 class Instruction
   def initialize(opcode, body)
     @opcode = opcode
@@ -187,6 +206,7 @@ end
 class Ucode
   def initialize
     @toplevel = Scope.new
+    @signals = []
   end
 
   def add_def(ident, val)
@@ -194,7 +214,7 @@ class Ucode
   end
 
   def add_signal(ident, nbits, val)
-    # TODO
+    @signals.push(USignal.new(ident, nbits, val))
   end
 
   def add_template(ident, params, body)
