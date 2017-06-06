@@ -103,6 +103,15 @@ class Bitstring
   def to_s
     return @str
   end
+
+  def valtype
+    return :bitstring
+  end
+
+  def append!(bitstring)
+    s = bitstring.to_s
+    @str += s[2, s.length]
+  end
 end
 
 # A variable reference
@@ -118,6 +127,10 @@ class VarRef
   def lineno
     return @tok.lineno
   end
+
+  def valtype
+    return :var_ref
+  end
 end
 
 # Singleton representing the default value for a signal
@@ -126,6 +139,10 @@ class Default
 
   def self.instance
     return @@the_instance
+  end
+
+  def valtype
+    return :default
   end
 end
 
@@ -162,6 +179,8 @@ end
 # This class can't be called "Signal" because there is a
 # built-in class with that name.
 class USignal
+  attr_reader :name, :nbits, :def_val
+
   def initialize(name, nbits, def_val)
     @name = name
     @nbits = nbits
@@ -175,13 +194,6 @@ class Template
 
   def initialize(params, body)
     @params = params
-    @body = body
-  end
-end
-
-class Instruction
-  def initialize(opcode, body)
-    @opcode = opcode
     @body = body
   end
 end
@@ -212,6 +224,15 @@ class Scope
   end
 end
 
+# An assembled instruction is a sequence of bitstrings representing
+# microcode words.
+class AssembledInstruction
+  def initialize(opcode)
+    @opcode = opcode
+    @words = []
+  end
+end
+
 class Ucode
   def initialize
     @toplevel = Scope.new
@@ -231,8 +252,22 @@ class Ucode
     @templates[ident] = Template.new(params, body)
   end
 
-  def add_ins(ins)
-    # TODO
+  def assemble(opcode, body)
+    ins = AssembledInstruction.new(opcode)
+    initword = self._default_word
+    self._assemble(ins, body, initword)
+  end
+
+  def _default_word
+    def_word = Bitstring.new('0b')
+    @signals.each do |sig|
+      def_word.append!(sig.def_val)
+    end
+    return def_word
+  end
+
+  def _assemble(ins, body, word)
+    puts "word is #{word.to_s}"
   end
 end
 
@@ -283,7 +318,7 @@ class Parser
     self._expect(:rbracket)
     self._expect(:kw_default)
     val = self._parse_value
-    self._error("invalid default value for signal") if val.is_a?(Default)
+    self._error("invalid default value for signal") if val.valtype != :bitstring
     self._expect(:semi)
     @ucode.add_signal(id.lexeme, nbits.lexeme.to_i, val)
   end
@@ -304,8 +339,7 @@ class Parser
     opcode = self._expect(:int_literal)
     self._expect(:rparen)
     body = self._parse_body
-    ins = Instruction.new(opcode.lexeme.to_i, body)
-    @ucode.add_ins(ins)
+    @ucode.assemble(opcode.lexeme.to_i, body)
   end
 
   def _parse_param_list
