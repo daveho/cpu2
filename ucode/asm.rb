@@ -112,6 +112,18 @@ class Bitstring
     s = bitstring.to_s
     @str += s[2, s.length]
   end
+
+  def drive!(sig, val)
+    s = val.to_s
+    bits = s[2, s.length]
+    mybits = @str[2, @str.length]
+    updatedbits = mybits[0, sig.index] + bits + mybits[sig.index + sig.nbits, mybits.length]
+    @str = '0b' + updatedbits
+  end
+
+  def clone
+    return Bitstring.new(@str.clone)
+  end
 end
 
 # A variable reference
@@ -148,25 +160,41 @@ end
 
 # Op class: list of pairs of signal name, value
 class Op
-  def initialize
+  attr_reader :lineno, :pairs
+
+  def initialize(lineno)
+    @lineno = lineno
     @pairs = []
   end
 
   def add_pair(signame, val)
     @pairs.push([signame, val])
   end
+
+  def optype
+    return :op
+  end
 end
 
 # Call class: call to expand a template
 class Call
-  def initialize(tname, args)
+  attr_reader :lineno, :tname, :args
+
+  def initialize(lineno, tname, args)
+    @lineno = lineno
     @tname = tname
     @args = args
+  end
+
+  def optype
+    return :call
   end
 end
 
 # Body class: list of ops
 class Body
+  attr_reader :ops
+
   def initialize
     @ops = []
   end
@@ -179,10 +207,11 @@ end
 # This class can't be called "Signal" because there is a
 # built-in class with that name.
 class USignal
-  attr_reader :name, :nbits, :def_val
+  attr_reader :name, :index, :nbits, :def_val
 
-  def initialize(name, nbits, def_val)
+  def initialize(name, index, nbits, def_val)
     @name = name
+    @index = index
     @nbits = nbits
     @def_val = def_val
     raise "Default value #{def_val.to_s} for signal #{name} has wrong number of bits" if def_val.nbits != nbits
@@ -227,6 +256,8 @@ end
 # An assembled instruction is a sequence of bitstrings representing
 # microcode words.
 class AssembledInstruction
+  attr_reader :opcode, :words
+
   def initialize(opcode)
     @opcode = opcode
     @words = []
@@ -238,6 +269,8 @@ class Ucode
     @toplevel = Scope.new
     @signals = []
     @templates = {}
+    @nsigbits = 0 # total number of signal bits
+    @assembled_instructions = []
   end
 
   def add_def(ident, val)
@@ -245,7 +278,8 @@ class Ucode
   end
 
   def add_signal(ident, nbits, val)
-    @signals.push(USignal.new(ident, nbits, val))
+    @signals.push(USignal.new(ident, @nsigbits, nbits, val))
+    @nsigbits += nbits
   end
 
   def add_template(ident, params, body)
@@ -255,7 +289,8 @@ class Ucode
   def assemble(opcode, body)
     ins = AssembledInstruction.new(opcode)
     initword = self._default_word
-    self._assemble(ins, body, initword)
+    self._assemble(ins, body, initword, @toplevel)
+    @assembled_instructions.push(ins)
   end
 
   def _default_word
@@ -266,8 +301,76 @@ class Ucode
     return def_word
   end
 
-  def _assemble(ins, body, word)
-    puts "word is #{word.to_s}"
+  def _assemble(ins, body, word, scope)
+    #puts "word is #{word.to_s}"
+
+    body.ops.each do |op|
+      case op.optype
+        when :op
+          word = self._assemble_op(ins, op, word, scope)
+        when :call
+          template = @templates[op.tname]
+          raise "Line #{op.lineno}: unknown template #{op.tname}" if template.nil?
+          raise "Line #{op.lineno}: wrong number of arguments in call to template #{op.tname}" if op.args.length != template.params.length
+          word = self._expand_template(ins, template, op, word, scope)
+      end
+    end
+
+    return word
+  end
+
+  def _assemble_op(ins, op, word, scope)
+    word = word.clone
+
+    op.pairs.each do |pair|
+      signame = pair[0]
+      val = pair[1]
+      sig = self._signal(signame)
+      raise "Line #{op.lineno}: unknown signal #{signame}" if sig.nil?
+      resolved_val = self._resolve_val(val, sig, scope)
+      raise "Line #{op.lineno}: could not resolve signal value #{val.to_s}" if resolved_val.nil?
+      word.drive!(sig, resolved_val)
+    end
+
+    ins.words.push(word.clone)
+
+    return word
+  end
+
+  def _signal(signame)
+    @signals.each do |sig|
+      return sig if sig.name == signame
+    end
+    return nil
+  end
+
+  def _resolve_val(val, sig, scope)
+    case val.valtype
+      when :bitstring
+        return val
+      when :var_ref
+        return scope.lookup(val)
+      when :default
+        return sig.def_val
+    end
+    return nil # should not be reached
+  end
+
+  def _expand_template(ins, template, call, word, scope)
+    callscope = Scope.new(scope)
+
+    # Bind argument values to template parameters
+    template.params.zip(call.args) do |param, arg|
+      if arg.valtype == :var_ref
+        resolved_arg = scope.lookup(arg)
+        raise "Line #{call.lineno}: could not resolve variable reference #{arg.ident}" if resolved_arg.nil?
+        arg = resolved_arg
+      end
+      callscope.put(param, arg)
+    end
+
+    # Assemble template body
+    return self._assemble(ins, template.body, word, callscope)
   end
 end
 
@@ -372,7 +475,7 @@ class Parser
   end
 
   def _parse_op
-    op = Op.new
+    op = Op.new(@lexer.lineno)
     first = true
     while true
       t = @lexer.peek
@@ -387,12 +490,12 @@ class Parser
         args = self._parse_args
         self._expect(:rparen)
         self._expect(:semi)
-        return Call.new(signame.lexeme, args)
+        return Call.new(t.lineno, signame.lexeme, args)
       end
 
       self._expect(:eq)
       val = self._parse_value
-      op.add_pair(signame, val)
+      op.add_pair(signame.lexeme, val)
       first = false
     end
     self._expect(:semi)
