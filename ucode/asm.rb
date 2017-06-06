@@ -1,11 +1,12 @@
 #! /usr/bin/env ruby
 
 class Token
-  attr_accessor :type, :lexeme
+  attr_accessor :type, :lexeme, :lineno
 
-  def initialize(type, lexeme)
-    self.type = type
-    self.lexeme = lexeme
+  def initialize(type, lexeme, lineno)
+    @type = type
+    @lexeme = lexeme
+    @lineno = lineno
   end
 end
 
@@ -74,7 +75,7 @@ class Lexer
     PATTERNS.each do |pat|
       if m = pat[0].match(@line)
         # Found a match!
-        @t = Token.new(pat[1], m[0])
+        @t = Token.new(pat[1], m[0], @lineno)
         @line = m.post_match().lstrip()
         return
       end
@@ -98,8 +99,16 @@ end
 
 # A variable reference
 class VarRef
-  def initialize(ident)
-    @ident = ident
+  def initialize(tok)
+    @tok = tok
+  end
+
+  def ident
+    return @tok.lexeme
+  end
+
+  def lineno
+    return @tok.lineno
   end
 end
 
@@ -149,12 +158,38 @@ class Instruction
   end
 end
 
+class Scope
+  attr_reader :parent
+
+  def initialize(parent=nil)
+    @parent = parent
+    @map = {}
+  end
+
+  def put(ident, val)
+    @map[ident] = val
+  end
+
+  def lookup(var_ref)
+    scope = self
+
+    while !scope.nil?
+      val = @map[var_ref.ident]
+      return val if !val.nil?
+      scope = scope.parent
+    end
+
+    raise "Line #{var_ref.lineno}: unknown variable #{var_ref.ident}"
+  end
+end
+
 class Ucode
   def initialize
+    @toplevel = Scope.new
   end
 
   def add_def(ident, val)
-    # TODO
+    @toplevel.put(ident, val)
   end
 
   def add_signal(ident, nbits, val)
@@ -305,7 +340,7 @@ class Parser
     when :binary_literal
       result = Bitstring.new(t.lexeme)
     when :ident
-      result = VarRef.new(t.lexeme)
+      result = VarRef.new(t)
     when :kw_default
       result = Default.instance
     when :int_literal
