@@ -89,9 +89,26 @@ class Lexer
   end
 end
 
+# Bitstring value class
 class Bitstring
   def initialize(s)
     @str = s
+  end
+end
+
+# A variable reference
+class VarRef
+  def initialize(ident)
+    @ident = ident
+  end
+end
+
+# Singleton representing the default value for a signal
+class Default
+  @@the_instance = self.new
+
+  def self.instance
+    return @@the_instance
   end
 end
 
@@ -123,11 +140,6 @@ class Body
   def add_op(op)
     @ops.push(op)
   end
-end
-
-# Value class: represents a bit string value, which could
-# be literal, an identifier, or "default"
-class Value
 end
 
 class Instruction
@@ -291,20 +303,16 @@ class Parser
     result = nil
     case t.type
     when :binary_literal
-      # TODO: construct proper Value
-      result = Value.new
+      result = Bitstring.new(t.lexeme)
     when :ident
-      # TODO: construct proper Value
-      result = Value.new
+      result = VarRef.new(t.lexeme)
     when :kw_default
-      # TODO: construct proper Value
-      result = Value.new
+      result = Default.instance
     when :int_literal
       # For convenience, 0 and 1 are accepted as synonyms for
       # 0b0 and 0b1
       if t.lexeme == '0' || t.lexeme == '1'
-        # TODO: construct proper Value
-        result = Value.new
+        result = Bitstring.new('0b' + t.lexeme)
       else
         self._error("Invalid bit literal: #{t.lexeme}")
       end
