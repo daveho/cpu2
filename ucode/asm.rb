@@ -170,6 +170,15 @@ class USignal
   end
 end
 
+class Template
+  attr_reader :params, :body
+
+  def initialize(params, body)
+    @params = params
+    @body = body
+  end
+end
+
 class Instruction
   def initialize(opcode, body)
     @opcode = opcode
@@ -207,6 +216,7 @@ class Ucode
   def initialize
     @toplevel = Scope.new
     @signals = []
+    @templates = {}
   end
 
   def add_def(ident, val)
@@ -218,7 +228,7 @@ class Ucode
   end
 
   def add_template(ident, params, body)
-    # TODO
+    @templates[ident] = Template.new(params, body)
   end
 
   def add_ins(ins)
