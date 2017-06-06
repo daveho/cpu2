@@ -158,6 +158,7 @@ class Instruction
   end
 end
 
+# Scope for looking up variable definitions
 class Scope
   attr_reader :parent
 
@@ -251,9 +252,10 @@ class Parser
     nbits = self._expect(:int_literal)
     self._expect(:rbracket)
     self._expect(:kw_default)
-    val = self._expect(:binary_literal)
+    val = self._parse_value
+    self._error("invalid default value for signal") if val.is_a?(Default)
     self._expect(:semi)
-    @ucode.add_signal(id.lexeme, nbits.lexeme.to_i, Bitstring.new(val.lexeme))
+    @ucode.add_signal(id.lexeme, nbits.lexeme.to_i, val)
   end
 
   def _parse_template

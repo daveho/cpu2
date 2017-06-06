@@ -17,7 +17,7 @@ def mem 0b1100;
 
 signal rd_dev[4] default 0b1111;
 signal wr_dev[4] default 0b1111;
-signal end[1] default 0b0;
+signal end[1] default 0;
 
 template mov(dest_dev, src_dev) {
   rd_dev=src_dev;
