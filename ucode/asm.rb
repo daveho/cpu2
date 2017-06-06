@@ -265,6 +265,8 @@ class AssembledInstruction
 end
 
 class Ucode
+  attr_reader :assembled_instructions
+
   def initialize
     @toplevel = Scope.new
     @signals = []
@@ -563,6 +565,15 @@ l = Lexer.new(STDIN)
 ucode = Ucode.new
 p = Parser.new(l, ucode)
 p.parse
+
+ucode.assembled_instructions.each do |ins|
+  puts "Instruction #{ins.opcode}"
+  count = 0
+  ins.words.each do |word|
+    puts "#{count}: #{word}"
+    count += 1
+  end
+end
 
 #while !l.peek.nil?
 #  t = l.next
