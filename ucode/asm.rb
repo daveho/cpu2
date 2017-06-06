@@ -104,19 +104,21 @@ class Bitstring
     return @str
   end
 
+  def bits
+    return @str[2, @str.length]
+  end
+
   def valtype
     return :bitstring
   end
 
   def append!(bitstring)
-    s = bitstring.to_s
-    @str += s[2, s.length]
+    @str += bitstring.bits
   end
 
   def drive!(sig, val)
-    s = val.to_s
-    bits = s[2, s.length]
-    mybits = @str[2, @str.length]
+    bits = val.bits
+    mybits = self.bits
     updatedbits = mybits[0, sig.index] + bits + mybits[sig.index + sig.nbits, mybits.length]
     @str = '0b' + updatedbits
   end
