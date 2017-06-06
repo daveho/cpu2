@@ -381,7 +381,7 @@ class Parser
       self._expect(:comma) if !first
       signame = self._expect(:ident)
 
-      if first and self._next_is(:lparen)
+      if first and self._next_is?(:lparen)
         # Special case: this is a call to expand a template
         self._expect(:lparen)
         args = self._parse_args
@@ -427,7 +427,7 @@ class Parser
     args = []
     first = true
     while true
-      break if self._next_is(:rparen)
+      break if self._next_is?(:rparen)
       self._expect(:comma) if !first
       args.push(self._parse_value)
       first = false
@@ -443,7 +443,7 @@ class Parser
     return t
   end
 
-  def _next_is(ttype)
+  def _next_is?(ttype)
     t = @lexer.peek
     return false if t.nil?
     return t.type == ttype
