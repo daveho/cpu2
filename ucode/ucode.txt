@@ -19,6 +19,7 @@ signal rd_dev[4] default 0b1111;
 signal wr_dev[4] default 0b1111;
 signal end[1] default 0;
 
+# Template for register/register move instructions
 template mov(dest_dev, src_dev) {
   rd_dev=src_dev;
   wr_dev=dest_dev;
@@ -26,10 +27,77 @@ template mov(dest_dev, src_dev) {
   rd_dev=default, end=1;
 }
 
-ins(0) {
-  end=1;
-}
+# nop instruction
+ins(0) { end=1; }
 
-ins(1) {
-  mov(r0, r1);
-}
+# Move to r0
+ins(1) { mov(r0, r1); }
+ins(2) { mov(r0, r2); }
+ins(3) { mov(r0, r3); }
+ins(4) { mov(r0, r4); }
+ins(5) { mov(r0, r5); }
+ins(6) { mov(r0, r6); }
+ins(7) { mov(r0, r7); }
+
+# Move to r1
+ins(8) { mov(r1, r0); }
+ins(9) { mov(r1, r2); }
+ins(10) { mov(r1, r3); }
+ins(11) { mov(r1, r4); }
+ins(12) { mov(r1, r5); }
+ins(13) { mov(r1, r6); }
+ins(14) { mov(r1, r7); }
+
+# Move to r2
+ins(15) { mov(r2, r0); }
+ins(16) { mov(r2, r1); }
+ins(17) { mov(r2, r3); }
+ins(18) { mov(r2, r4); }
+ins(19) { mov(r2, r5); }
+ins(20) { mov(r2, r6); }
+ins(21) { mov(r2, r7); }
+
+# Move to r3
+ins(22) { mov(r3, r0); }
+ins(23) { mov(r3, r1); }
+ins(24) { mov(r3, r2); }
+ins(25) { mov(r3, r4); }
+ins(26) { mov(r3, r5); }
+ins(27) { mov(r3, r6); }
+ins(28) { mov(r3, r7); }
+
+# Move to r4
+ins(29) { mov(r4, r0); }
+ins(30) { mov(r4, r1); }
+ins(31) { mov(r4, r2); }
+ins(32) { mov(r4, r3); }
+ins(33) { mov(r4, r5); }
+ins(34) { mov(r4, r6); }
+ins(35) { mov(r4, r7); }
+
+# Move to r5
+ins(36) { mov(r5, r0); }
+ins(37) { mov(r5, r1); }
+ins(38) { mov(r5, r2); }
+ins(39) { mov(r5, r3); }
+ins(40) { mov(r5, r4); }
+ins(41) { mov(r5, r6); }
+ins(42) { mov(r5, r7); }
+
+# Move to r6
+ins(43) { mov(r6, r0); }
+ins(44) { mov(r6, r1); }
+ins(45) { mov(r6, r2); }
+ins(46) { mov(r6, r3); }
+ins(47) { mov(r6, r4); }
+ins(48) { mov(r6, r5); }
+ins(49) { mov(r6, r7); }
+
+# Move to r7
+ins(50) { mov(r7, r0); }
+ins(51) { mov(r7, r1); }
+ins(52) { mov(r7, r2); }
+ins(53) { mov(r7, r3); }
+ins(54) { mov(r7, r4); }
+ins(55) { mov(r7, r5); }
+ins(56) { mov(r7, r6); }
