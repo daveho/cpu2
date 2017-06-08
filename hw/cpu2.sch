@@ -28,12 +28,13 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:switches
 LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 7
+Sheet 1 8
 Title ""
 Date ""
 Rev ""
@@ -44,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 1300 800  1050 600 
+S 6450 1300 1050 600 
 U 59284480
 F0 "gpreg" 60
 F1 "gpreg.sch" 60
@@ -149,5 +150,15 @@ S 1300 5100 1100 1900
 U 592C71D0
 F0 "ucode" 60
 F1 "ucode.sch" 60
+$EndSheet
+$Sheet
+S 1300 1000 950  600 
+U 59395B62
+F0 "clockrst" 60
+F1 "clockrst.sch" 60
+F2 "CLK" O R 2250 1100 60 
+F3 "-CLK" O R 2250 1200 60 
+F4 "RST" O R 2250 1350 60 
+F5 "-RST" O R 2250 1450 60 
 $EndSheet
 $EndSCHEMATC
