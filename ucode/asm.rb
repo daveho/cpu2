@@ -36,7 +36,7 @@ class Lexer
     [ /^default/, :kw_default ],
     [ /^def/, :kw_def ],
     [ /^ins/, :kw_ins ],
-    [ /^[A-Za-z][A-Za-z0-9_]*/, :ident ],
+    [ /^[A-Za-z\-][A-Za-z0-9_]*/, :ident ],
   ]
 
   COMMENT = /^\s*#/
