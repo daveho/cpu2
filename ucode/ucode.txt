@@ -15,11 +15,22 @@ def pclo 0b1010;
 def pchi 0b1011;
 def mem 0b1100;
 
+# device being read
 signal rd_dev[4] default 0b1111;
+
+# device being written
 signal wr_dev[4] default 0b1111;
+
+# mark end of microcode operations
 signal end[1] default 0;
-signal pcClk[1] default 0;     # driven as inverted
-signal pcClkEn[1] default 0;
+
+# clock signal for incrementing program counter
+# (the counters are always enabled, but we send a clock
+# pulse only when we want to increment the PC)
+signal pcClkEn[1] default 0;   # driven as inverted
+
+# drive ALU left/right busses onto low/high address busses
+signal genAddr[1] default 0;
 
 # Template for register/register move instructions
 template mov(dest_dev, src_dev) {

@@ -414,8 +414,6 @@ Text Label 3350 6100 0    60   ~ 0
 end
 Text Label 3300 6200 0    60   ~ 0
 pcClk
-Text Label 3200 6300 0    60   ~ 0
-pcClkEn
 $Comp
 L 74LS175 U509
 U 1 1 593BE21F
@@ -560,12 +558,8 @@ Text Label 12300 5750 0    60   ~ 0
 uEnd
 Text Label 10550 5950 0    60   ~ 0
 pcClk
-Text Label 10550 6450 0    60   ~ 0
-pcClkEn
 Text Label 12300 6050 0    60   ~ 0
 uPcClk
-Text Label 12300 6450 0    60   ~ 0
-uPcClkEn
 Text HLabel 9350 5450 2    60   Output ~ 0
 -uRdGPLo
 Text HLabel 9350 5650 2    60   Output ~ 0
@@ -851,8 +845,6 @@ Wire Wire Line
 Wire Wire Line
 	3100 6200 3550 6200
 Wire Wire Line
-	3100 6300 3550 6300
-Wire Wire Line
 	3100 6400 3550 6400
 Wire Wire Line
 	3100 6500 3550 6500
@@ -941,8 +933,6 @@ Wire Wire Line
 Wire Wire Line
 	12250 5750 13000 5750
 Wire Wire Line
-	10850 6450 10500 6450
-Wire Wire Line
 	10850 6650 10500 6650
 Wire Wire Line
 	10850 6850 10500 6850
@@ -950,8 +940,6 @@ Wire Wire Line
 	10850 7050 10500 7050
 Wire Wire Line
 	12250 6050 13000 6050
-Wire Wire Line
-	12250 6450 13000 6450
 Text HLabel 13000 5450 2    60   Output ~ 0
 -uRdMem
 Text HLabel 13000 5650 2    60   Output ~ 0
@@ -960,6 +948,8 @@ Text HLabel 13000 5750 2    60   Output ~ 0
 uEnd
 Text HLabel 13000 6050 2    60   Output ~ 0
 uPcClk
-Text HLabel 13000 6450 2    60   Output ~ 0
-uPcClkEn
+Wire Wire Line
+	3100 6300 3550 6300
+Wire Wire Line
+	10850 6450 10500 6450
 $EndSCHEMATC
