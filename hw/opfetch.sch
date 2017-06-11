@@ -96,21 +96,21 @@ F 3 "" H 5400 4200 50  0001 C CNN
 	1    5400 4200
 	1    0    0    -1  
 $EndComp
-Text HLabel 7600 4750 0    60   Input ~ 0
-ALU0
-Text HLabel 7600 4850 0    60   Input ~ 0
-ALU1
 Text HLabel 7600 4950 0    60   Input ~ 0
-ALU2
+ALU0
 Text HLabel 7600 5050 0    60   Input ~ 0
-ALU3
+ALU1
 Text HLabel 7600 5150 0    60   Input ~ 0
-ALU4
+ALU2
 Text HLabel 7600 5250 0    60   Input ~ 0
-ALU5
+ALU3
 Text HLabel 7600 5350 0    60   Input ~ 0
-ALU6
+ALU4
 Text HLabel 7600 5450 0    60   Input ~ 0
+ALU5
+Text HLabel 7600 5550 0    60   Input ~ 0
+ALU6
+Text HLabel 7600 5650 0    60   Input ~ 0
 ALU7
 $Comp
 L VCC #PWR?
@@ -244,14 +244,14 @@ Wire Wire Line
 Wire Wire Line
 	1500 1800 1100 1800
 Wire Wire Line
-	4750 2200 4600 2200
+	4600 2200 4750 2200
 Wire Wire Line
-	4600 2200 4600 1350
+	4600 1350 4600 2200
 Wire Wire Line
 	4750 1950 4600 1950
 Connection ~ 4600 1950
 Wire Wire Line
-	4750 1800 4500 1800
+	4500 1800 4750 1800
 Wire Wire Line
 	4500 1500 4500 2450
 Wire Wire Line
@@ -272,9 +272,9 @@ Wire Wire Line
 Wire Wire Line
 	7200 1700 7500 1700
 Wire Wire Line
-	7500 2600 6750 2600
+	6750 2600 7500 2600
 Wire Wire Line
-	6750 2600 6750 1600
+	6750 1600 6750 2600
 Connection ~ 6750 1600
 Wire Wire Line
 	7500 2400 6750 2400
@@ -309,19 +309,6 @@ Wire Wire Line
 	4700 3950 4100 3950
 Wire Wire Line
 	4700 4350 4450 4350
-Wire Wire Line
-	4450 4350 4450 4950
-$Comp
-L GND #PWR?
-U 1 1 59286A61
-P 4450 4950
-F 0 "#PWR?" H 4450 4700 50  0001 C CNN
-F 1 "GND" H 4450 4800 50  0000 C CNN
-F 2 "" H 4450 4950 50  0001 C CNN
-F 3 "" H 4450 4950 50  0001 C CNN
-	1    4450 4950
-	1    0    0    -1  
-$EndComp
 Text Label 4150 3750 0    60   ~ 0
 opReadMem
 Text Label 4150 3950 0    60   ~ 0
@@ -341,37 +328,33 @@ opfetchEnd
 $Comp
 L 74LS574 U405
 U 1 1 59287645
-P 8700 5250
-F 0 "U405" H 8700 5250 50  0000 C CNN
-F 1 "74HC574" H 8750 4900 50  0000 C CNN
-F 2 "" H 8700 5250 50  0001 C CNN
-F 3 "" H 8700 5250 50  0001 C CNN
-	1    8700 5250
+P 8700 5450
+F 0 "U405" H 8700 5450 50  0000 C CNN
+F 1 "74HC574" H 8750 5100 50  0000 C CNN
+F 2 "" H 8700 5450 50  0001 C CNN
+F 3 "" H 8700 5450 50  0001 C CNN
+	1    8700 5450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8000 5650 7000 5650
+	8000 5850 7000 5850
 Wire Wire Line
-	7000 5650 7000 4050
+	7000 5850 7000 4050
 Wire Wire Line
-	8000 5750 7900 5750
+	8000 5950 7900 5950
 Wire Wire Line
-	7900 5750 7900 5850
+	7900 5950 7900 6050
 $Comp
 L GND #PWR?
 U 1 1 59287754
-P 7900 5850
-F 0 "#PWR?" H 7900 5600 50  0001 C CNN
-F 1 "GND" H 7900 5700 50  0000 C CNN
-F 2 "" H 7900 5850 50  0001 C CNN
-F 3 "" H 7900 5850 50  0001 C CNN
-	1    7900 5850
+P 7900 6050
+F 0 "#PWR?" H 7900 5800 50  0001 C CNN
+F 1 "GND" H 7900 5900 50  0000 C CNN
+F 2 "" H 7900 6050 50  0001 C CNN
+F 3 "" H 7900 6050 50  0001 C CNN
+	1    7900 6050
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8000 4750 7600 4750
-Wire Wire Line
-	8000 4850 7600 4850
 Wire Wire Line
 	8000 4950 7600 4950
 Wire Wire Line
@@ -384,26 +367,26 @@ Wire Wire Line
 	8000 5350 7600 5350
 Wire Wire Line
 	8000 5450 7600 5450
-Text HLabel 9900 4750 2    60   Output ~ 0
-OPC0
-Text HLabel 9900 4850 2    60   Output ~ 0
-OPC1
+Wire Wire Line
+	8000 5550 7600 5550
+Wire Wire Line
+	8000 5650 7600 5650
 Text HLabel 9900 4950 2    60   Output ~ 0
-OPC2
+OPC0
 Text HLabel 9900 5050 2    60   Output ~ 0
-OPC3
+OPC1
 Text HLabel 9900 5150 2    60   Output ~ 0
-OPC4
+OPC2
 Text HLabel 9900 5250 2    60   Output ~ 0
-OPC5
+OPC3
 Text HLabel 9900 5350 2    60   Output ~ 0
-OPC6
+OPC4
 Text HLabel 9900 5450 2    60   Output ~ 0
+OPC5
+Text HLabel 9900 5550 2    60   Output ~ 0
+OPC6
+Text HLabel 9900 5650 2    60   Output ~ 0
 OPC7
-Wire Wire Line
-	9400 4750 9900 4750
-Wire Wire Line
-	9400 4850 9900 4850
 Wire Wire Line
 	9400 4950 9900 4950
 Wire Wire Line
@@ -416,6 +399,10 @@ Wire Wire Line
 	9400 5350 9900 5350
 Wire Wire Line
 	9400 5450 9900 5450
+Wire Wire Line
+	9400 5550 9900 5550
+Wire Wire Line
+	9400 5650 9900 5650
 Wire Wire Line
 	6150 1700 6450 1700
 Wire Wire Line
@@ -460,7 +447,7 @@ NoConn ~ 4050 5900
 NoConn ~ 4050 6400
 Text Notes 2850 5550 0    60   ~ 0
 unused gates
-Text HLabel 10000 4250 2    60   Input ~ 0
+Text HLabel 10000 4250 2    60   Output ~ 0
 -opfetchEnd
 Wire Wire Line
 	10000 4150 6100 4150
@@ -479,8 +466,20 @@ Text Label 6200 4150 0    60   ~ 0
 opfetchEnd
 Text Label 6200 4250 0    60   ~ 0
 -opfetchEnd
-Text Notes 8350 4600 0    60   ~ 0
+Text Notes 8350 4800 0    60   ~ 0
 opcode register
 Text Notes 7150 6750 0    60   ~ 0
 opcode fetch logic
+Wire Wire Line
+	6100 3950 6850 3950
+Wire Wire Line
+	6850 3950 6850 4850
+Wire Wire Line
+	6850 4850 4450 4850
+Wire Wire Line
+	4450 4850 4450 4350
+Wire Wire Line
+	6100 4450 10000 4450
+Text HLabel 10000 4450 2    60   Output ~ 0
+incPC
 $EndSCHEMATC
