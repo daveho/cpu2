@@ -481,5 +481,5 @@ Wire Wire Line
 Wire Wire Line
 	6100 4450 10000 4450
 Text HLabel 10000 4450 2    60   Output ~ 0
-incPC
+opIncPC
 $EndSCHEMATC

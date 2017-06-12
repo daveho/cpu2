@@ -45,7 +45,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 8700 1600 1050 600 
+S 9750 1300 1050 600 
 U 59284480
 F0 "gpreg" 60
 F1 "gpreg.sch" 60
@@ -78,6 +78,7 @@ F21 "OPC6" O R 6200 3450 60
 F22 "OPC7" O R 6200 3550 60 
 F23 "opfetchEnd" O R 6200 2350 60 
 F24 "-opfetchEnd" I R 6200 2450 60 
+F25 "opIncPC" O R 6200 2650 60 
 $EndSheet
 $Sheet
 S 5100 1000 950  600 
@@ -146,7 +147,7 @@ F28 "RIGHT6" O R 6300 5600 60
 F29 "RIGHT7" O R 6300 5700 60 
 $EndSheet
 $Sheet
-S 6900 2150 1100 1900
+S 7150 2150 1100 1900
 U 592C71D0
 F0 "ucode" 60
 F1 "ucode.sch" 60
@@ -202,11 +203,15 @@ Wire Wire Line
 Wire Wire Line
 	2250 1200 2750 1200
 Wire Wire Line
-	2250 1350 2750 1350
+	2250 1350 2450 1350
+Wire Wire Line
+	2450 1350 2750 1350
 Wire Wire Line
 	5100 1250 4950 1250
 Wire Wire Line
-	4950 750  4950 2550
+	4950 750  4950 1250
+Wire Wire Line
+	4950 1250 4950 2550
 Wire Wire Line
 	4950 750  2450 750 
 Wire Wire Line
@@ -215,7 +220,9 @@ Connection ~ 2450 1350
 Wire Wire Line
 	5100 1100 4850 1100
 Wire Wire Line
-	4850 1100 4850 2250
+	4850 1100 4850 1200
+Wire Wire Line
+	4850 1200 4850 2250
 Wire Wire Line
 	3950 1200 4850 1200
 Wire Wire Line
@@ -271,7 +278,51 @@ Wire Wire Line
 Wire Wire Line
 	3950 2350 4250 2350
 Wire Bus Line
-	4350 1750 4350 4750
+	4350 1750 4350 1850
+Wire Bus Line
+	4350 1850 4350 1950
+Wire Bus Line
+	4350 1950 4350 2050
+Wire Bus Line
+	4350 2050 4350 2150
+Wire Bus Line
+	4350 2150 4350 2250
+Wire Bus Line
+	4350 2250 4350 2350
+Wire Bus Line
+	4350 2350 4350 2450
+Wire Bus Line
+	4350 2450 4350 2750
+Wire Bus Line
+	4350 2750 4350 2850
+Wire Bus Line
+	4350 2850 4350 2950
+Wire Bus Line
+	4350 2950 4350 3050
+Wire Bus Line
+	4350 3050 4350 3150
+Wire Bus Line
+	4350 3150 4350 3250
+Wire Bus Line
+	4350 3250 4350 3350
+Wire Bus Line
+	4350 3350 4350 3450
+Wire Bus Line
+	4350 3450 4350 4050
+Wire Bus Line
+	4350 4050 4350 4150
+Wire Bus Line
+	4350 4150 4350 4250
+Wire Bus Line
+	4350 4250 4350 4350
+Wire Bus Line
+	4350 4350 4350 4450
+Wire Bus Line
+	4350 4450 4350 4550
+Wire Bus Line
+	4350 4550 4350 4650
+Wire Bus Line
+	4350 4650 4350 4750
 Wire Wire Line
 	5100 2850 4450 2850
 Wire Wire Line
@@ -324,7 +375,7 @@ Text Notes 5300 1800 0    60   ~ 0
 prefix 300
 Text Notes 5400 3850 0    60   ~ 0
 prefix 400
-Text Notes 7150 4250 0    60   ~ 0
+Text Notes 7400 4250 0    60   ~ 0
 prefix 500
 Text Notes 5400 5950 0    60   ~ 0
 prefix 600
@@ -403,8 +454,10 @@ Wire Wire Line
 Text Label 4050 1500 0    60   ~ 0
 -wrPC
 Wire Wire Line
-	2800 5400 1800 5400
-Text Label 1900 5400 0    60   ~ 0
+	2800 5400 2300 5400
+Wire Wire Line
+	2300 5400 1100 5400
+Text Label 1200 5400 0    60   ~ 0
 -wrPC
 Wire Wire Line
 	2800 5900 2300 5900
@@ -419,4 +472,63 @@ Wire Wire Line
 	4100 6000 4100 5600
 Wire Wire Line
 	4100 5600 5100 5600
+$Comp
+L 74LS00 U?
+U 3 1 593D2F20
+P 2000 6500
+F 0 "U?" H 2000 6550 50  0000 C CNN
+F 1 "74LS00" H 2000 6400 50  0000 C CNN
+F 2 "" H 2000 6500 50  0001 C CNN
+F 3 "" H 2000 6500 50  0001 C CNN
+	3    2000 6500
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS00 U?
+U 4 1 593D3125
+P 3400 6500
+F 0 "U?" H 3400 6550 50  0000 C CNN
+F 1 "74LS00" H 3400 6400 50  0000 C CNN
+F 2 "" H 3400 6500 50  0001 C CNN
+F 3 "" H 3400 6500 50  0001 C CNN
+	4    3400 6500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 6400 2700 6400
+Wire Wire Line
+	2700 6400 2700 6500
+Wire Wire Line
+	2700 6500 2700 6600
+Wire Wire Line
+	2700 6500 2600 6500
+Wire Wire Line
+	2700 6600 2800 6600
+Connection ~ 2700 6500
+Wire Wire Line
+	1400 6400 1100 6400
+Wire Wire Line
+	1400 6600 1100 6600
+Wire Wire Line
+	4000 6500 4900 6500
+Wire Wire Line
+	4900 6500 4900 5350
+Wire Wire Line
+	4900 5350 5100 5350
+Wire Wire Line
+	6200 2650 6700 2650
+Text Label 6250 2650 0    60   ~ 0
+opIncPC
+Text Label 1150 6400 0    60   ~ 0
+opIncPC
+Wire Wire Line
+	2800 5600 1100 5600
+Wire Wire Line
+	2800 6100 1100 6100
+Text Label 1150 5600 0    60   ~ 0
+-uWrPCHi
+Text Label 1150 6100 0    60   ~ 0
+-uWrPCLo
+Text Label 1150 6600 0    60   ~ 0
+uPcClk
 $EndSCHEMATC

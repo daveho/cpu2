@@ -27,7 +27,7 @@ signal end[1] default 0;
 # clock signal for incrementing program counter
 # (the counters are always enabled, but we send a clock
 # pulse only when we want to increment the PC)
-signal pcClkEn[1] default 0;   # driven as inverted
+signal pcClk[1] default 0;   # driven as inverted
 
 # drive ALU left/right busses onto low/high address busses
 signal genAddr[1] default 0;
