@@ -416,7 +416,7 @@ Text Label 4050 1500 0    60   ~ 0
 -wrPC
 Wire Wire Line
 	4500 5200 5100 5200
-Text Label 4600 5200 0    60   ~ 0
+Text Label 4550 5200 0    60   ~ 0
 -wrPC
 Wire Wire Line
 	5100 5500 4500 5500
@@ -474,4 +474,24 @@ Wire Wire Line
 	6200 3450 7200 3450
 Wire Wire Line
 	6200 3550 7200 3550
+Wire Wire Line
+	8600 3450 9100 3450
+Wire Wire Line
+	8600 3350 9100 3350
+Text Label 8650 3350 0    60   ~ 0
+-uWrPCLo
+Text Label 8650 3450 0    60   ~ 0
+-uWrPCHi
+Wire Wire Line
+	8600 4050 9100 4050
+Text Label 8650 4050 0    60   ~ 0
+uPcClk
+Wire Wire Line
+	8600 3950 9100 3950
+Text Label 8650 3950 0    60   ~ 0
+uEnd
+Wire Wire Line
+	5100 1400 4550 1400
+Text Label 4550 1400 0    60   ~ 0
+uEnd
 $EndSCHEMATC
