@@ -32,7 +32,7 @@ LIBS:switches
 LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr A3 16535 11693
 encoding utf-8
 Sheet 1 8
 Title ""
@@ -494,4 +494,6 @@ Wire Wire Line
 	5100 1400 4550 1400
 Text Label 4550 1400 0    60   ~ 0
 uEnd
+Text Notes 12000 10200 0    60   ~ 0
+8 bit HCMOS CPU
 $EndSCHEMATC
