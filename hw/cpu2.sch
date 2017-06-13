@@ -205,15 +205,11 @@ Wire Wire Line
 Wire Wire Line
 	2250 1200 2750 1200
 Wire Wire Line
-	2250 1350 2450 1350
-Wire Wire Line
-	2450 1350 2750 1350
+	2250 1350 2750 1350
 Wire Wire Line
 	5100 1250 4950 1250
 Wire Wire Line
-	4950 750  4950 1250
-Wire Wire Line
-	4950 1250 4950 2550
+	4950 750  4950 2550
 Wire Wire Line
 	4950 750  2450 750 
 Wire Wire Line
@@ -222,9 +218,7 @@ Connection ~ 2450 1350
 Wire Wire Line
 	5100 1100 4850 1100
 Wire Wire Line
-	4850 1100 4850 1200
-Wire Wire Line
-	4850 1200 4850 2250
+	4850 1100 4850 2250
 Wire Wire Line
 	3950 1200 4850 1200
 Wire Wire Line
@@ -280,51 +274,7 @@ Wire Wire Line
 Wire Wire Line
 	3950 2350 4250 2350
 Wire Bus Line
-	4350 1750 4350 1850
-Wire Bus Line
-	4350 1850 4350 1950
-Wire Bus Line
-	4350 1950 4350 2050
-Wire Bus Line
-	4350 2050 4350 2150
-Wire Bus Line
-	4350 2150 4350 2250
-Wire Bus Line
-	4350 2250 4350 2350
-Wire Bus Line
-	4350 2350 4350 2450
-Wire Bus Line
-	4350 2450 4350 2750
-Wire Bus Line
-	4350 2750 4350 2850
-Wire Bus Line
-	4350 2850 4350 2950
-Wire Bus Line
-	4350 2950 4350 3050
-Wire Bus Line
-	4350 3050 4350 3150
-Wire Bus Line
-	4350 3150 4350 3250
-Wire Bus Line
-	4350 3250 4350 3350
-Wire Bus Line
-	4350 3350 4350 3450
-Wire Bus Line
-	4350 3450 4350 4050
-Wire Bus Line
-	4350 4050 4350 4150
-Wire Bus Line
-	4350 4150 4350 4250
-Wire Bus Line
-	4350 4250 4350 4350
-Wire Bus Line
-	4350 4350 4350 4450
-Wire Bus Line
-	4350 4450 4350 4550
-Wire Bus Line
-	4350 4550 4350 4650
-Wire Bus Line
-	4350 4650 4350 4750
+	4350 1750 4350 4750
 Wire Wire Line
 	5100 2850 4450 2850
 Wire Wire Line
