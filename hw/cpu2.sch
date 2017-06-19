@@ -502,4 +502,6 @@ U 5947DA38
 F0 "alu" 60
 F1 "alu.sch" 60
 $EndSheet
+Text Notes 10100 4400 0    60   ~ 0
+prefix 700
 $EndSCHEMATC
