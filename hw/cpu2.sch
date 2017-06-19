@@ -34,7 +34,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 8
+Sheet 1 9
 Title ""
 Date ""
 Rev ""
@@ -496,4 +496,10 @@ Text Label 4550 1400 0    60   ~ 0
 uEnd
 Text Notes 12000 10200 0    60   ~ 0
 8 bit HCMOS CPU
+$Sheet
+S 9900 2600 1000 1600
+U 5947DA38
+F0 "alu" 60
+F1 "alu.sch" 60
+$EndSheet
 $EndSCHEMATC
