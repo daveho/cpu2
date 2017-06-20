@@ -1,5 +1,6 @@
 # cpu2 microcode
 
+# GP register device IDs, for rd_dev and wr_dev signals
 def r0 0b0000;
 def r2 0b0001;
 def r4 0b0010;
@@ -9,11 +10,28 @@ def r3 0b0101;
 def r5 0b0110;
 def r7 0b0111;
 
+# Other device IDs, for rd_dev and wr_dev signals
 def arlo 0b1000;
 def arhi 0b1001;
 def pclo 0b1010;
 def pchi 0b1011;
 def mem 0b1100;
+
+# Note: ALU operation codes are for the 74HC181 (see datasheet)
+# In general, carry in should not be asserted except in special
+# cases (such as subtraction)
+
+# Logical ALU operation codes (ensure aluMode=1)
+def alu_logic_A      0b1111; # copy A (left ALU bus) to ALU output
+def alu_logic_B      0b1010; # copy B (right ALU bus) to ALU output
+def alu_logic_and    0b1011; # bitwise AND
+def alu_logic_or     0b1110; # bitwise OR
+def alu_logic_xor    0b0110; # bitwise XOR
+
+# Math ALU operation codes (ensure aluMode=0)
+def alu_math_add     0b1001; # left+right
+def alu_math_sub     0b0110; # left-right (carry in must be asserted)
+def alu_math_lshift  0b1100; # shift left value left by one bit
 
 # device being read
 signal rd_dev[4] default 0b1111;
@@ -29,8 +47,17 @@ signal end[1] default 0;
 # pulse only when we want to increment the PC)
 signal pcClk[1] default 0;   # driven as inverted
 
-# drive ALU left/right busses onto low/high address busses
-signal genAddr[1] default 0;
+# Drive ALU output to ALU data bus
+signal aluOut[1] default 0;   # driven as inverted
+
+# Carry in signal to ALU
+signal aluCarryIn[1] default 0; # driven as inverted
+
+# Mode signal to ALU
+signal aluMode[1] default 0;
+
+# Operation signal to ALU
+signal aluOp[4] default 0b0000;
 
 # Template for register/register move instructions
 template mov(dest_dev, src_dev) {
@@ -114,3 +141,5 @@ ins(53) { mov(r7, r3); }
 ins(54) { mov(r7, r4); }
 ins(55) { mov(r7, r5); }
 ins(56) { mov(r7, r6); }
+
+# vim:ft=ucode:
