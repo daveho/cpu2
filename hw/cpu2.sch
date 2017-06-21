@@ -370,7 +370,7 @@ F34 "-COUT" O R 8850 6550 60
 F35 "-EQ" O R 8850 6450 60 
 F36 "COUT" O R 8850 6650 60 
 $EndSheet
-Text Notes 7500 9050 0    60   ~ 0
+Text Notes 7950 9050 0    60   ~ 0
 prefix 700
 Text Label 6350 4150 0    60   ~ 0
 LEFT0
