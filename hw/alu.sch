@@ -387,17 +387,6 @@ OUT6
 Text Label 6900 2450 0    60   ~ 0
 OUT7
 $Comp
-L 74LS574 U705
-U 1 1 59484F2B
-P 7950 4150
-F 0 "U705" H 7950 4150 50  0000 C CNN
-F 1 "74HC574" H 8000 3800 50  0000 C CNN
-F 2 "" H 7950 4150 50  0001 C CNN
-F 3 "" H 7950 4150 50  0001 C CNN
-	1    7950 4150
-	1    0    0    -1  
-$EndComp
-$Comp
 L 74LS541 U704
 U 1 1 5948525C
 P 7950 2250
@@ -459,21 +448,10 @@ F 3 "" H 6750 3250 50  0001 C CNN
 	1    6750 3250
 	1    0    0    -1  
 $EndComp
-Text Notes 7450 4850 0    60   ~ 0
+Text Notes 7400 6350 0    60   ~ 0
 condition code register
 Text Notes 5650 1600 2    60   ~ 0
 The end of the low pulse on -rdALU\nto send the ALU output to the ALU\nbus can be used to clock the current\ncondition codes into the condition code\nregister.  (Will this work?)
-$Comp
-L GND #PWR?
-U 1 1 59488816
-P 7000 4850
-F 0 "#PWR?" H 7000 4600 50  0001 C CNN
-F 1 "GND" H 7000 4700 50  0000 C CNN
-F 2 "" H 7000 4850 50  0001 C CNN
-F 3 "" H 7000 4850 50  0001 C CNN
-	1    7000 4850
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1000 650  2450 650 
 Wire Wire Line
@@ -491,7 +469,35 @@ Wire Wire Line
 Wire Wire Line
 	1000 1350 2450 1350
 Wire Bus Line
-	2550 750  2550 5900
+	2550 750  2550 850 
+Wire Bus Line
+	2550 850  2550 950 
+Wire Bus Line
+	2550 950  2550 1050
+Wire Bus Line
+	2550 1050 2550 1150
+Wire Bus Line
+	2550 1150 2550 1250
+Wire Bus Line
+	2550 1250 2550 1350
+Wire Bus Line
+	2550 1350 2550 1450
+Wire Bus Line
+	2550 1450 2550 2500
+Wire Bus Line
+	2550 2500 2550 2600
+Wire Bus Line
+	2550 2600 2550 2700
+Wire Bus Line
+	2550 2700 2550 2800
+Wire Bus Line
+	2550 2800 2550 5600
+Wire Bus Line
+	2550 5600 2550 5700
+Wire Bus Line
+	2550 5700 2550 5800
+Wire Bus Line
+	2550 5800 2550 5900
 Wire Wire Line
 	2650 2600 3900 2600
 Wire Wire Line
@@ -523,7 +529,35 @@ Wire Wire Line
 Wire Wire Line
 	1000 2350 2050 2350
 Wire Bus Line
-	2150 1750 2150 6300
+	2150 1750 2150 1850
+Wire Bus Line
+	2150 1850 2150 1950
+Wire Bus Line
+	2150 1950 2150 2050
+Wire Bus Line
+	2150 2050 2150 2150
+Wire Bus Line
+	2150 2150 2150 2250
+Wire Bus Line
+	2150 2250 2150 2350
+Wire Bus Line
+	2150 2350 2150 2450
+Wire Bus Line
+	2150 2450 2150 2900
+Wire Bus Line
+	2150 2900 2150 3000
+Wire Bus Line
+	2150 3000 2150 3100
+Wire Bus Line
+	2150 3100 2150 3200
+Wire Bus Line
+	2150 3200 2150 6000
+Wire Bus Line
+	2150 6000 2150 6100
+Wire Bus Line
+	2150 6100 2150 6200
+Wire Bus Line
+	2150 6200 2150 6300
 Wire Wire Line
 	3900 3000 2250 3000
 Wire Wire Line
@@ -551,7 +585,27 @@ Wire Wire Line
 Wire Wire Line
 	1000 3050 1450 3050
 Wire Bus Line
-	1550 2850 1550 6750
+	1550 2850 1550 2950
+Wire Bus Line
+	1550 2950 1550 3050
+Wire Bus Line
+	1550 3050 1550 3150
+Wire Bus Line
+	1550 3150 1550 3350
+Wire Bus Line
+	1550 3350 1550 3450
+Wire Bus Line
+	1550 3450 1550 3550
+Wire Bus Line
+	1550 3550 1550 3650
+Wire Bus Line
+	1550 3650 1550 6450
+Wire Bus Line
+	1550 6450 1550 6550
+Wire Bus Line
+	1550 6550 1550 6650
+Wire Bus Line
+	1550 6650 1550 6750
 Wire Wire Line
 	3900 3450 1650 3450
 Wire Wire Line
@@ -569,9 +623,13 @@ Wire Wire Line
 Wire Wire Line
 	3900 6850 1650 6850
 Wire Wire Line
-	1000 3900 3900 3900
+	1000 3900 1150 3900
 Wire Wire Line
-	3900 4000 1000 4000
+	1150 3900 3900 3900
+Wire Wire Line
+	1000 4000 2800 4000
+Wire Wire Line
+	2800 4000 3900 4000
 Wire Wire Line
 	5300 3850 5700 3850
 Wire Wire Line
@@ -598,7 +656,7 @@ Wire Wire Line
 	2800 5300 3900 5300
 Connection ~ 3100 5050
 Wire Wire Line
-	3900 5150 3100 5150
+	3100 5150 3900 5150
 Wire Wire Line
 	5300 4550 5600 4550
 Wire Wire Line
@@ -625,7 +683,35 @@ Wire Wire Line
 Wire Wire Line
 	5300 6200 6400 6200
 Wire Bus Line
-	6500 1850 6500 6100
+	6500 1850 6500 1950
+Wire Bus Line
+	6500 1950 6500 2050
+Wire Bus Line
+	6500 2050 6500 2150
+Wire Bus Line
+	6500 2150 6500 2250
+Wire Bus Line
+	6500 2250 6500 2350
+Wire Bus Line
+	6500 2350 6500 2450
+Wire Bus Line
+	6500 2450 6500 2550
+Wire Bus Line
+	6500 2550 6500 2700
+Wire Bus Line
+	6500 2700 6500 2800
+Wire Bus Line
+	6500 2800 6500 2900
+Wire Bus Line
+	6500 2900 6500 3000
+Wire Bus Line
+	6500 3000 6500 5800
+Wire Bus Line
+	6500 5800 6500 5900
+Wire Bus Line
+	6500 5900 6500 6000
+Wire Bus Line
+	6500 6000 6500 6100
 Wire Wire Line
 	6600 1750 7250 1750
 Wire Wire Line
@@ -645,7 +731,9 @@ Wire Wire Line
 Wire Wire Line
 	7250 2650 5800 2650
 Wire Wire Line
-	5800 1700 5800 4550
+	5800 1700 5800 2650
+Wire Wire Line
+	5800 2650 5800 4450
 Wire Wire Line
 	5800 1700 5550 1700
 Wire Wire Line
@@ -669,7 +757,11 @@ Wire Wire Line
 Wire Wire Line
 	8650 2450 9000 2450
 Wire Wire Line
-	5300 3650 7250 3650
+	5300 3650 5900 3650
+Wire Wire Line
+	5900 3650 6750 3650
+Wire Wire Line
+	6750 3650 7250 3650
 Wire Wire Line
 	5300 6750 5900 6750
 Wire Wire Line
@@ -681,45 +773,79 @@ Connection ~ 6750 3650
 Wire Wire Line
 	5300 6650 6000 6650
 Wire Wire Line
-	6000 6650 6000 3750
+	6000 6650 6000 3850
 Wire Wire Line
-	6000 3750 7250 3750
+	6000 3850 7250 3850
 Wire Wire Line
-	5800 4550 7250 4550
+	5800 4450 7250 4450
 Connection ~ 5800 2650
-Wire Wire Line
-	7250 4650 7000 4650
-Wire Wire Line
-	7000 3850 7000 4850
-Wire Wire Line
-	7250 3850 7000 3850
-Connection ~ 7000 4650
-Wire Wire Line
-	7250 3950 7000 3950
-Connection ~ 7000 3950
-Wire Wire Line
-	7250 4050 7000 4050
-Connection ~ 7000 4050
-Wire Wire Line
-	7250 4150 7000 4150
-Connection ~ 7000 4150
-Wire Wire Line
-	7250 4250 7000 4250
-Connection ~ 7000 4250
-Wire Wire Line
-	7250 4350 7000 4350
-Connection ~ 7000 4350
 Wire Wire Line
 	8650 3650 9000 3650
 Wire Wire Line
-	8650 3750 9000 3750
+	8650 3850 9000 3850
 Text HLabel 9000 3650 2    60   Output ~ 0
 EQ
-Text HLabel 9000 3750 2    60   Output ~ 0
+Text HLabel 9000 3850 2    60   Output ~ 0
 -COUT
 Wire Wire Line
-	3100 5150 3100 4300
+	3100 4300 3100 4550
+Wire Wire Line
+	3100 4550 3100 4650
+Wire Wire Line
+	3100 4650 3100 4750
+Wire Wire Line
+	3100 4750 3100 4950
+Wire Wire Line
+	3100 4950 3100 5050
+Wire Wire Line
+	3100 5050 3100 5150
 Wire Wire Line
 	2800 5300 2800 4000
 Connection ~ 2800 4000
+$Comp
+L 74LS175 U705
+U 1 1 594A6E0F
+P 7950 4100
+F 0 "U705" H 7950 4100 50  0000 C CNN
+F 1 "74HC175" H 8050 3700 50  0000 C CNN
+F 2 "" H 7950 4100 50  0001 C CNN
+F 3 "" H 7950 4100 50  0001 C CNN
+	1    7950 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 4050 7050 4050
+Wire Wire Line
+	7050 4050 7050 4250
+Wire Wire Line
+	7050 4250 7050 4850
+Wire Wire Line
+	7250 4250 7050 4250
+Connection ~ 7050 4250
+$Comp
+L GND #PWR?
+U 1 1 594A7340
+P 7050 4850
+F 0 "#PWR?" H 7050 4600 50  0001 C CNN
+F 1 "GND" H 7050 4700 50  0000 C CNN
+F 2 "" H 7050 4850 50  0001 C CNN
+F 3 "" H 7050 4850 50  0001 C CNN
+	1    7050 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 4550 6750 4550
+Wire Wire Line
+	6750 4550 6750 4300
+$Comp
+L VCC #PWR?
+U 1 1 594A7432
+P 6750 4300
+F 0 "#PWR?" H 6750 4150 50  0001 C CNN
+F 1 "VCC" H 6750 4450 50  0000 C CNN
+F 2 "" H 6750 4300 50  0001 C CNN
+F 3 "" H 6750 4300 50  0001 C CNN
+	1    6750 4300
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
