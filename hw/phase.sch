@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:switches
+LIBS:ttl_ieee
 LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END

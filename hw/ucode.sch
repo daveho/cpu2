@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:switches
+LIBS:ttl_ieee
 LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END
@@ -93,28 +94,6 @@ F 3 "" H 2400 9950 50  0000 C CNN
 	1    2400 9950
 	1    0    0    -1  
 $EndComp
-$Comp
-L 74LS393 U501
-U 1 1 592C73B2
-P 3800 2000
-F 0 "U501" H 3950 2250 50  0000 C CNN
-F 1 "74HC393" H 4000 1750 50  0000 C CNN
-F 2 "" H 3800 2000 50  0000 C CNN
-F 3 "" H 3800 2000 50  0000 C CNN
-	1    3800 2000
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74LS393 U501
-U 2 1 592C73E9
-P 3800 2750
-F 0 "U501" H 3950 3000 50  0000 C CNN
-F 1 "74HC393" H 4000 2500 50  0000 C CNN
-F 2 "" H 3800 2750 50  0000 C CNN
-F 3 "" H 3800 2750 50  0000 C CNN
-	2    3800 2750
-	1    0    0    -1  
-$EndComp
 Text Label 1200 650  0    60   ~ 0
 OPC0
 Text Label 1200 750  0    60   ~ 0
@@ -131,16 +110,6 @@ Text Label 1200 1250 0    60   ~ 0
 OPC6
 Text Label 1200 1350 0    60   ~ 0
 OPC7
-Text Label 4750 1850 0    60   ~ 0
-UC0
-Text Label 4750 1950 0    60   ~ 0
-UC1
-Text Label 4750 2050 0    60   ~ 0
-UC2
-Text Label 4750 2150 0    60   ~ 0
-UC3
-Text Label 4750 2600 0    60   ~ 0
-UC4
 Text Label 1300 4000 0    60   ~ 0
 UC0
 Text Label 1300 4100 0    60   ~ 0
@@ -219,9 +188,6 @@ Text Label 1300 10150 0    60   ~ 0
 OPC6
 Text Label 1300 10250 0    60   ~ 0
 OPC7
-NoConn ~ 4950 2700
-NoConn ~ 4950 2800
-NoConn ~ 4950 2900
 Text Notes 11950 10200 0    60   ~ 0
 microcode
 Text HLabel 1100 1850 0    60   Input ~ 0
@@ -619,27 +585,6 @@ Wire Wire Line
 Wire Wire Line
 	1050 1350 1450 1350
 Wire Wire Line
-	4500 2150 4650 2150
-Wire Wire Line
-	4650 2150 4950 2150
-Wire Wire Line
-	4650 2150 4650 2350
-Wire Wire Line
-	4650 2350 2900 2350
-Wire Wire Line
-	2900 2350 2900 2600
-Wire Wire Line
-	2900 2600 3100 2600
-Wire Wire Line
-	4500 1850 4950 1850
-Wire Wire Line
-	4500 1950 4950 1950
-Wire Wire Line
-	4500 2050 4950 2050
-Connection ~ 4650 2150
-Wire Wire Line
-	4500 2600 4950 2600
-Wire Wire Line
 	1700 4000 1250 4000
 Wire Wire Line
 	1700 4100 1250 4100
@@ -718,24 +663,7 @@ Wire Wire Line
 Wire Wire Line
 	1700 10250 1250 10250
 Wire Wire Line
-	4500 2700 4950 2700
-Wire Wire Line
-	4500 2800 4950 2800
-Wire Wire Line
-	4500 2900 4950 2900
-Wire Wire Line
-	2600 2150 2650 2150
-Wire Wire Line
-	2650 2150 2800 2150
-Wire Wire Line
-	2800 2150 3100 2150
-Wire Wire Line
-	3100 2900 2800 2900
-Wire Wire Line
-	2800 2900 2800 2150
-Connection ~ 2800 2150
-Wire Wire Line
-	1100 1850 3100 1850
+	1100 1850 3700 1850
 Wire Wire Line
 	3100 4000 3550 4000
 Wire Wire Line
@@ -755,9 +683,7 @@ Wire Wire Line
 Wire Wire Line
 	10150 1750 10550 1750
 Wire Wire Line
-	10150 1650 10150 1750
-Wire Wire Line
-	10150 1750 10150 1850
+	10150 1650 10150 1850
 Wire Wire Line
 	10550 1050 10250 1050
 Wire Wire Line
@@ -783,9 +709,7 @@ Wire Wire Line
 Wire Wire Line
 	10600 2950 10150 2950
 Wire Wire Line
-	10150 2850 10150 2950
-Wire Wire Line
-	10150 2950 10150 3050
+	10150 2850 10150 3050
 Wire Wire Line
 	11800 2250 12300 2250
 Wire Wire Line
@@ -797,21 +721,13 @@ Wire Wire Line
 Wire Wire Line
 	11800 2650 12300 2650
 Wire Wire Line
-	5750 1000 7150 1000
+	5750 1000 7450 1000
 Wire Wire Line
-	7150 1000 7450 1000
+	5750 1200 7450 1200
 Wire Wire Line
-	5750 1200 5900 1200
+	5750 2200 7500 2200
 Wire Wire Line
-	5900 1200 7450 1200
-Wire Wire Line
-	5750 2200 7150 2200
-Wire Wire Line
-	7150 2200 7500 2200
-Wire Wire Line
-	5750 2400 5900 2400
-Wire Wire Line
-	5900 2400 7500 2400
+	5750 2400 7500 2400
 Wire Wire Line
 	8650 1100 9250 1100
 Wire Wire Line
@@ -837,9 +753,7 @@ Wire Wire Line
 Wire Wire Line
 	6100 2850 6000 2850
 Wire Wire Line
-	6000 2850 6000 2950
-Wire Wire Line
-	6000 2950 6000 3050
+	6000 2850 6000 3050
 Wire Wire Line
 	6000 2950 5900 2950
 Wire Wire Line
@@ -972,18 +886,15 @@ Wire Wire Line
 Wire Wire Line
 	1400 3000 1300 3000
 Wire Wire Line
-	1300 3000 1300 3100
-Wire Wire Line
-	1300 3100 1300 3200
+	1300 3000 1300 3200
 Wire Wire Line
 	1300 3100 1100 3100
 Wire Wire Line
 	1100 3100 1100 2600
 Wire Wire Line
-	1100 2600 2650 2600
+	1100 2600 2800 2600
 Wire Wire Line
-	2650 2600 2650 2150
-Connection ~ 2650 2150
+	2800 2600 2800 2150
 Wire Wire Line
 	1300 3200 1400 3200
 Connection ~ 1300 3100
@@ -992,25 +903,17 @@ Wire Wire Line
 Wire Wire Line
 	2800 3100 2800 3500
 Wire Wire Line
-	2800 3500 3300 3500
-Text Label 2850 3500 0    60   ~ 0
+	2800 3500 4000 3500
+Text Label 3500 3500 0    60   ~ 0
 -ucodeRST
 Wire Wire Line
-	5350 6250 6250 6250
-Wire Wire Line
-	6250 6250 7150 6250
+	5350 6250 7150 6250
 Text Label 5400 6250 0    60   ~ 0
 -ucodeRST
 Wire Wire Line
 	6250 7350 7150 7350
 Wire Wire Line
-	6250 5100 6250 6250
-Wire Wire Line
-	6250 6250 6250 7350
-Wire Wire Line
-	6250 7350 6250 8450
-Wire Wire Line
-	6250 8450 6250 9550
+	6250 5100 6250 9550
 Connection ~ 6250 6250
 Wire Wire Line
 	6250 8450 7150 8450
@@ -1021,9 +924,7 @@ Connection ~ 6250 8450
 Wire Wire Line
 	10850 6250 10250 6250
 Wire Wire Line
-	10250 5100 10250 6250
-Wire Wire Line
-	10250 6250 10250 7350
+	10250 5100 10250 7350
 Wire Wire Line
 	10250 5100 6250 5100
 Wire Wire Line
@@ -1034,17 +935,9 @@ CLK
 Wire Wire Line
 	7150 6150 6350 6150
 Wire Wire Line
-	6350 5000 6350 6150
+	6350 5000 6350 9450
 Wire Wire Line
-	6350 6150 6350 7250
-Wire Wire Line
-	6350 7250 6350 8350
-Wire Wire Line
-	6350 8350 6350 9450
-Wire Wire Line
-	5350 5000 6350 5000
-Wire Wire Line
-	6350 5000 10350 5000
+	5350 5000 10350 5000
 Text Label 5400 5000 0    60   ~ 0
 CLK
 Wire Wire Line
@@ -1059,9 +952,7 @@ Connection ~ 6350 8350
 Wire Wire Line
 	10850 6150 10350 6150
 Wire Wire Line
-	10350 5000 10350 6150
-Wire Wire Line
-	10350 6150 10350 7250
+	10350 5000 10350 7250
 Connection ~ 6350 5000
 Wire Wire Line
 	10350 7250 10850 7250
@@ -1072,9 +963,7 @@ Wire Wire Line
 Wire Wire Line
 	6000 1750 5900 1750
 Wire Wire Line
-	6000 1650 6000 1750
-Wire Wire Line
-	6000 1750 6000 1850
+	6000 1650 6000 1850
 Wire Wire Line
 	6100 1650 6000 1650
 $Comp
@@ -1099,4 +988,66 @@ F 3 "" H 6700 2950 50  0001 C CNN
 	3    6700 2950
 	1    0    0    -1  
 $EndComp
+$Comp
+L 74LS590 U501
+U 1 1 594FEAE3
+P 4250 2150
+F 0 "U501" H 4550 2950 50  0000 C CNN
+F 1 "74HC590" H 4500 1400 50  0000 C CNN
+F 2 "" H 4250 2150 60  0000 C CNN
+F 3 "" H 4250 2150 60  0000 C CNN
+	1    4250 2150
+	1    0    0    -1  
+$EndComp
+Text HLabel 1100 1600 0    60   Input ~ 0
+-CLK
+Wire Wire Line
+	3700 1600 1100 1600
+Wire Wire Line
+	3700 1950 3450 1950
+Wire Wire Line
+	3450 1950 3450 3500
+Connection ~ 3450 3500
+Wire Wire Line
+	2800 2150 2600 2150
+Wire Wire Line
+	3700 1750 3150 1750
+Wire Wire Line
+	3150 1500 3150 2200
+Wire Wire Line
+	3700 1500 3150 1500
+Connection ~ 3150 1750
+Wire Wire Line
+	4800 2100 5200 2100
+Wire Wire Line
+	4800 2200 5200 2200
+Wire Wire Line
+	4800 2300 5200 2300
+Wire Wire Line
+	4800 2400 5200 2400
+Wire Wire Line
+	4800 2500 5200 2500
+Text Label 4850 2100 0    60   ~ 0
+UC0
+Text Label 4850 2200 0    60   ~ 0
+UC1
+Text Label 4850 2300 0    60   ~ 0
+UC2
+Text Label 4850 2400 0    60   ~ 0
+UC3
+Text Label 4850 2500 0    60   ~ 0
+UC4
+$Comp
+L GND #PWR?
+U 1 1 59500711
+P 3150 2200
+F 0 "#PWR?" H 3150 1950 50  0001 C CNN
+F 1 "GND" H 3150 2050 50  0000 C CNN
+F 2 "" H 3150 2200 50  0001 C CNN
+F 3 "" H 3150 2200 50  0001 C CNN
+	1    3150 2200
+	1    0    0    -1  
+$EndComp
+Text Notes 3000 1200 0    60   ~ 0
+Counter is advanced on positive clock edges,\nand counter values are clocked into the\nregister on negative clock edges.  So, updated\ncounts appear on negative clock edges.
 $EndSCHEMATC
