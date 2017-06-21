@@ -1,5 +1,9 @@
 # cpu2 microcode
 
+########################################################################
+# Definitions (convenient symbolic names for bit patterns)
+########################################################################
+
 # GP register device IDs, for rd_dev and wr_dev signals
 def r0 0b0000;
 def r2 0b0001;
@@ -33,22 +37,55 @@ def alu_math_add     0b1001; # left+right
 def alu_math_sub     0b0110; # left-right (carry in must be asserted)
 def alu_math_lshift  0b1100; # shift left value left by one bit
 
+########################################################################
+# First microcode ROM: read/write device signals
+#
+# Reading from a device asserts its output to the left
+# or right ALU busses, except in the case of reading from
+# memory, which is asserted directly onto the ALU data bus.
+#
+# Writing to a device signals that it should take its
+# new contents from the ALU data bus.
+########################################################################
+
 # device being read
 signal rd_dev[4] default 0b1111;
 
 # device being written
 signal wr_dev[4] default 0b1111;
 
-# mark end of microcode operations
-signal end[1] default 0;
+########################################################################
+# Second microcode ROM: misc. control signals
+########################################################################
 
 # clock signal for incrementing program counter
 # (the counters are always enabled, but we send a clock
 # pulse only when we want to increment the PC)
 signal pcClk[1] default 0;   # driven as inverted
 
-# Drive ALU output to ALU data bus
-signal aluOut[1] default 0;   # driven as inverted
+# Assert the PC onto the left and right ALU busses,
+signal pcGenAddr[1] default 0; # driven as inverted
+
+# Assert the AR (address register) onto the left and
+# right ALU busses
+signal arGenAddr[1] default 0; # driven as inverted
+
+# Assert the GP register pair indicated by the two low bits
+# of the rd_dev signal onto the left and right ALU busses
+signal gpGenAddr[1] default 0; # driven as inverted
+
+# Drive the left/right ALU busses onto the low/high address
+# busses.
+signal driveAddr[1] default 0; # driven as inverted
+
+# 3 bits are still available: will need these
+# for conditional control flow instructions.
+signal unused[3] default 0b000;
+
+########################################################################
+# Third microcode ROM: ALU control, and the end signal to
+# terminate microcode execution for the current instruction
+########################################################################
 
 # Carry in signal to ALU
 signal aluCarryIn[1] default 0; # driven as inverted
@@ -59,6 +96,17 @@ signal aluMode[1] default 0;
 # Operation signal to ALU
 signal aluOp[4] default 0b0000;
 
+# Drive ALU output to ALU data bus
+signal aluOut[1] default 0;   # driven as inverted
+
+# mark end of microcode operations
+signal end[1] default 0;
+
+########################################################################
+# Templates: parametized instructions sequences that can
+# be spliced into actual instructions as appropriate
+########################################################################
+
 # Template for register/register move instructions
 template mov(dest_dev, src_dev) {
   rd_dev=src_dev;
@@ -66,6 +114,13 @@ template mov(dest_dev, src_dev) {
   wr_dev=default;
   rd_dev=default, end=1;
 }
+
+########################################################################
+# Instructions
+#
+# Each instruction is a sequence of microcode instruction
+# words executed in order.
+########################################################################
 
 # nop instruction
 ins(0) { end=1; }
