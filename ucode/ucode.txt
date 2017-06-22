@@ -182,11 +182,11 @@ ins(0) { end=1; }
 
 # Move to r0
 ins(1) { mov(wr_r0, rd_r1); }
-ins(1) { mov(wr_r0, rd_r2); }
-ins(1) { mov(wr_r0, rd_r3); }
-ins(1) { mov(wr_r0, rd_r4); }
-ins(1) { mov(wr_r0, rd_r5); }
-ins(1) { mov(wr_r0, rd_r6); }
-ins(1) { mov(wr_r0, rd_r7); }
+ins(2) { mov(wr_r0, rd_r2); }
+ins(3) { mov(wr_r0, rd_r3); }
+ins(4) { mov(wr_r0, rd_r4); }
+ins(5) { mov(wr_r0, rd_r5); }
+ins(6) { mov(wr_r0, rd_r6); }
+ins(7) { mov(wr_r0, rd_r7); }
 
 # vim:ft=ucode:
