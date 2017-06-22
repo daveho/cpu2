@@ -128,8 +128,10 @@ class Bitstring
 
   # Get value of specified signal as bitstring
   def get_signal_value(sig)
-    bits = self.bits[sig.index, sig.index + sig.nbits]
-    return Bitstring.new('0b' + bits)
+    mybits = self.bits
+    resultbits = mybits[sig.index, sig.nbits]
+    result = Bitstring.new('0b' + resultbits)
+    return result
   end
 
   def clone
@@ -373,6 +375,7 @@ class Ucode
         raise "Line #{op.lineno}: Pattern #{pat.name} already started" if @pattern_save.has_key?(pat.name)
         save = self._save_values(word, op, pat)
         @pattern_save[pat.name] = save
+        #puts "Saved values for #{pat.name}: #{save}"
         pat.pairs.each do |pp|
           self._drive_signal(word, op, pp[0], pp[1], scope)
         end
@@ -381,6 +384,7 @@ class Ucode
         pat = scope.lookup(pair[1])
         raise "Line #{op.lineno}: Pattern #{pat.name} not started" if !@pattern_save.has_key?(pat.name)
         save = @pattern_save[pat.name]
+        #puts "Restored values for #{pat.name}: #{save}"
         save.each_pair do |signame, orig_val|
           self._drive_signal(word, op, signame, orig_val, scope)
         end
