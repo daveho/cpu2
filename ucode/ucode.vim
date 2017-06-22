@@ -4,7 +4,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn keyword ucodeKeyword def signal default template ins
+syn keyword ucodeKeyword def signal default template ins pattern start stop
 
 syn keyword ucodeTodo contained TODO FIXME XXX NOTE
 syn match ucodeComment "#.*$" contains=ucodeTodo
