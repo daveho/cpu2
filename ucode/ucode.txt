@@ -11,13 +11,13 @@
 # is selected with the two low bits.
 # For the mem device, the value from the external
 # data bus is asserted onto the ALU data bus.
-def rd_id_gp_r0_r1  0b000;
-def rd_id_gp_r2_r3  0b001;
-def rd_id_gp_r4_r5  0b010;
-def rd_id_gp_r6_r7  0b011;
-def rd_id_ar        0b100;
-def rd_id_pc        0b101;
-def rd_id_mem       0b110;
+def rd_id_gp_r0_r1  0b100;
+def rd_id_gp_r2_r3  0b101;
+def rd_id_gp_r4_r5  0b110;
+def rd_id_gp_r6_r7  0b111;
+def rd_id_ar        0b000;
+def rd_id_pc        0b001;
+def rd_id_mem       0b010;
 
 # Device write IDs.
 # Each ID selects a single device rather than a pair.
@@ -72,7 +72,7 @@ def alu_math_lshift  0b1100; # shift left value left by one bit
 
 # device being read: note that an ALU op is needed to
 # select the ALU input bus (left or right) being read from
-signal rdDev[3] default 0b111;
+signal rdDev[3] default 0b011;
 
 # device being written
 signal wrDev[4] default 0b1111;
@@ -167,7 +167,7 @@ template mov(dest_dev, src_dev) {
   start src_dev;
   start dest_dev;
   stop dest_dev;
-  stop src_dev;
+  stop src_dev, end=1;
 }
 
 ########################################################################
