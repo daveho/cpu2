@@ -267,11 +267,15 @@ class Scope
     @map[ident] = val
   end
 
+  def lookup_local(ident)
+    return @map[ident]
+  end
+
   def lookup(var_ref)
     scope = self
 
     while !scope.nil?
-      val = @map[var_ref.ident]
+      val = scope.lookup_local(var_ref.ident)
       return val if !val.nil?
       scope = scope.parent
     end
@@ -306,11 +310,8 @@ class Ucode
   end
 
   def add_def(ident, val)
+    #puts "Adding def #{ident}"
     @toplevel.put(ident, val)
-  end
-
-  def lookup_def(ident)
-    return @toplevel.lookup(ident)
   end
 
   def add_signal(ident, nbits, val)
@@ -549,9 +550,8 @@ class Parser
       self._expect(:comma) if !first
       signame = self._expect(:ident)
       self._expect(:eq)
-      sigval = self._expect(:ident)
-      # Only a def constant can be used as the value of the signal
-      value = @ucode.lookup_def(VarRef.new(sigval))
+      # Any value can be used in a pattern
+      value = self._parse_value
       pat.add_pair(signame.lexeme, value)
       first = false
     end
