@@ -115,10 +115,6 @@ class Bitstring
     return :bitstring
   end
 
-  def append!(bitstring)
-    @str += bitstring.bits
-  end
-
   def drive!(sig, val)
     bits = val.bits
     mybits = self.bits
@@ -237,7 +233,8 @@ end
 # This class can't be called "Signal" because there is a
 # built-in class with that name.
 class USignal
-  attr_reader :name, :index, :nbits, :def_val
+  attr_reader :name, :nbits, :def_val
+  attr_accessor :index
 
   def initialize(name, index, nbits, def_val)
     @name = name
@@ -317,7 +314,12 @@ class Ucode
   end
 
   def add_signal(ident, nbits, val)
-    @signals.push(USignal.new(ident, @nsigbits, nbits, val))
+    # Shift all of the current signals to the left
+    @signals.each do |sig|
+      sig.index += nbits
+    end
+
+    @signals.push(USignal.new(ident, 0, nbits, val))
     @nsigbits += nbits
   end
 
@@ -338,10 +340,12 @@ class Ucode
   end
 
   def _default_word
-    def_word = Bitstring.new('0b')
+    def_word = Bitstring.new('0b' + '0' * @nsigbits)
     @signals.each do |sig|
-      def_word.append!(sig.def_val)
+      #puts "Driving signal #{sig.name} (#{sig.index}:#{sig.nbits}) to default value of #{sig.def_val}"
+      def_word.drive!(sig, sig.def_val)
     end
+    #puts "Default word: #{def_word}"
     return def_word
   end
 
@@ -590,8 +594,16 @@ class Parser
     while true
       t = @lexer.peek
       self._error("Unexpected EOF") if t.nil?
+
+      # see if we've reached the end of the op
       break if t.type == :semi
+
+      # consume the comma if this isn't the first item
       self._expect(:comma) if !first
+
+      # parse the item
+      t = @lexer.peek
+      self._error("Unexpected EOF") if t.nil?
 
       case t.type
         when :ident
@@ -695,6 +707,8 @@ l = Lexer.new(STDIN)
 ucode = Ucode.new
 p = Parser.new(l, ucode)
 p.parse
+
+puts "Default word is #{ucode._default_word}"
 
 ucode.assembled_instructions.each do |ins|
   puts "Instruction #{ins.opcode}"
