@@ -78,7 +78,7 @@ signal rdDev[3] default 0b011;
 signal wrDev[4] default 0b1111;
 
 # one unused bit here, could use it for something
-signal rwunused[1] default 0;
+signal rom1Unused[1] default 0;
 
 ########################################################################
 # Second microcode ROM: misc. control signals
@@ -89,24 +89,12 @@ signal rwunused[1] default 0;
 # pulse only when we want to increment the PC)
 signal pcClk[1] default 0;   # driven as inverted
 
-# Assert the PC onto the left and right ALU busses,
-signal pcGenAddr[1] default 0; # driven as inverted
-
-# Assert the AR (address register) onto the left and
-# right ALU busses
-signal arGenAddr[1] default 0; # driven as inverted
-
-# Assert the GP register pair indicated by the two low bits
-# of the rdDev signal onto the left and right ALU busses
-signal gpGenAddr[1] default 0; # driven as inverted
-
-# Drive the left/right ALU busses onto the low/high address
-# busses.
+# Drive the left/right ALU busses onto the low/high address busses
 signal driveAddr[1] default 0; # driven as inverted
 
-# 3 bits are still available: will need these
+# 6 bits are still available: will need these
 # for conditional control flow instructions.
-signal unused[3] default 0b000;
+signal rom2Unused[6] default 0b000000;
 
 ########################################################################
 # Third microcode ROM: ALU control, and the end signal to
@@ -133,18 +121,18 @@ signal end[1] default 0;
 ########################################################################
 
 # Read signal patterns (most of which require an ALU op)
-pattern rd_r0 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_A;
-pattern rd_r1 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_B;
-pattern rd_r2 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_A;
-pattern rd_r3 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_B;
-pattern rd_r4 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_A;
-pattern rd_r5 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_B;
-pattern rd_r6 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_A;
-pattern rd_r7 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_B;
-pattern rd_ar_lo rdDev=rd_id_ar, aluOp=alu_logic_A;
-pattern rd_ar_hi rdDev=rd_id_ar, aluOp=alu_logic_B;
-pattern rd_pc_lo rdDev=rd_id_pc, aluOp=alu_logic_A;
-pattern rd_pc_hi rdDev=rd_id_pc, aluOp=alu_logic_B;
+pattern rd_r0 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r1 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r2 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r3 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r4 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r5 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r6 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r7 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_B, aluOut=1;
+pattern rd_ar_lo rdDev=rd_id_ar, aluOp=alu_logic_A, aluOut=1;
+pattern rd_ar_hi rdDev=rd_id_ar, aluOp=alu_logic_B, aluOut=1;
+pattern rd_pc_lo rdDev=rd_id_pc, aluOp=alu_logic_A, aluOut=1;
+pattern rd_pc_hi rdDev=rd_id_pc, aluOp=alu_logic_B, aluOut=1;
 pattern rd_mem rdDev=rd_id_mem;
 
 # Write signal patterns

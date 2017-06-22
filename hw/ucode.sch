@@ -328,7 +328,7 @@ Text Notes 1650 6050 0    60   ~ 0
 ROM 1: Device read/write signals
 Text Label 10200 2750 0    60   ~ 0
 wrDev3
-Text Label 3350 9750 0    60   ~ 0
+Text Label 3150 9750 0    60   ~ 0
 end
 Text Label 3300 6550 0    60   ~ 0
 pcClk
@@ -379,38 +379,38 @@ $EndComp
 $Comp
 L 74LS175 U513
 U 1 1 593BFE7E
-P 11550 5800
-F 0 "U513" H 11550 5800 50  0000 C CNN
-F 1 "74HCT175" H 11650 5400 50  0000 C CNN
-F 2 "" H 11550 5800 50  0001 C CNN
-F 3 "" H 11550 5800 50  0001 C CNN
-	1    11550 5800
+P 11850 5800
+F 0 "U513" H 11850 5800 50  0000 C CNN
+F 1 "74HCT175" H 11950 5400 50  0000 C CNN
+F 2 "" H 11850 5800 50  0001 C CNN
+F 3 "" H 11850 5800 50  0001 C CNN
+	1    11850 5800
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS175 U514
 U 1 1 593C2CEF
-P 11550 6900
-F 0 "U514" H 11550 6900 50  0000 C CNN
-F 1 "74HCT175" H 11650 6500 50  0000 C CNN
-F 2 "" H 11550 6900 50  0001 C CNN
-F 3 "" H 11550 6900 50  0001 C CNN
-	1    11550 6900
+P 11850 6900
+F 0 "U514" H 11850 6900 50  0000 C CNN
+F 1 "74HCT175" H 11950 6500 50  0000 C CNN
+F 2 "" H 11850 6900 50  0001 C CNN
+F 3 "" H 11850 6900 50  0001 C CNN
+	1    11850 6900
 	1    0    0    -1  
 $EndComp
-Text HLabel 13350 3750 2    60   Output ~ 0
+Text HLabel 9200 5850 2    60   Output ~ 0
 -uRdMem
-Text HLabel 13350 3950 2    60   Output ~ 0
+Text HLabel 9200 8750 2    60   Output ~ 0
 -uWrMem
-Text HLabel 13350 4050 2    60   Output ~ 0
+Text HLabel 13500 9250 2    60   Output ~ 0
 uEnd
-Text HLabel 13350 4350 2    60   Output ~ 0
+Text HLabel 13500 5450 2    60   Output ~ 0
 uPcClk
 $Comp
-L 74LS00 U515
+L 74LS00 U520
 U 1 1 594084DA
 P 2000 2150
-F 0 "U515" H 2000 2200 50  0000 C CNN
+F 0 "U520" H 2000 2200 50  0000 C CNN
 F 1 "74HCT00" H 2000 2050 50  0000 C CNN
 F 2 "" H 2000 2150 50  0001 C CNN
 F 3 "" H 2000 2150 50  0001 C CNN
@@ -422,10 +422,10 @@ Text HLabel 1100 2050 0    60   Input ~ 0
 Text HLabel 1100 2250 0    60   Input ~ 0
 -DIS
 $Comp
-L 74LS00 U515
+L 74LS00 U520
 U 4 1 59408AC8
 P 7500 3250
-F 0 "U515" H 7500 3300 50  0000 C CNN
+F 0 "U520" H 7500 3300 50  0000 C CNN
 F 1 "74HCT00" H 7500 3150 50  0000 C CNN
 F 2 "" H 7500 3250 50  0001 C CNN
 F 3 "" H 7500 3250 50  0001 C CNN
@@ -441,10 +441,10 @@ CLK
 Text Label 5400 5000 0    60   ~ 0
 CLK
 $Comp
-L 74LS00 U515
+L 74LS00 U520
 U 2 1 59446B0E
 P 2000 3100
-F 0 "U515" H 2000 3150 50  0000 C CNN
+F 0 "U520" H 2000 3150 50  0000 C CNN
 F 1 "74HCT00" H 2000 3000 50  0000 C CNN
 F 2 "" H 2000 3100 50  0001 C CNN
 F 3 "" H 2000 3100 50  0001 C CNN
@@ -452,10 +452,10 @@ F 3 "" H 2000 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS00 U515
+L 74LS00 U520
 U 3 1 59446EB8
 P 7500 2750
-F 0 "U515" H 7500 2800 50  0000 C CNN
+F 0 "U520" H 7500 2800 50  0000 C CNN
 F 1 "74HCT00" H 7500 2650 50  0000 C CNN
 F 2 "" H 7500 2750 50  0001 C CNN
 F 3 "" H 7500 2750 50  0001 C CNN
@@ -523,6 +523,118 @@ Text Notes 1700 8600 0    60   ~ 0
 ROM 2: misc. control signals
 Text Notes 1800 11100 0    60   ~ 0
 ROM 3: ALU control signals
+Text Label 6700 5350 0    60   ~ 0
+rdAR
+Text Label 6700 5550 0    60   ~ 0
+rdPC
+Text Label 6700 5750 0    60   ~ 0
+rdMem
+Text Label 6700 5950 0    60   ~ 0
+rdDev2
+Text Label 8800 5450 0    60   ~ 0
+-uRdAR
+Text Label 8800 5650 0    60   ~ 0
+-uRdPC
+Text Label 8750 5850 0    60   ~ 0
+-uRdMem
+Text Label 8800 6050 0    60   ~ 0
+-uRdGP
+Text Label 6700 6450 0    60   ~ 0
+rdDev0
+Text Label 8800 6450 0    60   ~ 0
+uRdDev0
+Text Label 8800 6650 0    60   ~ 0
+uRdDev1
+Text Label 6700 6650 0    60   ~ 0
+rdDev1
+Text Label 6700 6850 0    60   ~ 0
+wrGPLo
+Text Label 6700 7050 0    60   ~ 0
+wrGPHi
+Text Label 6700 7550 0    60   ~ 0
+wrPCLo
+Text Label 6700 7750 0    60   ~ 0
+wrPCHi
+Text Label 6700 7950 0    60   ~ 0
+wrARLo
+Text Label 6700 8150 0    60   ~ 0
+wrARHi
+Text Label 6700 8650 0    60   ~ 0
+wrMem
+Text Label 6700 8850 0    60   ~ 0
+wrDev0
+Text Label 6700 9050 0    60   ~ 0
+wrDev1
+Text Label 8800 6850 0    60   ~ 0
+-uWrGPLo
+Text Label 8800 7050 0    60   ~ 0
+-uWrGPHi
+Text Label 8800 7650 0    60   ~ 0
+-uWrPCLo
+Text Label 8800 7850 0    60   ~ 0
+-uWrPCHi
+Text Label 8800 8050 0    60   ~ 0
+-uWrARLo
+Text Label 8800 8250 0    60   ~ 0
+-uWrARHi
+Text Label 8800 8750 0    60   ~ 0
+-uWrMem
+Text Label 8800 8850 0    60   ~ 0
+uWrDev0
+Text Label 8800 9050 0    60   ~ 0
+uWrDev1
+Text Notes 5800 9250 0    60   ~ 0
+reserve for unused ROM 1 bit
+Text Label 8800 6050 0    60   ~ 0
+-uRdGP
+Text Label 3150 6650 0    60   ~ 0
+driveAddr
+$Comp
+L 74LS175 U515
+U 1 1 594E7CBB
+P 11850 8000
+F 0 "U515" H 11850 8000 50  0000 C CNN
+F 1 "74HCT175" H 11950 7600 50  0000 C CNN
+F 2 "" H 11850 8000 50  0001 C CNN
+F 3 "" H 11850 8000 50  0001 C CNN
+	1    11850 8000
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS175 U516
+U 1 1 594E7CC1
+P 11850 9100
+F 0 "U516" H 11850 9100 50  0000 C CNN
+F 1 "74HCT175" H 11950 8700 50  0000 C CNN
+F 2 "" H 11850 9100 50  0001 C CNN
+F 3 "" H 11850 9100 50  0001 C CNN
+	1    11850 9100
+	1    0    0    -1  
+$EndComp
+Text Label 10550 5350 0    60   ~ 0
+pcClk
+Text Label 13150 5450 0    60   ~ 0
+uPcClk
+Text Label 12950 5650 0    60   ~ 0
+-uDriveAddr
+Text Label 10550 9250 0    60   ~ 0
+end
+Text Label 12850 9250 0    60   ~ 0
+uEnd
+Text Label 3150 9050 0    60   ~ 0
+aluCarryIn
+Text Label 3150 9150 0    60   ~ 0
+aluMode
+Text Label 3150 9250 0    60   ~ 0
+aluOp0
+Text Label 3150 9350 0    60   ~ 0
+aluOp1
+Text Label 3150 9450 0    60   ~ 0
+aluOp2
+Text Label 3150 9550 0    60   ~ 0
+aluOp3
+Text Label 3150 9650 0    60   ~ 0
+aluOut
 Wire Wire Line
 	1050 650  1450 650 
 Wire Wire Line
@@ -636,11 +748,7 @@ Wire Wire Line
 Wire Wire Line
 	10450 1750 10550 1750
 Wire Wire Line
-	10450 1250 10450 1550
-Wire Wire Line
-	10450 1550 10450 1750
-Wire Wire Line
-	10450 1750 10450 1850
+	10450 1250 10450 1850
 Wire Wire Line
 	10550 1050 10250 1050
 Wire Wire Line
@@ -654,9 +762,7 @@ Wire Wire Line
 Wire Wire Line
 	10600 2950 10150 2950
 Wire Wire Line
-	10150 2850 10150 2950
-Wire Wire Line
-	10150 2950 10150 3050
+	10150 2850 10150 3050
 Wire Wire Line
 	11800 2250 12300 2250
 Wire Wire Line
@@ -668,13 +774,9 @@ Wire Wire Line
 Wire Wire Line
 	11800 2650 12300 2650
 Wire Wire Line
-	5650 850  7050 850 
+	5650 850  7400 850 
 Wire Wire Line
-	7050 850  7400 850 
-Wire Wire Line
-	5650 1050 5800 1050
-Wire Wire Line
-	5800 1050 7400 1050
+	5650 1050 7400 1050
 Wire Wire Line
 	8600 950  9150 950 
 Wire Wire Line
@@ -686,9 +788,7 @@ Wire Wire Line
 Wire Wire Line
 	6000 1500 5900 1500
 Wire Wire Line
-	5900 1500 5900 1600
-Wire Wire Line
-	5900 1600 5900 1700
+	5900 1500 5900 1700
 Wire Wire Line
 	5900 1600 5800 1600
 Wire Wire Line
@@ -721,15 +821,15 @@ Wire Wire Line
 Wire Wire Line
 	3100 7250 3550 7250
 Wire Wire Line
-	10850 6650 10500 6650
+	11150 6650 10500 6650
 Wire Wire Line
-	10850 6850 10500 6850
+	11150 6850 10500 6850
 Wire Wire Line
-	10850 7050 10500 7050
+	11150 7050 10500 7050
 Wire Wire Line
 	3100 6750 3550 6750
 Wire Wire Line
-	10850 6450 10500 6450
+	11150 6450 10500 6450
 Wire Wire Line
 	1400 2050 1100 2050
 Wire Wire Line
@@ -737,9 +837,7 @@ Wire Wire Line
 Wire Wire Line
 	1400 3000 1300 3000
 Wire Wire Line
-	1300 3000 1300 3100
-Wire Wire Line
-	1300 3100 1300 3200
+	1300 3000 1300 3200
 Wire Wire Line
 	1300 3100 1100 3100
 Wire Wire Line
@@ -756,23 +854,13 @@ Wire Wire Line
 Wire Wire Line
 	2800 3100 2800 3500
 Wire Wire Line
-	2800 3500 3450 3500
+	2800 3500 4000 3500
 Wire Wire Line
-	3450 3500 4000 3500
-Wire Wire Line
-	5350 6250 6250 6250
-Wire Wire Line
-	6250 6250 7150 6250
+	5350 6250 7150 6250
 Wire Wire Line
 	6250 7350 7150 7350
 Wire Wire Line
-	6250 5100 6250 6250
-Wire Wire Line
-	6250 6250 6250 7350
-Wire Wire Line
-	6250 7350 6250 8450
-Wire Wire Line
-	6250 8450 6250 9550
+	6250 5100 6250 9550
 Connection ~ 6250 6250
 Wire Wire Line
 	6250 8450 7150 8450
@@ -781,30 +869,20 @@ Wire Wire Line
 	6250 9550 7150 9550
 Connection ~ 6250 8450
 Wire Wire Line
-	10850 6250 10250 6250
+	11150 6250 10250 6250
 Wire Wire Line
-	10250 5100 10250 6250
-Wire Wire Line
-	10250 6250 10250 7350
+	10250 5100 10250 9550
 Wire Wire Line
 	10250 5100 6250 5100
 Wire Wire Line
-	10250 7350 10850 7350
+	10250 7350 11150 7350
 Connection ~ 10250 6250
 Wire Wire Line
 	7150 6150 6350 6150
 Wire Wire Line
-	6350 5000 6350 6150
+	6350 5000 6350 9450
 Wire Wire Line
-	6350 6150 6350 7250
-Wire Wire Line
-	6350 7250 6350 8350
-Wire Wire Line
-	6350 8350 6350 9450
-Wire Wire Line
-	5350 5000 6350 5000
-Wire Wire Line
-	6350 5000 10350 5000
+	5350 5000 10350 5000
 Wire Wire Line
 	6350 7250 7150 7250
 Connection ~ 6350 6150
@@ -815,14 +893,12 @@ Wire Wire Line
 	6350 9450 7150 9450
 Connection ~ 6350 8350
 Wire Wire Line
-	10850 6150 10350 6150
+	11150 6150 10350 6150
 Wire Wire Line
-	10350 5000 10350 6150
-Wire Wire Line
-	10350 6150 10350 7250
+	10350 5000 10350 9450
 Connection ~ 6350 5000
 Wire Wire Line
-	10350 7250 10850 7250
+	10350 7250 11150 7250
 Connection ~ 10350 6150
 Wire Wire Line
 	3700 1600 1100 1600
@@ -836,9 +912,7 @@ Wire Wire Line
 Wire Wire Line
 	3700 1750 3150 1750
 Wire Wire Line
-	3150 1500 3150 1750
-Wire Wire Line
-	3150 1750 3150 2200
+	3150 1500 3150 2200
 Wire Wire Line
 	3700 1500 3150 1500
 Connection ~ 3150 1750
@@ -865,17 +939,7 @@ Wire Wire Line
 Wire Wire Line
 	6900 2650 6650 2650
 Wire Wire Line
-	6650 2650 6650 2850
-Wire Wire Line
-	6650 2850 6650 3150
-Wire Wire Line
-	6650 3150 6650 3350
-Wire Wire Line
-	6650 3350 6650 3650
-Wire Wire Line
-	6650 3650 6650 3850
-Wire Wire Line
-	6650 3850 6650 4000
+	6650 2650 6650 4000
 Wire Wire Line
 	6900 2850 6650 2850
 Connection ~ 6650 2850
@@ -923,14 +987,6 @@ Wire Wire Line
 	7150 9050 6650 9050
 Wire Wire Line
 	7150 9250 6650 9250
-Text Label 6700 5350 0    60   ~ 0
-rdAR
-Text Label 6700 5550 0    60   ~ 0
-rdPC
-Text Label 6700 5750 0    60   ~ 0
-rdMem
-Text Label 6700 5950 0    60   ~ 0
-rdDev2
 Wire Wire Line
 	8550 5450 9200 5450
 Wire Wire Line
@@ -939,44 +995,10 @@ Wire Wire Line
 	8550 5850 9200 5850
 Wire Wire Line
 	8550 6050 9200 6050
-Text Label 8800 5450 0    60   ~ 0
--uRdAR
-Text Label 8800 5650 0    60   ~ 0
--uRdPC
-Text Label 8800 5850 0    60   ~ 0
--uRdMem
-Text Label 8800 6050 0    60   ~ 0
--uRdGP
-Text Label 6700 6450 0    60   ~ 0
-rdDev0
 Wire Wire Line
 	8550 6450 9200 6450
 Wire Wire Line
 	8550 6650 9200 6650
-Text Label 8800 6450 0    60   ~ 0
-uRdDev0
-Text Label 8800 6650 0    60   ~ 0
-uRdDev1
-Text Label 6700 6650 0    60   ~ 0
-rdDev1
-Text Label 6700 6850 0    60   ~ 0
-wrGPLo
-Text Label 6700 7050 0    60   ~ 0
-wrGPHi
-Text Label 6700 7550 0    60   ~ 0
-wrPCLo
-Text Label 6700 7750 0    60   ~ 0
-wrPCHi
-Text Label 6700 7950 0    60   ~ 0
-wrARLo
-Text Label 6700 8150 0    60   ~ 0
-wrARHi
-Text Label 6700 8650 0    60   ~ 0
-wrMem
-Text Label 6700 8850 0    60   ~ 0
-wrDev0
-Text Label 6700 9050 0    60   ~ 0
-wrDev1
 Wire Wire Line
 	8550 6850 9200 6850
 Wire Wire Line
@@ -995,29 +1017,107 @@ Wire Wire Line
 	8550 8850 9200 8850
 Wire Wire Line
 	8550 9050 9200 9050
-Text Label 8800 6850 0    60   ~ 0
--uWrGPLo
-Text Label 8800 7050 0    60   ~ 0
--uWrGPHi
-Text Label 8800 7650 0    60   ~ 0
--uWrPCLo
-Text Label 8800 7850 0    60   ~ 0
--uWrPCHi
-Text Label 8800 8050 0    60   ~ 0
--uWrARLo
-Text Label 8800 8250 0    60   ~ 0
--uWrARHi
-Text Label 8800 8750 0    60   ~ 0
--uWrMem
-Text Label 8800 8850 0    60   ~ 0
-uWrDev0
-Text Label 8800 9050 0    60   ~ 0
-uWrDev1
-Text Notes 5800 9250 0    60   ~ 0
-reserve for unused ROM 1 bit
-Text Label 8800 6050 0    60   ~ 0
--uRdGP
 Wire Wire Line
 	10550 1550 10450 1550
 Connection ~ 10450 1550
+Wire Wire Line
+	3100 6650 3550 6650
+Wire Wire Line
+	11150 5550 10500 5550
+Wire Wire Line
+	11150 5750 10500 5750
+Wire Wire Line
+	11150 5950 10500 5950
+Wire Wire Line
+	11150 5350 10500 5350
+Wire Wire Line
+	11150 8850 10500 8850
+Wire Wire Line
+	11150 9050 10500 9050
+Wire Wire Line
+	11150 9250 10500 9250
+Wire Wire Line
+	11150 8650 10500 8650
+Wire Wire Line
+	10250 8450 11150 8450
+Wire Wire Line
+	10250 9550 11150 9550
+Wire Wire Line
+	10350 8350 11150 8350
+Wire Wire Line
+	10350 9450 11150 9450
+Wire Wire Line
+	11150 7750 10500 7750
+Wire Wire Line
+	11150 7950 10500 7950
+Wire Wire Line
+	11150 8150 10500 8150
+Wire Wire Line
+	11150 7550 10500 7550
+Connection ~ 10350 7250
+Connection ~ 10350 8350
+Connection ~ 10250 7350
+Connection ~ 10250 8450
+Wire Wire Line
+	12550 5450 13500 5450
+Wire Wire Line
+	12550 5650 13500 5650
+Wire Wire Line
+	12550 9250 13500 9250
+Wire Wire Line
+	3100 9050 3550 9050
+Wire Wire Line
+	3100 9150 3550 9150
+Wire Wire Line
+	3100 9250 3550 9250
+Wire Wire Line
+	3100 9350 3550 9350
+Wire Wire Line
+	3100 9450 3550 9450
+Wire Wire Line
+	3100 9550 3550 9550
+Wire Wire Line
+	3100 9650 3550 9650
+Text Label 10550 7550 0    60   ~ 0
+aluCarryIn
+Text Label 10550 7750 0    60   ~ 0
+aluMode
+Text Label 10550 7950 0    60   ~ 0
+aluOp0
+Text Label 10550 8150 0    60   ~ 0
+aluOp1
+Text Label 10550 8650 0    60   ~ 0
+aluOp2
+Text Label 10550 8850 0    60   ~ 0
+aluOp3
+Text Label 10550 9050 0    60   ~ 0
+aluOut
+Wire Wire Line
+	12550 7650 13500 7650
+Wire Wire Line
+	12550 7750 13500 7750
+Text Label 12800 7650 0    60   ~ 0
+-uAluCarryIn
+Text Label 12850 7750 0    60   ~ 0
+uAluMode
+Wire Wire Line
+	12550 7950 13500 7950
+Wire Wire Line
+	12550 8150 13500 8150
+Wire Wire Line
+	12550 8650 13500 8650
+Wire Wire Line
+	12550 8850 13500 8850
+Text Label 12850 7950 0    60   ~ 0
+uAluOp0
+Text Label 12850 8150 0    60   ~ 0
+uAluOp1
+Text Label 12850 8650 0    60   ~ 0
+uAluOp2
+Text Label 12850 8850 0    60   ~ 0
+uAluOp3
+Wire Wire Line
+	12550 9150 13500 9150
+Text Label 12850 9150 0    60   ~ 0
+-uAluOut
 $EndSCHEMATC
