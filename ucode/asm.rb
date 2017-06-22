@@ -36,6 +36,9 @@ class Lexer
     [ /^default/, :kw_default ],
     [ /^def/, :kw_def ],
     [ /^ins/, :kw_ins ],
+    [ /^pattern/, :kw_pattern ],
+    [ /^start/, :kw_start ],
+    [ /^stop/, :kw_stop ],
     [ /^[A-Za-z\-][A-Za-z0-9_]*/, :ident ],
   ]
 
@@ -123,6 +126,12 @@ class Bitstring
     @str = '0b' + updatedbits
   end
 
+  # Get value of specified signal as bitstring
+  def get_signal_value(sig)
+    bits = self.bits[sig.index, sig.index + sig.nbits]
+    return Bitstring.new('0b' + bits)
+  end
+
   def clone
     return Bitstring.new(@str.clone)
   end
@@ -157,6 +166,23 @@ class Default
 
   def valtype
     return :default
+  end
+end
+
+class Pattern
+  attr_reader :name, :pairs
+
+  def initialize(name)
+    @name = name
+    @pairs = []
+  end
+
+  def add_pair(signame, value)
+    @pairs.push([signame, value])
+  end
+
+  def valtype
+    return :pattern
   end
 end
 
@@ -275,10 +301,17 @@ class Ucode
     @templates = {}
     @nsigbits = 0 # total number of signal bits
     @assembled_instructions = []
+    # Saved values for signals specified in a pattern,
+    # to restore them properly when the pattern is stopped
+    @pattern_save = {}
   end
 
   def add_def(ident, val)
     @toplevel.put(ident, val)
+  end
+
+  def lookup_def(ident)
+    return @toplevel.lookup(ident)
   end
 
   def add_signal(ident, nbits, val)
@@ -288,6 +321,11 @@ class Ucode
 
   def add_template(ident, params, body)
     @templates[ident] = Template.new(params, body)
+  end
+
+  def add_pattern(pat)
+    # Patterns resolve as values in the same way as defs
+    @toplevel.put(pat.name, pat)
   end
 
   def assemble(opcode, body)
@@ -328,17 +366,57 @@ class Ucode
 
     op.pairs.each do |pair|
       signame = pair[0]
-      val = pair[1]
-      sig = self._signal(signame)
-      raise "Line #{op.lineno}: unknown signal #{signame}" if sig.nil?
-      resolved_val = self._resolve_val(val, sig, scope)
-      raise "Line #{op.lineno}: could not resolve signal value #{val.to_s}" if resolved_val.nil?
-      word.drive!(sig, resolved_val)
+
+      if signame == "start"
+        # Start generating specified pattern
+        pat = scope.lookup(pair[1])
+        raise "Line #{op.lineno}: Pattern #{pat.name} already started" if @pattern_save.has_key?(pat.name)
+        save = self._save_values(word, op, pat)
+        @pattern_save[pat.name] = save
+        pat.pairs.each do |pp|
+          self._drive_signal(word, op, pp[0], pp[1], scope)
+        end
+      elsif signame == "stop"
+        # Stop generating specified pattern
+        pat = scope.lookup(pair[1])
+        raise "Line #{op.lineno}: Pattern #{pat.name} not started" if !@pattern_save.has_key?(pat.name)
+        save = @pattern_save[pat.name]
+        save.each_pair do |signame, orig_val|
+          self._drive_signal(word, op, signame, orig_val, scope)
+        end
+        @pattern_save.delete(pat.name)
+      else
+        # Drive a signal directly
+        val = pair[1]
+        self._drive_signal(word, op, signame, val, scope)
+      end
     end
 
     ins.words.push(word.clone)
 
     return word
+  end
+
+  # Save the current values of signals named in given
+  # pattern (so they can be restored later)
+  def _save_values(word, op, pat)
+    save = {}
+    pat.pairs.each do |pair|
+      sig = self._signal(pair[0])
+      raise "Line #{op.lineno}: unknown signal #{pair[0]}" if sig.nil?
+      saved_val = word.get_signal_value(sig)
+      save[pair[0]] = saved_val
+    end
+    return save
+  end
+
+  def _drive_signal(word, op, signame, val, scope)
+    sig = self._signal(signame)
+    raise "Line #{op.lineno}: unknown signal #{signame}" if sig.nil?
+    resolved_val = self._resolve_val(val, sig, scope)
+    raise "Line #{op.lineno}: could not resolve signal value #{val.to_s}" if resolved_val.nil?
+    raise "Line #{op.lineno}: value for #{signame} not a bitstring" if resolved_val.valtype != :bitstring
+    word.drive!(sig, resolved_val)
   end
 
   def _signal(signame)
@@ -402,6 +480,8 @@ class Parser
       self._parse_template
     elsif t.type == :kw_ins
       self._parse_ins
+    elsif t.type == :kw_pattern
+      self._parse_pattern
     else
       self._error("Unexpected token #{t.lexeme} looking for top-level item")
     end
@@ -449,6 +529,28 @@ class Parser
     @ucode.assemble(opcode.lexeme.to_i, body)
   end
 
+  def _parse_pattern
+    self._expect(:kw_pattern)
+    patname = self._expect(:ident)
+    pat = Pattern.new(patname.lexeme)
+    first = true
+    while true
+      t = @lexer.peek
+      self._error("Unexpected EOF") if t.nil?
+      break if t.type == :semi
+      self._expect(:comma) if !first
+      signame = self._expect(:ident)
+      self._expect(:eq)
+      sigval = self._expect(:ident)
+      # Only a def constant can be used as the value of the signal
+      value = @ucode.lookup_def(VarRef.new(sigval))
+      pat.add_pair(signame.lexeme, value)
+      first = false
+    end
+    self._expect(:semi)
+    @ucode.add_pattern(pat)
+  end
+
   def _parse_param_list
     params = []
     first = true
@@ -486,20 +588,42 @@ class Parser
       self._error("Unexpected EOF") if t.nil?
       break if t.type == :semi
       self._expect(:comma) if !first
-      signame = self._expect(:ident)
 
-      if first and self._next_is?(:lparen)
-        # Special case: this is a call to expand a template
-        self._expect(:lparen)
-        args = self._parse_args
-        self._expect(:rparen)
-        self._expect(:semi)
-        return Call.new(t.lineno, signame.lexeme, args)
+      case t.type
+        when :ident
+          # This is either driving a signal directly,
+          # or expanding a template
+          signame = self._expect(:ident)
+
+          if first and self._next_is?(:lparen)
+            # Special case: this is a call to expand a template
+            self._expect(:lparen)
+            args = self._parse_args
+            self._expect(:rparen)
+            self._expect(:semi)
+            return Call.new(t.lineno, signame.lexeme, args)
+          end
+
+          self._expect(:eq)
+          val = self._parse_value
+          op.add_pair(signame.lexeme, val)
+
+        when :kw_start
+          # Start driving a pattern
+          self._expect(:kw_start)
+          patname = self._expect(:ident)
+          op.add_pair("start", VarRef.new(patname))
+
+        when :kw_stop
+          # Stop driving a pattern
+          self._expect(:kw_stop)
+          patname = self._expect(:ident)
+          op.add_pair("stop", VarRef.new(patname))
+
+        else
+          self._error("Unexpected token #{t.lexeme}")
       end
 
-      self._expect(:eq)
-      val = self._parse_value
-      op.add_pair(signame.lexeme, val)
       first = false
     end
     self._expect(:semi)

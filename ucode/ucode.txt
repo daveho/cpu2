@@ -4,22 +4,40 @@
 # Definitions (convenient symbolic names for bit patterns)
 ########################################################################
 
-# GP register device IDs, for rd_dev and wr_dev signals
-def r0 0b0000;
-def r2 0b0001;
-def r4 0b0010;
-def r6 0b0011;
-def r1 0b0100;
-def r3 0b0101;
-def r5 0b0110;
-def r7 0b0111;
+# Device read IDs.
+# For GP, AR, and PC, the low and high values
+# are asserted onto the left and right ALU busses.
+# For GP, the register pair (r0/r1, r2/r3, etc.)
+# is selected with the two low bits.
+# For the mem device, the value from the external
+# data bus is asserted onto the ALU data bus.
+def rd_id_gp_r0_r1  0b000;
+def rd_id_gp_r2_r3  0b001;
+def rd_id_gp_r4_r5  0b010;
+def rd_id_gp_r6_r7  0b011;
+def rd_id_ar        0b100;
+def rd_id_pc        0b101;
+def rd_id_mem       0b110;
 
-# Other device IDs, for rd_dev and wr_dev signals
-def arlo 0b1000;
-def arhi 0b1001;
-def pclo 0b1010;
-def pchi 0b1011;
-def mem 0b1100;
+# Device write IDs.
+# Each ID selects a single device rather than a pair.
+
+# GP register write ids
+def wr_id_r0 0b0000;
+def wr_id_r2 0b0001;
+def wr_id_r4 0b0010;
+def wr_id_r6 0b0011;
+def wr_id_r1 0b0100;
+def wr_id_r3 0b0101;
+def wr_id_r5 0b0110;
+def wr_id_r7 0b0111;
+
+# Other device IDs for writing
+def wr_id_arlo 0b1000;
+def wr_id_arhi 0b1001;
+def wr_id_pclo 0b1010;
+def wr_id_pchi 0b1011;
+def wr_id_mem 0b1100;
 
 # Note: ALU operation codes are for the 74HC181 (see datasheet)
 # In general, carry in should not be asserted except in special
@@ -31,6 +49,8 @@ def alu_logic_B      0b1010; # copy B (right ALU bus) to ALU output
 def alu_logic_and    0b1011; # bitwise AND
 def alu_logic_or     0b1110; # bitwise OR
 def alu_logic_xor    0b0110; # bitwise XOR
+def alu_logic_complA 0b0000; # bitwise complement of A (left ALU bus)
+def alu_logic_complB 0b0101; # bitwise complement of B (right ALU bus)
 
 # Math ALU operation codes (ensure aluMode=0)
 def alu_math_add     0b1001; # left+right
@@ -40,19 +60,25 @@ def alu_math_lshift  0b1100; # shift left value left by one bit
 ########################################################################
 # First microcode ROM: read/write device signals
 #
-# Reading from a device asserts its output to the left
-# or right ALU busses, except in the case of reading from
-# memory, which is asserted directly onto the ALU data bus.
+# Reading from a device asserts the output from the
+# low and high device pair (r0/r1, gplo/gphi, etc.)
+# onto the left and right ALU input busses, except in
+# the case of reading from memory, which is asserted
+# directly onto the ALU data bus.
 #
 # Writing to a device signals that it should take its
 # new contents from the ALU data bus.
 ########################################################################
 
-# device being read
-signal rd_dev[4] default 0b1111;
+# device being read: note that an ALU op is needed to
+# select the ALU input bus (left or right) being read from
+signal rdDev[3] default 0b111;
 
 # device being written
-signal wr_dev[4] default 0b1111;
+signal wrDev[4] default 0b1111;
+
+# one unused bit here, could use it for something
+signal rwunused[1] default 0;
 
 ########################################################################
 # Second microcode ROM: misc. control signals
@@ -71,7 +97,7 @@ signal pcGenAddr[1] default 0; # driven as inverted
 signal arGenAddr[1] default 0; # driven as inverted
 
 # Assert the GP register pair indicated by the two low bits
-# of the rd_dev signal onto the left and right ALU busses
+# of the rdDev signal onto the left and right ALU busses
 signal gpGenAddr[1] default 0; # driven as inverted
 
 # Drive the left/right ALU busses onto the low/high address
@@ -103,16 +129,45 @@ signal aluOut[1] default 0;   # driven as inverted
 signal end[1] default 0;
 
 ########################################################################
+# Patterns: assertions of multiple signals simultaneously
+########################################################################
+
+# Read signal patterns (most of which require an ALU op)
+pattern rd_r0 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_A;
+pattern rd_r1 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_B;
+pattern rd_r2 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_A;
+pattern rd_r3 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_B;
+pattern rd_r4 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_A;
+pattern rd_r5 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_B;
+pattern rd_r6 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_A;
+pattern rd_r7 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_B;
+pattern rd_ar_lo rdDev=rd_id_ar, aluOp=alu_logic_A;
+pattern rd_ar_hi rdDev=rd_id_ar, aluOp=alu_logic_B;
+pattern rd_pc_lo rdDev=rd_id_pc, aluOp=alu_logic_A;
+pattern rd_pc_hi rdDev=rd_id_pc, aluOp=alu_logic_B;
+pattern rd_mem rdDev=rd_id_mem;
+
+# Write signal patterns
+pattern wr_r0 wrDev=wr_id_r0;
+pattern wr_r1 wrDev=wr_id_r1;
+pattern wr_r2 wrDev=wr_id_r2;
+pattern wr_r3 wrDev=wr_id_r3;
+pattern wr_r4 wrDev=wr_id_r4;
+pattern wr_r5 wrDev=wr_id_r5;
+pattern wr_r6 wrDev=wr_id_r6;
+pattern wr_r7 wrDev=wr_id_r7;
+
+########################################################################
 # Templates: parametized instructions sequences that can
 # be spliced into actual instructions as appropriate
 ########################################################################
 
 # Template for register/register move instructions
 template mov(dest_dev, src_dev) {
-  rd_dev=src_dev;
-  wr_dev=dest_dev;
-  wr_dev=default;
-  rd_dev=default, end=1;
+  start src_dev;
+  start dest_dev;
+  stop dest_dev;
+  stop src_dev;
 }
 
 ########################################################################
@@ -126,75 +181,12 @@ template mov(dest_dev, src_dev) {
 ins(0) { end=1; }
 
 # Move to r0
-ins(1) { mov(r0, r1); }
-ins(2) { mov(r0, r2); }
-ins(3) { mov(r0, r3); }
-ins(4) { mov(r0, r4); }
-ins(5) { mov(r0, r5); }
-ins(6) { mov(r0, r6); }
-ins(7) { mov(r0, r7); }
-
-# Move to r1
-ins(8) { mov(r1, r0); }
-ins(9) { mov(r1, r2); }
-ins(10) { mov(r1, r3); }
-ins(11) { mov(r1, r4); }
-ins(12) { mov(r1, r5); }
-ins(13) { mov(r1, r6); }
-ins(14) { mov(r1, r7); }
-
-# Move to r2
-ins(15) { mov(r2, r0); }
-ins(16) { mov(r2, r1); }
-ins(17) { mov(r2, r3); }
-ins(18) { mov(r2, r4); }
-ins(19) { mov(r2, r5); }
-ins(20) { mov(r2, r6); }
-ins(21) { mov(r2, r7); }
-
-# Move to r3
-ins(22) { mov(r3, r0); }
-ins(23) { mov(r3, r1); }
-ins(24) { mov(r3, r2); }
-ins(25) { mov(r3, r4); }
-ins(26) { mov(r3, r5); }
-ins(27) { mov(r3, r6); }
-ins(28) { mov(r3, r7); }
-
-# Move to r4
-ins(29) { mov(r4, r0); }
-ins(30) { mov(r4, r1); }
-ins(31) { mov(r4, r2); }
-ins(32) { mov(r4, r3); }
-ins(33) { mov(r4, r5); }
-ins(34) { mov(r4, r6); }
-ins(35) { mov(r4, r7); }
-
-# Move to r5
-ins(36) { mov(r5, r0); }
-ins(37) { mov(r5, r1); }
-ins(38) { mov(r5, r2); }
-ins(39) { mov(r5, r3); }
-ins(40) { mov(r5, r4); }
-ins(41) { mov(r5, r6); }
-ins(42) { mov(r5, r7); }
-
-# Move to r6
-ins(43) { mov(r6, r0); }
-ins(44) { mov(r6, r1); }
-ins(45) { mov(r6, r2); }
-ins(46) { mov(r6, r3); }
-ins(47) { mov(r6, r4); }
-ins(48) { mov(r6, r5); }
-ins(49) { mov(r6, r7); }
-
-# Move to r7
-ins(50) { mov(r7, r0); }
-ins(51) { mov(r7, r1); }
-ins(52) { mov(r7, r2); }
-ins(53) { mov(r7, r3); }
-ins(54) { mov(r7, r4); }
-ins(55) { mov(r7, r5); }
-ins(56) { mov(r7, r6); }
+ins(1) { mov(wr_r0, rd_r1); }
+ins(1) { mov(wr_r0, rd_r2); }
+ins(1) { mov(wr_r0, rd_r3); }
+ins(1) { mov(wr_r0, rd_r4); }
+ins(1) { mov(wr_r0, rd_r5); }
+ins(1) { mov(wr_r0, rd_r6); }
+ins(1) { mov(wr_r0, rd_r7); }
 
 # vim:ft=ucode:
