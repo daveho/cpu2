@@ -93,6 +93,11 @@ class Lexer
   def lineno
     return @lineno
   end
+
+  def _error(msg)
+    STDERR.puts "Line #{@lineno}: #{msg}"
+    exit 1
+  end
 end
 
 # Bitstring value class
