@@ -858,13 +858,22 @@ while rom_index*8 < wordsize
       raise "Opcode #{opcode} has too many words (#{ins.words.length}, max is #{max_words}"
     end
 
+    ins_bytes = []
     (0..max_words-1).each do |i|
       word = (i < ins.words.length) ? ins.words[i] : default_word
       bits = word.bits
       slice = bits[rom_index*8, 8]
       byte_val = to_byte_val(slice)
-      bytes.push(byte_val)
+      ins_bytes.push(byte_val)
     end
+
+    # rotate if necessary
+    options[:rotate].times do
+      val = ins_bytes.pop
+      ins_bytes.unshift(val)
+    end
+
+    bytes.concat(ins_bytes)
   end
 
   #puts "Generated #{bytes.length} bytes"
