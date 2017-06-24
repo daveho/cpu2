@@ -35,7 +35,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 9
+Sheet 1 10
 Title ""
 Date ""
 Rev ""
@@ -761,5 +761,11 @@ F11 "uEnd" O R 9000 3950 60
 F12 "uPcClk" O R 9000 4050 60 
 F13 "-RST" I L 7600 2150 60 
 F14 "-DIS" I L 7600 2250 60 
+$EndSheet
+$Sheet
+S 9850 2050 1300 2700
+U 594ECB9B
+F0 "ucode2" 60
+F1 "ucode2.sch" 60
 $EndSheet
 $EndSCHEMATC
