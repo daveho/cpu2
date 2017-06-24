@@ -1,5 +1,7 @@
 #! /usr/bin/env ruby
 
+require 'optparse'
+
 class Token
   attr_accessor :type, :lexeme, :lineno
 
@@ -702,11 +704,98 @@ class Parser
   end
 end
 
-l = Lexer.new(STDIN)
+# A mixin for reading and writing binary data from/to a file.
+# Can be used to extend an object supporting the standard
+# file I/O methods.
+module BinaryFile
+  def read_byte
+    return read(1).unpack("C")[0]
+  end
+
+  def read_int
+    val = read_int_unsigned()
+    if (val & 0x80000000) != 0
+      neg = -(0x100000000 - val)
+      #STDOUT.puts "converted #{val} to #{neg}"
+      val = neg
+    end
+    return val
+  end
+
+  def read_int_unsigned
+    return read(4).unpack("N")[0]
+  end
+
+  def read_str
+    # FIXME: fails for multi-byte character sets
+    len = read_int()
+    return read(len)
+  end
+
+  def write_byte(b)
+    write([b].pack("C"))
+  end
+
+  def write_int(i)
+    write([i].pack("N"))
+  end
+
+  def write_str(s)
+    # FIXME: fails for multi-byte character sets
+    write_int(s.length)
+    write(s)
+  end
+end
+
+########################################################################
+# Main code
+########################################################################
+
+def rom_size_valid?(romsize)
+  romsize = romsize.to_i
+  max = 512*1024 # Could support 512K flash ROMS (2K ucode words per instruction!)
+  size = 1*1024 # AFAIK smallest EPROM is 2708, 1K
+
+  while size < romsize && size <= max
+    size *= 2
+  end
+
+  return size == romsize
+end
+
+options = {}
+optparse = OptionParser.new do |opt|
+  opt.banner = 'Usage: asm.rb [options] <input file>'
+  opt.on('--output OUTPUT_PREFIX', 'Output file') { |o| options[:output_file] = o }
+  opt.on('--romsize ROM_SIZE_IN_BYTES', 'ROM size') { |o| options[:romsize] = o }
+  opt.on('--help', 'Print this message') do
+    puts opt
+    exit
+  end
+end
+
+optparse.parse!
+
+input_file = ARGV.shift
+begin
+  raise "No input file specified" if input_file.nil?
+  raise "Output file not specified" if !options.has_key?(:output_file)
+  raise "ROM size not specified" if !options.has_key?(:romsize)
+  raise "Invalid ROM size (must be power of 2 from 1K to 512K)" if !rom_size_valid?(options[:romsize])
+rescue Object => e
+  puts e
+  puts optparse.help
+  exit
+end
 
 ucode = Ucode.new
-p = Parser.new(l, ucode)
-p.parse
+
+# Parse microcode file
+File.open(input_file) do |f|
+  l = Lexer.new(f)
+  p = Parser.new(l, ucode)
+  p.parse
+end
 
 puts "Default word is #{ucode._default_word}"
 
