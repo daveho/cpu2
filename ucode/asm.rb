@@ -297,8 +297,9 @@ class AssembledInstruction
   end
 end
 
+# Main class to store assembled instructions
 class Ucode
-  attr_reader :assembled_instructions
+  attr_reader :assembled_instructions, :nsigbits
 
   def initialize
     @toplevel = Scope.new
@@ -337,12 +338,31 @@ class Ucode
 
   def assemble(opcode, body)
     ins = AssembledInstruction.new(opcode)
-    initword = self._default_word
+    initword = self.default_word
     self._assemble(ins, body, initword, @toplevel)
     @assembled_instructions.push(ins)
   end
 
-  def _default_word
+  # Get assembled instruction for specified opcode.
+  # If no such instruction was defined, return the assembled instruction
+  # for opcode 256, which specifies the "default" microcode instruction
+  # sequence.
+  def get_assembled_instruction(opcode)
+    ins = self._find(opcode)
+    return ins if !ins.nil?
+    ins = self._find(256)
+    return ins if !ins.nil?
+    raise "No instruction code opcode #{opcode}, and no default instruction defined"
+  end
+
+  def _find(opcode)
+    @assembled_instructions.each do |ins|
+      return ins if ins.opcode == opcode
+    end
+    return nil
+  end
+
+  def default_word
     def_word = Bitstring.new('0b' + '0' * @nsigbits)
     @signals.each do |sig|
       #puts "Driving signal #{sig.name} (#{sig.index}:#{sig.nbits}) to default value of #{sig.def_val}"
@@ -752,7 +772,6 @@ end
 ########################################################################
 
 def rom_size_valid?(romsize)
-  romsize = romsize.to_i
   max = 512*1024 # Could support 512K flash ROMS (2K ucode words per instruction!)
   size = 1*1024 # AFAIK smallest EPROM is 2708, 1K
 
@@ -763,11 +782,22 @@ def rom_size_valid?(romsize)
   return size == romsize
 end
 
+# Convert string of '0' and '1' characters into a byte value
+def to_byte_val(s)
+  val = 0
+  s.each_char do |x|
+    val *= 2
+    val += x.to_i
+  end
+  return val
+end
+
 options = {}
 optparse = OptionParser.new do |opt|
   opt.banner = 'Usage: asm.rb [options] <input file>'
   opt.on('--output OUTPUT_PREFIX', 'Output file') { |o| options[:output_file] = o }
-  opt.on('--romsize ROM_SIZE_IN_BYTES', 'ROM size') { |o| options[:romsize] = o }
+  opt.on('--romsize ROM_SIZE_IN_BYTES', 'ROM size') { |o| options[:romsize] = o.to_i }
+  opt.on('--rotate NUM_BYTES', '# bytes to rotate ins seqs') { |o| options[:rotate] = o.to_i }
   opt.on('--help', 'Print this message') do
     puts opt
     exit
@@ -788,6 +818,10 @@ rescue Object => e
   exit
 end
 
+if !options.has_key?(:rotate)
+  options[:rotate] = 0
+end
+
 ucode = Ucode.new
 
 # Parse microcode file
@@ -797,16 +831,60 @@ File.open(input_file) do |f|
   p.parse
 end
 
-puts "Default word is #{ucode._default_word}"
+# Make sure the microcode word size is a multiple of 8
+default_word = ucode.default_word
+wordsize = default_word.nbits
+raise "Word size #{wordsize} isn't a multiple of 8" if wordsize % 8 != 0
 
-ucode.assembled_instructions.each do |ins|
-  puts "Instruction #{ins.opcode}"
-  count = 0
-  ins.words.each do |word|
-    puts "#{count}: #{word}"
-    count += 1
+# Just for debugging
+#ucode.assembled_instructions.each do |ins|
+#  puts "Instruction #{ins.opcode}"
+#  count = 0
+#  ins.words.each do |word|
+#    puts "#{count}: #{word}"
+#    count += 1
+#  end
+#end
+
+max_words = options[:romsize] / 256
+
+rom_index = 0
+while rom_index*8 < wordsize
+  bytes = []
+
+  (0..255).each do |opcode|
+    ins = ucode.get_assembled_instruction(opcode)
+    if ins.words.length > max_words
+      raise "Opcode #{opcode} has too many words (#{ins.words.length}, max is #{max_words}"
+    end
+
+    (0..max_words-1).each do |i|
+      word = (i < ins.words.length) ? ins.words[i] : default_word
+      bits = word.bits
+      slice = bits[rom_index*8, 8]
+      byte_val = to_byte_val(slice)
+      bytes.push(byte_val)
+    end
   end
+
+  #puts "Generated #{bytes.length} bytes"
+
+  raise "Wrong number of bytes?" if bytes.length != options[:romsize]
+
+  outfile = "#{options[:output_file]}#{rom_index}.bin"
+  puts "Writing output file #{outfile}..."
+
+  File.open(outfile, "w") do |outf|
+    outf.extend(BinaryFile)
+    bytes.each do |byte_val|
+      outf.write_byte(byte_val)
+    end
+  end
+
+  rom_index += 1
 end
+
+puts "Done"
 
 #while !l.peek.nil?
 #  t = l.next

@@ -166,6 +166,11 @@ template mov(dest_dev, src_dev) {
 # words executed in order.
 ########################################################################
 
+# special "default" instruction: this sequence of microcode
+# instruction words is used for all opcodes that aren't explicitly
+# specified
+ins(256) { end=1; }
+
 # nop instruction
 ins(0) { end=1; }
 
