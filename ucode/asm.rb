@@ -803,6 +803,7 @@ optparse = OptionParser.new do |opt|
   opt.on('--output OUTPUT_PREFIX', 'Output file') { |o| options[:output_file] = o }
   opt.on('--romsize ROM_SIZE_IN_BYTES', 'ROM size') { |o| options[:romsize] = o.to_i }
   opt.on('--rotate NUM_BYTES', '# bytes to rotate ins seqs') { |o| options[:rotate] = o.to_i }
+  opt.on('--verbose', '-v', 'enable verbose output') { options[:verbose] = true }
   opt.on('--help', 'Print this message') do
     puts opt
     exit
@@ -842,19 +843,22 @@ wordsize = default_word.nbits
 raise "Word size #{wordsize} isn't a multiple of 8" if wordsize % 8 != 0
 
 # Just for debugging
-#ucode.assembled_instructions.each do |ins|
-#  puts "Instruction #{ins.opcode}"
-#  count = 0
-#  ins.words.each do |word|
-#    puts "#{count}: #{word}"
-#    count += 1
-#  end
-#end
+if options[:verbose]
+  puts "Default word: #{default_word}"
+
+  ucode.assembled_instructions.each do |ins|
+    puts "Instruction #{ins.opcode}"
+    count = 0
+    ins.words.each do |word|
+      puts "#{count}: #{word}"
+      count += 1
+    end
+  end
+end
 
 max_words = options[:romsize] / 256
 
-rom_index = 0
-while rom_index*8 < wordsize
+(0..(wordsize/8)-1).each do |rom_index|
   bytes = []
 
   (0..255).each do |opcode|
@@ -863,11 +867,13 @@ while rom_index*8 < wordsize
       raise "Opcode #{opcode} has too many words (#{ins.words.length}, max is #{max_words}"
     end
 
+    bit_offset = wordsize - ((rom_index+1) * 8)
+
     ins_bytes = []
     (0..max_words-1).each do |i|
       word = (i < ins.words.length) ? ins.words[i] : default_word
       bits = word.bits
-      slice = bits[rom_index*8, 8]
+      slice = bits[bit_offset, 8]
       byte_val = to_byte_val(slice)
       ins_bytes.push(byte_val)
     end
@@ -894,8 +900,6 @@ while rom_index*8 < wordsize
       outf.write_byte(byte_val)
     end
   end
-
-  rom_index += 1
 end
 
 puts "Done"
