@@ -37,6 +37,10 @@ def alu_math_add     0b1001; # left+right
 def alu_math_sub     0b0110; # left-right (carry in must be asserted)
 def alu_math_lshift  0b1100; # shift left value left by one bit
 
+########################################################################
+# Signals
+########################################################################
+
 # Note about read/write signals: all are active low
 # and thus driven as inverted, to make sure that the reset
 # state is not asserted.
