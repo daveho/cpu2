@@ -4,40 +4,20 @@
 # Definitions (convenient symbolic names for bit patterns)
 ########################################################################
 
-# Device read IDs.
-# For GP, AR, and PC, the low and high values
-# are asserted onto the left and right ALU busses.
-# For GP, the register pair (r0/r1, r2/r3, etc.)
-# is selected with the two low bits.
-# For the mem device, the value from the external
-# data bus is asserted onto the ALU data bus.
-def rd_id_gp_r0_r1  0b100;
-def rd_id_gp_r2_r3  0b101;
-def rd_id_gp_r4_r5  0b110;
-def rd_id_gp_r6_r7  0b111;
-def rd_id_ar        0b000;
-def rd_id_pc        0b001;
-def rd_id_mem       0b010;
+# GP register addresses (for rdGPAddr and wrGPAddr signals).
+# Note that these don't uniquely identify a register: an
+# ALU op must be selected for a read, and the wrGPLo or wrGPHi
+# signal must be asserted for a write.
+def r0 0b00;
+def r1 0b00;
+def r2 0b01;
+def r3 0b01;
+def r4 0b10;
+def r5 0b10;
+def r6 0b11;
+def r7 0b11;
 
-# Device write IDs.
-# Each ID selects a single device rather than a pair.
-
-# GP register write ids
-def wr_id_r0 0b0000;
-def wr_id_r2 0b0001;
-def wr_id_r4 0b0010;
-def wr_id_r6 0b0011;
-def wr_id_r1 0b0100;
-def wr_id_r3 0b0101;
-def wr_id_r5 0b0110;
-def wr_id_r7 0b0111;
-
-# Other device IDs for writing
-def wr_id_arlo 0b1000;
-def wr_id_arhi 0b1001;
-def wr_id_pclo 0b1010;
-def wr_id_pchi 0b1011;
-def wr_id_mem 0b1100;
+# TODO: write device ids
 
 # Note: ALU operation codes are for the 74HC181 (see datasheet)
 # In general, carry in should not be asserted except in special
@@ -57,50 +37,32 @@ def alu_math_add     0b1001; # left+right
 def alu_math_sub     0b0110; # left-right (carry in must be asserted)
 def alu_math_lshift  0b1100; # shift left value left by one bit
 
-########################################################################
-# First microcode ROM: read/write device signals, and the
-# end signal to terminate microcode execution for the current
-# instruction
-#
-# Reading from a device asserts the output from the
-# low and high device pair (r0/r1, gplo/gphi, etc.)
-# onto the left and right ALU input busses, except in
-# the case of reading from memory, which is asserted
-# directly onto the ALU data bus.
-#
-# Writing to a device signals that it should take its
-# new contents from the ALU data bus.
-########################################################################
+# Note about read/write signals: all are active low
+# and thus driven as inverted, to make sure that the reset
+# state is not asserted.
 
-# device being read: note that an ALU op is needed to
-# select the ALU input bus (left or right) being read from
-signal rdDev[3] default 0b011;
+# ROM 1
+signal rdGP[1] default 0;
+signal rdGPAddr[2] default 0b00;
+signal rdAR[1] default 0;
+signal rdPC[1] default 0;
+signal rdMem[1] default 0;
+signal wrGPLo[1] default 0;
+signal wrGPHi[1] default 0;
 
-# device being written
-signal wrDev[4] default 0b1111;
-
-# mark end of microcode operations
+# ROM 2
+signal wrGPAddr[2] default 0b00;
+signal wrARLo[1] default 0;
+signal wrARHi[1] default 0;
+signal wrPCLo[1] default 0;
+signal wrPCHi[1] default 0;
+signal wrMem[1] default 0;
 signal end[1] default 0;
 
-########################################################################
-# Second microcode ROM: misc. control signals
-########################################################################
+# ROM 3
+signal rom3Unused[8] default 0b00000000;
 
-# clock signal for incrementing program counter
-# (the counters are always enabled, but we send a clock
-# pulse only when we want to increment the PC)
-signal pcClk[1] default 0;   # driven as inverted
-
-# Drive the left/right ALU busses onto the low/high address busses
-signal driveAddr[1] default 0; # driven as inverted
-
-# 6 bits are still available: will need these
-# for conditional control flow instructions.
-signal rom2Unused[6] default 0b000000;
-
-########################################################################
-# Third microcode ROM: ALU control
-########################################################################
+# ROM 4
 
 # Carry in signal to ALU
 signal aluCarryIn[1] default 0; # driven as inverted
@@ -115,36 +77,37 @@ signal aluOp[4] default 0b0000;
 signal aluOut[1] default 0;   # driven as inverted
 
 # one unused bit here, could use it for something
-signal rom3Unused[1] default 0;
+signal rom4Unused[1] default 0;
 
 ########################################################################
-# Patterns: assertions of multiple signals simultaneously
+# Patterns: assertions of one or more signals.  These are
+# very useful because they can be passed to a template.
 ########################################################################
 
 # Read signal patterns (most of which require an ALU op)
-pattern rd_r0 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r1 rdDev=rd_id_gp_r0_r1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r2 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r3 rdDev=rd_id_gp_r2_r3, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r4 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r5 rdDev=rd_id_gp_r4_r5, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r6 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r7 rdDev=rd_id_gp_r6_r7, aluOp=alu_logic_B, aluOut=1;
-pattern rd_ar_lo rdDev=rd_id_ar, aluOp=alu_logic_A, aluOut=1;
-pattern rd_ar_hi rdDev=rd_id_ar, aluOp=alu_logic_B, aluOut=1;
-pattern rd_pc_lo rdDev=rd_id_pc, aluOp=alu_logic_A, aluOut=1;
-pattern rd_pc_hi rdDev=rd_id_pc, aluOp=alu_logic_B, aluOut=1;
-pattern rd_mem rdDev=rd_id_mem;
+pattern rd_r0 rdGP=1, rdGPAddr=r0, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r1 rdGP=1, rdGPAddr=r1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r2 rdGP=1, rdGPAddr=r2, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r3 rdGP=1, rdGPAddr=r3, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r4 rdGP=1, rdGPAddr=r4, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r5 rdGP=1, rdGPAddr=r5, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r6 rdGP=1, rdGPAddr=r6, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r7 rdGP=1, rdGPAddr=r7, aluOp=alu_logic_B, aluOut=1;
+pattern rd_ar_lo rdAR=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_ar_hi rdAR=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_pc_lo rdPC=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_pc_hi rdPC=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_mem rdMem=1;
 
 # Write signal patterns
-pattern wr_r0 wrDev=wr_id_r0;
-pattern wr_r1 wrDev=wr_id_r1;
-pattern wr_r2 wrDev=wr_id_r2;
-pattern wr_r3 wrDev=wr_id_r3;
-pattern wr_r4 wrDev=wr_id_r4;
-pattern wr_r5 wrDev=wr_id_r5;
-pattern wr_r6 wrDev=wr_id_r6;
-pattern wr_r7 wrDev=wr_id_r7;
+pattern wr_r0 wrGPLo=1, wrGPAddr=r0;
+pattern wr_r1 wrGPHi=1, wrGPAddr=r1;
+pattern wr_r2 wrGPLo=1, wrGPAddr=r2;
+pattern wr_r3 wrGPHi=1, wrGPAddr=r3;
+pattern wr_r4 wrGPLo=1, wrGPAddr=r4;
+pattern wr_r5 wrGPHi=1, wrGPAddr=r5;
+pattern wr_r6 wrGPLo=1, wrGPAddr=r6;
+pattern wr_r7 wrGPHi=1, wrGPAddr=r7;
 
 ########################################################################
 # Templates: parametized instructions sequences that can
