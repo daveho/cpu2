@@ -232,7 +232,7 @@ prefix 300
 Text Notes 5400 3850 0    60   ~ 0
 prefix 400
 Text Notes 7950 4950 0    60   ~ 0
-prefix 500
+prefix 800
 Text Notes 5400 5950 0    60   ~ 0
 prefix 600
 Text Label 4800 4150 0    60   ~ 0
@@ -281,9 +281,9 @@ Text Label 4550 5400 0    60   ~ 0
 -uWrPCLo
 Text Label 4550 5600 0    60   ~ 0
 uPcClk
-Text Label 9050 4050 0    60   ~ 0
+Text Label 9250 2850 0    60   ~ 0
 uPcClk
-Text Label 9050 3950 0    60   ~ 0
+Text Label 9250 2750 0    60   ~ 0
 uEnd
 Text Label 4550 1400 0    60   ~ 0
 uEnd
@@ -510,7 +510,7 @@ Connection ~ 4950 1250
 Wire Wire Line
 	5100 2650 4100 2650
 Wire Wire Line
-	4100 2650 4100 2800
+	4100 2650 4100 3900
 Wire Wire Line
 	4100 2800 2450 2800
 Wire Wire Line
@@ -618,9 +618,9 @@ Wire Wire Line
 Wire Wire Line
 	6200 3550 7600 3550
 Wire Wire Line
-	9000 4050 9300 4050
+	9200 2850 9500 2850
 Wire Wire Line
-	9000 3950 9300 3950
+	9200 2750 9500 2750
 Wire Wire Line
 	5100 1400 4550 1400
 Wire Wire Line
@@ -744,10 +744,10 @@ Entry Wire Line
 Entry Wire Line
 	9250 7500 9350 7600
 $Sheet
-S 7600 2050 1400 2700
-U 592C71D0
-F0 "ucode" 60
-F1 "ucode.sch" 60
+S 7600 2050 1300 2700
+U 594ECB9B
+F0 "ucode2" 60
+F1 "ucode2.sch" 60
 F2 "OPC0" I L 7600 2850 60 
 F3 "OPC1" I L 7600 2950 60 
 F4 "OPC2" I L 7600 3050 60 
@@ -757,15 +757,17 @@ F7 "OPC5" I L 7600 3350 60
 F8 "OPC6" I L 7600 3450 60 
 F9 "OPC7" I L 7600 3550 60 
 F10 "CLK" I L 7600 2450 60 
-F11 "uEnd" O R 9000 3950 60 
-F12 "uPcClk" O R 9000 4050 60 
-F13 "-RST" I L 7600 2150 60 
-F14 "-DIS" I L 7600 2250 60 
+F11 "-RST" I L 7600 2150 60 
+F12 "-DIS" I L 7600 2250 60 
+F13 "-CLK" I L 7600 2550 60 
 $EndSheet
-$Sheet
-S 9850 2050 1300 2700
-U 594ECB9B
-F0 "ucode2" 60
-F1 "ucode2.sch" 60
-$EndSheet
+Wire Wire Line
+	7050 2550 7600 2550
+Text Label 7200 2550 0    60   ~ 0
+-CLK
+Wire Wire Line
+	7050 2550 7050 3900
+Wire Wire Line
+	7050 3900 4100 3900
+Connection ~ 4100 2800
 $EndSCHEMATC
