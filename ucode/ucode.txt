@@ -46,22 +46,22 @@ def alu_math_lshift  0b1100; # shift left value left by one bit
 # state is not asserted.
 
 # ROM 1
-signal rdGP[1] default 0;
+signal rdGP[1] default 0;                # LSB
 signal rdGPAddr[2] default 0b00;
 signal rdAR[1] default 0;
 signal rdPC[1] default 0;
 signal rdMem[1] default 0;
 signal wrGPLo[1] default 0;
-signal wrGPHi[1] default 0;
+signal wrGPHi[1] default 0;              # MSB
 
 # ROM 2
-signal wrGPAddr[2] default 0b00;
+signal wrGPAddr[2] default 0b00;         # LSB
 signal wrARLo[1] default 0;
 signal wrARHi[1] default 0;
 signal wrPCLo[1] default 0;
 signal wrPCHi[1] default 0;
 signal wrMem[1] default 0;
-signal end[1] default 0;
+signal end[1] default 0;                 # MSB
 
 # ROM 3
 signal rom3Unused[8] default 0b00000000;
@@ -69,7 +69,7 @@ signal rom3Unused[8] default 0b00000000;
 # ROM 4
 
 # Carry in signal to ALU
-signal aluCarryIn[1] default 0; # driven as inverted
+signal aluCarryIn[1] default 0;          # LSB, driven as inverted
 
 # Mode signal to ALU
 signal aluMode[1] default 0;
@@ -78,10 +78,10 @@ signal aluMode[1] default 0;
 signal aluOp[4] default 0b0000;
 
 # Drive ALU output to ALU data bus
-signal aluOut[1] default 0;   # driven as inverted
+signal aluOut[1] default 0;             # driven as inverted
 
 # one unused bit here, could use it for something
-signal rom4Unused[1] default 0;
+signal rom4Unused[1] default 0;         # MSB
 
 ########################################################################
 # Patterns: assertions of one or more signals.  These are
