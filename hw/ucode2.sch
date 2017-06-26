@@ -35,7 +35,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 10 10
+Sheet 9 9
 Title ""
 Date ""
 Rev ""
@@ -956,4 +956,52 @@ Text Label 5850 5700 0    60   ~ 0
 CLK
 Text Label 5850 5800 0    60   ~ 0
 -ucodeRST
+$Comp
+L 74LS00 U801
+U 3 1 59522853
+P 6200 6600
+F 0 "U801" H 6200 6650 50  0000 C CNN
+F 1 "74HC00" H 6200 6500 50  0000 C CNN
+F 2 "" H 6200 6600 50  0001 C CNN
+F 3 "" H 6200 6600 50  0001 C CNN
+	3    6200 6600
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS00 U801
+U 4 1 59522859
+P 6200 7100
+F 0 "U801" H 6200 7150 50  0000 C CNN
+F 1 "74HC00" H 6200 7000 50  0000 C CNN
+F 2 "" H 6200 7100 50  0001 C CNN
+F 3 "" H 6200 7100 50  0001 C CNN
+	4    6200 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 6500 5500 6500
+Wire Wire Line
+	5500 6500 5500 7350
+Wire Wire Line
+	5600 6700 5500 6700
+Connection ~ 5500 6700
+Wire Wire Line
+	5600 7000 5500 7000
+Connection ~ 5500 7000
+Wire Wire Line
+	5600 7200 5500 7200
+Connection ~ 5500 7200
+$Comp
+L GND #PWR?
+U 1 1 59522CEA
+P 5500 7350
+F 0 "#PWR?" H 5500 7100 50  0001 C CNN
+F 1 "GND" H 5500 7200 50  0000 C CNN
+F 2 "" H 5500 7350 50  0001 C CNN
+F 3 "" H 5500 7350 50  0001 C CNN
+	1    5500 7350
+	1    0    0    -1  
+$EndComp
+Text Notes 5850 6350 0    60   ~ 0
+unused gates
 $EndSCHEMATC
