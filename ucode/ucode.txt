@@ -85,18 +85,18 @@ signal rom4Unused[1] default 0;
 ########################################################################
 
 # Read signal patterns (most of which require an ALU op)
-pattern rd_r0 rdGP=1, rdGPAddr=r0, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r1 rdGP=1, rdGPAddr=r1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r2 rdGP=1, rdGPAddr=r2, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r3 rdGP=1, rdGPAddr=r3, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r4 rdGP=1, rdGPAddr=r4, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r5 rdGP=1, rdGPAddr=r5, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r6 rdGP=1, rdGPAddr=r6, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r7 rdGP=1, rdGPAddr=r7, aluOp=alu_logic_B, aluOut=1;
-pattern rd_ar_lo rdAR=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_ar_hi rdAR=1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_pc_lo rdPC=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_pc_hi rdPC=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r0 rdGP=1, rdGPAddr=r0, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r1 rdGP=1, rdGPAddr=r1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r2 rdGP=1, rdGPAddr=r2, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r3 rdGP=1, rdGPAddr=r3, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r4 rdGP=1, rdGPAddr=r4, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r5 rdGP=1, rdGPAddr=r5, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r6 rdGP=1, rdGPAddr=r6, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r7 rdGP=1, rdGPAddr=r7, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_ar_lo rdAR=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_ar_hi rdAR=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_pc_lo rdPC=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_pc_hi rdPC=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_mem rdMem=1;
 
 # Write signal patterns
