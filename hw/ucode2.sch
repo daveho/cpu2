@@ -1278,8 +1278,6 @@ Text Label 9250 3200 0    60   ~ 0
 -end3
 Text Label 9250 4000 0    60   ~ 0
 -end4
-Text Label 7200 4400 0    60   ~ 0
-endUncond
 Wire Wire Line
 	11600 1550 12100 1550
 Text Label 11900 1550 0    60   ~ 0
@@ -1294,7 +1292,7 @@ Wire Wire Line
 	6900 9200 6400 9200
 Text Label 6450 9200 0    60   ~ 0
 driveAddr
-Text HLabel 8300 9200 2    60   Output ~ 0
+Text HLabel 8300 9300 2    60   Output ~ 0
 -uDriveAddr
 Wire Wire Line
 	5350 7300 5800 7300
@@ -1322,8 +1320,6 @@ Text Label 5400 7600 0    60   ~ 0
 endIfNeqCarry
 Text Label 5400 7700 0    60   ~ 0
 endIfNeqNoCarry
-Text Label 5400 7800 0    60   ~ 0
-endUncond
 Text Label 9100 5950 0    60   ~ 0
 CLK
 Text Label 9100 6050 0    60   ~ 0
@@ -1364,4 +1360,8 @@ Text Notes 3150 4900 0    60   ~ 0
 ROMs
 Text Notes 8300 4900 0    60   ~ 0
 control signal registers
+Text Label 5400 7800 0    60   ~ 0
+-endUncond
+Text Label 7200 4400 0    60   ~ 0
+-endUncond
 $EndSCHEMATC

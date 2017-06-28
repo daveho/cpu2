@@ -104,7 +104,7 @@ signal endIfNeqNoCarry[1] default 0;
 
 # Unconditionally end microcode execution.
 # The last microcode word should always assert this signal.
-signal endUncond[1] default 0;
+signal -endUncond[1] default 1;
 
 signal rom4Unused[2] default 0b00;
 
