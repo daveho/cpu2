@@ -148,7 +148,7 @@ template mov(dest_dev, src_dev) {
   start src_dev;
   start dest_dev;
   stop dest_dev;
-  stop src_dev, endUncond=1;
+  stop src_dev, -endUncond=0;
 }
 
 ########################################################################
@@ -161,10 +161,10 @@ template mov(dest_dev, src_dev) {
 # special "default" instruction: this sequence of microcode
 # instruction words is used for all opcodes that aren't explicitly
 # specified
-ins(256) { endUncond=1; }
+ins(256) { -endUncond=0; }
 
 # nop instruction
-ins(0) { endUncond=1; }
+ins(0) { -endUncond=0; }
 
 # Move to r0
 ins(1) { mov(wr_r0, rd_r1); }
