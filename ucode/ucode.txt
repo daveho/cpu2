@@ -64,9 +64,6 @@ signal wrMem[1] default 0;
 signal end[1] default 0;                 # MSB
 
 # ROM 3
-signal rom3Unused[8] default 0b00000000;
-
-# ROM 4
 
 # Carry in signal to ALU
 signal aluCarryIn[1] default 0;          # LSB, driven as inverted
@@ -81,7 +78,11 @@ signal aluOp[4] default 0b0000;
 signal aluOut[1] default 0;             # driven as inverted
 
 # one unused bit here, could use it for something
-signal rom4Unused[1] default 0;         # MSB
+signal rom3Unused[1] default 0;         # MSB
+
+# ROM 4
+
+signal rom4Unused[8] default 0b00000000;
 
 ########################################################################
 # Patterns: assertions of one or more signals.  These are

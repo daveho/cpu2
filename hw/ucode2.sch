@@ -1004,4 +1004,62 @@ F 3 "" H 5500 7350 50  0001 C CNN
 $EndComp
 Text Notes 5850 6350 0    60   ~ 0
 unused gates
+Wire Wire Line
+	5200 3400 5650 3400
+Wire Wire Line
+	5200 3500 5650 3500
+Wire Wire Line
+	5200 3600 5650 3600
+Wire Wire Line
+	5200 3700 5650 3700
+Wire Wire Line
+	5200 3800 5650 3800
+Wire Wire Line
+	5200 3900 5650 3900
+Wire Wire Line
+	5200 4000 5650 4000
+Wire Wire Line
+	5200 4100 5650 4100
+Text Label 5250 3400 0    60   ~ 0
+aluCarryIn
+Text Label 5250 3500 0    60   ~ 0
+aluMode
+Text Label 5250 3600 0    60   ~ 0
+aluOp0
+Text Label 5250 3700 0    60   ~ 0
+aluOp1
+Text Label 5250 3800 0    60   ~ 0
+aluOp2
+Text Label 5250 3900 0    60   ~ 0
+aluOp3
+Text Label 5250 4000 0    60   ~ 0
+aluOut
+Text Label 8500 1450 0    60   ~ 0
+aluCarryIn
+Text Label 8500 1650 0    60   ~ 0
+aluMode
+Text Label 8500 1850 0    60   ~ 0
+aluOp0
+Text Label 8500 2050 0    60   ~ 0
+aluOp1
+Text Label 8500 2600 0    60   ~ 0
+aluOp2
+Text Label 8500 2800 0    60   ~ 0
+aluOp3
+Text Label 8500 3000 0    60   ~ 0
+aluOut
+Text HLabel 10350 1550 2    60   Output ~ 0
+-uAluCarryIn
+Text HLabel 10350 1650 2    60   Output ~ 0
+uAluMode
+Text HLabel 10350 1850 2    60   Output ~ 0
+uAluOp0
+Text HLabel 10350 2050 2    60   Output ~ 0
+uAluOp1
+Text HLabel 10350 2600 2    60   Output ~ 0
+uAluOp2
+Text HLabel 10350 2800 2    60   Output ~ 0
+uAluOp3
+Text HLabel 10350 3100 2    60   Output ~ 0
+-uAluOut
 $EndSCHEMATC
