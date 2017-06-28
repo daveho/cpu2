@@ -61,7 +61,10 @@ signal wrARHi[1] default 0;
 signal wrPCLo[1] default 0;
 signal wrPCHi[1] default 0;
 signal wrMem[1] default 0;
-signal end[1] default 0;                 # MSB
+
+# drive the left/right ALU input busses onto the external
+# address busses
+signal driveAddr[1] default 0;           # MSB, driven as inverted
 
 # ROM 3
 
@@ -74,15 +77,36 @@ signal aluMode[1] default 0;
 # Drive ALU output to ALU data bus
 signal aluOut[1] default 0;              # driven as inverted
 
-# one unused bit here, could use it for something
-signal rom3Unused[1] default 0;
+# PC increment clock signal
+signal pcClk[1] default 0;               # driven as inverted
 
 # Operation signal to ALU
 signal aluOp[4] default 0b0000;          # high bit is MSB
 
 # ROM 4
 
-signal rom4Unused[8] default 0b00000000;
+# Assert to end microcode execution if eq condition is asserted
+signal -endIfEq[1] default 1;
+
+# Assert to end microcode execution if eq condition is not asserted
+signal -endIfNeq[1] default 1;
+
+# Assert to end microcode execution if carry out condition is asserted
+signal -endIfNoCarry[1] default 1;
+
+# Assert to end microcode execution if eq condition is not asserted
+# and carry out condition is asserted
+signal endIfNeqCarry[1] default 0;
+
+# Assert to end microcode execution if eq condition is not asserted
+# and carry out condition is not asserted
+signal endIfNeqNoCarry[1] default 0;
+
+# Unconditionally end microcode execution.
+# The last microcode word should always assert this signal.
+signal endUncond[1] default 0;
+
+signal rom4Unused[2] default 0b00;
 
 ########################################################################
 # Patterns: assertions of one or more signals.  These are
@@ -124,7 +148,7 @@ template mov(dest_dev, src_dev) {
   start src_dev;
   start dest_dev;
   stop dest_dev;
-  stop src_dev, end=1;
+  stop src_dev, endUncond=1;
 }
 
 ########################################################################
@@ -137,10 +161,10 @@ template mov(dest_dev, src_dev) {
 # special "default" instruction: this sequence of microcode
 # instruction words is used for all opcodes that aren't explicitly
 # specified
-ins(256) { end=1; }
+ins(256) { endUncond=1; }
 
 # nop instruction
-ins(0) { end=1; }
+ins(0) { endUncond=1; }
 
 # Move to r0
 ins(1) { mov(wr_r0, rd_r1); }
