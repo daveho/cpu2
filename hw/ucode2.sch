@@ -791,10 +791,6 @@ Wire Wire Line
 Wire Wire Line
 	8950 1650 8450 1650
 Wire Wire Line
-	8950 1850 8450 1850
-Wire Wire Line
-	8950 2050 8450 2050
-Wire Wire Line
 	8950 2600 8450 2600
 Wire Wire Line
 	8950 2800 8450 2800
@@ -802,6 +798,10 @@ Wire Wire Line
 	8950 3000 8450 3000
 Wire Wire Line
 	8950 3200 8450 3200
+Wire Wire Line
+	8950 1850 8450 1850
+Wire Wire Line
+	8950 2050 8450 2050
 Wire Wire Line
 	8950 3750 8450 3750
 Wire Wire Line
@@ -1038,15 +1038,15 @@ Text Label 8500 1450 0    60   ~ 0
 aluCarryIn
 Text Label 8500 1650 0    60   ~ 0
 aluMode
-Text Label 8500 1850 0    60   ~ 0
-aluOp0
-Text Label 8500 2050 0    60   ~ 0
-aluOp1
 Text Label 8500 2600 0    60   ~ 0
-aluOp2
+aluOp0
 Text Label 8500 2800 0    60   ~ 0
-aluOp3
+aluOp1
 Text Label 8500 3000 0    60   ~ 0
+aluOp2
+Text Label 8500 3200 0    60   ~ 0
+aluOp3
+Text Label 8500 1850 0    60   ~ 0
 aluOut
 Text HLabel 10350 1550 2    60   Output ~ 0
 -uAluCarryIn
