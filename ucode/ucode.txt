@@ -71,14 +71,14 @@ signal aluCarryIn[1] default 0;          # LSB, driven as inverted
 # Mode signal to ALU
 signal aluMode[1] default 0;
 
-# Operation signal to ALU
-signal aluOp[4] default 0b0000;
-
 # Drive ALU output to ALU data bus
-signal aluOut[1] default 0;             # driven as inverted
+signal aluOut[1] default 0;              # driven as inverted
 
 # one unused bit here, could use it for something
-signal rom3Unused[1] default 0;         # MSB
+signal rom3Unused[1] default 0;
+
+# Operation signal to ALU
+signal aluOp[4] default 0b0000;          # high bit is MSB
 
 # ROM 4
 
