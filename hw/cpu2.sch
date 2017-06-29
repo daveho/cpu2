@@ -1467,4 +1467,6 @@ Text Label 7950 3500 0    60   ~ 0
 COUT
 Text Label 7950 3600 0    60   ~ 0
 -COUT
+Text Notes 6200 12400 0    60   ~ 0
+prefix 900
 $EndSCHEMATC
