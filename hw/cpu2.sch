@@ -1493,4 +1493,8 @@ Text Label 7700 13750 0    60   ~ 0
 uAluMode
 Text Label 7650 13850 0    60   ~ 0
 -uAluCarryIn
+Wire Wire Line
+	8300 11900 7850 11900
+Text Label 7850 11900 0    60   ~ 0
+-uAluOut
 $EndSCHEMATC
