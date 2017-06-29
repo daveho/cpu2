@@ -126,7 +126,7 @@ pattern rd_ar_lo rdAR=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
 pattern rd_ar_hi rdAR=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_pc_lo rdPC=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
 pattern rd_pc_hi rdPC=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_mem rdMem=1;
+pattern rd_mem rwMem=1, memDir=0;
 
 # Write signal patterns
 pattern wr_r0 wrGPLo=1, wrGPAddr=r0;
@@ -137,6 +137,7 @@ pattern wr_r4 wrGPLo=1, wrGPAddr=r4;
 pattern wr_r5 wrGPHi=1, wrGPAddr=r5;
 pattern wr_r6 wrGPLo=1, wrGPAddr=r6;
 pattern wr_r7 wrGPHi=1, wrGPAddr=r7;
+pattern wr_mem rwMem=1, memDir=1;
 
 ########################################################################
 # Templates: parametized instructions sequences that can
@@ -148,7 +149,7 @@ template mov(dest_dev, src_dev) {
   start src_dev;
   start dest_dev;
   stop dest_dev;
-  stop src_dev, -endUncond=0;
+  stop src_dev, assert -endUncond;
 }
 
 ########################################################################
@@ -161,10 +162,10 @@ template mov(dest_dev, src_dev) {
 # special "default" instruction: this sequence of microcode
 # instruction words is used for all opcodes that aren't explicitly
 # specified
-ins(256) { -endUncond=0; }
+ins(256) { assert -endUncond; }
 
 # nop instruction
-ins(0) { -endUncond=0; }
+ins(0) { assert -endUncond; }
 
 # Move to r0
 ins(1) { mov(wr_r0, rd_r1); }

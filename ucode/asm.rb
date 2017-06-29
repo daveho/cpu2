@@ -41,6 +41,8 @@ class Lexer
     [ /^pattern/, :kw_pattern ],
     [ /^start/, :kw_start ],
     [ /^stop/, :kw_stop ],
+    [ /^assert/, :kw_assert ],
+    [ /^deassert/, :kw_deassert ],
     [ /^[A-Za-z\-][A-Za-z0-9_]*/, :ident ],
   ]
 
@@ -139,6 +141,14 @@ class Bitstring
 
   def clone
     return Bitstring.new(@str.clone)
+  end
+
+  def negate
+    return Bitstring.new('0b' + self.bits.tr('01', '10'))
+  end
+
+  def ==(other)
+    return self.bits == other.bits
   end
 end
 
@@ -421,6 +431,12 @@ class Ucode
           self._drive_signal(word, op, signame, orig_val, scope)
         end
         @pattern_save.delete(pat.name)
+      elsif signame == "assert"
+        # Assert a one-bit signal
+        self._drive_bit(word, op, pair[1], true, scope)
+      elsif signame == "deassert"
+        # Deassert a one-bit signal
+        self._drive_bit(word, op, pair[1], false, scope)
       else
         # Drive a signal directly
         val = pair[1]
@@ -431,6 +447,18 @@ class Ucode
     ins.words.push(word.clone)
 
     return word
+  end
+
+  def _drive_bit(word, op, signame, negate, scope)
+    sig = self._signal(signame)
+    raise "Line #{op.lineno}: unknown signal #{signame}" if sig.nil?
+    raise "Line #{op.lineno}: #{signame} is not a one-bit signal" if sig.nbits != 1
+    val = sig.def_val
+    val = val.negate if negate
+    # check to make sure signal isn't already asserted/deasserted
+    cur_val = word.get_signal_value(sig)
+    raise "Line #{op.lineno}: signal #{signame} already #{negate ? '' : 'de'}asserted" if val == cur_val
+    self._drive_signal(word, op, signame, val, scope)
   end
 
   # Save the current values of signals named in given
@@ -662,6 +690,18 @@ class Parser
           self._expect(:kw_stop)
           patname = self._expect(:ident)
           op.add_pair("stop", VarRef.new(patname))
+
+        when :kw_assert
+          # Assert a one-bit signal (driving to the negation of its default)
+          self._expect(:kw_assert)
+          signame = self._expect(:ident)
+          op.add_pair("assert", signame.lexeme)
+
+        when :kw_deassert
+          # Deassert a one-bit signal (driving it back to its default)
+          self._expect(:kw_deassert)
+          signame = self._expect(:ident)
+          op.add_pair("deassert", signame.lexeme)
 
         else
           self._error("Unexpected token #{t.lexeme}")
