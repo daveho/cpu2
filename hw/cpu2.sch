@@ -1435,4 +1435,36 @@ Text Label 7100 12000 0    60   ~ 0
 D6
 Text Label 7100 12100 0    60   ~ 0
 D7
+Wire Wire Line
+	9600 11900 10000 11900
+Wire Wire Line
+	9600 12000 10000 12000
+Wire Wire Line
+	9600 12100 10000 12100
+Wire Wire Line
+	9600 12200 10000 12200
+Text Label 9650 11900 0    60   ~ 0
+EQ
+Text Label 9650 12000 0    60   ~ 0
+-EQ
+Text Label 9650 12100 0    60   ~ 0
+-COUT
+Text Label 9650 12200 0    60   ~ 0
+COUT
+Wire Wire Line
+	8350 3300 7900 3300
+Wire Wire Line
+	8350 3400 7900 3400
+Wire Wire Line
+	8350 3500 7900 3500
+Wire Wire Line
+	8350 3600 7900 3600
+Text Label 7950 3300 0    60   ~ 0
+EQ
+Text Label 7950 3400 0    60   ~ 0
+-EQ
+Text Label 7950 3500 0    60   ~ 0
+COUT
+Text Label 7950 3600 0    60   ~ 0
+-COUT
 $EndSCHEMATC
