@@ -1469,4 +1469,28 @@ Text Label 7950 3600 0    60   ~ 0
 -COUT
 Text Notes 6200 12400 0    60   ~ 0
 prefix 900
+Wire Wire Line
+	8300 14000 7650 14000
+Wire Wire Line
+	8300 14100 7650 14100
+Wire Wire Line
+	8300 14200 7650 14200
+Wire Wire Line
+	8300 14300 7650 14300
+Text Label 7700 14000 0    60   ~ 0
+uAluOp0
+Text Label 7700 14100 0    60   ~ 0
+uAluOp1
+Text Label 7700 14200 0    60   ~ 0
+uAluOp2
+Text Label 7700 14300 0    60   ~ 0
+uAluOp3
+Wire Wire Line
+	8300 13750 7650 13750
+Wire Wire Line
+	8300 13850 7650 13850
+Text Label 7700 13750 0    60   ~ 0
+uAluMode
+Text Label 7650 13850 0    60   ~ 0
+-uAluCarryIn
 $EndSCHEMATC
