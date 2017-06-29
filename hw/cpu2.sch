@@ -35,7 +35,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 9
+Sheet 1 10
 Title ""
 Date ""
 Rev ""
@@ -531,69 +531,7 @@ Wire Wire Line
 Wire Wire Line
 	4700 2050 5000 2050
 Wire Bus Line
-	5100 1450 5100 1550
-Wire Bus Line
-	5100 1550 5100 1650
-Wire Bus Line
-	5100 1650 5100 1750
-Wire Bus Line
-	5100 1750 5100 1850
-Wire Bus Line
-	5100 1850 5100 1950
-Wire Bus Line
-	5100 1950 5100 2050
-Wire Bus Line
-	5100 2050 5100 2150
-Wire Bus Line
-	5100 2150 5100 2300
-Wire Bus Line
-	5100 2300 5100 2400
-Wire Bus Line
-	5100 2400 5100 2500
-Wire Bus Line
-	5100 2500 5100 2600
-Wire Bus Line
-	5100 2600 5100 2700
-Wire Bus Line
-	5100 2700 5100 2800
-Wire Bus Line
-	5100 2800 5100 2900
-Wire Bus Line
-	5100 2900 5100 3000
-Wire Bus Line
-	5100 3000 5100 3600
-Wire Bus Line
-	5100 3600 5100 3700
-Wire Bus Line
-	5100 3700 5100 3800
-Wire Bus Line
-	5100 3800 5100 3900
-Wire Bus Line
-	5100 3900 5100 4000
-Wire Bus Line
-	5100 4000 5100 4100
-Wire Bus Line
-	5100 4100 5100 4200
-Wire Bus Line
-	5100 4200 5100 4300
-Wire Bus Line
-	5100 4300 5100 5700
-Wire Bus Line
-	5100 5700 5100 5800
-Wire Bus Line
-	5100 5800 5100 5900
-Wire Bus Line
-	5100 5900 5100 6000
-Wire Bus Line
-	5100 6000 5100 6100
-Wire Bus Line
-	5100 6100 5100 6200
-Wire Bus Line
-	5100 6200 5100 6300
-Wire Bus Line
-	5100 6300 5100 6400
-Wire Bus Line
-	5100 6400 5100 10400
+	5100 1450 5100 10400
 Wire Wire Line
 	5850 2400 5200 2400
 Wire Wire Line
@@ -687,51 +625,7 @@ Wire Wire Line
 Wire Wire Line
 	7050 4400 7650 4400
 Wire Bus Line
-	7750 3800 7750 3900
-Wire Bus Line
-	7750 3900 7750 4000
-Wire Bus Line
-	7750 4000 7750 4100
-Wire Bus Line
-	7750 4100 7750 4200
-Wire Bus Line
-	7750 4200 7750 4300
-Wire Bus Line
-	7750 4300 7750 4400
-Wire Bus Line
-	7750 4400 7750 4500
-Wire Bus Line
-	7750 4500 7750 5900
-Wire Bus Line
-	7750 5900 7750 6000
-Wire Bus Line
-	7750 6000 7750 6100
-Wire Bus Line
-	7750 6100 7750 6200
-Wire Bus Line
-	7750 6200 7750 6300
-Wire Bus Line
-	7750 6300 7750 6400
-Wire Bus Line
-	7750 6400 7750 6500
-Wire Bus Line
-	7750 6500 7750 6600
-Wire Bus Line
-	7750 6600 7750 7650
-Wire Bus Line
-	7750 7650 7750 7750
-Wire Bus Line
-	7750 7750 7750 7850
-Wire Bus Line
-	7750 7850 7750 7950
-Wire Bus Line
-	7750 7950 7750 8050
-Wire Bus Line
-	7750 8050 7750 8150
-Wire Bus Line
-	7750 8150 7750 8250
-Wire Bus Line
-	7750 8250 7750 8350
+	7750 3800 7750 8350
 Wire Wire Line
 	8300 7750 7850 7750
 Wire Wire Line
@@ -765,51 +659,7 @@ Wire Wire Line
 Wire Wire Line
 	7050 5250 7450 5250
 Wire Bus Line
-	7550 4650 7550 4750
-Wire Bus Line
-	7550 4750 7550 4850
-Wire Bus Line
-	7550 4850 7550 4950
-Wire Bus Line
-	7550 4950 7550 5050
-Wire Bus Line
-	7550 5050 7550 5150
-Wire Bus Line
-	7550 5150 7550 5250
-Wire Bus Line
-	7550 5250 7550 5350
-Wire Bus Line
-	7550 5350 7550 6750
-Wire Bus Line
-	7550 6750 7550 6850
-Wire Bus Line
-	7550 6850 7550 6950
-Wire Bus Line
-	7550 6950 7550 7050
-Wire Bus Line
-	7550 7050 7550 7150
-Wire Bus Line
-	7550 7150 7550 7250
-Wire Bus Line
-	7550 7250 7550 7350
-Wire Bus Line
-	7550 7350 7550 7450
-Wire Bus Line
-	7550 7450 7550 8500
-Wire Bus Line
-	7550 8500 7550 8600
-Wire Bus Line
-	7550 8600 7550 8700
-Wire Bus Line
-	7550 8700 7550 8800
-Wire Bus Line
-	7550 8800 7550 8900
-Wire Bus Line
-	7550 8900 7550 9000
-Wire Bus Line
-	7550 9000 7550 9100
-Wire Bus Line
-	7550 9100 7550 9200
+	7550 4650 7550 9200
 Wire Wire Line
 	8300 8600 7650 8600
 Wire Wire Line
@@ -827,23 +677,9 @@ Wire Wire Line
 Wire Wire Line
 	8300 9300 7650 9300
 Wire Bus Line
-	10100 10400 5100 10400
+	5100 10400 10100 10400
 Wire Bus Line
-	10100 8150 10100 8250
-Wire Bus Line
-	10100 8250 10100 8350
-Wire Bus Line
-	10100 8350 10100 8450
-Wire Bus Line
-	10100 8450 10100 8550
-Wire Bus Line
-	10100 8550 10100 8650
-Wire Bus Line
-	10100 8650 10100 8750
-Wire Bus Line
-	10100 8750 10100 8850
-Wire Bus Line
-	10100 8850 10100 10400
+	10100 10400 10100 8150
 Wire Wire Line
 	9600 8050 10000 8050
 Wire Wire Line
@@ -914,30 +750,30 @@ F15 "uRdGP0" O R 9700 1800 60
 F16 "uRdGP1" O R 9700 1900 60 
 F17 "-uRdAR" O R 9700 2000 60 
 F18 "-uRdPC" O R 9700 2100 60 
-F19 "-uRdMem" O R 9700 2200 60 
-F20 "-uWrGPLo" O R 9700 2300 60 
-F21 "-uWrGPHi" O R 9700 2400 60 
-F22 "uWrGP0" O R 9700 2500 60 
-F23 "uWrGP1" O R 9700 2600 60 
-F24 "-uWrARLo" O R 9700 2700 60 
-F25 "-uWrARHi" O R 9700 2800 60 
-F26 "-uWrPCLo" O R 9700 2900 60 
-F27 "-uWrPCHi" O R 9700 3000 60 
-F28 "-uWrMem" O R 9700 3100 60 
-F29 "-uAluCarryIn" O R 9700 3300 60 
-F30 "uAluMode" O R 9700 3400 60 
-F31 "uAluOp0" O R 9700 3700 60 
-F32 "uAluOp1" O R 9700 3800 60 
-F33 "uAluOp2" O R 9700 3900 60 
-F34 "uAluOp3" O R 9700 4000 60 
-F35 "-uAluOut" O R 9700 3500 60 
-F36 "ccEq" I L 8350 3300 60 
-F37 "-ccEq" I L 8350 3400 60 
-F38 "ccCarryOut" I L 8350 3500 60 
-F39 "-ccCarryOut" I L 8350 3600 60 
-F40 "-uDriveAddr" O R 9700 3200 60 
-F41 "uPcClk" O R 9700 3600 60 
-F42 "uEnd" O R 9700 4100 60 
+F19 "-uWrGPLo" O R 9700 2300 60 
+F20 "-uWrGPHi" O R 9700 2400 60 
+F21 "uWrGP0" O R 9700 2500 60 
+F22 "uWrGP1" O R 9700 2600 60 
+F23 "-uWrARLo" O R 9700 2700 60 
+F24 "-uWrARHi" O R 9700 2800 60 
+F25 "-uWrPCLo" O R 9700 2900 60 
+F26 "-uWrPCHi" O R 9700 3000 60 
+F27 "-uAluCarryIn" O R 9700 3300 60 
+F28 "uAluMode" O R 9700 3400 60 
+F29 "uAluOp0" O R 9700 3700 60 
+F30 "uAluOp1" O R 9700 3800 60 
+F31 "uAluOp2" O R 9700 3900 60 
+F32 "uAluOp3" O R 9700 4000 60 
+F33 "-uAluOut" O R 9700 3500 60 
+F34 "ccEq" I L 8350 3300 60 
+F35 "-ccEq" I L 8350 3400 60 
+F36 "ccCarryOut" I L 8350 3500 60 
+F37 "-ccCarryOut" I L 8350 3600 60 
+F38 "-uDriveAddr" O R 9700 3200 60 
+F39 "uPcClk" O R 9700 3600 60 
+F40 "uEnd" O R 9700 4100 60 
+F41 "-rwMem" O R 9700 2200 60 
+F42 "uMemDir" O R 9700 3100 60 
 $EndSheet
 Wire Wire Line
 	7750 2100 8350 2100
@@ -1012,8 +848,6 @@ Wire Wire Line
 Wire Wire Line
 	9700 2100 10250 2100
 Wire Wire Line
-	9700 2200 10250 2200
-Wire Wire Line
 	9700 2300 10250 2300
 Wire Wire Line
 	9700 2400 10250 2400
@@ -1029,8 +863,6 @@ Wire Wire Line
 	9700 2900 10250 2900
 Wire Wire Line
 	9700 3000 10250 3000
-Wire Wire Line
-	9700 3100 10250 3100
 Wire Wire Line
 	9700 3200 10250 3200
 Wire Wire Line
@@ -1057,8 +889,6 @@ Text Label 9750 2000 0    60   ~ 0
 -uRdAR
 Text Label 9750 2100 0    60   ~ 0
 -uRdPC
-Text Label 9750 2200 0    60   ~ 0
--uRdMem
 Text Label 9750 2300 0    60   ~ 0
 -uWrGPLo
 Text Label 9750 2400 0    60   ~ 0
@@ -1075,8 +905,6 @@ Text Label 9750 2900 0    60   ~ 0
 -uWrPCLo
 Text Label 9750 3000 0    60   ~ 0
 -uWrPCHi
-Text Label 9750 3100 0    60   ~ 0
--uWrMem
 Text Label 9750 3200 0    60   ~ 0
 -uDriveAddr
 Text Label 9750 3300 0    60   ~ 0
@@ -1275,4 +1103,18 @@ Text Label 5350 7250 0    60   ~ 0
 -uWrGPHi
 Text Label 5350 7400 0    60   ~ 0
 -uRdGP
+$Sheet
+S 12250 3850 1400 2300
+U 595E8C5F
+F0 "bus_ar" 60
+F1 "bus_ar.sch" 60
+$EndSheet
+Wire Wire Line
+	9700 2200 10250 2200
+Text Label 9750 2200 0    60   ~ 0
+-uRwMem
+Wire Wire Line
+	9700 3100 10250 3100
+Text Label 9750 3100 0    60   ~ 0
+uMemDir
 $EndSCHEMATC

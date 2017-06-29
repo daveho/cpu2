@@ -50,7 +50,7 @@ signal rdGP[1] default 0;                # LSB
 signal rdGPAddr[2] default 0b00;
 signal rdAR[1] default 0;
 signal rdPC[1] default 0;
-signal rdMem[1] default 0;
+signal rwMem[1] default 0;               # read or write memory, driven as inverted
 signal wrGPLo[1] default 0;
 signal wrGPHi[1] default 0;              # MSB
 
@@ -60,7 +60,7 @@ signal wrARLo[1] default 0;
 signal wrARHi[1] default 0;
 signal wrPCLo[1] default 0;
 signal wrPCHi[1] default 0;
-signal wrMem[1] default 0;
+signal memDir[1] default 0;              # 0=read external data, 1=write external data
 
 # drive the left/right ALU input busses onto the external
 # address busses
