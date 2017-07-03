@@ -449,7 +449,7 @@ F 3 "" H 6750 3250 50  0001 C CNN
 	1    6750 3250
 	1    0    0    -1  
 $EndComp
-Text Notes 7400 6350 0    60   ~ 0
+Text Notes 7450 3500 0    60   ~ 0
 condition code register
 Text Notes 5650 1600 2    60   ~ 0
 The end of the low pulse on -rdALU\nto send the ALU output to the ALU\nbus can be used to clock the current\ncondition codes into the condition code\nregister.  (Will this work?)

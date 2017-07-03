@@ -573,12 +573,12 @@ Text Label 1900 4000 0    60   ~ 0
 Text Label 1900 4200 0    60   ~ 0
 -rwMem
 Wire Wire Line
-	7850 2100 7250 2100
-Wire Wire Line
 	7850 2200 7250 2200
-Text Label 7350 2100 0    60   ~ 0
--rwMem
+Wire Wire Line
+	7850 2100 7250 2100
 Text Label 7350 2200 0    60   ~ 0
+-rwMem
+Text Label 7350 2100 0    60   ~ 0
 memDir
 Text Label 1900 4300 0    60   ~ 0
 memDir
