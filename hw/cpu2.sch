@@ -182,16 +182,17 @@ F31 "-OE1" I L 5850 4600 60
 F32 "-OE2" I L 5850 4700 60 
 $EndSheet
 $Sheet
-S 1350 1850 950  600 
+S 1350 1500 950  750 
 U 59395B62
 F0 "clockrst" 60
 F1 "clockrst.sch" 60
-F2 "CLK" O R 2300 2200 60 
-F3 "-CLK" O R 2300 2300 60 
-F4 "RST" O R 2300 1950 60 
-F5 "-RST" O R 2300 2050 60 
+F2 "CLK1" O R 2300 1850 60 
+F3 "CLK2" O R 2300 1950 60 
+F4 "-CLK" O R 2300 2050 60 
+F5 "RST" O R 2300 1600 60 
+F6 "-RST" O R 2300 1700 60 
 $EndSheet
-Text Notes 2000 2650 2    60   ~ 0
+Text Notes 2000 2450 2    60   ~ 0
 prefix 100
 Text Notes 4250 2350 2    60   ~ 0
 prefix 200
@@ -777,32 +778,28 @@ F42 "uMemDir" O R 9700 3100 60
 $EndSheet
 Wire Wire Line
 	7750 2100 8350 2100
-Text Label 7950 2100 0    60   ~ 0
+Text Label 7800 2100 0    60   ~ 0
 -CLK
 Wire Wire Line
 	6950 1800 7450 1800
 Text Label 7000 1800 0    60   ~ 0
 -opReadMem
 Wire Wire Line
-	2300 1950 2750 1950
+	2300 1600 2750 1600
+Wire Wire Line
+	2300 1700 2750 1700
+Wire Wire Line
+	2300 1850 2750 1850
 Wire Wire Line
 	2300 2050 2750 2050
-Wire Wire Line
-	2300 2200 2750 2200
-Wire Wire Line
-	2300 2300 2750 2300
-Text Label 2500 1950 0    60   ~ 0
+Text Label 2500 1600 0    60   ~ 0
 RST
-Text Label 2500 2050 0    60   ~ 0
+Text Label 2500 1700 0    60   ~ 0
 -RST
-Text Label 2500 2200 0    60   ~ 0
-CLK
-Text Label 2500 2300 0    60   ~ 0
+Text Label 2500 2050 0    60   ~ 0
 -CLK
 Text Label 4750 900  0    60   ~ 0
 -lateRST
-Text Label 750  3150 0    60   ~ 0
-CLK
 Text Label 750  3000 0    60   ~ 0
 -RST
 Text Label 5400 1800 0    60   ~ 0
@@ -815,8 +812,6 @@ Text Label 2350 3100 0    60   ~ 0
 -ucode
 Wire Wire Line
 	5850 2200 5400 2200
-Text Label 5450 2100 0    60   ~ 0
-CLK
 Text Label 5450 2200 0    60   ~ 0
 -CLK
 Wire Wire Line
@@ -825,8 +820,6 @@ Text Label 750  3400 0    60   ~ 0
 -opfetchEnd
 Text Label 7000 2000 0    60   ~ 0
 -opfetchEnd
-Text Label 7950 2000 0    60   ~ 0
-CLK
 Text Label 7800 1800 0    60   ~ 0
 -opfetch
 Text Label 7800 1700 0    60   ~ 0
@@ -835,8 +828,6 @@ Text Label 3050 800  0    60   ~ 0
 RST
 Text Label 3050 900  0    60   ~ 0
 -RST
-Text Label 3050 1050 0    60   ~ 0
-CLK
 Wire Wire Line
 	9700 1700 10250 1700
 Wire Wire Line
@@ -1497,4 +1488,18 @@ Wire Wire Line
 	8300 11900 7850 11900
 Text Label 7850 11900 0    60   ~ 0
 -uAluOut
+Wire Wire Line
+	2300 1950 2750 1950
+Text Label 2500 1850 0    60   ~ 0
+CLK1
+Text Label 2500 1950 0    60   ~ 0
+CLK2
+Text Label 800  3150 0    60   ~ 0
+CLK1
+Text Label 3050 1050 0    60   ~ 0
+CLK1
+Text Label 7800 2000 0    60   ~ 0
+CLK2
+Text Label 5450 2100 0    60   ~ 0
+CLK1
 $EndSCHEMATC
