@@ -577,4 +577,6 @@ Text Label 4300 1750 0    60   ~ 0
 CLK
 Text Label 4300 1850 0    60   ~ 0
 -CLK
+Text Notes 2000 1050 0    60   ~ 0
+firmware is in protoclock.c
 $EndSCHEMATC
