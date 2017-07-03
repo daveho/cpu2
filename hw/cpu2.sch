@@ -800,10 +800,6 @@ Text Label 2500 2050 0    60   ~ 0
 -CLK
 Text Label 4750 900  0    60   ~ 0
 -lateRST
-Text Label 750  3000 0    60   ~ 0
--RST
-Text Label 5400 1800 0    60   ~ 0
--RST
 Text Label 5400 1900 0    60   ~ 0
 -ucode
 Text Label 2350 3000 0    60   ~ 0
@@ -822,8 +818,6 @@ Text Label 7000 2000 0    60   ~ 0
 -opfetchEnd
 Text Label 7800 1800 0    60   ~ 0
 -opfetch
-Text Label 7800 1700 0    60   ~ 0
--RST
 Text Label 3050 800  0    60   ~ 0
 RST
 Text Label 3050 900  0    60   ~ 0
@@ -1502,4 +1496,10 @@ Text Label 7800 2000 0    60   ~ 0
 CLK2
 Text Label 5450 2100 0    60   ~ 0
 CLK1
+Text Label 800  3000 0    60   ~ 0
+-lateRST
+Text Label 5400 1800 0    60   ~ 0
+-lateRST
+Text Label 7800 1700 0    60   ~ 0
+-lateRST
 $EndSCHEMATC
