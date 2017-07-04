@@ -31,6 +31,7 @@ class Lexer
     [ /^\(/, :lparen ],
     [ /^\)/, :rparen ],
     [ /^=/, :eq ],
+    [ /^\$/, :dollar ],
     [ /^0b[01]+/, :binary_literal ],
     [ /^\d+/, :int_literal ],
     [ /^signal/, :kw_signal ],
@@ -370,6 +371,16 @@ class Ucode
     raise "No instruction code opcode #{opcode}, and no default instruction defined"
   end
 
+  def max_opcode
+    max = -1
+    @assembled_instructions.each do |ins|
+      if ins.opcode > max
+        max = ins.opcode
+      end
+    end
+    return max
+  end
+
   def _find(opcode)
     @assembled_instructions.each do |ins|
       return ins if ins.opcode == opcode
@@ -587,10 +598,24 @@ class Parser
   def _parse_ins
     self._expect(:kw_ins)
     self._expect(:lparen)
-    opcode = self._expect(:int_literal)
+    opcode = self._parse_opcode
     self._expect(:rparen)
     body = self._parse_body
-    @ucode.assemble(opcode.lexeme.to_i, body)
+    @ucode.assemble(opcode, body)
+  end
+
+  def _parse_opcode
+    t = @lexer.next
+    case t.type
+      when :int_literal
+        return t.lexeme.to_i
+      when :dollar
+        # Symbollically refers to one greater than the
+        # current max opcode
+        return @ucode.max_opcode + 1
+      else
+        self._error("Unexpected token #{t.lexeme} looking for opcode")
+    end
   end
 
   def _parse_pattern

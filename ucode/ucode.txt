@@ -17,8 +17,6 @@ def r5 0b10;
 def r6 0b11;
 def r7 0b11;
 
-# TODO: write device ids
-
 # Note: ALU operation codes are for the 74HC181 (see datasheet)
 # In general, carry in should not be asserted except in special
 # cases (such as subtraction)
@@ -159,21 +157,21 @@ template mov(dest_dev, src_dev) {
 # words executed in order.
 ########################################################################
 
-# special "default" instruction: this sequence of microcode
-# instruction words is used for all opcodes that aren't explicitly
-# specified
-ins(256) { assert -endUncond; }
-
 # nop instruction
 ins(0) { assert -endUncond; }
 
 # Move to r0
-ins(1) { mov(wr_r0, rd_r1); }
-ins(2) { mov(wr_r0, rd_r2); }
-ins(3) { mov(wr_r0, rd_r3); }
-ins(4) { mov(wr_r0, rd_r4); }
-ins(5) { mov(wr_r0, rd_r5); }
-ins(6) { mov(wr_r0, rd_r6); }
-ins(7) { mov(wr_r0, rd_r7); }
+ins($) { mov(wr_r0, rd_r1); }
+ins($) { mov(wr_r0, rd_r2); }
+ins($) { mov(wr_r0, rd_r3); }
+ins($) { mov(wr_r0, rd_r4); }
+ins($) { mov(wr_r0, rd_r5); }
+ins($) { mov(wr_r0, rd_r6); }
+ins($) { mov(wr_r0, rd_r7); }
+
+# special "default" instruction: this sequence of microcode
+# instruction words is used for all opcodes that aren't explicitly
+# specified
+ins(256) { assert -endUncond; }
 
 # vim:ft=ucode:
