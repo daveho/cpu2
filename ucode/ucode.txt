@@ -8,14 +8,10 @@
 # Note that these don't uniquely identify a register: an
 # ALU op must be selected for a read, and the wrGPLo or wrGPHi
 # signal must be asserted for a write.
-def r0 0b00;
-def r1 0b00;
-def r2 0b01;
-def r3 0b01;
-def r4 0b10;
-def r5 0b10;
-def r6 0b11;
-def r7 0b11;
+def r0_r1 0b00;
+def r2_r3 0b01;
+def r4_r5 0b10;
+def r6_r7 0b11;
 
 # Note: ALU operation codes are for the 74HC181 (see datasheet)
 # In general, carry in should not be asserted except in special
@@ -112,14 +108,14 @@ signal rom4Unused[2] default 0b00;
 ########################################################################
 
 # Read signal patterns (most of which require an ALU op)
-pattern rd_r0 rdGP=1, rdGPAddr=r0, aluMode=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r1 rdGP=1, rdGPAddr=r1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r2 rdGP=1, rdGPAddr=r2, aluMode=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r3 rdGP=1, rdGPAddr=r3, aluMode=1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r4 rdGP=1, rdGPAddr=r4, aluMode=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r5 rdGP=1, rdGPAddr=r5, aluMode=1, aluOp=alu_logic_B, aluOut=1;
-pattern rd_r6 rdGP=1, rdGPAddr=r6, aluMode=1, aluOp=alu_logic_A, aluOut=1;
-pattern rd_r7 rdGP=1, rdGPAddr=r7, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r0 rdGP=1, rdGPAddr=r0_r1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r1 rdGP=1, rdGPAddr=r0_r1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r2 rdGP=1, rdGPAddr=r2_r3, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r3 rdGP=1, rdGPAddr=r2_r3, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r4 rdGP=1, rdGPAddr=r4_r5, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r5 rdGP=1, rdGPAddr=r4_r5, aluMode=1, aluOp=alu_logic_B, aluOut=1;
+pattern rd_r6 rdGP=1, rdGPAddr=r6_r7, aluMode=1, aluOp=alu_logic_A, aluOut=1;
+pattern rd_r7 rdGP=1, rdGPAddr=r6_r7, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_ar_lo rdAR=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
 pattern rd_ar_hi rdAR=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_pc_lo rdPC=1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
@@ -127,14 +123,14 @@ pattern rd_pc_hi rdPC=1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_mem rwMem=1, memDir=0;
 
 # Write signal patterns
-pattern wr_r0 wrGPLo=1, wrGPAddr=r0;
-pattern wr_r1 wrGPHi=1, wrGPAddr=r1;
-pattern wr_r2 wrGPLo=1, wrGPAddr=r2;
-pattern wr_r3 wrGPHi=1, wrGPAddr=r3;
-pattern wr_r4 wrGPLo=1, wrGPAddr=r4;
-pattern wr_r5 wrGPHi=1, wrGPAddr=r5;
-pattern wr_r6 wrGPLo=1, wrGPAddr=r6;
-pattern wr_r7 wrGPHi=1, wrGPAddr=r7;
+pattern wr_r0 wrGPLo=1, wrGPAddr=r0_r1;
+pattern wr_r1 wrGPHi=1, wrGPAddr=r0_r1;
+pattern wr_r2 wrGPLo=1, wrGPAddr=r2_r3;
+pattern wr_r3 wrGPHi=1, wrGPAddr=r2_r3;
+pattern wr_r4 wrGPLo=1, wrGPAddr=r4_r5;
+pattern wr_r5 wrGPHi=1, wrGPAddr=r4_r5;
+pattern wr_r6 wrGPLo=1, wrGPAddr=r6_r7;
+pattern wr_r7 wrGPHi=1, wrGPAddr=r6_r7;
 pattern wr_mem rwMem=1, memDir=1;
 
 ########################################################################
