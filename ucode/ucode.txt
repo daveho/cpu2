@@ -169,6 +169,69 @@ ins($) { mov(wr_r0, rd_r5); }
 ins($) { mov(wr_r0, rd_r6); }
 ins($) { mov(wr_r0, rd_r7); }
 
+# Move to r1
+ins($) { mov(wr_r1, rd_r0); }
+ins($) { mov(wr_r1, rd_r2); }
+ins($) { mov(wr_r1, rd_r3); }
+ins($) { mov(wr_r1, rd_r4); }
+ins($) { mov(wr_r1, rd_r5); }
+ins($) { mov(wr_r1, rd_r6); }
+ins($) { mov(wr_r1, rd_r7); }
+
+# Move to r2
+ins($) { mov(wr_r2, rd_r0); }
+ins($) { mov(wr_r2, rd_r1); }
+ins($) { mov(wr_r2, rd_r3); }
+ins($) { mov(wr_r2, rd_r4); }
+ins($) { mov(wr_r2, rd_r5); }
+ins($) { mov(wr_r2, rd_r6); }
+ins($) { mov(wr_r2, rd_r7); }
+
+# Move to r3
+ins($) { mov(wr_r3, rd_r0); }
+ins($) { mov(wr_r3, rd_r1); }
+ins($) { mov(wr_r3, rd_r2); }
+ins($) { mov(wr_r3, rd_r4); }
+ins($) { mov(wr_r3, rd_r5); }
+ins($) { mov(wr_r3, rd_r6); }
+ins($) { mov(wr_r3, rd_r7); }
+
+# Move to r4
+ins($) { mov(wr_r4, rd_r0); }
+ins($) { mov(wr_r4, rd_r1); }
+ins($) { mov(wr_r4, rd_r2); }
+ins($) { mov(wr_r4, rd_r3); }
+ins($) { mov(wr_r4, rd_r5); }
+ins($) { mov(wr_r4, rd_r6); }
+ins($) { mov(wr_r4, rd_r7); }
+
+# Move to r5
+ins($) { mov(wr_r5, rd_r0); }
+ins($) { mov(wr_r5, rd_r1); }
+ins($) { mov(wr_r5, rd_r2); }
+ins($) { mov(wr_r5, rd_r3); }
+ins($) { mov(wr_r5, rd_r4); }
+ins($) { mov(wr_r5, rd_r6); }
+ins($) { mov(wr_r5, rd_r7); }
+
+# Move to r6
+ins($) { mov(wr_r6, rd_r0); }
+ins($) { mov(wr_r6, rd_r1); }
+ins($) { mov(wr_r6, rd_r2); }
+ins($) { mov(wr_r6, rd_r3); }
+ins($) { mov(wr_r6, rd_r4); }
+ins($) { mov(wr_r6, rd_r5); }
+ins($) { mov(wr_r6, rd_r7); }
+
+# Move to r7
+ins($) { mov(wr_r7, rd_r0); }
+ins($) { mov(wr_r7, rd_r1); }
+ins($) { mov(wr_r7, rd_r2); }
+ins($) { mov(wr_r7, rd_r3); }
+ins($) { mov(wr_r7, rd_r4); }
+ins($) { mov(wr_r7, rd_r5); }
+ins($) { mov(wr_r7, rd_r6); }
+
 # special "default" instruction: this sequence of microcode
 # instruction words is used for all opcodes that aren't explicitly
 # specified
