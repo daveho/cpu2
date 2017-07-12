@@ -148,6 +148,18 @@ template mov(dest_reg, wr_bank_pat, src_reg_pat) {
 	stop src_reg_pat, assert -endUncond;
 }
 
+# Template for memory load into GP reg, address selected
+# by gp register pair
+template ld(dest_reg, wr_bank_pat, src_pair) {
+	rdGPAddr=src_pair, assert driveAddr, wrGPAddr=dest_reg;
+
+	start rd_mem, start wr_bank_pat;
+
+	stop wr_bank_pat;
+
+	#deassert driveAddr, 
+}
+
 ########################################################################
 # Instructions
 #
