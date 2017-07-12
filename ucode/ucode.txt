@@ -42,7 +42,7 @@ def alu_math_lshift  0b1100; # shift left value left by one bit
 # ROM 1
 signal rdGP[1] default 0;                # LSB
 signal rdGPAddr[2] default 0b00;
-signal rdAR[1] default 0;
+signal rdAR[1] default 0;                # IMPORTANT: asserts AR to address busses, not ALU input!
 signal rdPC[1] default 0;
 signal rwMem[1] default 0;               # read or write memory, driven as inverted
 signal wrGPLo[1] default 0;
@@ -131,6 +131,9 @@ pattern rd_mem rwMem=1, memDir=0;
 pattern wr_gp_lo wrGPLo=1;
 pattern wr_gp_hi wrGPHi=1;
 
+# Pattern to write to memory
+pattern wr_mem rwMem=1, memDir=1;
+
 ########################################################################
 # Templates: parametized instructions sequences that can
 # be spliced into actual instructions as appropriate
@@ -170,8 +173,44 @@ template ld(dest_reg, wr_bank_pat, src_pair) {
 	# the destination register at this point
 	stop wr_bank_pat;
 
-	# End address generation and memory read, end instruction
-	deassert rdGP, deassert driveAddr, stop rd_mem, assert -endUncond;
+	# End instruction
+	assert -endUncond;
+}
+
+template st(dest_addr_pair, src_reg_pat) {
+	#
+	# Transfer destination address to AR
+	#
+
+	# Read destination address pair, prepare to write AR lo/hi,
+	# select low part of dest addr using ALU 
+	rdGPAddr=dest_addr_pair, assert rdGP, assert wrARLo, assert wrARHi,
+		aluMode=1, aluOp=alu_logic_A, assert aluOut;
+	# clock low part of dest addr into ARLo
+	deassert wrARLo;
+	# select high part of dest addr using ALU
+	aluOp=alu_logic_B;
+	# clock high part of dest addr into ARHi
+	deassert wrARHi;
+
+	#
+	# Write contents of source register to destination memory location,
+	# using AR to generate the destination address
+	#
+
+	# Use AR to drive address onto low/high address busses,
+	# start reading from source register
+	assert rdAR, start src_reg_pat;
+
+	# Start memory write
+	start wr_mem;
+
+	# Finish memory write, data should be clocked into the
+	# memory device at this point
+	stop wr_mem;
+
+	# End instruction
+	assert -endUncond;
 }
 
 ########################################################################
