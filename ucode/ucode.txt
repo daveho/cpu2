@@ -110,9 +110,9 @@ signal rom4Unused[2] default 0b00;
 # Read signal patterns (most of which require an ALU op)
 # Note that for reads from GP registers, the address is asserted
 # on the same clock that the read select starts.  So, incorrect
-# data may be asserted initially (since the address is changing),
-# but the correct data is guaranteed to be present by the next
-# clock.
+# data may be asserted initially (since the register pair read
+# address is changing), but the correct data is guaranteed to be
+# present by the next clock.
 pattern rd_r0 rdGP=1, rdGPAddr=r0_r1, aluMode=1, aluOp=alu_logic_A, aluOut=1;
 pattern rd_r1 rdGP=1, rdGPAddr=r0_r1, aluMode=1, aluOp=alu_logic_B, aluOut=1;
 pattern rd_r2 rdGP=1, rdGPAddr=r2_r3, aluMode=1, aluOp=alu_logic_A, aluOut=1;
@@ -151,13 +151,27 @@ template mov(dest_reg, wr_bank_pat, src_reg_pat) {
 # Template for memory load into GP reg, address selected
 # by gp register pair
 template ld(dest_reg, wr_bank_pat, src_pair) {
-	rdGPAddr=src_pair, assert driveAddr, wrGPAddr=dest_reg;
+	# Assert the gp register pair address, read GP register banks,
+	# drive the left/right ALU busses onto the low/high address busses,
+	# and assert the gp register pair address for the destination register.
+	rdGPAddr=src_pair, assert rdGP, assert driveAddr, wrGPAddr=dest_reg;
 
-	start rd_mem, start wr_bank_pat;
+	# Issue memory read signal
+	start rd_mem;
 
+	# Start dest register bank write signal
+	# Possible optimization: could do this at same time as
+	# read signal (since data isn't officially clocked
+	# in until the write signal is deasserted, by which
+	# time the data memory read data should be valid)
+	start wr_bank_pat;
+
+	# End dest register bank write signal: data should be clocked in
+	# the destination register at this point
 	stop wr_bank_pat;
 
-	#deassert driveAddr, 
+	# End address generation and memory read, end instruction
+	deassert rdGP, deassert driveAddr, stop rd_mem, assert -endUncond;
 }
 
 ########################################################################
@@ -241,6 +255,54 @@ ins($) { mov(r6_r7, wr_gp_hi, rd_r3); }
 ins($) { mov(r6_r7, wr_gp_hi, rd_r4); }
 ins($) { mov(r6_r7, wr_gp_hi, rd_r5); }
 ins($) { mov(r6_r7, wr_gp_hi, rd_r6); }
+
+# Memory load to r0, address specified by GP reg pair
+ins($) { ld(r0_r1, wr_gp_lo, r0_r1); }
+ins($) { ld(r0_r1, wr_gp_lo, r2_r3); }
+ins($) { ld(r0_r1, wr_gp_lo, r4_r5); }
+ins($) { ld(r0_r1, wr_gp_lo, r6_r7); }
+
+# Memory load to r1, address specified by GP reg pair
+ins($) { ld(r0_r1, wr_gp_hi, r0_r1); }
+ins($) { ld(r0_r1, wr_gp_hi, r2_r3); }
+ins($) { ld(r0_r1, wr_gp_hi, r4_r5); }
+ins($) { ld(r0_r1, wr_gp_hi, r6_r7); }
+
+# Memory load to r2, address specified by GP reg pair
+ins($) { ld(r2_r3, wr_gp_lo, r0_r1); }
+ins($) { ld(r2_r3, wr_gp_lo, r2_r3); }
+ins($) { ld(r2_r3, wr_gp_lo, r4_r5); }
+ins($) { ld(r2_r3, wr_gp_lo, r6_r7); }
+
+# Memory load to r3, address specified by GP reg pair
+ins($) { ld(r2_r3, wr_gp_hi, r0_r1); }
+ins($) { ld(r2_r3, wr_gp_hi, r2_r3); }
+ins($) { ld(r2_r3, wr_gp_hi, r4_r5); }
+ins($) { ld(r2_r3, wr_gp_hi, r6_r7); }
+
+# Memory load to r4, address specified by GP reg pair
+ins($) { ld(r4_r5, wr_gp_lo, r0_r1); }
+ins($) { ld(r4_r5, wr_gp_lo, r2_r3); }
+ins($) { ld(r4_r5, wr_gp_lo, r4_r5); }
+ins($) { ld(r4_r5, wr_gp_lo, r6_r7); }
+
+# Memory load to r5, address specified by GP reg pair
+ins($) { ld(r4_r5, wr_gp_hi, r0_r1); }
+ins($) { ld(r4_r5, wr_gp_hi, r2_r3); }
+ins($) { ld(r4_r5, wr_gp_hi, r4_r5); }
+ins($) { ld(r4_r5, wr_gp_hi, r6_r7); }
+
+# Memory load to r6, address specified by GP reg pair
+ins($) { ld(r6_r7, wr_gp_lo, r0_r1); }
+ins($) { ld(r6_r7, wr_gp_lo, r2_r3); }
+ins($) { ld(r6_r7, wr_gp_lo, r4_r5); }
+ins($) { ld(r6_r7, wr_gp_lo, r6_r7); }
+
+# Memory load to r7, address specified by GP reg pair
+ins($) { ld(r6_r7, wr_gp_hi, r0_r1); }
+ins($) { ld(r6_r7, wr_gp_hi, r2_r3); }
+ins($) { ld(r6_r7, wr_gp_hi, r4_r5); }
+ins($) { ld(r6_r7, wr_gp_hi, r6_r7); }
 
 # special "default" instruction: this sequence of microcode
 # instruction words is used for all opcodes that aren't explicitly
