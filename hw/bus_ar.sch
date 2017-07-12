@@ -364,38 +364,6 @@ Wire Wire Line
 	3800 6400 3300 6400
 Wire Wire Line
 	3800 6500 3300 6500
-Wire Wire Line
-	5700 4500 5200 4500
-Wire Wire Line
-	5700 4600 5200 4600
-Wire Wire Line
-	5700 4700 5200 4700
-Wire Wire Line
-	5700 4800 5200 4800
-Wire Wire Line
-	5700 4900 5200 4900
-Wire Wire Line
-	5700 5000 5200 5000
-Wire Wire Line
-	5700 5100 5200 5100
-Wire Wire Line
-	5700 5200 5200 5200
-Wire Wire Line
-	5700 5800 5200 5800
-Wire Wire Line
-	5700 5900 5200 5900
-Wire Wire Line
-	5700 6000 5200 6000
-Wire Wire Line
-	5700 6100 5200 6100
-Wire Wire Line
-	5700 6200 5200 6200
-Wire Wire Line
-	5700 6300 5200 6300
-Wire Wire Line
-	5700 6400 5200 6400
-Wire Wire Line
-	5700 6500 5200 6500
 Text Label 3350 4500 0    60   ~ 0
 ALU0
 Text Label 3350 4600 0    60   ~ 0
@@ -428,38 +396,6 @@ Text Label 3350 6400 0    60   ~ 0
 ALU6
 Text Label 3350 6500 0    60   ~ 0
 ALU7
-Text Label 5350 4500 0    60   ~ 0
-LEFT0
-Text Label 5350 4600 0    60   ~ 0
-LEFT1
-Text Label 5350 4700 0    60   ~ 0
-LEFT2
-Text Label 5350 4800 0    60   ~ 0
-LEFT3
-Text Label 5350 4900 0    60   ~ 0
-LEFT4
-Text Label 5350 5000 0    60   ~ 0
-LEFT5
-Text Label 5350 5100 0    60   ~ 0
-LEFT6
-Text Label 5350 5200 0    60   ~ 0
-LEFT7
-Text Label 5350 5800 0    60   ~ 0
-RIGHT0
-Text Label 5350 5900 0    60   ~ 0
-RIGHT1
-Text Label 5350 6000 0    60   ~ 0
-RIGHT2
-Text Label 5350 6100 0    60   ~ 0
-RIGHT3
-Text Label 5350 6200 0    60   ~ 0
-RIGHT4
-Text Label 5350 6300 0    60   ~ 0
-RIGHT5
-Text Label 5350 6400 0    60   ~ 0
-RIGHT6
-Text Label 5350 6500 0    60   ~ 0
-RIGHT7
 Wire Wire Line
 	1850 1200 2300 1200
 Wire Wire Line
@@ -664,37 +600,37 @@ Text HLabel 1850 4700 0    60   Input ~ 0
 -wrARLo
 Text HLabel 1850 4800 0    60   Input ~ 0
 -wrARHi
-Text HLabel 5700 1200 2    60   Output ~ 0
+Text HLabel 9900 3000 2    60   Output ~ 0
 A0
-Text HLabel 5700 1300 2    60   Output ~ 0
+Text HLabel 9900 3100 2    60   Output ~ 0
 A1
-Text HLabel 5700 1400 2    60   Output ~ 0
+Text HLabel 9900 3200 2    60   Output ~ 0
 A2
-Text HLabel 5700 1500 2    60   Output ~ 0
+Text HLabel 9900 3300 2    60   Output ~ 0
 A3
-Text HLabel 5700 1600 2    60   Output ~ 0
+Text HLabel 9900 3400 2    60   Output ~ 0
 A4
-Text HLabel 5700 1700 2    60   Output ~ 0
+Text HLabel 9900 3500 2    60   Output ~ 0
 A5
-Text HLabel 5700 1800 2    60   Output ~ 0
+Text HLabel 9900 3600 2    60   Output ~ 0
 A6
-Text HLabel 5700 1900 2    60   Output ~ 0
+Text HLabel 9900 3700 2    60   Output ~ 0
 A7
-Text HLabel 5700 2700 2    60   Output ~ 0
+Text HLabel 9900 3800 2    60   Output ~ 0
 A8
-Text HLabel 5700 2800 2    60   Output ~ 0
+Text HLabel 9900 3900 2    60   Output ~ 0
 A9
-Text HLabel 5700 2900 2    60   Output ~ 0
+Text HLabel 9900 4000 2    60   Output ~ 0
 A10
-Text HLabel 5700 3000 2    60   Output ~ 0
+Text HLabel 9900 4100 2    60   Output ~ 0
 A11
-Text HLabel 5700 3100 2    60   Output ~ 0
+Text HLabel 9900 4200 2    60   Output ~ 0
 A12
-Text HLabel 5700 3200 2    60   Output ~ 0
+Text HLabel 9900 4300 2    60   Output ~ 0
 A13
-Text HLabel 5700 3300 2    60   Output ~ 0
+Text HLabel 9900 4400 2    60   Output ~ 0
 A14
-Text HLabel 5700 3400 2    60   Output ~ 0
+Text HLabel 9900 4500 2    60   Output ~ 0
 A15
 Text HLabel 9850 1200 2    60   BiDi ~ 0
 D0
@@ -718,4 +654,132 @@ Text Notes 7950 950  0    60   ~ 0
 external data bus transceiver
 Text Notes 3900 4300 0    60   ~ 0
 low/high address registers
+Wire Wire Line
+	5200 4500 5700 4500
+Wire Wire Line
+	5200 4600 5700 4600
+Wire Wire Line
+	5200 4700 5700 4700
+Wire Wire Line
+	5200 4800 5700 4800
+Wire Wire Line
+	5200 4900 5700 4900
+Wire Wire Line
+	5200 5000 5700 5000
+Wire Wire Line
+	5200 5100 5700 5100
+Wire Wire Line
+	5200 5200 5700 5200
+Wire Wire Line
+	5200 5800 5700 5800
+Wire Wire Line
+	5200 5900 5700 5900
+Wire Wire Line
+	5200 6000 5700 6000
+Wire Wire Line
+	5200 6100 5700 6100
+Wire Wire Line
+	5200 6200 5700 6200
+Wire Wire Line
+	5200 6300 5700 6300
+Wire Wire Line
+	5200 6400 5700 6400
+Wire Wire Line
+	5200 6500 5700 6500
+Text Label 5450 4500 0    60   ~ 0
+A0
+Text Label 5450 4600 0    60   ~ 0
+A1
+Text Label 5450 4700 0    60   ~ 0
+A2
+Text Label 5450 4800 0    60   ~ 0
+A3
+Text Label 5450 4900 0    60   ~ 0
+A4
+Text Label 5450 5000 0    60   ~ 0
+A5
+Text Label 5450 5100 0    60   ~ 0
+A6
+Text Label 5450 5200 0    60   ~ 0
+A7
+Text Label 5450 5800 0    60   ~ 0
+A8
+Text Label 5450 5900 0    60   ~ 0
+A9
+Text Label 5450 6000 0    60   ~ 0
+A10
+Text Label 5450 6100 0    60   ~ 0
+A11
+Text Label 5450 6200 0    60   ~ 0
+A12
+Text Label 5450 6300 0    60   ~ 0
+A13
+Text Label 5450 6400 0    60   ~ 0
+A14
+Text Label 5450 6500 0    60   ~ 0
+A15
+Wire Wire Line
+	9400 3000 9900 3000
+Wire Wire Line
+	9400 3100 9900 3100
+Wire Wire Line
+	9400 3200 9900 3200
+Wire Wire Line
+	9400 3300 9900 3300
+Wire Wire Line
+	9400 3400 9900 3400
+Wire Wire Line
+	9400 3500 9900 3500
+Wire Wire Line
+	9400 3600 9900 3600
+Wire Wire Line
+	9400 3700 9900 3700
+Wire Wire Line
+	9400 3800 9900 3800
+Wire Wire Line
+	9400 3900 9900 3900
+Wire Wire Line
+	9400 4000 9900 4000
+Wire Wire Line
+	9400 4100 9900 4100
+Wire Wire Line
+	9400 4200 9900 4200
+Wire Wire Line
+	9400 4300 9900 4300
+Wire Wire Line
+	9400 4400 9900 4400
+Wire Wire Line
+	9400 4500 9900 4500
+Text Label 9650 3000 0    60   ~ 0
+A0
+Text Label 9650 3100 0    60   ~ 0
+A1
+Text Label 9650 3200 0    60   ~ 0
+A2
+Text Label 9650 3300 0    60   ~ 0
+A3
+Text Label 9650 3400 0    60   ~ 0
+A4
+Text Label 9650 3500 0    60   ~ 0
+A5
+Text Label 9650 3600 0    60   ~ 0
+A6
+Text Label 9650 3700 0    60   ~ 0
+A7
+Text Label 9650 3800 0    60   ~ 0
+A8
+Text Label 9650 3900 0    60   ~ 0
+A9
+Text Label 9650 4000 0    60   ~ 0
+A10
+Text Label 9650 4100 0    60   ~ 0
+A11
+Text Label 9650 4200 0    60   ~ 0
+A12
+Text Label 9650 4300 0    60   ~ 0
+A13
+Text Label 9650 4400 0    60   ~ 0
+A14
+Text Label 9650 4500 0    60   ~ 0
+A15
 $EndSCHEMATC
