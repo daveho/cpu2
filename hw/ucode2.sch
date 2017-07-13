@@ -1362,4 +1362,10 @@ Text Label 6450 9000 0    60   ~ 0
 memDir
 Text HLabel 8300 9000 2    60   Output ~ 0
 uMemDir
+Text Label 5400 7900 0    60   ~ 0
+latchAddr
+Text Label 9100 7650 0    60   ~ 0
+latchAddr
+Text HLabel 10950 7750 2    60   Output ~ 0
+-uLatchAddr
 $EndSCHEMATC

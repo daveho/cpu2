@@ -47,28 +47,6 @@ Comment4 ""
 $EndDescr
 Text Notes 7150 6800 0    60   ~ 0
 bus control and address registers
-$Comp
-L 74LS541 U901
-U 1 1 595E91CD
-P 4500 1700
-F 0 "U901" H 4500 2275 50  0000 C BNN
-F 1 "74HC541" H 4500 1125 50  0000 C TNN
-F 2 "" H 4500 1700 50  0001 C CNN
-F 3 "" H 4500 1700 50  0001 C CNN
-	1    4500 1700
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74LS541 U902
-U 1 1 595E9238
-P 4500 3200
-F 0 "U902" H 4500 3775 50  0000 C BNN
-F 1 "74HC541" H 4500 2625 50  0000 C TNN
-F 2 "" H 4500 3200 50  0001 C CNN
-F 3 "" H 4500 3200 50  0001 C CNN
-	1    4500 3200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3800 1200 3300 1200
 Wire Wire Line
@@ -86,22 +64,7 @@ Wire Wire Line
 Wire Wire Line
 	3800 1900 3300 1900
 Wire Wire Line
-	3800 2200 3650 2200
-Wire Wire Line
-	3650 2200 3650 2300
-Wire Wire Line
-	3800 2100 3300 2100
-$Comp
-L GND #PWR?
-U 1 1 595E928D
-P 3650 2300
-F 0 "#PWR?" H 3650 2050 50  0001 C CNN
-F 1 "GND" H 3650 2150 50  0000 C CNN
-F 2 "" H 3650 2300 50  0001 C CNN
-F 3 "" H 3650 2300 50  0001 C CNN
-	1    3650 2300
-	1    0    0    -1  
-$EndComp
+	3800 2200 3300 2200
 Wire Wire Line
 	3800 2700 3300 2700
 Wire Wire Line
@@ -119,22 +82,7 @@ Wire Wire Line
 Wire Wire Line
 	3800 3400 3300 3400
 Wire Wire Line
-	3800 3700 3650 3700
-Wire Wire Line
-	3650 3700 3650 3800
-Wire Wire Line
-	3800 3600 3300 3600
-$Comp
-L GND #PWR?
-U 1 1 595E92CA
-P 3650 3800
-F 0 "#PWR?" H 3650 3550 50  0001 C CNN
-F 1 "GND" H 3650 3650 50  0000 C CNN
-F 2 "" H 3650 3800 50  0001 C CNN
-F 3 "" H 3650 3800 50  0001 C CNN
-	1    3650 3800
-	1    0    0    -1  
-$EndComp
+	3800 3700 3300 3700
 Text Label 3350 1200 0    60   ~ 0
 LEFT0
 Text Label 3350 1300 0    60   ~ 0
@@ -167,9 +115,9 @@ Text Label 3350 3300 0    60   ~ 0
 RIGHT6
 Text Label 3350 3400 0    60   ~ 0
 RIGHT7
-Text Label 3350 2100 0    60   ~ 0
+Text Label 3350 2200 0    60   ~ 0
 -driveAddr
-Text Label 3350 3600 0    60   ~ 0
+Text Label 3350 3700 0    60   ~ 0
 -driveAddr
 Wire Wire Line
 	5200 1200 5700 1200
@@ -495,18 +443,18 @@ RIGHT7
 Wire Wire Line
 	1850 4000 2300 4000
 Wire Wire Line
-	1850 4200 2300 4200
-Wire Wire Line
 	1850 4300 2300 4300
 Wire Wire Line
-	1850 4500 2300 4500
+	1850 4400 2300 4400
 Wire Wire Line
-	1850 4700 2300 4700
+	1850 4600 2300 4600
 Wire Wire Line
 	1850 4800 2300 4800
+Wire Wire Line
+	1850 4900 2300 4900
 Text Label 1900 4000 0    60   ~ 0
 -driveAddr
-Text Label 1900 4200 0    60   ~ 0
+Text Label 1900 4300 0    60   ~ 0
 -rwMem
 Wire Wire Line
 	7850 2200 7250 2200
@@ -516,7 +464,7 @@ Text Label 7350 2200 0    60   ~ 0
 -rwMem
 Text Label 7350 2100 0    60   ~ 0
 memDir
-Text Label 1900 4300 0    60   ~ 0
+Text Label 1900 4400 0    60   ~ 0
 memDir
 Wire Wire Line
 	3800 5400 3300 5400
@@ -534,11 +482,11 @@ Text Label 3350 6700 0    60   ~ 0
 -wrARHi
 Text Label 3350 6800 0    60   ~ 0
 -rdAR
-Text Label 1900 4500 0    60   ~ 0
+Text Label 1900 4600 0    60   ~ 0
 -rdAR
-Text Label 1900 4700 0    60   ~ 0
--wrARLo
 Text Label 1900 4800 0    60   ~ 0
+-wrARLo
+Text Label 1900 4900 0    60   ~ 0
 -wrARHi
 Text HLabel 1850 1200 0    60   BiDi ~ 0
 ALU0
@@ -590,15 +538,15 @@ Text HLabel 1850 3700 0    60   BiDi ~ 0
 RIGHT7
 Text HLabel 1850 4000 0    60   Input ~ 0
 -driveAddr
-Text HLabel 1850 4200 0    60   Input ~ 0
--rwMem
 Text HLabel 1850 4300 0    60   Input ~ 0
+-rwMem
+Text HLabel 1850 4400 0    60   Input ~ 0
 memDir
-Text HLabel 1850 4500 0    60   Input ~ 0
+Text HLabel 1850 4600 0    60   Input ~ 0
 -rdAR
-Text HLabel 1850 4700 0    60   Input ~ 0
--wrARLo
 Text HLabel 1850 4800 0    60   Input ~ 0
+-wrARLo
+Text HLabel 1850 4900 0    60   Input ~ 0
 -wrARHi
 Text HLabel 9900 3000 2    60   Output ~ 0
 A0
@@ -782,4 +730,40 @@ Text Label 9650 4400 0    60   ~ 0
 A14
 Text Label 9650 4500 0    60   ~ 0
 A15
+$Comp
+L 74LS573 U901
+U 1 1 59676DEE
+P 4500 1700
+F 0 "U901" H 4650 2300 50  0000 C CNN
+F 1 "74HC573" H 4750 1100 50  0000 C CNN
+F 2 "" H 4500 1700 50  0001 C CNN
+F 3 "" H 4500 1700 50  0001 C CNN
+	1    4500 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS573 U902
+U 1 1 59676E71
+P 4500 3200
+F 0 "U902" H 4650 3800 50  0000 C CNN
+F 1 "74HC573" H 4750 2600 50  0000 C CNN
+F 2 "" H 4500 3200 50  0001 C CNN
+F 3 "" H 4500 3200 50  0001 C CNN
+	1    4500 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 2100 3300 2100
+Wire Wire Line
+	3800 3600 3300 3600
+Text Label 3350 2100 0    60   ~ 0
+-latchAddr
+Text Label 3350 3600 0    60   ~ 0
+-latchAddr
+Wire Wire Line
+	1850 4100 2300 4100
+Text Label 1900 4100 0    60   ~ 0
+-latchAddr
+Text HLabel 1850 4100 0    60   Input ~ 0
+-latchAddr
 $EndSCHEMATC

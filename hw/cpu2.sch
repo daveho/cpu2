@@ -264,7 +264,7 @@ Text Notes 1550 3700 0    60   ~ 0
 prefix 300
 Text Notes 6150 3400 0    60   ~ 0
 prefix 400
-Text Notes 8750 4400 0    60   ~ 0
+Text Notes 8750 4500 0    60   ~ 0
 prefix 800
 Text Notes 6150 5500 0    60   ~ 0
 prefix 600
@@ -730,7 +730,7 @@ Entry Wire Line
 Entry Wire Line
 	10000 13050 10100 13150
 $Sheet
-S 8350 1600 1350 2600
+S 8350 1600 1350 2700
 U 594ECB9B
 F0 "ucode2" 60
 F1 "ucode2.sch" 60
@@ -775,6 +775,7 @@ F39 "uPcClk" O R 9700 3600 60
 F40 "uEnd" O R 9700 4100 60 
 F41 "-rwMem" O R 9700 2200 60 
 F42 "uMemDir" O R 9700 3100 60 
+F43 "-uLatchAddr" O R 9700 4200 60 
 $EndSheet
 Wire Wire Line
 	7750 2100 8350 2100
@@ -1118,11 +1119,11 @@ F23 "RIGHT5" B R 7050 9400 60
 F24 "RIGHT6" B R 7050 9500 60 
 F25 "RIGHT7" B R 7050 9600 60 
 F26 "-driveAddr" I L 5850 8900 60 
-F27 "-rwMem" I L 5850 9000 60 
-F28 "memDir" I L 5850 9100 60 
-F29 "-rdAR" I L 5850 9200 60 
-F30 "-wrARLo" I L 5850 9300 60 
-F31 "-wrARHi" I L 5850 9400 60 
+F27 "-rwMem" I L 5850 9100 60 
+F28 "memDir" I L 5850 9200 60 
+F29 "-rdAR" I L 5850 9300 60 
+F30 "-wrARLo" I L 5850 9400 60 
+F31 "-wrARHi" I L 5850 9500 60 
 F32 "A0" O R 7050 9750 60 
 F33 "A1" O R 7050 9850 60 
 F34 "A2" O R 7050 9950 60 
@@ -1147,6 +1148,7 @@ F52 "D4" B R 7050 11800 60
 F53 "D5" B R 7050 11900 60 
 F54 "D6" B R 7050 12000 60 
 F55 "D7" B R 7050 12100 60 
+F56 "-latchAddr" I L 5850 9000 60 
 $EndSheet
 Wire Wire Line
 	9700 2200 10250 2200
@@ -1303,8 +1305,6 @@ Entry Wire Line
 Wire Wire Line
 	5850 8900 5300 8900
 Wire Wire Line
-	5850 9000 5300 9000
-Wire Wire Line
 	5850 9100 5300 9100
 Wire Wire Line
 	5850 9200 5300 9200
@@ -1312,17 +1312,19 @@ Wire Wire Line
 	5850 9300 5300 9300
 Wire Wire Line
 	5850 9400 5300 9400
+Wire Wire Line
+	5850 9500 5300 9500
 Text Label 5300 8900 0    60   ~ 0
 -uDriveAddr
-Text Label 5300 9000 0    60   ~ 0
--uRwMem
 Text Label 5300 9100 0    60   ~ 0
-uMemDir
+-uRwMem
 Text Label 5300 9200 0    60   ~ 0
--uRdAR
+uMemDir
 Text Label 5300 9300 0    60   ~ 0
--uWrARLo
+-uRdAR
 Text Label 5300 9400 0    60   ~ 0
+-uWrARLo
+Text Label 5300 9500 0    60   ~ 0
 -uWrARHi
 Wire Wire Line
 	7050 9750 7350 9750
@@ -1502,4 +1504,12 @@ Text Label 5400 1800 0    60   ~ 0
 -lateRST
 Text Label 7800 1700 0    60   ~ 0
 -lateRST
+Wire Wire Line
+	5850 9000 5300 9000
+Text Label 5300 9000 0    60   ~ 0
+-uLatchAddr
+Wire Wire Line
+	9700 4200 10250 4200
+Text Label 9750 4200 0    60   ~ 0
+-uLatchAddr
 $EndSCHEMATC
