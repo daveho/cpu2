@@ -160,12 +160,14 @@ template mov(dest_reg, wr_bank_pat, src_reg_pat) {
 # by gp register pair
 template ld(dest_reg, wr_bank_pat, src_pair) {
 	# Assert the gp register pair address, read GP register banks,
+	# assert the gp register pair address for the destination register,
 	# drive the left/right ALU busses onto the low/high address busses,
-	# and assert the gp register pair address for the destination register.
-	rdGPAddr=src_pair, assert rdGP, assert driveAddr, wrGPAddr=dest_reg;
+	rdGPAddr=src_pair, wrGPAddr=dest_reg, assert rdGP, assert driveAddr;
 
-	# Issue memory read signal
-	start rd_mem;
+	# Issue memory read signal, latch address
+	# (which will ensure that the values asserted on the address busses
+	# won't change when the destination register changes)
+	start rd_mem, assert latchAddr;
 
 	# Start dest register bank write signal
 	# Possible optimization: could do this at same time as
@@ -179,43 +181,30 @@ template ld(dest_reg, wr_bank_pat, src_pair) {
 	stop wr_bank_pat;
 
 	# End instruction
-	assert -endUncond;
+	deassert rdGP, deassert driveAddr, stop rd_mem, deassert latchAddr, assert -endUncond;
 }
 
+# Template for memory store to address selected by
+# gp register pair, source data from gp register
 template st(dest_addr_pair, src_reg_pat) {
-	#
-	# Transfer destination address to AR
-	#
+	# Assert destination address pair
+	rdGPAddr=dest_addr_pair, assert rdGP;
 
-	# Read destination address pair, prepare to write AR lo/hi,
-	# select low part of dest addr using ALU 
-	rdGPAddr=dest_addr_pair, assert rdGP, assert wrARLo, assert wrARHi,
-		aluMode=1, aluOp=alu_logic_A, assert aluOut;
-	# clock low part of dest addr into ARLo
-	deassert wrARLo;
-	# select high part of dest addr using ALU
-	aluOp=alu_logic_B;
-	# clock high part of dest addr into ARHi
-	deassert wrARHi;
+	# Latch address, drive address onto address bus
+	assert latchAddr, assert driveAddr;
 
-	#
-	# Write contents of source register to destination memory location,
-	# using AR to generate the destination address
-	#
-
-	# Use AR to drive address onto low/high address busses,
-	# start reading from source register
-	assert rdAR, start src_reg_pat;
+	# Read value from source register, output onto ALU bus
+	# and onto external data bus
+	start src_reg_pat;
 
 	# Start memory write
 	start wr_mem;
 
-	# Finish memory write, data should be clocked into the
-	# memory device at this point
+	# End memory write
 	stop wr_mem;
 
 	# End instruction
-	assert -endUncond;
+	stop src_reg_pat, deassert latchAddr, deassert driveAddr, assert -endUncond;
 }
 
 ########################################################################
