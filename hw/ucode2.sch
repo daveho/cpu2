@@ -79,17 +79,6 @@ Text Label 1450 1400 0    60   ~ 0
 OPC7
 Text HLabel 1350 1900 0    60   Input ~ 0
 CLK
-$Comp
-L 74LS00 U801
-U 1 1 594ED24F
-P 2250 2200
-F 0 "U801" H 2250 2250 50  0000 C CNN
-F 1 "74HC00" H 2250 2100 50  0000 C CNN
-F 2 "" H 2250 2200 50  0001 C CNN
-F 3 "" H 2250 2200 50  0001 C CNN
-	1    2250 2200
-	1    0    0    -1  
-$EndComp
 Text HLabel 1350 2100 0    60   Input ~ 0
 -RST
 Text HLabel 1350 2300 0    60   Input ~ 0
@@ -98,17 +87,6 @@ Text Label 3750 3100 0    60   ~ 0
 -ucodeRST
 Text Label 1450 1900 0    60   ~ 0
 CLK
-$Comp
-L 74LS00 U801
-U 2 1 594ED25A
-P 2250 2700
-F 0 "U801" H 2250 2750 50  0000 C CNN
-F 1 "74HC00" H 2250 2600 50  0000 C CNN
-F 2 "" H 2250 2700 50  0001 C CNN
-F 3 "" H 2250 2700 50  0001 C CNN
-	2    2250 2700
-	1    0    0    -1  
-$EndComp
 $Comp
 L 74LS590 U802
 U 1 1 594ED261
@@ -557,38 +535,25 @@ Text Label 6450 9500 0    60   ~ 0
 $Comp
 L 74LS00 U801
 U 3 1 59522853
-P 11300 2850
-F 0 "U801" H 11300 2900 50  0000 C CNN
-F 1 "74HC00" H 11300 2750 50  0000 C CNN
-F 2 "" H 11300 2850 50  0001 C CNN
-F 3 "" H 11300 2850 50  0001 C CNN
-	3    11300 2850
+P 8600 2400
+F 0 "U801" H 8600 2450 50  0000 C CNN
+F 1 "74HC00" H 8600 2300 50  0000 C CNN
+F 2 "" H 8600 2400 50  0001 C CNN
+F 3 "" H 8600 2400 50  0001 C CNN
+	3    8600 2400
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS00 U801
 U 4 1 59522859
-P 11300 3350
-F 0 "U801" H 11300 3400 50  0000 C CNN
-F 1 "74HC00" H 11300 3250 50  0000 C CNN
-F 2 "" H 11300 3350 50  0001 C CNN
-F 3 "" H 11300 3350 50  0001 C CNN
-	4    11300 3350
+P 11900 3050
+F 0 "U801" H 11900 3100 50  0000 C CNN
+F 1 "74HC00" H 11900 2950 50  0000 C CNN
+F 2 "" H 11900 3050 50  0001 C CNN
+F 3 "" H 11900 3050 50  0001 C CNN
+	4    11900 3050
 	1    0    0    -1  
 $EndComp
-$Comp
-L GND #PWR?
-U 1 1 59522CEA
-P 10600 4200
-F 0 "#PWR?" H 10600 3950 50  0001 C CNN
-F 1 "GND" H 10600 4050 50  0000 C CNN
-F 2 "" H 10600 4200 50  0001 C CNN
-F 3 "" H 10600 4200 50  0001 C CNN
-	1    10600 4200
-	1    0    0    -1  
-$EndComp
-Text Notes 10950 2600 0    60   ~ 0
-unused gates
 Text Label 5400 5200 0    60   ~ 0
 aluCarryIn
 Text Label 5400 5300 0    60   ~ 0
@@ -631,17 +596,6 @@ Text HLabel 10950 6900 2    60   Output ~ 0
 uAluOp3
 Text HLabel 10950 5650 2    60   Output ~ 0
 -uAluOut
-$Comp
-L 74LS32 U815
-U 1 1 5953FB38
-P 8600 1400
-F 0 "U815" H 8600 1450 50  0000 C CNN
-F 1 "74HCT32" H 8600 1350 50  0000 C CNN
-F 2 "" H 8600 1400 50  0001 C CNN
-F 3 "" H 8600 1400 50  0001 C CNN
-	1    8600 1400
-	1    0    0    -1  
-$EndComp
 Text HLabel 1600 4100 0    60   Input ~ 0
 ccEq
 Text HLabel 1600 4200 0    60   Input ~ 0
@@ -658,51 +612,18 @@ Text Label 1700 4300 0    60   ~ 0
 ccCarryOut
 Text Label 1700 4400 0    60   ~ 0
 -ccCarryOut
-$Comp
-L 74LS32 U815
-U 2 1 59540474
-P 8600 1900
-F 0 "U815" H 8600 1950 50  0000 C CNN
-F 1 "74HCT32" H 8600 1850 50  0000 C CNN
-F 2 "" H 8600 1900 50  0001 C CNN
-F 3 "" H 8600 1900 50  0001 C CNN
-	2    8600 1900
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74LS32 U815
-U 3 1 595404B1
-P 8600 2400
-F 0 "U815" H 8600 2450 50  0000 C CNN
-F 1 "74HCT32" H 8600 2350 50  0000 C CNN
-F 2 "" H 8600 2400 50  0001 C CNN
-F 3 "" H 8600 2400 50  0001 C CNN
-	3    8600 2400
-	1    0    0    -1  
-$EndComp
 Text Label 7200 2500 0    60   ~ 0
--endIfNoCarry
+endIfNoCarry
 Text Label 7200 2000 0    60   ~ 0
--endIfNeq
+endIfNeq
 Text Label 7200 1500 0    60   ~ 0
--endIfEq
+endIfEq
 Text Label 7200 2300 0    60   ~ 0
-ccCarryOut
+-ccCarryOut
 Text Label 7200 1800 0    60   ~ 0
-ccEq
-Text Label 7200 1300 0    60   ~ 0
 -ccEq
-$Comp
-L 74LS32 U815
-U 4 1 595412AF
-P 11300 3850
-F 0 "U815" H 11300 3900 50  0000 C CNN
-F 1 "74HCT32" H 11300 3800 50  0000 C CNN
-F 2 "" H 11300 3850 50  0001 C CNN
-F 3 "" H 11300 3850 50  0001 C CNN
-	4    11300 3850
-	1    0    0    -1  
-$EndComp
+Text Label 7200 1300 0    60   ~ 0
+ccEq
 $Comp
 L 74LS20 U816
 U 1 1 59541F40
@@ -845,6 +766,22 @@ Text Label 7200 4400 0    60   ~ 0
 -endUncond
 Text Label 2850 5700 0    60   ~ 0
 rwMem
+Text Label 6450 6500 0    60   ~ 0
+rwMem
+Text HLabel 8300 6600 2    60   Output ~ 0
+-rwMem
+Text Label 2850 7900 0    60   ~ 0
+memDir
+Text Label 6450 9000 0    60   ~ 0
+memDir
+Text HLabel 8300 9000 2    60   Output ~ 0
+uMemDir
+Text Label 5400 7900 0    60   ~ 0
+latchAddr
+Text Label 9100 7650 0    60   ~ 0
+latchAddr
+Text HLabel 10950 7750 2    60   Output ~ 0
+-uLatchAddr
 Wire Wire Line
 	1300 700  1700 700 
 Wire Wire Line
@@ -868,24 +805,7 @@ Wire Wire Line
 Wire Wire Line
 	1650 2300 1350 2300
 Wire Wire Line
-	1650 2600 1550 2600
-Wire Wire Line
-	1550 2600 1550 2800
-Wire Wire Line
-	1550 2700 1350 2700
-Wire Wire Line
-	1350 2700 1350 2450
-Wire Wire Line
-	1350 2450 3050 2450
-Wire Wire Line
-	3050 2450 3050 2200
-Wire Wire Line
-	1550 2800 1650 2800
-Connection ~ 1550 2700
-Wire Wire Line
-	2850 2700 3050 2700
-Wire Wire Line
-	3050 2700 3050 3100
+	3050 2200 3050 3100
 Wire Wire Line
 	3050 3100 4200 3100
 Wire Wire Line
@@ -1197,19 +1117,6 @@ Wire Wire Line
 Wire Wire Line
 	6400 9500 6900 9500
 Wire Wire Line
-	10700 2750 10600 2750
-Wire Wire Line
-	10600 2750 10600 4200
-Wire Wire Line
-	10700 2950 10600 2950
-Connection ~ 10600 2950
-Wire Wire Line
-	10700 3250 10600 3250
-Connection ~ 10600 3250
-Wire Wire Line
-	10700 3450 10600 3450
-Connection ~ 10600 3450
-Wire Wire Line
 	5350 5200 5800 5200
 Wire Wire Line
 	5350 5300 5800 5300
@@ -1245,12 +1152,6 @@ Wire Wire Line
 	8000 1500 7150 1500
 Wire Wire Line
 	8000 1300 7150 1300
-Wire Wire Line
-	10700 3750 10600 3750
-Connection ~ 10600 3750
-Wire Wire Line
-	10700 3950 10600 3950
-Connection ~ 10600 3950
 Wire Wire Line
 	8000 3050 7800 3050
 Wire Wire Line
@@ -1348,24 +1249,145 @@ Wire Wire Line
 	2800 5700 3300 5700
 Wire Wire Line
 	6900 6500 6400 6500
-Text Label 6450 6500 0    60   ~ 0
-rwMem
-Text HLabel 8300 6600 2    60   Output ~ 0
--rwMem
 Wire Wire Line
 	2800 7900 3300 7900
-Text Label 2850 7900 0    60   ~ 0
-memDir
 Wire Wire Line
 	6900 9000 6400 9000
-Text Label 6450 9000 0    60   ~ 0
+Text Notes 11550 4050 0    60   ~ 0
+unused gates
+$Comp
+L GND #PWR?
+U 1 1 59522CEA
+P 11100 4550
+F 0 "#PWR?" H 11100 4300 50  0001 C CNN
+F 1 "GND" H 11100 4400 50  0000 C CNN
+F 2 "" H 11100 4550 50  0001 C CNN
+F 3 "" H 11100 4550 50  0001 C CNN
+	1    11100 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS00 U801
+U 2 1 594ED25A
+P 8600 1900
+F 0 "U801" H 8600 1950 50  0000 C CNN
+F 1 "74HC00" H 8600 1800 50  0000 C CNN
+F 2 "" H 8600 1900 50  0001 C CNN
+F 3 "" H 8600 1900 50  0001 C CNN
+	2    8600 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS00 U801
+U 1 1 594ED24F
+P 8600 1400
+F 0 "U801" H 8600 1450 50  0000 C CNN
+F 1 "74HC00" H 8600 1300 50  0000 C CNN
+F 2 "" H 8600 1400 50  0001 C CNN
+F 3 "" H 8600 1400 50  0001 C CNN
+	1    8600 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U815
+U 1 1 596B9BE0
+P 2250 2200
+F 0 "U815" H 2250 2250 50  0000 C CNN
+F 1 "74HC08" H 2250 2150 50  0000 C CNN
+F 2 "" H 2250 2200 50  0001 C CNN
+F 3 "" H 2250 2200 50  0001 C CNN
+	1    2250 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS08 U815
+U 2 1 596BBD93
+P 11900 2550
+F 0 "U815" H 11900 2600 50  0000 C CNN
+F 1 "74HC08" H 11900 2500 50  0000 C CNN
+F 2 "" H 11900 2550 50  0001 C CNN
+F 3 "" H 11900 2550 50  0001 C CNN
+	2    11900 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11300 2450 10600 2450
+Wire Wire Line
+	11300 2650 10600 2650
+Text Label 10650 2450 0    60   ~ 0
 memDir
-Text HLabel 8300 9000 2    60   Output ~ 0
-uMemDir
-Text Label 5400 7900 0    60   ~ 0
-latchAddr
-Text Label 9100 7650 0    60   ~ 0
-latchAddr
-Text HLabel 10950 7750 2    60   Output ~ 0
--uLatchAddr
+Text Label 10650 2650 0    60   ~ 0
+extRW
+Wire Wire Line
+	12500 2550 12900 2550
+Text Label 12550 2550 0    60   ~ 0
+extW
+$Comp
+L 74LS08 U815
+U 3 1 596BC594
+P 11900 3550
+F 0 "U815" H 11900 3600 50  0000 C CNN
+F 1 "74HC08" H 11900 3500 50  0000 C CNN
+F 2 "" H 11900 3550 50  0001 C CNN
+F 3 "" H 11900 3550 50  0001 C CNN
+	3    11900 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11300 3650 10600 3650
+Wire Wire Line
+	10600 3050 11200 3050
+Wire Wire Line
+	11200 2950 11200 3150
+Wire Wire Line
+	11200 2950 11300 2950
+Wire Wire Line
+	11200 3150 11300 3150
+Connection ~ 11200 3050
+Text Label 10650 3050 0    60   ~ 0
+memDir
+Wire Wire Line
+	12500 3050 12600 3050
+Wire Wire Line
+	12600 3050 12600 3300
+Wire Wire Line
+	12600 3300 11200 3300
+Wire Wire Line
+	11200 3300 11200 3450
+Wire Wire Line
+	11200 3450 11300 3450
+Text Label 10650 3650 0    60   ~ 0
+extRW
+Wire Wire Line
+	12500 3550 12900 3550
+Text Label 12550 3550 0    60   ~ 0
+extR
+Text Notes 11100 2250 0    60   ~ 0
+external memory r/w signals
+$Comp
+L 74LS08 U815
+U 4 1 596BD403
+P 11900 4350
+F 0 "U815" H 11900 4400 50  0000 C CNN
+F 1 "74HC08" H 11900 4300 50  0000 C CNN
+F 2 "" H 11900 4350 50  0001 C CNN
+F 3 "" H 11900 4350 50  0001 C CNN
+	4    11900 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11300 4250 11100 4250
+Wire Wire Line
+	11100 4250 11100 4550
+Wire Wire Line
+	11300 4450 11100 4450
+Connection ~ 11100 4450
+Text Label 9100 7850 0    60   ~ 0
+extW
+Text Label 9100 8050 0    60   ~ 0
+extR
+Text HLabel 10950 7950 2    60   Output ~ 0
+-uExtW
+Text HLabel 10950 8150 2    60   Output ~ 0
+-uExtR
 $EndSCHEMATC
