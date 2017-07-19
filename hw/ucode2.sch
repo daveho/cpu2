@@ -33,7 +33,7 @@ LIBS:ttl_ieee
 LIBS:cpu2-cache
 EELAYER 25 0
 EELAYER END
-$Descr User 13780 10645
+$Descr User 14173 10953
 encoding utf-8
 Sheet 9 10
 Title ""
@@ -496,7 +496,7 @@ Text HLabel 8300 5550 2    60   Output ~ 0
 uRdGP1
 Text HLabel 8300 5850 2    60   Output ~ 0
 -uRdAR
-Text Notes 9300 9150 0    60   ~ 0
+Text Notes 9750 9450 0    60   ~ 0
 microcode / control signals
 Text HLabel 8300 6400 2    60   Output ~ 0
 -uRdPC
@@ -1352,8 +1352,6 @@ Wire Wire Line
 Connection ~ 11100 4450
 Text Label 9100 7850 0    60   ~ 0
 extRW
-Text HLabel 10950 7950 2    60   Output ~ 0
--uExtRW
 Wire Wire Line
 	8300 9000 8800 9000
 Text Label 8350 9000 0    60   ~ 0
@@ -1385,4 +1383,8 @@ Connection ~ 11100 4250
 Wire Wire Line
 	11300 3950 11100 3950
 Connection ~ 11100 3950
+Wire Wire Line
+	10950 7950 11600 7950
+Text Label 11050 7950 0    60   ~ 0
+-uExtRW
 $EndSCHEMATC

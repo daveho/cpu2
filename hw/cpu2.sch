@@ -264,7 +264,7 @@ Text Notes 1550 3700 0    60   ~ 0
 prefix 300
 Text Notes 6150 3400 0    60   ~ 0
 prefix 400
-Text Notes 8750 4500 0    60   ~ 0
+Text Notes 8750 4700 0    60   ~ 0
 prefix 800
 Text Notes 6150 5500 0    60   ~ 0
 prefix 600
@@ -730,7 +730,7 @@ Entry Wire Line
 Entry Wire Line
 	10000 13050 10100 13150
 $Sheet
-S 8350 1600 1350 2700
+S 8350 1600 1350 2900
 U 594ECB9B
 F0 "ucode2" 60
 F1 "ucode2.sch" 60
@@ -776,6 +776,8 @@ F40 "uEnd" O R 9700 4100 60
 F41 "-rwMem" O R 9700 2200 60 
 F42 "uMemDir" O R 9700 3100 60 
 F43 "-uLatchAddr" O R 9700 4200 60 
+F44 "-uExtW" O R 9700 4300 60 
+F45 "-uExtR" O R 9700 4400 60 
 $EndSheet
 Wire Wire Line
 	7750 2100 8350 2100
@@ -1512,4 +1514,12 @@ Wire Wire Line
 	9700 4200 10250 4200
 Text Label 9750 4200 0    60   ~ 0
 -uLatchAddr
+Wire Wire Line
+	9700 4300 10250 4300
+Wire Wire Line
+	9700 4400 10250 4400
+Text Label 9750 4300 0    60   ~ 0
+-uExtW
+Text Label 9750 4400 0    60   ~ 0
+-uExtR
 $EndSCHEMATC
