@@ -543,17 +543,6 @@ F 3 "" H 8600 2400 50  0001 C CNN
 	3    8600 2400
 	1    0    0    -1  
 $EndComp
-$Comp
-L 74LS00 U801
-U 4 1 59522859
-P 11900 3050
-F 0 "U801" H 11900 3100 50  0000 C CNN
-F 1 "74HC00" H 11900 2950 50  0000 C CNN
-F 2 "" H 11900 3050 50  0001 C CNN
-F 3 "" H 11900 3050 50  0001 C CNN
-	4    11900 3050
-	1    0    0    -1  
-$EndComp
 Text Label 5400 5200 0    60   ~ 0
 aluCarryIn
 Text Label 5400 5300 0    60   ~ 0
@@ -774,7 +763,7 @@ Text Label 2850 7900 0    60   ~ 0
 memDir
 Text Label 6450 9000 0    60   ~ 0
 memDir
-Text HLabel 8300 9000 2    60   Output ~ 0
+Text HLabel 8800 9000 2    60   Output ~ 0
 uMemDir
 Text Label 5400 7900 0    60   ~ 0
 latchAddr
@@ -1097,7 +1086,7 @@ Wire Wire Line
 Wire Wire Line
 	8300 8900 8300 8900
 Wire Wire Line
-	8300 9100 8300 9100
+	8300 9100 8800 9100
 Wire Wire Line
 	8300 9200 8300 9200
 Wire Wire Line
@@ -1253,7 +1242,7 @@ Wire Wire Line
 	2800 7900 3300 7900
 Wire Wire Line
 	6900 9000 6400 9000
-Text Notes 11550 4050 0    60   ~ 0
+Text Notes 11500 3500 0    60   ~ 0
 unused gates
 $Comp
 L GND #PWR?
@@ -1302,67 +1291,46 @@ $EndComp
 $Comp
 L 74LS08 U815
 U 2 1 596BBD93
-P 11900 2550
-F 0 "U815" H 11900 2600 50  0000 C CNN
-F 1 "74HC08" H 11900 2500 50  0000 C CNN
-F 2 "" H 11900 2550 50  0001 C CNN
-F 3 "" H 11900 2550 50  0001 C CNN
-	2    11900 2550
+P 11800 2550
+F 0 "U815" H 11800 2600 50  0000 C CNN
+F 1 "74HC08" H 11800 2500 50  0000 C CNN
+F 2 "" H 11800 2550 50  0001 C CNN
+F 3 "" H 11800 2550 50  0001 C CNN
+	2    11800 2550
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	11300 2450 10600 2450
+	11200 2450 10500 2450
 Wire Wire Line
-	11300 2650 10600 2650
-Text Label 10650 2450 0    60   ~ 0
-memDir
-Text Label 10650 2650 0    60   ~ 0
-extRW
+	11200 2650 10500 2650
+Text Label 10550 2450 0    60   ~ 0
+uMemDir
+Text Label 10550 2650 0    60   ~ 0
+-uExtRW
 Wire Wire Line
-	12500 2550 12900 2550
-Text Label 12550 2550 0    60   ~ 0
-extW
+	12400 2550 12800 2550
+Text Label 12450 2550 0    60   ~ 0
+-uExtW
 $Comp
 L 74LS08 U815
 U 3 1 596BC594
-P 11900 3550
-F 0 "U815" H 11900 3600 50  0000 C CNN
-F 1 "74HC08" H 11900 3500 50  0000 C CNN
-F 2 "" H 11900 3550 50  0001 C CNN
-F 3 "" H 11900 3550 50  0001 C CNN
-	3    11900 3550
+P 11800 3050
+F 0 "U815" H 11800 3100 50  0000 C CNN
+F 1 "74HC08" H 11800 3000 50  0000 C CNN
+F 2 "" H 11800 3050 50  0001 C CNN
+F 3 "" H 11800 3050 50  0001 C CNN
+	3    11800 3050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	11300 3650 10600 3650
+	11200 3150 10500 3150
+Text Label 10550 3150 0    60   ~ 0
+-uExtRW
 Wire Wire Line
-	10600 3050 11200 3050
-Wire Wire Line
-	11200 2950 11200 3150
-Wire Wire Line
-	11200 2950 11300 2950
-Wire Wire Line
-	11200 3150 11300 3150
-Connection ~ 11200 3050
-Text Label 10650 3050 0    60   ~ 0
-memDir
-Wire Wire Line
-	12500 3050 12600 3050
-Wire Wire Line
-	12600 3050 12600 3300
-Wire Wire Line
-	12600 3300 11200 3300
-Wire Wire Line
-	11200 3300 11200 3450
-Wire Wire Line
-	11200 3450 11300 3450
-Text Label 10650 3650 0    60   ~ 0
-extRW
-Wire Wire Line
-	12500 3550 12900 3550
-Text Label 12550 3550 0    60   ~ 0
-extR
-Text Notes 11100 2250 0    60   ~ 0
+	12400 3050 12800 3050
+Text Label 12450 3050 0    60   ~ 0
+-uExtR
+Text Notes 11000 2250 0    60   ~ 0
 external memory r/w signals
 $Comp
 L 74LS08 U815
@@ -1378,16 +1346,43 @@ $EndComp
 Wire Wire Line
 	11300 4250 11100 4250
 Wire Wire Line
-	11100 4250 11100 4550
+	11100 3750 11100 4550
 Wire Wire Line
 	11300 4450 11100 4450
 Connection ~ 11100 4450
 Text Label 9100 7850 0    60   ~ 0
-extW
-Text Label 9100 8050 0    60   ~ 0
-extR
+extRW
 Text HLabel 10950 7950 2    60   Output ~ 0
+-uExtRW
+Wire Wire Line
+	8300 9000 8800 9000
+Text Label 8350 9000 0    60   ~ 0
+uMemDir
+Text Label 8350 9100 0    60   ~ 0
+-uMemDir
+Wire Wire Line
+	11200 2950 10500 2950
+Text Label 10550 2950 0    60   ~ 0
+-uMemDir
+Text HLabel 12800 2550 2    60   Output ~ 0
 -uExtW
-Text HLabel 10950 8150 2    60   Output ~ 0
+Text HLabel 12800 3050 2    60   Output ~ 0
 -uExtR
+$Comp
+L 74LS00 U801
+U 4 1 596FF174
+P 11900 3850
+F 0 "U801" H 11900 3900 50  0000 C CNN
+F 1 "74HC00" H 11900 3750 50  0000 C CNN
+F 2 "" H 11900 3850 50  0001 C CNN
+F 3 "" H 11900 3850 50  0001 C CNN
+	4    11900 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	11300 3750 11100 3750
+Connection ~ 11100 4250
+Wire Wire Line
+	11300 3950 11100 3950
+Connection ~ 11100 3950
 $EndSCHEMATC
