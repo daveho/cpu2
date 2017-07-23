@@ -449,10 +449,8 @@ F 3 "" H 6750 3250 50  0001 C CNN
 	1    6750 3250
 	1    0    0    -1  
 $EndComp
-Text Notes 7450 3500 0    60   ~ 0
+Text Notes 9000 3500 0    60   ~ 0
 condition code register
-Text Notes 5650 1600 2    60   ~ 0
-The end of the low pulse on -rdALU\nto send the ALU output to the ALU\nbus can be used to clock the current\ncondition codes into the condition code\nregister.  (Will this work?)
 Wire Wire Line
 	1000 650  2450 650 
 Wire Wire Line
@@ -624,8 +622,6 @@ Wire Wire Line
 Wire Wire Line
 	7250 2650 5800 2650
 Wire Wire Line
-	5800 1700 5800 4450
-Wire Wire Line
 	5800 1700 5550 1700
 Wire Wire Line
 	7250 2750 7100 2750
@@ -648,7 +644,7 @@ Wire Wire Line
 Wire Wire Line
 	8650 2450 9000 2450
 Wire Wire Line
-	5300 3650 7250 3650
+	5300 3650 8800 3650
 Wire Wire Line
 	5300 6750 5900 6750
 Wire Wire Line
@@ -662,17 +658,14 @@ Wire Wire Line
 Wire Wire Line
 	6000 6650 6000 3850
 Wire Wire Line
-	6000 3850 7250 3850
+	6000 3850 8800 3850
 Wire Wire Line
-	5800 4450 7250 4450
-Connection ~ 5800 2650
+	10200 3650 10550 3650
 Wire Wire Line
-	8650 3650 9000 3650
-Wire Wire Line
-	8650 3850 9000 3850
-Text HLabel 9000 3650 2    60   Output ~ 0
+	10200 3850 10550 3850
+Text HLabel 10550 3650 2    60   Output ~ 0
 EQ
-Text HLabel 9000 3850 2    60   Output ~ 0
+Text HLabel 10550 3850 2    60   Output ~ 0
 -COUT
 Wire Wire Line
 	3100 4300 3100 5150
@@ -682,53 +675,59 @@ Connection ~ 2800 4000
 $Comp
 L 74LS175 U705
 U 1 1 594A6E0F
-P 7950 4100
-F 0 "U705" H 7950 4100 50  0000 C CNN
-F 1 "74HC175" H 8050 3700 50  0000 C CNN
-F 2 "" H 7950 4100 50  0001 C CNN
-F 3 "" H 7950 4100 50  0001 C CNN
-	1    7950 4100
+P 9500 4100
+F 0 "U705" H 9500 4100 50  0000 C CNN
+F 1 "74HC175" H 9600 3700 50  0000 C CNN
+F 2 "" H 9500 4100 50  0001 C CNN
+F 3 "" H 9500 4100 50  0001 C CNN
+	1    9500 4100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7250 4050 7050 4050
+	8800 4050 8450 4050
 Wire Wire Line
-	7050 4050 7050 4850
+	8450 4050 8450 4850
 Wire Wire Line
-	7250 4250 7050 4250
-Connection ~ 7050 4250
+	8800 4250 8450 4250
+Connection ~ 8450 4250
 $Comp
 L GND #PWR?
 U 1 1 594A7340
-P 7050 4850
-F 0 "#PWR?" H 7050 4600 50  0001 C CNN
-F 1 "GND" H 7050 4700 50  0000 C CNN
-F 2 "" H 7050 4850 50  0001 C CNN
-F 3 "" H 7050 4850 50  0001 C CNN
-	1    7050 4850
+P 8450 4850
+F 0 "#PWR?" H 8450 4600 50  0001 C CNN
+F 1 "GND" H 8450 4700 50  0000 C CNN
+F 2 "" H 8450 4850 50  0001 C CNN
+F 3 "" H 8450 4850 50  0001 C CNN
+	1    8450 4850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7250 4550 6750 4550
+	8800 4550 8150 4550
 Wire Wire Line
-	6750 4550 6750 4300
+	8150 4550 8150 4300
 $Comp
 L VCC #PWR?
 U 1 1 594A7432
-P 6750 4300
-F 0 "#PWR?" H 6750 4150 50  0001 C CNN
-F 1 "VCC" H 6750 4450 50  0000 C CNN
-F 2 "" H 6750 4300 50  0001 C CNN
-F 3 "" H 6750 4300 50  0001 C CNN
-	1    6750 4300
+P 8150 4300
+F 0 "#PWR?" H 8150 4150 50  0001 C CNN
+F 1 "VCC" H 8150 4450 50  0000 C CNN
+F 2 "" H 8150 4300 50  0001 C CNN
+F 3 "" H 8150 4300 50  0001 C CNN
+	1    8150 4300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8650 3750 9000 3750
+	10200 3750 10550 3750
 Wire Wire Line
-	8650 3950 9000 3950
-Text HLabel 9000 3750 2    60   Output ~ 0
+	10200 3950 10550 3950
+Text HLabel 10550 3750 2    60   Output ~ 0
 -EQ
-Text HLabel 9000 3950 2    60   Output ~ 0
+Text HLabel 10550 3950 2    60   Output ~ 0
 COUT
+Wire Wire Line
+	5800 2650 5800 1700
+Text HLabel 7600 4450 0    60   Input ~ 0
+-latchCC
+Wire Wire Line
+	7600 4450 8800 4450
 $EndSCHEMATC

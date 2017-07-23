@@ -1387,4 +1387,10 @@ Wire Wire Line
 	10950 7950 11600 7950
 Text Label 11050 7950 0    60   ~ 0
 -uExtRW
+Text Label 5400 8000 0    60   ~ 0
+latchCC
+Text HLabel 10950 8150 2    60   Output ~ 0
+-uLatchCC
+Text Label 9100 8050 0    60   ~ 0
+latchCC
 $EndSCHEMATC
