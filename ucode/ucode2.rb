@@ -22,6 +22,10 @@ class Bitstring
   attr_reader :bits
 
   def initialize(s)
+    if s.is_a?(Fixnum)
+      raise "Not a 0 or 1" if s != 0 && s != 1
+      s = s.to_s
+    end
     @bits = s
   end
 
@@ -29,9 +33,22 @@ class Bitstring
     return :bitstring
   end
 
-  def self.from_i(intval)
-    raise "Not a 0 or 1" if intval != 0 && intval != 1
-    return Bitstring.new(intval.to_s)
+  def nbits
+    return @bits.length
+  end
+end
+
+class USignal
+  attr_reader :name, :defval, :index
+
+  def initialize(name, defval, index)
+    @name = name
+    @defval = defval
+    @index = index
+  end
+
+  def nbits
+    return @defval.nbits
   end
 end
 
@@ -57,10 +74,26 @@ end
 # Assembler class
 
 class Assembler
+  def initialize
+    @signals = []
+  end
+
+  def defsig(name, defval)
+    index = self._next_index
+    sig = USignal.new(name, defval, index)
+    @signals.push(sig)
+  end
+
   def add_ins
     wf = Waveform.new
     yield wf
     # TODO: assemble the actual microcode words
+  end
+
+  def _next_index
+    index = 0
+    @signals.each { |sig| index += sig.nbits }
+    return index
   end
 end
 
@@ -129,6 +162,33 @@ end
 
 class GenUcode < Assembler
   def gen_instructions
+    # Define signals and default values
+    self.defsig 'rdGP', Bitstring.new(0)
+    self.defsig 'rdGPAddr', Bitstring.new('00')
+    self.defsig 'rdAR', Bitstring.new(0)
+    self.defsig 'rdPC', Bitstring.new(0)
+    self.defsig 'rwMem', Bitstring.new(0)
+    self.defsig 'wrGPLo', Bitstring.new(0)
+    self.defsig 'wrGPHi', Bitstring.new(0)
+    self.defsig 'wrGPAddr', Bitstring.new('00')
+    self.defsig 'wrARLo', Bitstring.new(0)
+    self.defsig 'wrARHi', Bitstring.new(0)
+    self.defsig 'wrPCLo', Bitstring.new(0)
+    self.defsig 'wrPCHi', Bitstring.new(0)
+    self.defsig 'memDir', Bitstring.new(0)
+    self.defsig 'driveAddr', Bitstring.new(0)
+    self.defsig 'aluOut', Bitstring.new(0)
+    self.defsig 'pcClk', Bitstring.new(0)
+    self.defsig 'aluOp', Bitstring.new('000000')
+    self.defsig '-endIfEq', Bitstring.new(1)
+    self.defsig '-endIfNew', Bitstring.new(1)
+    self.defsig '-endIfNoCarry', Bitstring.new(1)
+    self.defsig 'endIfNeqCarry', Bitstring.new(0)
+    self.defsig 'endIfNeqNoCarry', Bitstring.new(0)
+    self.defsig '-endUncond', Bitstring.new(1)
+    self.defsig 'latchAddr', Bitstring.new(0)
+    self.defsig 'latchCC', Bitstring.new(0)
+
     # Nop instruction
     self.add_ins { |wf| nop(wf) }
 
