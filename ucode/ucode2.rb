@@ -10,11 +10,19 @@ class Deassert
   def valtype
     return :deassert
   end
+
+  def play(sig, word)
+    return word.drive(sig, sig.defval)
+  end
 end
 
 class Assert
   def valtype
     return :assert
+  end
+
+  def play(sig, word)
+    return word.drive(sig, sig.defval.negate)
   end
 end
 
@@ -36,15 +44,33 @@ class Bitstring
   def nbits
     return @bits.length
   end
+
+  def negate
+    return Bitstring.new(@bits.tr('01', '10'))
+  end
+
+  def to_s
+    return @bits
+  end
+
+  def drive(sig, bs)
+    index = sig.index
+    updated_bits = @bits[0, index] + bs.bits + @bits[index + bs.nbits, @bits.length - index - bs.nbits]
+    return Bitstring.new(updated_bits)
+  end
+
+  def play(sig, word)
+    return word.drive(sig, self)
+  end
 end
 
 class USignal
-  attr_reader :name, :defval, :index
+  attr_reader :name, :defval
+  attr_accessor :index
 
-  def initialize(name, defval, index)
+  def initialize(name, defval)
     @name = name
     @defval = defval
-    @index = index
   end
 
   def nbits
@@ -53,7 +79,49 @@ class USignal
 end
 
 class Waveform
-  def play(sigName, *values)
+  def initialize
+    @sig_waveforms = []
+  end
+
+  def play(signame, *values)
+    @sig_waveforms.push([signame, values])
+  end
+
+  # Check that all of the signal waveforms have the same length
+  def check
+    len = 0
+    @sig_waveforms.each do |pair|
+      values = pair[1]
+      if len == 0
+        len = values.length
+      else
+        return false if values.length != len
+      end
+    end
+    return true
+  end
+
+  def nsignals
+    return @sig_waveforms.length
+  end
+
+  # This assumes that the check method has been called to ensure that
+  # all signal waveforms are the same length.  It also assumes that
+  # there is at least one signal waveform.
+  def nclocks
+    return @sig_waveforms[0][1].length
+  end
+
+  # Get name of signal for specified signal waveform (i is the signal
+  # waveform index)
+  def signame(i)
+    return @sig_waveforms[i][0]
+  end
+
+  # Get value of specified signal waveform (i is signal waveform index)
+  # at time t
+  def sigval(i, t)
+    return @sig_waveforms[i][1][t]
   end
 end
 
@@ -79,21 +147,61 @@ class Assembler
   end
 
   def defsig(name, defval)
-    index = self._next_index
-    sig = USignal.new(name, defval, index)
+    sig = USignal.new(name, defval)
     @signals.push(sig)
+  end
+
+  def get_signal(signame)
+    @signals.each do |sig|
+      return sig if sig.name == signame
+    end
+    raise "Unknown signal #{signame}"
+  end
+
+  def default_word
+    bits = ''
+    # Signals are added least significant to most significant,
+    # so reverse them
+    @signals.reverse.each do |sig|
+      bits += sig.defval.bits
+    end
+    return Bitstring.new(bits)
   end
 
   def add_ins
     wf = Waveform.new
     yield wf
-    # TODO: assemble the actual microcode words
+    # Make sure all signal waveforms are the same length
+    raise "Inconsistent signal waveform lengths" if !wf.check
+
+    words = []
+
+    # Use default word as initial word
+    word = self.default_word
+
+    # Assemble the actual microcode words
+    (0..wf.nclocks-1).each do |t|
+      (0..wf.nsignals-1).each do |i|
+        signame = wf.signame(i)
+        sig = self.get_signal(signame)
+        sigval = wf.sigval(i, t)
+        word = sigval.play(sig, word)
+      end
+      words.push(word)
+    end
+
+    puts "Instruction:"
+    words.each { |w| puts w }
   end
 
-  def _next_index
+  # Assign indices to signals (only do this after all signals have
+  # been added)
+  def assign_indices
     index = 0
-    @signals.each { |sig| index += sig.nbits }
-    return index
+    @signals.each do |sig|
+      sig.index = index
+      index += sig.nbits
+    end
   end
 end
 
@@ -140,7 +248,7 @@ end
 # Waveform template functions
 
 def nop(wf)
-  wf.play 'endUncond', x
+  wf.play '-endUncond', x
 end
 
 def mov(wf, dest_reg, src_reg)
@@ -149,13 +257,13 @@ def mov(wf, dest_reg, src_reg)
   u = src_reg_to_alu_op(src_reg)
   dest_bank = dest_reg_to_bank(dest_reg)
 
-  wf.play 'rdGPAddr',  r, r, r, _
-  wf.play 'rdGP',      x, x, x, _
-  wf.play 'wrGPAddr',  w, w, w, _
-  wf.play dest_bank,   _, x, _, _
-  wf.play 'aluOp',     u, u, u, _
-  wf.play 'aluOut',    x, x, x, _
-  wf.play 'endUncond', _, _, _, x
+  wf.play 'rdGPAddr',   r, r, r, _
+  wf.play 'rdGP',       x, x, x, _
+  wf.play 'wrGPAddr',   w, w, w, _
+  wf.play dest_bank,    _, x, _, _
+  wf.play 'aluOp',      u, u, u, _
+  wf.play 'aluOut',     x, x, x, _
+  wf.play '-endUncond', _, _, _, x
 end
 
 # Generate microcode
@@ -189,20 +297,18 @@ class GenUcode < Assembler
     self.defsig 'latchAddr', Bitstring.new(0)
     self.defsig 'latchCC', Bitstring.new(0)
 
+    # Assign indices to signals
+    self.assign_indices
+
     # Nop instruction
     self.add_ins { |wf| nop(wf) }
 
     # GP register move to r0 through r7
-    (0..7).each { |dest_reg| self._add_gp_mov(dest_reg) }
-  end
-
-  # Add GP reg/reg mov instructions to given destination register.
-  # All source registers are generated except the destination register.
-  # I.e., there is no "mov r0, r0" instruction.
-  def _add_gp_mov(dest_reg)
-    (0..7).each do |src_reg|
-      if src_reg != dest_reg
-        self.add_ins { |wf| mov(wf, "r#{dest_reg}", "r#{src_reg}") }
+    (0..7).each do |dest_reg|
+      (0..7).each do |src_reg|
+        if src_reg != dest_reg
+          self.add_ins { |wf| mov(wf, "r#{dest_reg}", "r#{src_reg}") }
+        end
       end
     end
   end
@@ -212,6 +318,7 @@ end
 asm = GenUcode.new
 asm.gen_instructions
 
+puts "Default word is #{asm.default_word}"
 
 # vim:set expandtab:
 # vim:set tabstop=2:
