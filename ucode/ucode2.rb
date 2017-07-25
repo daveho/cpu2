@@ -125,6 +125,14 @@ class Waveform
   end
 end
 
+class AssembledInstruction
+  attr_reader :opcode, :words
+
+  def initialize(opcode, words)
+    @words = words
+  end
+end
+
 # Global assert/deassert values
 
 # Function to return an Assert value, indicating that a
@@ -144,6 +152,7 @@ end
 class Assembler
   def initialize
     @signals = []
+    @assembled_instructions = []
   end
 
   def defsig(name, defval)
@@ -192,6 +201,9 @@ class Assembler
 
     puts "Instruction:"
     words.each { |w| puts w }
+
+    ins = AssembledInstruction.new(@assembled_instructions.length, words)
+    @assembled_instructions.push(ins)
   end
 
   # Assign indices to signals (only do this after all signals have
