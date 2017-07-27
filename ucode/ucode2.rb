@@ -7,20 +7,12 @@
 # Utility classes
 
 class Deassert
-  def valtype
-    return :deassert
-  end
-
   def play(sig, word)
     return word.drive(sig, sig.defval)
   end
 end
 
 class Assert
-  def valtype
-    return :assert
-  end
-
   def play(sig, word)
     return word.drive(sig, sig.defval.negate)
   end
@@ -35,10 +27,6 @@ class Bitstring
       s = s.to_s
     end
     @bits = s
-  end
-
-  def valtype
-    return :bitstring
   end
 
   def nbits
