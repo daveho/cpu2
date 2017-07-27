@@ -6,18 +6,24 @@
 
 # Utility classes
 
+# Value class for deasserting a signal
+# (driving it to its default value)
 class Deassert
   def play(sig, word)
     return word.drive(sig, sig.defval)
   end
 end
 
+# Value class for asserting a signal (driving it to the opposite
+# of its default value)
 class Assert
   def play(sig, word)
     return word.drive(sig, sig.defval.negate)
   end
 end
 
+# Bitstring class (when used as a value, drives a signal to an
+# arbitrary bit pattern)
 class Bitstring
   attr_reader :bits
 
@@ -52,6 +58,7 @@ class Bitstring
   end
 end
 
+# Signal class: represents one or more bits of the microcode control word
 class USignal
   attr_reader :name, :defval
   attr_accessor :index
@@ -66,6 +73,8 @@ class USignal
   end
 end
 
+# Waveform class: drive specified signals to specified values for some
+# number of clocks
 class Waveform
   def initialize
     @sig_waveforms = []
@@ -113,6 +122,7 @@ class Waveform
   end
 end
 
+# Sequence of microcode words to be executed for a given instruction
 class AssembledInstruction
   attr_reader :opcode, :words
 
@@ -251,6 +261,7 @@ def nop(wf)
   wf.play '-endUncond', x
 end
 
+# Move from source GP register to destination GP register
 def mov(wf, dest_reg, src_reg)
   r = reg_to_pair(src_reg)
   w = reg_to_pair(dest_reg)
