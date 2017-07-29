@@ -290,15 +290,15 @@ def ld(wf, dest_reg, src_pair)
   w = reg_to_pair(dest_reg)
   dest_bank = dest_reg_to_bank(dest_reg)
 
-  #                    +------------------ 0: read source address, assert to left/right busses
-  #                    |  +--------------- 1: latch source address, drive address onto addr bus
-  #                    |  |  +------------ 2: start ext read, start reg write, gate ext data to ALU data bus
-  #                    |  |  |  +--------- 3: clock data into dest register
-  #                    |  |  |  |  +------ 4: end ext read, end instruction
-  #                    |  |  |  |  |
-  wf.play 'rdGPAddr',   a, a, _, _, _
-  wf.play 'rdGP',       x, x, _, _, _
-  wf.play 'latchAddr',  x, _, _, _, _
+  #                     +--------------- 0: read source address, assert to left/right busses
+  #                     |  +------------ 1: latch source address, drive address onto addr bus
+  #                     |  |  +--------- 2: start ext read, start reg write, gate ext data to ALU data bus
+  #                     |  |  |  +------ 3: clock data into dest register
+  #                     |  |  |  |  +--- 4: end ext read, end instruction
+  #                     |  |  |  |  |
+  wf.play 'rdGPAddr',   a, a, a, _, _
+  wf.play 'rdGP',       x, x, x, _, _
+  wf.play 'latchAddr',  _, x, x, x, _
   wf.play 'driveAddr',  _, x, x, x, _
   wf.play 'memDir',     d, d, d, d, _
   wf.play 'rwMem',      _, _, x, x, _
@@ -306,6 +306,33 @@ def ld(wf, dest_reg, src_pair)
   wf.play 'wrGPAddr',   w, w, w, w, _
   wf.play dest_bank,    _, _, x, _, _
   wf.play '-endUncond', _, _, _, _, x
+end
+
+# Memory store from GP register to address specified by GP register pair
+def st(wf, dest_pair, src_reg)
+  d = DIR_WRITE
+  a = $pairs[dest_pair]
+  r = reg_to_pair(src_reg)
+  u = src_reg_to_alu_op(src_reg)
+
+  # Note that we don't need to latch the generated address:
+  # we can just use transparent mode because none of the GP
+  # registers can change during the store
+
+  #                     +------------ 0: read dest addr, assert to l/r busses, read src reg to ALU data bus
+  #                     |  +--------- 1: send reg data to external data bus, start external write
+  #                     |  |  +------ 2: clock data into external memory
+  #                     |  |  |  +--- 3: end external write, end instruction
+  #                     |  |  |  |
+  wf.play 'rdGPAddr',   a, a, a, _
+  wf.play 'rdGP',       x, x, x, _
+  wf.play 'driveAddr',  x, x, x, _
+  wf.play 'aluOp',      u, u, u, _
+  wf.play 'aluOut',     x, x, x, _
+  wf.play 'memDir',     d, d, d, _
+  wf.play 'rwMem',      _, x, x, _
+  wf.play 'extRW',      _, x, _, _
+  wf.play '-endUncond', _, _, _, x
 end
 
 # Generate microcode
@@ -349,17 +376,22 @@ class GenUcode < Assembler
     # Assign indices to signals
     self.assign_indices
 
-    # Nop instruction
+    # Nop instruction (1)
     self.add_ins { |wf| nop(wf) }
 
-    # GP register/register move instructions
+    # GP register/register move instructions (56)
     self._all_gp_dest_src do |dest_reg, src_reg|
       self.add_ins { |wf| mov(wf, dest_reg, src_reg) }
     end
 
-    # Memory load using gp pair to generate address
+    # Memory load using gp pair to generate address (32)
     self._all_gp_reg_pair do |reg, pair|
       self.add_ins { |wf| ld(wf, reg, pair) }
+    end
+
+    # Memory store using gp pair to generate address (32)
+    self._all_gp_reg_pair do |reg, pair|
+      self.add_ins { |wf| st(wf, pair, reg) }
     end
   end
 
