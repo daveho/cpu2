@@ -46,7 +46,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text Notes 7150 6800 0    60   ~ 0
-bus control and address registers
+bus control
 Wire Wire Line
 	3800 1200 3300 1200
 Wire Wire Line
@@ -258,92 +258,6 @@ Text Label 9600 1800 0    60   ~ 0
 D6
 Text Label 9600 1900 0    60   ~ 0
 D7
-$Comp
-L 74LS574 U904
-U 1 1 595F244F
-P 4500 5000
-F 0 "U904" H 4500 5000 50  0000 C CNN
-F 1 "74HC574" H 4550 4650 50  0000 C CNN
-F 2 "" H 4500 5000 50  0001 C CNN
-F 3 "" H 4500 5000 50  0001 C CNN
-	1    4500 5000
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74LS574 U905
-U 1 1 595F246E
-P 4500 6300
-F 0 "U905" H 4500 6300 50  0000 C CNN
-F 1 "74HC574" H 4550 5950 50  0000 C CNN
-F 2 "" H 4500 6300 50  0001 C CNN
-F 3 "" H 4500 6300 50  0001 C CNN
-	1    4500 6300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3800 4500 3300 4500
-Wire Wire Line
-	3800 4600 3300 4600
-Wire Wire Line
-	3800 4700 3300 4700
-Wire Wire Line
-	3800 4800 3300 4800
-Wire Wire Line
-	3800 4900 3300 4900
-Wire Wire Line
-	3800 5000 3300 5000
-Wire Wire Line
-	3800 5100 3300 5100
-Wire Wire Line
-	3800 5200 3300 5200
-Wire Wire Line
-	3800 5800 3300 5800
-Wire Wire Line
-	3800 5900 3300 5900
-Wire Wire Line
-	3800 6000 3300 6000
-Wire Wire Line
-	3800 6100 3300 6100
-Wire Wire Line
-	3800 6200 3300 6200
-Wire Wire Line
-	3800 6300 3300 6300
-Wire Wire Line
-	3800 6400 3300 6400
-Wire Wire Line
-	3800 6500 3300 6500
-Text Label 3350 4500 0    60   ~ 0
-ALU0
-Text Label 3350 4600 0    60   ~ 0
-ALU1
-Text Label 3350 4700 0    60   ~ 0
-ALU2
-Text Label 3350 4800 0    60   ~ 0
-ALU3
-Text Label 3350 4900 0    60   ~ 0
-ALU4
-Text Label 3350 5000 0    60   ~ 0
-ALU5
-Text Label 3350 5100 0    60   ~ 0
-ALU6
-Text Label 3350 5200 0    60   ~ 0
-ALU7
-Text Label 3350 5800 0    60   ~ 0
-ALU0
-Text Label 3350 5900 0    60   ~ 0
-ALU1
-Text Label 3350 6000 0    60   ~ 0
-ALU2
-Text Label 3350 6100 0    60   ~ 0
-ALU3
-Text Label 3350 6200 0    60   ~ 0
-ALU4
-Text Label 3350 6300 0    60   ~ 0
-ALU5
-Text Label 3350 6400 0    60   ~ 0
-ALU6
-Text Label 3350 6500 0    60   ~ 0
-ALU7
 Wire Wire Line
 	1850 1200 2300 1200
 Wire Wire Line
@@ -446,12 +360,6 @@ Wire Wire Line
 	1850 4300 2300 4300
 Wire Wire Line
 	1850 4400 2300 4400
-Wire Wire Line
-	1850 4600 2300 4600
-Wire Wire Line
-	1850 4800 2300 4800
-Wire Wire Line
-	1850 4900 2300 4900
 Text Label 1900 4000 0    60   ~ 0
 -driveAddr
 Text Label 1900 4300 0    60   ~ 0
@@ -466,28 +374,6 @@ Text Label 7350 2100 0    60   ~ 0
 memDir
 Text Label 1900 4400 0    60   ~ 0
 memDir
-Wire Wire Line
-	3800 5400 3300 5400
-Wire Wire Line
-	3800 5500 3300 5500
-Wire Wire Line
-	3800 6700 3300 6700
-Wire Wire Line
-	3800 6800 3300 6800
-Text Label 3350 5400 0    60   ~ 0
--wrARLo
-Text Label 3350 5500 0    60   ~ 0
--rdAR
-Text Label 3350 6700 0    60   ~ 0
--wrARHi
-Text Label 3350 6800 0    60   ~ 0
--rdAR
-Text Label 1900 4600 0    60   ~ 0
--rdAR
-Text Label 1900 4800 0    60   ~ 0
--wrARLo
-Text Label 1900 4900 0    60   ~ 0
--wrARHi
 Text HLabel 1850 1200 0    60   BiDi ~ 0
 ALU0
 Text HLabel 1850 1300 0    60   BiDi ~ 0
@@ -504,37 +390,37 @@ Text HLabel 1850 1800 0    60   BiDi ~ 0
 ALU6
 Text HLabel 1850 1900 0    60   BiDi ~ 0
 ALU7
-Text HLabel 1850 2100 0    60   BiDi ~ 0
+Text HLabel 1850 2100 0    60   Input ~ 0
 LEFT0
-Text HLabel 1850 2200 0    60   BiDi ~ 0
+Text HLabel 1850 2200 0    60   Input ~ 0
 LEFT1
-Text HLabel 1850 2300 0    60   BiDi ~ 0
+Text HLabel 1850 2300 0    60   Input ~ 0
 LEFT2
-Text HLabel 1850 2400 0    60   BiDi ~ 0
+Text HLabel 1850 2400 0    60   Input ~ 0
 LEFT3
-Text HLabel 1850 2500 0    60   BiDi ~ 0
+Text HLabel 1850 2500 0    60   Input ~ 0
 LEFT4
-Text HLabel 1850 2600 0    60   BiDi ~ 0
+Text HLabel 1850 2600 0    60   Input ~ 0
 LEFT5
-Text HLabel 1850 2700 0    60   BiDi ~ 0
+Text HLabel 1850 2700 0    60   Input ~ 0
 LEFT6
-Text HLabel 1850 2800 0    60   BiDi ~ 0
+Text HLabel 1850 2800 0    60   Input ~ 0
 LEFT7
-Text HLabel 1850 3000 0    60   BiDi ~ 0
+Text HLabel 1850 3000 0    60   Input ~ 0
 RIGHT0
-Text HLabel 1850 3100 0    60   BiDi ~ 0
+Text HLabel 1850 3100 0    60   Input ~ 0
 RIGHT1
-Text HLabel 1850 3200 0    60   BiDi ~ 0
+Text HLabel 1850 3200 0    60   Input ~ 0
 RIGHT2
-Text HLabel 1850 3300 0    60   BiDi ~ 0
+Text HLabel 1850 3300 0    60   Input ~ 0
 RIGHT3
-Text HLabel 1850 3400 0    60   BiDi ~ 0
+Text HLabel 1850 3400 0    60   Input ~ 0
 RIGHT4
-Text HLabel 1850 3500 0    60   BiDi ~ 0
+Text HLabel 1850 3500 0    60   Input ~ 0
 RIGHT5
-Text HLabel 1850 3600 0    60   BiDi ~ 0
+Text HLabel 1850 3600 0    60   Input ~ 0
 RIGHT6
-Text HLabel 1850 3700 0    60   BiDi ~ 0
+Text HLabel 1850 3700 0    60   Input ~ 0
 RIGHT7
 Text HLabel 1850 4000 0    60   Input ~ 0
 -driveAddr
@@ -542,12 +428,6 @@ Text HLabel 1850 4300 0    60   Input ~ 0
 -rwMem
 Text HLabel 1850 4400 0    60   Input ~ 0
 memDir
-Text HLabel 1850 4600 0    60   Input ~ 0
--rdAR
-Text HLabel 1850 4800 0    60   Input ~ 0
--wrARLo
-Text HLabel 1850 4900 0    60   Input ~ 0
--wrARHi
 Text HLabel 9900 3000 2    60   Output ~ 0
 A0
 Text HLabel 9900 3100 2    60   Output ~ 0
@@ -600,72 +480,6 @@ Text Notes 4000 950  0    60   ~ 0
 address bus drivers
 Text Notes 7950 950  0    60   ~ 0
 external data bus transceiver
-Text Notes 3900 4300 0    60   ~ 0
-low/high address registers
-Wire Wire Line
-	5200 4500 5700 4500
-Wire Wire Line
-	5200 4600 5700 4600
-Wire Wire Line
-	5200 4700 5700 4700
-Wire Wire Line
-	5200 4800 5700 4800
-Wire Wire Line
-	5200 4900 5700 4900
-Wire Wire Line
-	5200 5000 5700 5000
-Wire Wire Line
-	5200 5100 5700 5100
-Wire Wire Line
-	5200 5200 5700 5200
-Wire Wire Line
-	5200 5800 5700 5800
-Wire Wire Line
-	5200 5900 5700 5900
-Wire Wire Line
-	5200 6000 5700 6000
-Wire Wire Line
-	5200 6100 5700 6100
-Wire Wire Line
-	5200 6200 5700 6200
-Wire Wire Line
-	5200 6300 5700 6300
-Wire Wire Line
-	5200 6400 5700 6400
-Wire Wire Line
-	5200 6500 5700 6500
-Text Label 5450 4500 0    60   ~ 0
-A0
-Text Label 5450 4600 0    60   ~ 0
-A1
-Text Label 5450 4700 0    60   ~ 0
-A2
-Text Label 5450 4800 0    60   ~ 0
-A3
-Text Label 5450 4900 0    60   ~ 0
-A4
-Text Label 5450 5000 0    60   ~ 0
-A5
-Text Label 5450 5100 0    60   ~ 0
-A6
-Text Label 5450 5200 0    60   ~ 0
-A7
-Text Label 5450 5800 0    60   ~ 0
-A8
-Text Label 5450 5900 0    60   ~ 0
-A9
-Text Label 5450 6000 0    60   ~ 0
-A10
-Text Label 5450 6100 0    60   ~ 0
-A11
-Text Label 5450 6200 0    60   ~ 0
-A12
-Text Label 5450 6300 0    60   ~ 0
-A13
-Text Label 5450 6400 0    60   ~ 0
-A14
-Text Label 5450 6500 0    60   ~ 0
-A15
 Wire Wire Line
 	9400 3000 9900 3000
 Wire Wire Line

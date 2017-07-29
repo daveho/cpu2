@@ -131,7 +131,7 @@ class AssembledInstruction
   end
 end
 
-# Global assert/deassert values
+# Global assert/deassert values, global bitstring values
 
 # Function to return an Assert value, indicating that a
 # signal should be asserted
@@ -144,6 +144,12 @@ end
 def _
   return Deassert.new
 end
+
+# Data direction for reads
+DIR_READ = Bitstring.new(0)
+
+# Data direction for writes
+DIR_WRITE = Bitstring.new(1)
 
 # Assembler class
 
@@ -277,28 +283,60 @@ def mov(wf, dest_reg, src_reg)
   wf.play '-endUncond', _, _, _, x
 end
 
+# Memory load from address specified by GP register pair into GP register
+def ld(wf, dest_reg, src_pair)
+  d = DIR_READ
+  a = $pairs[src_pair]
+  w = reg_to_pair(dest_reg)
+  dest_bank = dest_reg_to_bank(dest_reg)
+
+  #                    +------------------ 0: read source address, assert to left/right busses
+  #                    |  +--------------- 1: latch source address, drive address onto addr bus
+  #                    |  |  +------------ 2: start ext read, start reg write, gate ext data to ALU data bus
+  #                    |  |  |  +--------- 3: clock data into dest register
+  #                    |  |  |  |  +------ 4: end ext read, end instruction
+  #                    |  |  |  |  |
+  wf.play 'rdGPAddr',   a, a, _, _, _
+  wf.play 'rdGP',       x, x, _, _, _
+  wf.play 'latchAddr',  x, _, _, _, _
+  wf.play 'driveAddr',  _, x, x, x, _
+  wf.play 'memDir',     d, d, d, d, _
+  wf.play 'rwMem',      _, _, x, x, _
+  wf.play 'extRW',      _, _, x, x, _
+  wf.play 'wrGPAddr',   w, w, w, w, _
+  wf.play dest_bank,    _, _, x, _, _
+  wf.play '-endUncond', _, _, _, _, x
+end
+
 # Generate microcode
 
 class GenUcode < Assembler
   def gen_instructions
     # Define signals and default values
+
+    # ROM 1 (LSB to MSB)
     self.defsig 'rdGP', Bitstring.new(0)
     self.defsig 'rdGPAddr', Bitstring.new('00')
-    self.defsig 'rdAR', Bitstring.new(0)
     self.defsig 'rdPC', Bitstring.new(0)
     self.defsig 'rwMem', Bitstring.new(0)
+    self.defsig 'memDir', Bitstring.new(0)    # 0=read, 1=write
+    self.defsig 'driveAddr', Bitstring.new(0)
+    self.defsig 'extRW', Bitstring.new(0)     # 1=assert external read/write
+
+    # ROM 2 (LSB to MSB)
     self.defsig 'wrGPLo', Bitstring.new(0)
     self.defsig 'wrGPHi', Bitstring.new(0)
     self.defsig 'wrGPAddr', Bitstring.new('00')
-    self.defsig 'wrARLo', Bitstring.new(0)
-    self.defsig 'wrARHi', Bitstring.new(0)
     self.defsig 'wrPCLo', Bitstring.new(0)
     self.defsig 'wrPCHi', Bitstring.new(0)
-    self.defsig 'memDir', Bitstring.new(0)
-    self.defsig 'driveAddr', Bitstring.new(0)
+    self.defsig 'unused2', Bitstring.new('00')
+
+    # ROM 3 (LSB to MSB)
     self.defsig 'aluOut', Bitstring.new(0)
     self.defsig 'pcClk', Bitstring.new(0)
     self.defsig 'aluOp', Bitstring.new('000000')
+
+    # ROM 4 (LSB to MSB)
     self.defsig '-endIfEq', Bitstring.new(1)
     self.defsig '-endIfNew', Bitstring.new(1)
     self.defsig '-endIfNoCarry', Bitstring.new(1)
@@ -314,12 +352,33 @@ class GenUcode < Assembler
     # Nop instruction
     self.add_ins { |wf| nop(wf) }
 
-    # GP register move to r0 through r7
+    # GP register/register move instructions
+    self._all_gp_dest_src do |dest_reg, src_reg|
+      self.add_ins { |wf| mov(wf, dest_reg, src_reg) }
+    end
+
+    # Memory load using gp pair to generate address
+    self._all_gp_reg_pair do |reg, pair|
+      self.add_ins { |wf| ld(wf, reg, pair) }
+    end
+  end
+
+  # Generate all gp dest/src register combinations (where src != dest)
+  def _all_gp_dest_src
     (0..7).each do |dest_reg|
       (0..7).each do |src_reg|
         if src_reg != dest_reg
-          self.add_ins { |wf| mov(wf, "r#{dest_reg}", "r#{src_reg}") }
+          yield "r#{dest_reg}", "r#{src_reg}"
         end
+      end
+    end
+  end
+
+  # Generate all gp register/pair combinations
+  def _all_gp_reg_pair
+    (0..7).each do |reg|
+      (0..3).each do |x|
+        yield "r#{reg}", "r#{x*2}#{x*2+1}"
       end
     end
   end
