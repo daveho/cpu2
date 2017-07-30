@@ -1,10 +1,14 @@
 #! /usr/bin/ruby
 
+require 'optparse'
+
 # Experiment to generate microcode from a Ruby program,
 # where the waveform templates and instructions are specified
 # using Ruby code.
 
+########################################################################
 # Utility classes
+########################################################################
 
 # Value class for deasserting a signal
 # (driving it to its default value)
@@ -127,11 +131,57 @@ class AssembledInstruction
   attr_reader :opcode, :words
 
   def initialize(opcode, words)
+    @opcode = opcode
     @words = words
   end
 end
 
+# A mixin for reading and writing binary data from/to a file.
+# Can be used to extend an object supporting the standard
+# file I/O methods.
+module BinaryFile
+  def read_byte
+    return read(1).unpack("C")[0]
+  end
+
+  def read_int
+    val = read_int_unsigned()
+    if (val & 0x80000000) != 0
+      neg = -(0x100000000 - val)
+      #STDOUT.puts "converted #{val} to #{neg}"
+      val = neg
+    end
+    return val
+  end
+
+  def read_int_unsigned
+    return read(4).unpack("N")[0]
+  end
+
+  def read_str
+    # FIXME: fails for multi-byte character sets
+    len = read_int()
+    return read(len)
+  end
+
+  def write_byte(b)
+    write([b].pack("C"))
+  end
+
+  def write_int(i)
+    write([i].pack("N"))
+  end
+
+  def write_str(s)
+    # FIXME: fails for multi-byte character sets
+    write_int(s.length)
+    write(s)
+  end
+end
+
+########################################################################
 # Global assert/deassert values, global bitstring values
+########################################################################
 
 # Function to return an Assert value, indicating that a
 # signal should be asserted
@@ -145,13 +195,9 @@ def _
   return Deassert.new
 end
 
-# Data direction for reads
-DIR_READ = Bitstring.new(0)
-
-# Data direction for writes
-DIR_WRITE = Bitstring.new(1)
-
+########################################################################
 # Assembler class
+########################################################################
 
 class Assembler
   def initialize
@@ -203,10 +249,12 @@ class Assembler
       words.push(word)
     end
 
-    puts "Instruction:"
+    opcode = @assembled_instructions.length
+
+    puts "Instruction #{opcode}:"
     words.each { |w| puts w }
 
-    ins = AssembledInstruction.new(@assembled_instructions.length, words)
+    ins = AssembledInstruction.new(opcode, words)
     @assembled_instructions.push(ins)
   end
 
@@ -219,10 +267,26 @@ class Assembler
       index += sig.nbits
     end
   end
+
+  def get_assembled_instruction(opcode)
+    @assembled_instructions.each do |ins|
+      return ins if ins.opcode == opcode
+    end
+    # return default instruction
+    return @assembled_instructions[0]
+  end
 end
 
+########################################################################
 # Definitions and helper functions related to bit patterns
 # for signal generation
+########################################################################
+
+# Data direction for reads
+DIR_READ = Bitstring.new(0)
+
+# Data direction for writes
+DIR_WRITE = Bitstring.new(1)
 
 # Addresses for register pairs
 $pairs = {
@@ -261,7 +325,52 @@ def dest_reg_to_bank(reg)
   return rnum.even? ? 'wrGPLo' : 'wrGPHi'
 end
 
+########################################################################
+# Function to define signals
+########################################################################
+
+def defsignals(asm)
+    # Define signals and default values
+
+    # ROM 1 (LSB to MSB)
+    asm.defsig 'rdGP', Bitstring.new(0)
+    asm.defsig 'rdGPAddr', Bitstring.new('00')
+    asm.defsig 'rdPC', Bitstring.new(0)
+    asm.defsig 'rwMem', Bitstring.new(0)
+    asm.defsig 'memDir', Bitstring.new(0)    # 0=read, 1=write
+    asm.defsig 'driveAddr', Bitstring.new(0)
+    asm.defsig 'extRW', Bitstring.new(0)     # 1=assert external read/write
+
+    # ROM 2 (LSB to MSB)
+    asm.defsig 'wrGPLo', Bitstring.new(0)
+    asm.defsig 'wrGPHi', Bitstring.new(0)
+    asm.defsig 'wrGPAddr', Bitstring.new('00')
+    asm.defsig 'wrPCLo', Bitstring.new(0)
+    asm.defsig 'wrPCHi', Bitstring.new(0)
+    asm.defsig 'unused2', Bitstring.new('00')
+
+    # ROM 3 (LSB to MSB)
+    asm.defsig 'aluOut', Bitstring.new(0)
+    asm.defsig 'pcClk', Bitstring.new(0)
+    asm.defsig 'aluOp', Bitstring.new('000000')
+
+    # ROM 4 (LSB to MSB)
+    asm.defsig '-endIfEq', Bitstring.new(1)
+    asm.defsig '-endIfNew', Bitstring.new(1)
+    asm.defsig '-endIfNoCarry', Bitstring.new(1)
+    asm.defsig 'endIfNeqCarry', Bitstring.new(0)
+    asm.defsig 'endIfNeqNoCarry', Bitstring.new(0)
+    asm.defsig '-endUncond', Bitstring.new(1)
+    asm.defsig 'latchAddr', Bitstring.new(0)
+    asm.defsig 'latchCC', Bitstring.new(0)
+
+    # Assign indices to signals
+    asm.assign_indices
+end
+
+########################################################################
 # Waveform template functions
+########################################################################
 
 def nop(wf)
   wf.play '-endUncond', x
@@ -335,46 +444,14 @@ def st(wf, dest_pair, src_reg)
   wf.play '-endUncond', _, _, _, x
 end
 
+########################################################################
 # Generate microcode
+########################################################################
 
 class GenUcode < Assembler
   def gen_instructions
-    # Define signals and default values
-
-    # ROM 1 (LSB to MSB)
-    self.defsig 'rdGP', Bitstring.new(0)
-    self.defsig 'rdGPAddr', Bitstring.new('00')
-    self.defsig 'rdPC', Bitstring.new(0)
-    self.defsig 'rwMem', Bitstring.new(0)
-    self.defsig 'memDir', Bitstring.new(0)    # 0=read, 1=write
-    self.defsig 'driveAddr', Bitstring.new(0)
-    self.defsig 'extRW', Bitstring.new(0)     # 1=assert external read/write
-
-    # ROM 2 (LSB to MSB)
-    self.defsig 'wrGPLo', Bitstring.new(0)
-    self.defsig 'wrGPHi', Bitstring.new(0)
-    self.defsig 'wrGPAddr', Bitstring.new('00')
-    self.defsig 'wrPCLo', Bitstring.new(0)
-    self.defsig 'wrPCHi', Bitstring.new(0)
-    self.defsig 'unused2', Bitstring.new('00')
-
-    # ROM 3 (LSB to MSB)
-    self.defsig 'aluOut', Bitstring.new(0)
-    self.defsig 'pcClk', Bitstring.new(0)
-    self.defsig 'aluOp', Bitstring.new('000000')
-
-    # ROM 4 (LSB to MSB)
-    self.defsig '-endIfEq', Bitstring.new(1)
-    self.defsig '-endIfNew', Bitstring.new(1)
-    self.defsig '-endIfNoCarry', Bitstring.new(1)
-    self.defsig 'endIfNeqCarry', Bitstring.new(0)
-    self.defsig 'endIfNeqNoCarry', Bitstring.new(0)
-    self.defsig '-endUncond', Bitstring.new(1)
-    self.defsig 'latchAddr', Bitstring.new(0)
-    self.defsig 'latchCC', Bitstring.new(0)
-
-    # Assign indices to signals
-    self.assign_indices
+    # Define signals
+    defsignals(self)
 
     # Nop instruction (1)
     self.add_ins { |wf| nop(wf) }
@@ -414,13 +491,131 @@ class GenUcode < Assembler
       end
     end
   end
-
 end
 
-asm = GenUcode.new
-asm.gen_instructions
+########################################################################
+# Main code
+########################################################################
 
-puts "Default word is #{asm.default_word}"
+def rom_size_valid?(romsize)
+  max = 512*1024 # Could support 512K flash ROMS (2K ucode words per instruction!)
+  size = 1*1024 # AFAIK smallest EPROM is 2708, 1K
 
-# vim:set expandtab:
-# vim:set tabstop=2:
+  while size < romsize && size <= max
+    size *= 2
+  end
+
+  return size == romsize
+end
+
+# Convert string of '0' and '1' characters into a byte value
+def to_byte_val(s)
+  val = 0
+  s.each_char do |x|
+    val *= 2
+    val += x.to_i
+  end
+  return val
+end
+
+options = {}
+optparse = OptionParser.new do |opt|
+  opt.banner = 'Usage: asm.rb [options]'
+  opt.on('--output OUTPUT_PREFIX', 'Output file') { |o| options[:output_file] = o }
+  opt.on('--romsize ROM_SIZE_IN_BYTES', 'ROM size') { |o| options[:romsize] = o.to_i }
+  opt.on('--rotate NUM_BYTES', '# bytes to rotate ins seqs') { |o| options[:rotate] = o.to_i }
+  opt.on('--verbose', '-v', 'enable verbose output') { options[:verbose] = true }
+  opt.on('--help', 'Print this message') do
+    puts opt
+    exit
+  end
+end
+
+optparse.parse!
+
+input_file = ARGV.shift
+begin
+  raise "Output file not specified" if !options.has_key?(:output_file)
+  raise "ROM size not specified" if !options.has_key?(:romsize)
+  raise "Invalid ROM size (must be power of 2 from 1K to 512K)" if !rom_size_valid?(options[:romsize])
+rescue Object => e
+  puts e
+  puts optparse.help
+  exit
+end
+
+if !options.has_key?(:rotate)
+  options[:rotate] = 0
+end
+
+ucode = GenUcode.new
+ucode.gen_instructions
+
+puts "Default word is #{ucode.default_word}"
+
+# Make sure the microcode word size is a multiple of 8
+default_word = ucode.default_word
+wordsize = default_word.nbits
+raise "Word size #{wordsize} isn't a multiple of 8" if wordsize % 8 != 0
+
+# Just for debugging
+if options[:verbose]
+  puts "Default word: #{default_word}"
+
+  ucode.assembled_instructions.each do |ins|
+    puts "Instruction #{ins.opcode}"
+    count = 0
+    ins.words.each do |word|
+      puts "#{count}: #{word}"
+      count += 1
+    end
+  end
+end
+
+max_words = options[:romsize] / 256
+
+(0..(wordsize/8)-1).each do |rom_index|
+  bytes = []
+
+  (0..255).each do |opcode|
+    ins = ucode.get_assembled_instruction(opcode)
+    if ins.words.length > max_words
+      raise "Opcode #{opcode} has too many words (#{ins.words.length}, max is #{max_words}"
+    end
+
+    bit_offset = wordsize - ((rom_index+1) * 8)
+
+    ins_bytes = []
+    (0..max_words-1).each do |i|
+      word = (i < ins.words.length) ? ins.words[i] : default_word
+      bits = word.bits
+      slice = bits[bit_offset, 8]
+      byte_val = to_byte_val(slice)
+      ins_bytes.push(byte_val)
+    end
+
+    # rotate if necessary
+    options[:rotate].times do
+      val = ins_bytes.pop
+      ins_bytes.unshift(val)
+    end
+
+    bytes.concat(ins_bytes)
+  end
+
+  #puts "Generated #{bytes.length} bytes"
+
+  raise "Wrong number of bytes?" if bytes.length != options[:romsize]
+
+  outfile = "#{options[:output_file]}#{rom_index}.bin"
+  puts "Writing output file #{outfile}..."
+
+  File.open(outfile, "w") do |outf|
+    outf.extend(BinaryFile)
+    bytes.each do |byte_val|
+      outf.write_byte(byte_val)
+    end
+  end
+end
+
+puts "Done"
