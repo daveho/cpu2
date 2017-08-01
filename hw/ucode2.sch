@@ -45,83 +45,83 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text HLabel 1300 700  0    60   Input ~ 0
+Text HLabel 900  700  0    60   Input ~ 0
 OPC0
-Text HLabel 1300 800  0    60   Input ~ 0
+Text HLabel 900  800  0    60   Input ~ 0
 OPC1
-Text HLabel 1300 900  0    60   Input ~ 0
+Text HLabel 900  900  0    60   Input ~ 0
 OPC2
-Text HLabel 1300 1000 0    60   Input ~ 0
+Text HLabel 900  1000 0    60   Input ~ 0
 OPC3
-Text HLabel 1300 1100 0    60   Input ~ 0
+Text HLabel 900  1100 0    60   Input ~ 0
 OPC4
-Text HLabel 1300 1200 0    60   Input ~ 0
+Text HLabel 900  1200 0    60   Input ~ 0
 OPC5
-Text HLabel 1300 1300 0    60   Input ~ 0
+Text HLabel 900  1300 0    60   Input ~ 0
 OPC6
-Text HLabel 1300 1400 0    60   Input ~ 0
+Text HLabel 900  1400 0    60   Input ~ 0
 OPC7
-Text Label 1450 700  0    60   ~ 0
+Text Label 1050 700  0    60   ~ 0
 OPC0
-Text Label 1450 800  0    60   ~ 0
+Text Label 1050 800  0    60   ~ 0
 OPC1
-Text Label 1450 900  0    60   ~ 0
+Text Label 1050 900  0    60   ~ 0
 OPC2
-Text Label 1450 1000 0    60   ~ 0
+Text Label 1050 1000 0    60   ~ 0
 OPC3
-Text Label 1450 1100 0    60   ~ 0
+Text Label 1050 1100 0    60   ~ 0
 OPC4
-Text Label 1450 1200 0    60   ~ 0
+Text Label 1050 1200 0    60   ~ 0
 OPC5
-Text Label 1450 1300 0    60   ~ 0
+Text Label 1050 1300 0    60   ~ 0
 OPC6
-Text Label 1450 1400 0    60   ~ 0
+Text Label 1050 1400 0    60   ~ 0
 OPC7
-Text HLabel 1350 1900 0    60   Input ~ 0
+Text HLabel 950  1900 0    60   Input ~ 0
 CLK
-Text HLabel 1350 2100 0    60   Input ~ 0
+Text HLabel 950  2100 0    60   Input ~ 0
 -RST
-Text HLabel 1350 2300 0    60   Input ~ 0
+Text HLabel 950  2300 0    60   Input ~ 0
 -DIS
-Text Label 3750 3100 0    60   ~ 0
+Text Label 3350 3100 0    60   ~ 0
 -ucodeRST
-Text Label 1450 1900 0    60   ~ 0
+Text Label 1050 1900 0    60   ~ 0
 CLK
 $Comp
 L 74LS590 U802
 U 1 1 594ED261
-P 4500 2200
-F 0 "U802" H 4800 3000 50  0000 C CNN
-F 1 "74HC590" H 4750 1450 50  0000 C CNN
-F 2 "" H 4500 2200 60  0000 C CNN
-F 3 "" H 4500 2200 60  0000 C CNN
-	1    4500 2200
+P 4100 2200
+F 0 "U802" H 4400 3000 50  0000 C CNN
+F 1 "74HC590" H 4350 1450 50  0000 C CNN
+F 2 "" H 4100 2200 60  0000 C CNN
+F 3 "" H 4100 2200 60  0000 C CNN
+	1    4100 2200
 	1    0    0    -1  
 $EndComp
-Text HLabel 1350 1650 0    60   Input ~ 0
+Text HLabel 950  1650 0    60   Input ~ 0
 -CLK
-Text Label 5100 2150 0    60   ~ 0
+Text Label 4700 2150 0    60   ~ 0
 UC0
-Text Label 5100 2250 0    60   ~ 0
+Text Label 4700 2250 0    60   ~ 0
 UC1
-Text Label 5100 2350 0    60   ~ 0
+Text Label 4700 2350 0    60   ~ 0
 UC2
-Text Label 5100 2450 0    60   ~ 0
+Text Label 4700 2450 0    60   ~ 0
 UC3
-Text Label 5100 2550 0    60   ~ 0
+Text Label 4700 2550 0    60   ~ 0
 UC4
 $Comp
 L GND #PWR?
 U 1 1 594ED26E
-P 3400 2250
-F 0 "#PWR?" H 3400 2000 50  0001 C CNN
-F 1 "GND" H 3400 2100 50  0000 C CNN
-F 2 "" H 3400 2250 50  0001 C CNN
-F 3 "" H 3400 2250 50  0001 C CNN
-	1    3400 2250
+P 3000 2250
+F 0 "#PWR?" H 3000 2000 50  0001 C CNN
+F 1 "GND" H 3000 2100 50  0000 C CNN
+F 2 "" H 3000 2250 50  0001 C CNN
+F 3 "" H 3000 2250 50  0001 C CNN
+	1    3000 2250
 	1    0    0    -1  
 $EndComp
-Text Notes 3250 1250 0    60   ~ 0
+Text Notes 2850 1250 0    60   ~ 0
 Counter is advanced on positive clock edges,\nand counter values are clocked into the\nregister on negative clock edges.  So, updated\ncounts appear on negative clock edges.
 $Comp
 L 27C64 U803
@@ -517,12 +517,12 @@ Text Label 6450 9500 0    60   ~ 0
 $Comp
 L 74LS00 U801
 U 3 1 59522853
-P 8600 2400
-F 0 "U801" H 8600 2450 50  0000 C CNN
-F 1 "74HCT00" H 8600 2300 50  0000 C CNN
-F 2 "" H 8600 2400 50  0001 C CNN
-F 3 "" H 8600 2400 50  0001 C CNN
-	3    8600 2400
+P 12050 1650
+F 0 "U801" H 12050 1700 50  0000 C CNN
+F 1 "74HCT00" H 12050 1550 50  0000 C CNN
+F 2 "" H 12050 1650 50  0001 C CNN
+F 3 "" H 12050 1650 50  0001 C CNN
+	3    12050 1650
 	1    0    0    -1  
 $EndComp
 Text Label 5400 5900 0    60   ~ 0
@@ -567,125 +567,81 @@ Text HLabel 11600 6500 2    60   Output ~ 0
 uAluOp3
 Text HLabel 11600 5250 2    60   Output ~ 0
 -uAluOut
-Text HLabel 1600 4100 0    60   Input ~ 0
+Text HLabel 1200 4100 0    60   Input ~ 0
 ccEq
-Text HLabel 1600 4200 0    60   Input ~ 0
+Text HLabel 1200 4200 0    60   Input ~ 0
 -ccEq
-Text HLabel 1600 4300 0    60   Input ~ 0
+Text HLabel 1200 4300 0    60   Input ~ 0
 ccCarryOut
-Text HLabel 1600 4400 0    60   Input ~ 0
+Text HLabel 1200 4400 0    60   Input ~ 0
 -ccCarryOut
-Text Label 1700 4100 0    60   ~ 0
+Text Label 1300 4100 0    60   ~ 0
 ccEq
-Text Label 1700 4200 0    60   ~ 0
+Text Label 1300 4200 0    60   ~ 0
 -ccEq
-Text Label 1700 4300 0    60   ~ 0
+Text Label 1300 4300 0    60   ~ 0
 ccCarryOut
-Text Label 1700 4400 0    60   ~ 0
+Text Label 1300 4400 0    60   ~ 0
 -ccCarryOut
-Text Label 7200 2500 0    60   ~ 0
+Text Label 5550 2550 0    60   ~ 0
 endIfNoCarry
-Text Label 7200 2000 0    60   ~ 0
+Text Label 5550 2000 0    60   ~ 0
 endIfNeq
-Text Label 7200 1500 0    60   ~ 0
+Text Label 5550 1500 0    60   ~ 0
 endIfEq
-Text Label 7200 2300 0    60   ~ 0
+Text Label 5550 2400 0    60   ~ 0
 -ccCarryOut
-Text Label 7200 1800 0    60   ~ 0
+Text Label 5550 1800 0    60   ~ 0
 -ccEq
-Text Label 7200 1300 0    60   ~ 0
+Text Label 5550 1300 0    60   ~ 0
 ccEq
-$Comp
-L 74LS20 U816
-U 1 1 59541F40
-P 8600 3200
-F 0 "U816" H 8600 3300 50  0000 C CNN
-F 1 "74HCT20" H 8600 3100 50  0000 C CNN
-F 2 "" H 8600 3200 50  0001 C CNN
-F 3 "" H 8600 3200 50  0001 C CNN
-	1    8600 3200
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR?
-U 1 1 595420BD
-P 7800 2900
-F 0 "#PWR?" H 7800 2750 50  0001 C CNN
-F 1 "VCC" H 7800 3050 50  0000 C CNN
-F 2 "" H 7800 2900 50  0001 C CNN
-F 3 "" H 7800 2900 50  0001 C CNN
-	1    7800 2900
-	1    0    0    -1  
-$EndComp
-Text Label 7200 3150 0    60   ~ 0
+Text Label 5550 3050 0    60   ~ 0
 -ccEq
-Text Label 7200 3250 0    60   ~ 0
+Text Label 5550 3200 0    60   ~ 0
 ccCarryOut
-Text Label 7200 3350 0    60   ~ 0
+Text Label 5550 3350 0    60   ~ 0
 endIfNeqCarry
-$Comp
-L 74LS20 U816
-U 2 1 59542D1F
-P 8600 4000
-F 0 "U816" H 8600 4100 50  0000 C CNN
-F 1 "74HCT20" H 8600 3900 50  0000 C CNN
-F 2 "" H 8600 4000 50  0001 C CNN
-F 3 "" H 8600 4000 50  0001 C CNN
-	2    8600 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR?
-U 1 1 59542D83
-P 7800 3700
-F 0 "#PWR?" H 7800 3550 50  0001 C CNN
-F 1 "VCC" H 7800 3850 50  0000 C CNN
-F 2 "" H 7800 3700 50  0001 C CNN
-F 3 "" H 7800 3700 50  0001 C CNN
-	1    7800 3700
-	1    0    0    -1  
-$EndComp
-Text Label 7200 3950 0    60   ~ 0
+Text Label 5550 3850 0    60   ~ 0
 -ccEq
-Text Label 7200 4050 0    60   ~ 0
+Text Label 5550 4000 0    60   ~ 0
 -ccCarryOut
-Text Label 7200 4150 0    60   ~ 0
+Text Label 5550 4150 0    60   ~ 0
 endIfNeqNoCarry
 $Comp
-L 74LS30 U817
+L 74LS30 U815
 U 1 1 595438F4
-P 11000 1550
-F 0 "U817" H 11000 1650 50  0000 C CNN
-F 1 "74HCT30" H 11000 1450 50  0000 C CNN
-F 2 "" H 11000 1550 50  0001 C CNN
-F 3 "" H 11000 1550 50  0001 C CNN
-	1    11000 1550
+P 9350 1550
+F 0 "U815" H 9350 1650 50  0000 C CNN
+F 1 "74HCT30" H 9350 1450 50  0000 C CNN
+F 2 "" H 9350 1550 50  0001 C CNN
+F 3 "" H 9350 1550 50  0001 C CNN
+	1    9350 1550
 	1    0    0    -1  
 $EndComp
 $Comp
 L VCC #PWR?
 U 1 1 59543CA5
-P 10150 1050
-F 0 "#PWR?" H 10150 900 50  0001 C CNN
-F 1 "VCC" H 10150 1200 50  0000 C CNN
-F 2 "" H 10150 1050 50  0001 C CNN
-F 3 "" H 10150 1050 50  0001 C CNN
-	1    10150 1050
+P 8500 1050
+F 0 "#PWR?" H 8500 900 50  0001 C CNN
+F 1 "VCC" H 8500 1200 50  0000 C CNN
+F 2 "" H 8500 1050 50  0001 C CNN
+F 3 "" H 8500 1050 50  0001 C CNN
+	1    8500 1050
 	1    0    0    -1  
 $EndComp
-Text Label 9250 1400 0    60   ~ 0
+Text Label 7600 1400 0    60   ~ 0
 -end0
-Text Label 9250 1900 0    60   ~ 0
+Text Label 7600 1900 0    60   ~ 0
 -end1
-Text Label 9250 2400 0    60   ~ 0
+Text Label 7600 2400 0    60   ~ 0
 -end2
-Text Label 9250 3200 0    60   ~ 0
+Text Label 7600 3200 0    60   ~ 0
 -end3
-Text Label 9250 4000 0    60   ~ 0
+Text Label 7600 4000 0    60   ~ 0
 -end4
-Text Label 11900 1550 0    60   ~ 0
+Text Label 10250 1550 0    60   ~ 0
 end
-Text Notes 8400 1050 0    60   ~ 0
+Text Notes 6750 1050 0    60   ~ 0
 conditional branch logic
 Text Label 2850 5800 0    60   ~ 0
 driveAddr
@@ -725,7 +681,7 @@ Text Label 9750 8250 0    60   ~ 0
 CLK
 Text Label 9750 8350 0    60   ~ 0
 -ucodeRST
-Text Notes 1250 3900 0    60   ~ 0
+Text Notes 850  3900 0    60   ~ 0
 condition code signals
 Text Notes 3150 4900 0    60   ~ 0
 ROMs
@@ -733,14 +689,14 @@ Text Notes 8300 4900 0    60   ~ 0
 control signal registers
 Text Label 5400 7800 0    60   ~ 0
 -endUncond
-Text Label 7200 4400 0    60   ~ 0
+Text Label 5550 4400 0    60   ~ 0
 -endUncond
 Text Label 2850 5600 0    60   ~ 0
 rwMem
 Text Label 6450 6300 0    60   ~ 0
 rwMem
-Text HLabel 8300 6400 2    60   Output ~ 0
--rwMem
+Text HLabel 13050 2850 2    60   Output ~ 0
+-uRwMem
 Text Label 2850 5700 0    60   ~ 0
 memDir
 Text Label 6450 6500 0    60   ~ 0
@@ -753,72 +709,70 @@ Text Label 9750 7650 0    60   ~ 0
 latchAddr
 Text HLabel 11600 7750 2    60   Output ~ 0
 -uLatchAddr
-Text Notes 11500 3500 0    60   ~ 0
+Text Notes 11750 3900 0    60   ~ 0
 unused gates
 $Comp
 L GND #PWR?
 U 1 1 59522CEA
-P 11100 4100
-F 0 "#PWR?" H 11100 3850 50  0001 C CNN
-F 1 "GND" H 11100 3950 50  0000 C CNN
-F 2 "" H 11100 4100 50  0001 C CNN
-F 3 "" H 11100 4100 50  0001 C CNN
-	1    11100 4100
+P 11250 4400
+F 0 "#PWR?" H 11250 4150 50  0001 C CNN
+F 1 "GND" H 11250 4250 50  0000 C CNN
+F 2 "" H 11250 4400 50  0001 C CNN
+F 3 "" H 11250 4400 50  0001 C CNN
+	1    11250 4400
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS00 U801
 U 2 1 594ED25A
-P 8600 1900
-F 0 "U801" H 8600 1950 50  0000 C CNN
-F 1 "74HCT00" H 8600 1800 50  0000 C CNN
-F 2 "" H 8600 1900 50  0001 C CNN
-F 3 "" H 8600 1900 50  0001 C CNN
-	2    8600 1900
+P 6950 1900
+F 0 "U801" H 6950 1950 50  0000 C CNN
+F 1 "74HCT00" H 6950 1800 50  0000 C CNN
+F 2 "" H 6950 1900 50  0001 C CNN
+F 3 "" H 6950 1900 50  0001 C CNN
+	2    6950 1900
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74LS00 U801
 U 1 1 594ED24F
-P 8600 1400
-F 0 "U801" H 8600 1450 50  0000 C CNN
-F 1 "74HCT00" H 8600 1300 50  0000 C CNN
-F 2 "" H 8600 1400 50  0001 C CNN
-F 3 "" H 8600 1400 50  0001 C CNN
-	1    8600 1400
+P 6950 1400
+F 0 "U801" H 6950 1450 50  0000 C CNN
+F 1 "74HCT00" H 6950 1300 50  0000 C CNN
+F 2 "" H 6950 1400 50  0001 C CNN
+F 3 "" H 6950 1400 50  0001 C CNN
+	1    6950 1400
 	1    0    0    -1  
 $EndComp
-Text Label 10550 2450 0    60   ~ 0
+Text Label 10800 1050 0    60   ~ 0
 uMemDir
-Text Label 10550 2650 0    60   ~ 0
+Text Label 10800 1250 0    60   ~ 0
 uExtRW
-Text Label 12450 2550 0    60   ~ 0
+Text Label 12700 1150 0    60   ~ 0
 -uExtW
-Text Label 10550 3150 0    60   ~ 0
+Text Label 10800 1750 0    60   ~ 0
 uExtRW
-Text Label 12450 3050 0    60   ~ 0
--uExtR
-Text Notes 11000 2250 0    60   ~ 0
+Text Notes 11250 850  0    60   ~ 0
 external memory r/w signals
 Text Label 8350 6500 0    60   ~ 0
 uMemDir
 Text Label 8350 6600 0    60   ~ 0
 -uMemDir
-Text Label 10550 2950 0    60   ~ 0
+Text Label 10800 1550 0    60   ~ 0
 -uMemDir
-Text HLabel 12800 2550 2    60   Output ~ 0
+Text HLabel 13050 1150 2    60   Output ~ 0
 -uExtW
-Text HLabel 12800 3050 2    60   Output ~ 0
+Text HLabel 13050 2250 2    60   Output ~ 0
 -uExtR
 $Comp
 L 74LS00 U801
 U 4 1 596FF174
-P 11900 3850
-F 0 "U801" H 11900 3900 50  0000 C CNN
-F 1 "74HCT00" H 11900 3750 50  0000 C CNN
-F 2 "" H 11900 3850 50  0001 C CNN
-F 3 "" H 11900 3850 50  0001 C CNN
-	4    11900 3850
+P 12050 1150
+F 0 "U801" H 12050 1200 50  0000 C CNN
+F 1 "74HCT00" H 12050 1050 50  0000 C CNN
+F 2 "" H 12050 1150 50  0001 C CNN
+F 3 "" H 12050 1150 50  0001 C CNN
+	4    12050 1150
 	1    0    0    -1  
 $EndComp
 Text Label 5400 8000 0    60   ~ 0
@@ -856,75 +810,109 @@ $EndComp
 Text Label 8350 7000 0    60   ~ 0
 -uExtRW
 $Comp
-L 74LS00 U801
-U 4 1 597FCD1B
-P 2250 2200
-F 0 "U801" H 2250 2250 50  0000 C CNN
-F 1 "74HC00" H 2250 2100 50  0000 C CNN
-F 2 "" H 2250 2200 50  0001 C CNN
-F 3 "" H 2250 2200 50  0001 C CNN
-	4    2250 2200
+L 74LS08 U816
+U 1 1 5985971D
+P 12050 2250
+F 0 "U816" H 12050 2300 50  0000 C CNN
+F 1 "74HC08" H 12050 2200 50  0000 C CNN
+F 2 "" H 12050 2250 50  0001 C CNN
+F 3 "" H 12050 2250 50  0001 C CNN
+	1    12050 2250
+	1    0    0    -1  
+$EndComp
+Text HLabel 10750 2350 0    60   Input ~ 0
+-opReadMem
+$Comp
+L 74LS08 U816
+U 2 1 59863B4D
+P 12050 2850
+F 0 "U816" H 12050 2900 50  0000 C CNN
+F 1 "74HC08" H 12050 2800 50  0000 C CNN
+F 2 "" H 12050 2850 50  0001 C CNN
+F 3 "" H 12050 2850 50  0001 C CNN
+	2    12050 2850
+	1    0    0    -1  
+$EndComp
+Text Label 8350 6400 0    60   ~ 0
+-uRwMem
+Text HLabel 10750 2750 0    60   Input ~ 0
+-opfetch
+Text Label 10800 2950 0    60   ~ 0
+-uRwMem
+$Comp
+L 74LS08 U816
+U 3 1 59866A95
+P 1850 2200
+F 0 "U816" H 1850 2250 50  0000 C CNN
+F 1 "74HC08" H 1850 2150 50  0000 C CNN
+F 2 "" H 1850 2200 50  0001 C CNN
+F 3 "" H 1850 2200 50  0001 C CNN
+	3    1850 2200
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS00 U801
-U 3 1 597FCDA3
-P 2250 2800
-F 0 "U801" H 2250 2850 50  0000 C CNN
-F 1 "74HC00" H 2250 2700 50  0000 C CNN
-F 2 "" H 2250 2800 50  0001 C CNN
-F 3 "" H 2250 2800 50  0001 C CNN
-	3    2250 2800
+L 74LS08 U816
+U 4 1 59866B3C
+P 12050 4150
+F 0 "U816" H 12050 4200 50  0000 C CNN
+F 1 "74HC08" H 12050 4100 50  0000 C CNN
+F 2 "" H 12050 4150 50  0001 C CNN
+F 3 "" H 12050 4150 50  0001 C CNN
+	4    12050 4150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1300 700  1700 700 
+	900  700  1300 700 
 Wire Wire Line
-	1300 800  1700 800 
+	900  800  1300 800 
 Wire Wire Line
-	1300 900  1700 900 
+	900  900  1300 900 
 Wire Wire Line
-	1300 1000 1700 1000
+	900  1000 1300 1000
 Wire Wire Line
-	1300 1100 1700 1100
+	900  1100 1300 1100
 Wire Wire Line
-	1300 1200 1700 1200
+	900  1200 1300 1200
 Wire Wire Line
-	1300 1300 1700 1300
+	900  1300 1300 1300
 Wire Wire Line
-	1300 1400 1700 1400
+	900  1400 1300 1400
 Wire Wire Line
-	1350 1900 3950 1900
+	950  1900 3550 1900
 Wire Wire Line
-	1650 2100 1350 2100
+	1250 2100 950  2100
 Wire Wire Line
-	1650 2300 1350 2300
+	1250 2300 950  2300
 Wire Wire Line
-	3050 3100 4200 3100
+	2650 3100 3300 3100
 Wire Wire Line
-	3950 1650 1350 1650
+	3300 3100 3800 3100
 Wire Wire Line
-	3950 2000 3700 2000
+	3550 1650 950  1650
 Wire Wire Line
-	3700 2000 3700 3100
-Connection ~ 3700 3100
+	3550 2000 3300 2000
 Wire Wire Line
-	3950 1800 3400 1800
+	3300 2000 3300 3100
+Connection ~ 3300 3100
 Wire Wire Line
-	3400 1550 3400 2250
+	3550 1800 3000 1800
 Wire Wire Line
-	3950 1550 3400 1550
-Connection ~ 3400 1800
+	3000 1550 3000 1800
 Wire Wire Line
-	5050 2150 5450 2150
+	3000 1800 3000 2250
 Wire Wire Line
-	5050 2250 5450 2250
+	3550 1550 3000 1550
+Connection ~ 3000 1800
 Wire Wire Line
-	5050 2350 5450 2350
+	4650 2150 5050 2150
 Wire Wire Line
-	5050 2450 5450 2450
+	4650 2250 5050 2250
 Wire Wire Line
-	5050 2550 5450 2550
+	4650 2350 5050 2350
+Wire Wire Line
+	4650 2450 5050 2450
+Wire Wire Line
+	4650 2550 5050 2550
 Wire Wire Line
 	1400 5200 950  5200
 Wire Wire Line
@@ -1052,7 +1040,11 @@ Wire Wire Line
 Wire Wire Line
 	1400 6700 750  6700
 Wire Wire Line
-	750  6700 750  7050
+	750  6700 750  6900
+Wire Wire Line
+	750  6900 750  7000
+Wire Wire Line
+	750  7000 750  7050
 Wire Wire Line
 	1400 6900 750  6900
 Connection ~ 750  6900
@@ -1066,7 +1058,11 @@ Wire Wire Line
 Wire Wire Line
 	3950 6700 3300 6700
 Wire Wire Line
-	3300 6700 3300 7050
+	3300 6700 3300 6900
+Wire Wire Line
+	3300 6900 3300 7000
+Wire Wire Line
+	3300 7000 3300 7050
 Wire Wire Line
 	3950 6900 3300 6900
 Connection ~ 3300 6900
@@ -1080,7 +1076,11 @@ Wire Wire Line
 Wire Wire Line
 	1400 8800 750  8800
 Wire Wire Line
-	750  8800 750  9150
+	750  8800 750  9000
+Wire Wire Line
+	750  9000 750  9100
+Wire Wire Line
+	750  9100 750  9150
 Wire Wire Line
 	1400 9000 750  9000
 Connection ~ 750  9000
@@ -1094,7 +1094,11 @@ Wire Wire Line
 Wire Wire Line
 	3950 8800 3300 8800
 Wire Wire Line
-	3300 8800 3300 9150
+	3300 8800 3300 9000
+Wire Wire Line
+	3300 9000 3300 9100
+Wire Wire Line
+	3300 9100 3300 9150
 Wire Wire Line
 	3950 9000 3300 9000
 Connection ~ 3300 9000
@@ -1154,7 +1158,7 @@ Wire Wire Line
 Wire Wire Line
 	8300 5550 8300 5550
 Wire Wire Line
-	8300 6400 8300 6400
+	8300 6400 8800 6400
 Wire Wire Line
 	8300 6800 8300 6800
 Wire Wire Line
@@ -1196,86 +1200,80 @@ Wire Wire Line
 Wire Wire Line
 	5350 5300 5800 5300
 Wire Wire Line
-	1600 4100 2250 4100
+	1200 4100 1850 4100
 Wire Wire Line
-	1600 4200 2250 4200
+	1200 4200 1850 4200
 Wire Wire Line
-	1600 4300 2250 4300
+	1200 4300 1850 4300
 Wire Wire Line
-	1600 4400 2250 4400
+	1200 4400 1850 4400
 Wire Wire Line
-	8000 2500 7150 2500
+	6350 2550 5500 2550
 Wire Wire Line
-	8000 2300 7150 2300
+	6350 2400 5500 2400
 Wire Wire Line
-	8000 2000 7150 2000
+	6350 2000 5500 2000
 Wire Wire Line
-	8000 1800 7150 1800
+	6350 1800 5500 1800
 Wire Wire Line
-	8000 1500 7150 1500
+	6350 1500 5500 1500
 Wire Wire Line
-	8000 1300 7150 1300
+	6350 1300 5500 1300
 Wire Wire Line
-	8000 3050 7800 3050
+	6350 3050 5500 3050
 Wire Wire Line
-	7800 3050 7800 2900
+	6350 3200 5500 3200
 Wire Wire Line
-	8000 3150 7150 3150
+	6350 3350 5500 3350
 Wire Wire Line
-	8000 3250 7150 3250
+	6350 3850 5500 3850
 Wire Wire Line
-	8000 3350 7150 3350
+	6350 4000 5500 4000
 Wire Wire Line
-	8000 3850 7800 3850
+	6350 4150 5500 4150
 Wire Wire Line
-	7800 3850 7800 3700
+	7550 1400 8750 1400
 Wire Wire Line
-	8000 3950 7150 3950
+	8500 1300 8750 1300
 Wire Wire Line
-	8000 4050 7150 4050
+	8500 1050 8500 1200
 Wire Wire Line
-	8000 4150 7150 4150
+	8500 1200 8500 1300
 Wire Wire Line
-	9200 1400 10400 1400
+	8750 1200 8500 1200
+Connection ~ 8500 1200
 Wire Wire Line
-	10150 1300 10400 1300
+	8750 1500 8000 1500
 Wire Wire Line
-	10150 1050 10150 1300
+	8000 1500 8000 1900
 Wire Wire Line
-	10400 1200 10150 1200
-Connection ~ 10150 1200
+	8000 1900 7550 1900
 Wire Wire Line
-	10400 1500 9650 1500
+	8750 1600 8100 1600
 Wire Wire Line
-	9650 1500 9650 1900
+	8100 1600 8100 2400
 Wire Wire Line
-	9650 1900 9200 1900
+	8100 2400 7550 2400
 Wire Wire Line
-	10400 1600 9750 1600
+	8750 1700 8200 1700
 Wire Wire Line
-	9750 1600 9750 2400
+	8200 1700 8200 3200
 Wire Wire Line
-	9750 2400 9200 2400
+	8200 3200 7550 3200
 Wire Wire Line
-	10400 1700 9850 1700
+	8750 1800 8300 1800
 Wire Wire Line
-	9850 1700 9850 3200
+	8300 1800 8300 4000
 Wire Wire Line
-	9850 3200 9200 3200
+	8300 4000 7550 4000
 Wire Wire Line
-	10400 1800 9950 1800
+	8750 1900 8400 1900
 Wire Wire Line
-	9950 1800 9950 4000
+	8400 1900 8400 4400
 Wire Wire Line
-	9950 4000 9200 4000
+	8400 4400 5500 4400
 Wire Wire Line
-	10400 1900 10050 1900
-Wire Wire Line
-	10050 1900 10050 4400
-Wire Wire Line
-	10050 4400 7150 4400
-Wire Wire Line
-	11600 1550 12100 1550
+	9950 1550 10450 1550
 Wire Wire Line
 	2800 5800 3300 5800
 Wire Wire Line
@@ -1317,26 +1315,28 @@ Wire Wire Line
 Wire Wire Line
 	6900 6500 6400 6500
 Wire Wire Line
-	11200 2450 10500 2450
+	11450 1050 10750 1050
 Wire Wire Line
-	11200 2650 10500 2650
+	11450 1250 10750 1250
 Wire Wire Line
-	12400 2550 12800 2550
+	12650 1150 13050 1150
 Wire Wire Line
-	11200 3150 10500 3150
+	11450 1750 10750 1750
 Wire Wire Line
-	12400 3050 12800 3050
+	12650 1650 13050 1650
 Wire Wire Line
-	11100 3750 11100 4100
+	11250 4050 11250 4250
+Wire Wire Line
+	11250 4250 11250 4400
 Wire Wire Line
 	8300 6500 8800 6500
 Wire Wire Line
-	11200 2950 10500 2950
+	11450 1550 10750 1550
 Wire Wire Line
-	11300 3750 11100 3750
+	11450 4050 11250 4050
 Wire Wire Line
-	11300 3950 11100 3950
-Connection ~ 11100 3950
+	11450 4250 11250 4250
+Connection ~ 11250 4250
 Wire Wire Line
 	2800 5900 3300 5900
 Wire Wire Line
@@ -1344,7 +1344,9 @@ Wire Wire Line
 Wire Wire Line
 	6900 9000 5900 9000
 Wire Wire Line
-	5900 9000 5900 9300
+	5900 9000 5900 9200
+Wire Wire Line
+	5900 9200 5900 9300
 Wire Wire Line
 	6900 9200 5900 9200
 Connection ~ 5900 9200
@@ -1355,54 +1357,75 @@ Wire Wire Line
 Wire Wire Line
 	8300 7000 8800 7000
 Wire Wire Line
-	2850 2200 3000 2200
+	2650 2200 2650 3100
 Wire Wire Line
-	3000 2200 3000 2500
+	13050 1650 13050 1950
 Wire Wire Line
-	3000 2500 1550 2500
+	13050 1950 11300 1950
 Wire Wire Line
-	1550 2500 1550 2700
+	11300 1950 11300 2150
 Wire Wire Line
-	1550 2700 1650 2700
+	11300 2150 11450 2150
 Wire Wire Line
-	1650 2900 1200 2900
+	11450 2350 10750 2350
 Wire Wire Line
-	1200 2900 1200 2700
+	12650 2250 13050 2250
+Wire Wire Line
+	11450 2750 10750 2750
+Wire Wire Line
+	11450 2950 10750 2950
+Wire Wire Line
+	12650 2850 13050 2850
+Text Notes 11250 3500 0    60   ~ 0
+Note that uMemDir is guaranteed\nto be correct when -opfetch is asserted,\nbecause the ucode unit is under reset\nand thus uMemdir is 0 (read).
+Wire Wire Line
+	2650 2200 2450 2200
+$Comp
+L 74LS10 U814
+U 1 1 5987D34B
+P 6950 2400
+F 0 "U814" H 6950 2450 50  0000 C CNN
+F 1 "74HCT10" H 6950 2350 50  0000 C CNN
+F 2 "" H 6950 2400 50  0001 C CNN
+F 3 "" H 6950 2400 50  0001 C CNN
+	1    6950 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 2250 5300 2250
+Wire Wire Line
+	5300 2250 5300 2150
 $Comp
 L VCC #PWR?
-U 1 1 597FD190
-P 1200 2700
-F 0 "#PWR?" H 1200 2550 50  0001 C CNN
-F 1 "VCC" H 1200 2850 50  0000 C CNN
-F 2 "" H 1200 2700 50  0001 C CNN
-F 3 "" H 1200 2700 50  0001 C CNN
-	1    1200 2700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2850 2800 3050 2800
-Wire Wire Line
-	3050 2800 3050 3100
-$Comp
-L 74LS00 U801
-U 1 1 597FDE7A
-P 11800 2550
-F 0 "U801" H 11800 2600 50  0000 C CNN
-F 1 "74HC00" H 11800 2450 50  0000 C CNN
-F 2 "" H 11800 2550 50  0001 C CNN
-F 3 "" H 11800 2550 50  0001 C CNN
-	1    11800 2550
+U 1 1 5987D7C9
+P 5300 2150
+F 0 "#PWR?" H 5300 2000 50  0001 C CNN
+F 1 "VCC" H 5300 2300 50  0000 C CNN
+F 2 "" H 5300 2150 50  0001 C CNN
+F 3 "" H 5300 2150 50  0001 C CNN
+	1    5300 2150
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74LS00 U801
-U 2 1 597FDEBD
-P 11800 3050
-F 0 "U801" H 11800 3100 50  0000 C CNN
-F 1 "74HC00" H 11800 2950 50  0000 C CNN
-F 2 "" H 11800 3050 50  0001 C CNN
-F 3 "" H 11800 3050 50  0001 C CNN
-	2    11800 3050
+L 74LS10 U814
+U 2 1 5987DB5E
+P 6950 3200
+F 0 "U814" H 6950 3250 50  0000 C CNN
+F 1 "74HCT10" H 6950 3150 50  0000 C CNN
+F 2 "" H 6950 3200 50  0001 C CNN
+F 3 "" H 6950 3200 50  0001 C CNN
+	2    6950 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74LS10 U814
+U 3 1 5987DC95
+P 6950 4000
+F 0 "U814" H 6950 4050 50  0000 C CNN
+F 1 "74HCT10" H 6950 3950 50  0000 C CNN
+F 2 "" H 6950 4000 50  0001 C CNN
+F 3 "" H 6950 4000 50  0001 C CNN
+	3    6950 4000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
