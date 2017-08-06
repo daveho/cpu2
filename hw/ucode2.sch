@@ -647,7 +647,7 @@ Text Label 2850 5800 0    60   ~ 0
 driveAddr
 Text Label 6450 6700 0    60   ~ 0
 driveAddr
-Text HLabel 8300 6800 2    60   Output ~ 0
+Text HLabel 13050 3350 2    60   Output ~ 0
 -uDriveAddr
 Text Label 5400 7300 0    60   ~ 0
 -endIfEq
@@ -709,19 +709,6 @@ Text Label 9750 7650 0    60   ~ 0
 latchAddr
 Text HLabel 11600 7750 2    60   Output ~ 0
 -uLatchAddr
-Text Notes 11750 3900 0    60   ~ 0
-unused gates
-$Comp
-L GND #PWR?
-U 1 1 59522CEA
-P 11250 4400
-F 0 "#PWR?" H 11250 4150 50  0001 C CNN
-F 1 "GND" H 11250 4250 50  0000 C CNN
-F 2 "" H 11250 4400 50  0001 C CNN
-F 3 "" H 11250 4400 50  0001 C CNN
-	1    11250 4400
-	1    0    0    -1  
-$EndComp
 $Comp
 L 74LS00 U801
 U 2 1 594ED25A
@@ -835,7 +822,7 @@ F 3 "" H 12050 2850 50  0001 C CNN
 $EndComp
 Text Label 8350 6400 0    60   ~ 0
 -uRwMem
-Text HLabel 10750 2750 0    60   Input ~ 0
+Text HLabel 9950 2750 0    60   Input ~ 0
 -opfetch
 Text Label 10800 2950 0    60   ~ 0
 -uRwMem
@@ -853,12 +840,12 @@ $EndComp
 $Comp
 L 74LS08 U816
 U 4 1 59866B3C
-P 12050 4150
-F 0 "U816" H 12050 4200 50  0000 C CNN
-F 1 "74HC08" H 12050 4100 50  0000 C CNN
-F 2 "" H 12050 4150 50  0001 C CNN
-F 3 "" H 12050 4150 50  0001 C CNN
-	4    12050 4150
+P 12050 3350
+F 0 "U816" H 12050 3400 50  0000 C CNN
+F 1 "74HC08" H 12050 3300 50  0000 C CNN
+F 2 "" H 12050 3350 50  0001 C CNN
+F 3 "" H 12050 3350 50  0001 C CNN
+	4    12050 3350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -884,7 +871,9 @@ Wire Wire Line
 Wire Wire Line
 	1250 2300 950  2300
 Wire Wire Line
-	2650 3100 3800 3100
+	2650 3100 3300 3100
+Wire Wire Line
+	3300 3100 3800 3100
 Wire Wire Line
 	3550 1650 950  1650
 Wire Wire Line
@@ -895,7 +884,9 @@ Connection ~ 3300 3100
 Wire Wire Line
 	3550 1800 3000 1800
 Wire Wire Line
-	3000 1550 3000 2250
+	3000 1550 3000 1800
+Wire Wire Line
+	3000 1800 3000 2250
 Wire Wire Line
 	3550 1550 3000 1550
 Connection ~ 3000 1800
@@ -1036,7 +1027,11 @@ Wire Wire Line
 Wire Wire Line
 	1400 6700 750  6700
 Wire Wire Line
-	750  6700 750  7050
+	750  6700 750  6900
+Wire Wire Line
+	750  6900 750  7000
+Wire Wire Line
+	750  7000 750  7050
 Wire Wire Line
 	1400 6900 750  6900
 Connection ~ 750  6900
@@ -1050,7 +1045,11 @@ Wire Wire Line
 Wire Wire Line
 	3950 6700 3300 6700
 Wire Wire Line
-	3300 6700 3300 7050
+	3300 6700 3300 6900
+Wire Wire Line
+	3300 6900 3300 7000
+Wire Wire Line
+	3300 7000 3300 7050
 Wire Wire Line
 	3950 6900 3300 6900
 Connection ~ 3300 6900
@@ -1064,7 +1063,11 @@ Wire Wire Line
 Wire Wire Line
 	1400 8800 750  8800
 Wire Wire Line
-	750  8800 750  9150
+	750  8800 750  9000
+Wire Wire Line
+	750  9000 750  9100
+Wire Wire Line
+	750  9100 750  9150
 Wire Wire Line
 	1400 9000 750  9000
 Connection ~ 750  9000
@@ -1078,7 +1081,11 @@ Wire Wire Line
 Wire Wire Line
 	3950 8800 3300 8800
 Wire Wire Line
-	3300 8800 3300 9150
+	3300 8800 3300 9000
+Wire Wire Line
+	3300 9000 3300 9100
+Wire Wire Line
+	3300 9100 3300 9150
 Wire Wire Line
 	3950 9000 3300 9000
 Connection ~ 3300 9000
@@ -1139,8 +1146,6 @@ Wire Wire Line
 	8300 5550 8300 5550
 Wire Wire Line
 	8300 6400 8800 6400
-Wire Wire Line
-	8300 6800 8300 6800
 Wire Wire Line
 	8300 8700 8300 8700
 Wire Wire Line
@@ -1216,7 +1221,9 @@ Wire Wire Line
 Wire Wire Line
 	8500 1300 8750 1300
 Wire Wire Line
-	8500 1050 8500 1300
+	8500 1050 8500 1200
+Wire Wire Line
+	8500 1200 8500 1300
 Wire Wire Line
 	8750 1200 8500 1200
 Connection ~ 8500 1200
@@ -1303,16 +1310,9 @@ Wire Wire Line
 Wire Wire Line
 	12650 1650 13050 1650
 Wire Wire Line
-	11250 4050 11250 4400
-Wire Wire Line
 	8300 6500 8800 6500
 Wire Wire Line
 	11450 1550 10750 1550
-Wire Wire Line
-	11450 4050 11250 4050
-Wire Wire Line
-	11450 4250 11250 4250
-Connection ~ 11250 4250
 Wire Wire Line
 	2800 5900 3300 5900
 Wire Wire Line
@@ -1320,7 +1320,9 @@ Wire Wire Line
 Wire Wire Line
 	6900 9000 5900 9000
 Wire Wire Line
-	5900 9000 5900 9300
+	5900 9000 5900 9200
+Wire Wire Line
+	5900 9200 5900 9300
 Wire Wire Line
 	6900 9200 5900 9200
 Connection ~ 5900 9200
@@ -1345,12 +1347,14 @@ Wire Wire Line
 Wire Wire Line
 	12650 2250 13050 2250
 Wire Wire Line
-	11450 2750 10750 2750
+	11450 2750 10400 2750
+Wire Wire Line
+	10400 2750 9950 2750
 Wire Wire Line
 	11450 2950 10750 2950
 Wire Wire Line
 	12650 2850 13050 2850
-Text Notes 11250 3500 0    60   ~ 0
+Text Notes 11200 4000 0    60   ~ 0
 Note that uMemDir is guaranteed\nto be correct when -opfetch is asserted,\nbecause the ucode unit is under reset\nand thus uMemdir is 0 (read).
 Wire Wire Line
 	2650 2200 2450 2200
@@ -1402,4 +1406,19 @@ F 3 "" H 6950 4000 50  0001 C CNN
 	3    6950 4000
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	11450 3250 10400 3250
+Wire Wire Line
+	10400 3250 10400 2750
+Connection ~ 10400 2750
+Wire Wire Line
+	11450 3450 10750 3450
+Wire Wire Line
+	12650 3350 13050 3350
+Wire Wire Line
+	8300 6800 8800 6800
+Text Label 8350 6800 0    60   ~ 0
+-uDriveAddr
+Text Label 10800 3450 0    60   ~ 0
+-uDriveAddr
 $EndSCHEMATC
