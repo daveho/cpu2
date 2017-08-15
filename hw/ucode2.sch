@@ -783,17 +783,6 @@ F 3 "" H 5900 9300 50  0001 C CNN
 	1    5900 9300
 	1    0    0    -1  
 $EndComp
-$Comp
-L GND #PWR?
-U 1 1 597D378A
-P 9300 8300
-F 0 "#PWR?" H 9300 8050 50  0001 C CNN
-F 1 "GND" H 9300 8150 50  0000 C CNN
-F 2 "" H 9300 8300 50  0001 C CNN
-F 3 "" H 9300 8300 50  0001 C CNN
-	1    9300 8300
-	1    0    0    -1  
-$EndComp
 Text Label 8350 7000 0    60   ~ 0
 -uExtRW
 $Comp
@@ -1318,18 +1307,13 @@ Wire Wire Line
 Wire Wire Line
 	6900 6900 6400 6900
 Wire Wire Line
-	6900 9000 5900 9000
-Wire Wire Line
-	5900 9000 5900 9200
+	6900 9000 6400 9000
 Wire Wire Line
 	5900 9200 5900 9300
 Wire Wire Line
 	6900 9200 5900 9200
-Connection ~ 5900 9200
 Wire Wire Line
 	10200 8050 9300 8050
-Wire Wire Line
-	9300 8050 9300 8300
 Wire Wire Line
 	8300 7000 8800 7000
 Wire Wire Line
@@ -1347,9 +1331,9 @@ Wire Wire Line
 Wire Wire Line
 	12650 2250 13050 2250
 Wire Wire Line
-	11450 2750 10400 2750
+	9950 2750 10400 2750
 Wire Wire Line
-	10400 2750 9950 2750
+	10400 2750 11450 2750
 Wire Wire Line
 	11450 2950 10750 2950
 Wire Wire Line
@@ -1421,4 +1405,25 @@ Text Label 8350 6800 0    60   ~ 0
 -uDriveAddr
 Text Label 10800 3450 0    60   ~ 0
 -uDriveAddr
+Wire Wire Line
+	2800 7900 3300 7900
+Text Label 2850 7900 0    60   ~ 0
+latchALU
+Wire Wire Line
+	9300 8050 9300 8300
+$Comp
+L GND #PWR?
+U 1 1 597D378A
+P 9300 8300
+F 0 "#PWR?" H 9300 8050 50  0001 C CNN
+F 1 "GND" H 9300 8150 50  0000 C CNN
+F 2 "" H 9300 8300 50  0001 C CNN
+F 3 "" H 9300 8300 50  0001 C CNN
+	1    9300 8300
+	1    0    0    -1  
+$EndComp
+Text Label 6450 9000 0    60   ~ 0
+latchALU
+Text HLabel 8300 9100 2    60   Output ~ 0
+-uLatchALU
 $EndSCHEMATC

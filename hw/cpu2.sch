@@ -267,7 +267,7 @@ Text Notes 1550 3700 0    60   ~ 0
 prefix 300
 Text Notes 6150 3400 0    60   ~ 0
 prefix 400
-Text Notes 9250 4950 0    60   ~ 0
+Text Notes 9250 5050 0    60   ~ 0
 prefix 800
 Text Notes 6150 5500 0    60   ~ 0
 prefix 600
@@ -317,16 +317,16 @@ Text Label 5300 5000 0    60   ~ 0
 -uWrPCLo
 Text Label 5300 5200 0    60   ~ 0
 uPcClk
-Text Label 10200 3600 0    60   ~ 0
+Text Label 10200 3700 0    60   ~ 0
 uPcClk
-Text Label 10200 4100 0    60   ~ 0
+Text Label 10200 4200 0    60   ~ 0
 uEnd
 Text Label 750  3300 0    60   ~ 0
 uEnd
 Text Notes 7250 13750 0    60   ~ 0
 8 bit HCMOS CPU
 $Sheet
-S 8300 10000 1300 2750
+S 8300 10000 1300 2850
 U 5947DA38
 F0 "alu" 60
 F1 "alu.sch" 60
@@ -366,8 +366,9 @@ F34 "-COUT" O R 9600 10300 60
 F35 "-EQ" O R 9600 10200 60 
 F36 "COUT" O R 9600 10400 60 
 F37 "-latchCC" I L 8300 12650 60 
+F38 "-latchALU" I L 8300 12750 60 
 $EndSheet
-Text Notes 8700 12950 0    60   ~ 0
+Text Notes 8700 13050 0    60   ~ 0
 prefix 700
 Text Label 7100 3700 0    60   ~ 0
 LEFT0
@@ -530,7 +531,7 @@ Wire Wire Line
 Wire Wire Line
 	4150 2050 5000 2050
 Wire Bus Line
-	5100 1450 5100 13100
+	5100 1450 5100 13300
 Wire Wire Line
 	5850 2400 5200 2400
 Wire Wire Line
@@ -602,9 +603,9 @@ Wire Wire Line
 Wire Wire Line
 	6950 3100 8800 3100
 Wire Wire Line
-	10150 3600 10700 3600
+	10150 3700 10700 3700
 Wire Wire Line
-	10150 4100 10700 4100
+	10150 4200 10700 4200
 Wire Wire Line
 	1350 3300 750  3300
 Wire Wire Line
@@ -676,9 +677,9 @@ Wire Wire Line
 Wire Wire Line
 	8300 11800 7650 11800
 Wire Bus Line
-	10100 13100 5100 13100
+	10100 13300 5100 13300
 Wire Bus Line
-	10100 10650 10100 13100
+	10100 10650 10100 13300
 Wire Wire Line
 	9600 10550 10000 10550
 Wire Wire Line
@@ -728,7 +729,7 @@ Entry Wire Line
 Entry Wire Line
 	10000 11250 10100 11350
 $Sheet
-S 8800 1600 1350 3150
+S 8800 1600 1350 3250
 U 594ECB9B
 F0 "ucode2" 60
 F1 "ucode2.sch" 60
@@ -754,28 +755,29 @@ F20 "uWrGP0" O R 10150 2500 60
 F21 "uWrGP1" O R 10150 2600 60 
 F22 "-uWrPCLo" O R 10150 2900 60 
 F23 "-uWrPCHi" O R 10150 3000 60 
-F24 "-uAluCarryIn" O R 10150 3300 60 
-F25 "uAluMode" O R 10150 3400 60 
-F26 "uAluOp0" O R 10150 3700 60 
-F27 "uAluOp1" O R 10150 3800 60 
-F28 "uAluOp2" O R 10150 3900 60 
-F29 "uAluOp3" O R 10150 4000 60 
-F30 "-uAluOut" O R 10150 3500 60 
+F24 "-uAluCarryIn" O R 10150 3400 60 
+F25 "uAluMode" O R 10150 3500 60 
+F26 "uAluOp0" O R 10150 3800 60 
+F27 "uAluOp1" O R 10150 3900 60 
+F28 "uAluOp2" O R 10150 4000 60 
+F29 "uAluOp3" O R 10150 4100 60 
+F30 "-uAluOut" O R 10150 3600 60 
 F31 "ccEq" I L 8800 3300 60 
 F32 "-ccEq" I L 8800 3400 60 
 F33 "ccCarryOut" I L 8800 3500 60 
 F34 "-ccCarryOut" I L 8800 3600 60 
 F35 "-uDriveAddr" O R 10150 3200 60 
-F36 "uPcClk" O R 10150 3600 60 
-F37 "uEnd" O R 10150 4100 60 
+F36 "uPcClk" O R 10150 3700 60 
+F37 "uEnd" O R 10150 4200 60 
 F38 "uMemDir" O R 10150 3100 60 
-F39 "-uLatchAddr" O R 10150 4200 60 
-F40 "-uExtW" O R 10150 4450 60 
-F41 "-uExtR" O R 10150 4550 60 
-F42 "-uLatchCC" O R 10150 4300 60 
-F43 "-uRwMem" O R 10150 4650 60 
+F39 "-uLatchAddr" O R 10150 4300 60 
+F40 "-uExtW" O R 10150 4550 60 
+F41 "-uExtR" O R 10150 4650 60 
+F42 "-uLatchCC" O R 10150 4400 60 
+F43 "-uRwMem" O R 10150 4750 60 
 F44 "-opReadMem" I L 8800 3750 60 
 F45 "-opfetch" I L 8800 3850 60 
+F46 "-uLatchALU" O R 10150 2750 60 
 $EndSheet
 Wire Wire Line
 	7750 2100 8800 2100
@@ -836,19 +838,19 @@ Wire Wire Line
 Wire Wire Line
 	10150 3200 10700 3200
 Wire Wire Line
-	10150 3300 10700 3300
-Wire Wire Line
 	10150 3400 10700 3400
 Wire Wire Line
 	10150 3500 10700 3500
 Wire Wire Line
-	10150 3700 10700 3700
+	10150 3600 10700 3600
 Wire Wire Line
 	10150 3800 10700 3800
 Wire Wire Line
 	10150 3900 10700 3900
 Wire Wire Line
 	10150 4000 10700 4000
+Wire Wire Line
+	10150 4100 10700 4100
 Text Label 10200 1700 0    60   ~ 0
 -uRdGP
 Text Label 10200 1800 0    60   ~ 0
@@ -871,19 +873,19 @@ Text Label 10200 3000 0    60   ~ 0
 -uWrPCHi
 Text Label 10200 3200 0    60   ~ 0
 -uDriveAddr
-Text Label 10200 3300 0    60   ~ 0
--uAluCarryIn
 Text Label 10200 3400 0    60   ~ 0
-uAluMode
+-uAluCarryIn
 Text Label 10200 3500 0    60   ~ 0
+uAluMode
+Text Label 10200 3600 0    60   ~ 0
 -uAluOut
-Text Label 10200 3700 0    60   ~ 0
-uAluOp0
 Text Label 10200 3800 0    60   ~ 0
-uAluOp1
+uAluOp0
 Text Label 10200 3900 0    60   ~ 0
-uAluOp2
+uAluOp1
 Text Label 10200 4000 0    60   ~ 0
+uAluOp2
+Text Label 10200 4100 0    60   ~ 0
 uAluOp3
 Wire Wire Line
 	5850 4700 5250 4700
@@ -1126,8 +1128,8 @@ F52 "D7" B R 7050 12100 60
 F53 "-latchAddr" I L 5850 9000 60 
 $EndSheet
 Wire Wire Line
-	10150 4650 10700 4650
-Text Label 10200 4650 0    60   ~ 0
+	10150 4750 10700 4750
+Text Label 10200 4750 0    60   ~ 0
 -uRwMem
 Wire Wire Line
 	10150 3100 10700 3100
@@ -1464,20 +1466,20 @@ Wire Wire Line
 Text Label 5300 9000 0    60   ~ 0
 -uLatchAddr
 Wire Wire Line
-	10150 4200 10700 4200
-Text Label 10200 4200 0    60   ~ 0
--uLatchAddr
-Wire Wire Line
-	10150 4450 10700 4450
-Wire Wire Line
-	10150 4550 10700 4550
-Text Label 10200 4450 0    60   ~ 0
--uExtW
-Text Label 10200 4550 0    60   ~ 0
--uExtR
-Wire Wire Line
 	10150 4300 10700 4300
 Text Label 10200 4300 0    60   ~ 0
+-uLatchAddr
+Wire Wire Line
+	10150 4550 10700 4550
+Wire Wire Line
+	10150 4650 10700 4650
+Text Label 10200 4550 0    60   ~ 0
+-uExtW
+Text Label 10200 4650 0    60   ~ 0
+-uExtR
+Wire Wire Line
+	10150 4400 10700 4400
+Text Label 10200 4400 0    60   ~ 0
 -uLatchCC
 Wire Wire Line
 	8300 12650 7650 12650
@@ -1503,4 +1505,12 @@ Text Label 4400 2300 0    60   ~ 0
 CLK2
 Text Label 4400 2400 0    60   ~ 0
 -CLK
+Wire Wire Line
+	10150 2750 10700 2750
+Text Label 10200 2750 0    60   ~ 0
+-uLatchALU
+Wire Wire Line
+	8300 12750 7650 12750
+Text Label 7700 12750 0    60   ~ 0
+-uLatchALU
 $EndSCHEMATC
