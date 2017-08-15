@@ -72,12 +72,12 @@ $EndComp
 $Comp
 L GND #PWR?
 U 1 1 592B63DA
-P 3900 5200
-F 0 "#PWR?" H 3900 4950 50  0001 C CNN
-F 1 "GND" H 3900 5050 50  0000 C CNN
-F 2 "" H 3900 5200 50  0001 C CNN
-F 3 "" H 3900 5200 50  0001 C CNN
-	1    3900 5200
+P 3900 5500
+F 0 "#PWR?" H 3900 5250 50  0001 C CNN
+F 1 "GND" H 3900 5350 50  0000 C CNN
+F 2 "" H 3900 5500 50  0001 C CNN
+F 3 "" H 3900 5500 50  0001 C CNN
+	1    3900 5500
 	1    0    0    -1  
 $EndComp
 Text Label 6100 4300 0    60   ~ 0
@@ -175,7 +175,7 @@ Text Label 10000 2050 0    60   ~ 0
 -initPC
 Text Label 10000 2250 0    60   ~ 0
 -lateRST
-Text Label 3500 5550 0    60   ~ 0
+Text Label 4200 5200 0    60   ~ 0
 -initPC
 $Comp
 L 74LS32 U202
@@ -247,7 +247,7 @@ Connection ~ 3450 4900
 Wire Wire Line
 	4600 4300 3900 4300
 Wire Wire Line
-	3900 4300 3900 5200
+	3900 4300 3900 5500
 Wire Wire Line
 	4600 4400 3900 4400
 Connection ~ 3900 4400
@@ -400,14 +400,9 @@ Wire Wire Line
 Wire Wire Line
 	7550 2750 7900 2750
 Wire Wire Line
-	4600 5200 4400 5200
+	4600 5200 4150 5200
 Wire Wire Line
-	4400 5200 4400 5550
-Wire Wire Line
-	4400 5550 3450 5550
-Wire Wire Line
-	4600 5300 4400 5300
-Connection ~ 4400 5300
+	3900 5300 4600 5300
 Wire Wire Line
 	1350 5100 1150 5100
 Wire Wire Line
@@ -470,7 +465,7 @@ F 3 "" H 7900 5600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8200 4300 7450 4300
+	7450 4300 8200 4300
 Wire Wire Line
 	8200 4400 8050 4400
 Wire Wire Line
@@ -510,4 +505,5 @@ Text HLabel 10250 4600 2    60   Output ~ 0
 lateRST
 Text HLabel 10250 4700 2    60   Output ~ 0
 -lateRST
+Connection ~ 3900 5300
 $EndSCHEMATC
