@@ -50,53 +50,53 @@ early reset logic
 $Comp
 L 74LS541 U204
 U 1 1 592B638E
-P 6600 4800
-F 0 "U204" H 6600 5375 50  0000 C BNN
-F 1 "74HC541" H 6600 4225 50  0000 C TNN
-F 2 "" H 6600 4800 50  0001 C CNN
-F 3 "" H 6600 4800 50  0001 C CNN
-	1    6600 4800
+P 5300 4800
+F 0 "U204" H 5300 5375 50  0000 C BNN
+F 1 "74HC541" H 5300 4225 50  0000 C TNN
+F 2 "" H 5300 4800 50  0001 C CNN
+F 3 "" H 5300 4800 50  0001 C CNN
+	1    5300 4800
 	1    0    0    -1  
 $EndComp
 $Comp
 L VCC #PWR?
 U 1 1 592B6395
-P 4750 4750
-F 0 "#PWR?" H 4750 4600 50  0001 C CNN
-F 1 "VCC" H 4750 4900 50  0000 C CNN
-F 2 "" H 4750 4750 50  0001 C CNN
-F 3 "" H 4750 4750 50  0001 C CNN
-	1    4750 4750
+P 3450 4750
+F 0 "#PWR?" H 3450 4600 50  0001 C CNN
+F 1 "VCC" H 3450 4900 50  0000 C CNN
+F 2 "" H 3450 4750 50  0001 C CNN
+F 3 "" H 3450 4750 50  0001 C CNN
+	1    3450 4750
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR?
 U 1 1 592B63DA
-P 5200 5200
-F 0 "#PWR?" H 5200 4950 50  0001 C CNN
-F 1 "GND" H 5200 5050 50  0000 C CNN
-F 2 "" H 5200 5200 50  0001 C CNN
-F 3 "" H 5200 5200 50  0001 C CNN
-	1    5200 5200
+P 3900 5200
+F 0 "#PWR?" H 3900 4950 50  0001 C CNN
+F 1 "GND" H 3900 5050 50  0000 C CNN
+F 2 "" H 3900 5200 50  0001 C CNN
+F 3 "" H 3900 5200 50  0001 C CNN
+	1    3900 5200
 	1    0    0    -1  
 $EndComp
-Text Label 7400 4300 0    60   ~ 0
+Text Label 6100 4300 0    60   ~ 0
 ALU0
-Text Label 7400 4400 0    60   ~ 0
+Text Label 6100 4400 0    60   ~ 0
 ALU1
-Text Label 7400 4500 0    60   ~ 0
+Text Label 6100 4500 0    60   ~ 0
 ALU2
-Text Label 7400 4600 0    60   ~ 0
+Text Label 6100 4600 0    60   ~ 0
 ALU3
-Text Label 7400 4700 0    60   ~ 0
+Text Label 6100 4700 0    60   ~ 0
 ALU4
-Text Label 7400 4800 0    60   ~ 0
+Text Label 6100 4800 0    60   ~ 0
 ALU5
-Text Label 7400 4900 0    60   ~ 0
+Text Label 6100 4900 0    60   ~ 0
 ALU6
-Text Label 7400 5000 0    60   ~ 0
+Text Label 6100 5000 0    60   ~ 0
 ALU7
-Text Notes 6150 5700 0    60   ~ 0
+Text Notes 4850 5700 0    60   ~ 0
 the initial PC value is\n0xC0C0
 Text HLabel 950  1050 0    60   Input ~ 0
 -RST
@@ -104,21 +104,21 @@ Text HLabel 950  1250 0    60   Input ~ 0
 RST
 Text HLabel 950  1550 0    60   Input ~ 0
 CLK
-Text HLabel 7700 4300 2    60   Output ~ 0
+Text HLabel 6400 4300 2    60   Output ~ 0
 ALU0
-Text HLabel 7700 4400 2    60   Output ~ 0
+Text HLabel 6400 4400 2    60   Output ~ 0
 ALU1
-Text HLabel 7700 4500 2    60   Output ~ 0
+Text HLabel 6400 4500 2    60   Output ~ 0
 ALU2
-Text HLabel 7700 4600 2    60   Output ~ 0
+Text HLabel 6400 4600 2    60   Output ~ 0
 ALU3
-Text HLabel 7700 4700 2    60   Output ~ 0
+Text HLabel 6400 4700 2    60   Output ~ 0
 ALU4
-Text HLabel 7700 4800 2    60   Output ~ 0
+Text HLabel 6400 4800 2    60   Output ~ 0
 ALU5
-Text HLabel 7700 4900 2    60   Output ~ 0
+Text HLabel 6400 4900 2    60   Output ~ 0
 ALU6
-Text HLabel 7700 5000 2    60   Output ~ 0
+Text HLabel 6400 5000 2    60   Output ~ 0
 ALU7
 $Comp
 L 74LS393 U201
@@ -175,7 +175,7 @@ Text Label 10000 2050 0    60   ~ 0
 -initPC
 Text Label 10000 2250 0    60   ~ 0
 -lateRST
-Text Label 4800 5550 0    60   ~ 0
+Text Label 3500 5550 0    60   ~ 0
 -initPC
 $Comp
 L 74LS32 U202
@@ -212,75 +212,73 @@ F 3 "" H 6450 2750 50  0000 C CNN
 $EndComp
 Text HLabel 10500 1850 2    60   Output ~ 0
 -wrPC
-Text HLabel 10500 2250 2    60   Output ~ 0
--lateRST
 $Comp
 L 74LS32 U202
 U 4 1 592C610C
-P 2450 5200
-F 0 "U202" H 2450 5250 50  0000 C CNN
-F 1 "74HC32" H 2450 5150 50  0000 C CNN
-F 2 "" H 2450 5200 50  0000 C CNN
-F 3 "" H 2450 5200 50  0000 C CNN
-	4    2450 5200
+P 1950 5200
+F 0 "U202" H 1950 5250 50  0000 C CNN
+F 1 "74HC32" H 1950 5150 50  0000 C CNN
+F 2 "" H 1950 5200 50  0000 C CNN
+F 3 "" H 1950 5200 50  0000 C CNN
+	4    1950 5200
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR?
 U 1 1 592C6298
-P 1650 5700
-F 0 "#PWR?" H 1650 5450 50  0001 C CNN
-F 1 "GND" H 1650 5550 50  0000 C CNN
-F 2 "" H 1650 5700 50  0000 C CNN
-F 3 "" H 1650 5700 50  0000 C CNN
-	1    1650 5700
+P 1150 5700
+F 0 "#PWR?" H 1150 5450 50  0001 C CNN
+F 1 "GND" H 1150 5550 50  0000 C CNN
+F 2 "" H 1150 5700 50  0000 C CNN
+F 3 "" H 1150 5700 50  0000 C CNN
+	1    1150 5700
 	1    0    0    -1  
 $EndComp
-NoConn ~ 3300 5200
-Text Notes 2650 4850 2    60   ~ 0
+NoConn ~ 2800 5200
+Text Notes 2150 4850 2    60   ~ 0
 unused gate
 Wire Wire Line
-	4750 5000 5900 5000
+	3450 5000 4600 5000
 Wire Wire Line
-	4750 4750 4750 5000
+	3450 4750 3450 5000
 Wire Wire Line
-	5900 4900 4750 4900
-Connection ~ 4750 4900
+	4600 4900 3450 4900
+Connection ~ 3450 4900
 Wire Wire Line
-	5900 4300 5200 4300
+	4600 4300 3900 4300
 Wire Wire Line
-	5200 4300 5200 5200
+	3900 4300 3900 5200
 Wire Wire Line
-	5900 4400 5200 4400
-Connection ~ 5200 4400
+	4600 4400 3900 4400
+Connection ~ 3900 4400
 Wire Wire Line
-	5900 4500 5200 4500
-Connection ~ 5200 4500
+	4600 4500 3900 4500
+Connection ~ 3900 4500
 Wire Wire Line
-	5900 4600 5200 4600
-Connection ~ 5200 4600
+	4600 4600 3900 4600
+Connection ~ 3900 4600
 Wire Wire Line
-	5900 4700 5200 4700
-Connection ~ 5200 4700
+	4600 4700 3900 4700
+Connection ~ 3900 4700
 Wire Wire Line
-	5900 4800 5200 4800
-Connection ~ 5200 4800
+	4600 4800 3900 4800
+Connection ~ 3900 4800
 Wire Wire Line
-	7300 4300 7700 4300
+	6000 4300 6400 4300
 Wire Wire Line
-	7300 4400 7700 4400
+	6000 4400 6400 4400
 Wire Wire Line
-	7300 4500 7700 4500
+	6000 4500 6400 4500
 Wire Wire Line
-	7300 4600 7700 4600
+	6000 4600 6400 4600
 Wire Wire Line
-	7300 4700 7700 4700
+	6000 4700 6400 4700
 Wire Wire Line
-	7300 4800 7700 4800
+	6000 4800 6400 4800
 Wire Wire Line
-	7300 4900 7700 4900
+	6000 4900 6400 4900
 Wire Wire Line
-	7300 5000 7700 5000
+	6000 5000 6400 5000
 Wire Wire Line
 	4500 2050 5300 2050
 Wire Wire Line
@@ -402,23 +400,23 @@ Wire Wire Line
 Wire Wire Line
 	7550 2750 7900 2750
 Wire Wire Line
-	5900 5200 5700 5200
+	4600 5200 4400 5200
 Wire Wire Line
-	5700 5200 5700 5550
+	4400 5200 4400 5550
 Wire Wire Line
-	5700 5550 4750 5550
+	4400 5550 3450 5550
 Wire Wire Line
-	5900 5300 5700 5300
-Connection ~ 5700 5300
+	4600 5300 4400 5300
+Connection ~ 4400 5300
 Wire Wire Line
-	1850 5100 1650 5100
+	1350 5100 1150 5100
 Wire Wire Line
-	1650 5100 1650 5700
+	1150 5100 1150 5700
 Wire Wire Line
-	1850 5300 1650 5300
-Connection ~ 1650 5300
+	1350 5300 1150 5300
+Connection ~ 1150 5300
 Wire Wire Line
-	3050 5200 3300 5200
+	2550 5200 2800 5200
 Wire Wire Line
 	9300 2350 10000 2350
 Wire Wire Line
@@ -427,6 +425,89 @@ Wire Wire Line
 	10000 2450 10500 2450
 Text Label 10400 2450 2    60   ~ 0
 lateRST
-Text HLabel 10500 2450 2    60   Output ~ 0
+$Comp
+L 74LS541 U205
+U 1 1 5993D607
+P 8900 4800
+F 0 "U205" H 8900 5375 50  0000 C BNN
+F 1 "74HC541" H 8900 4225 50  0000 C TNN
+F 2 "" H 8900 4800 50  0001 C CNN
+F 3 "" H 8900 4800 50  0001 C CNN
+	1    8900 4800
+	1    0    0    -1  
+$EndComp
+Text HLabel 950  1750 0    60   Input ~ 0
+-CLK
+Wire Wire Line
+	950  1750 1350 1750
+Text Label 1000 1750 0    60   ~ 0
+-CLK
+Wire Wire Line
+	8200 4800 7900 4800
+Wire Wire Line
+	7900 4800 7900 5600
+Wire Wire Line
+	8200 4900 7900 4900
+Connection ~ 7900 4900
+Wire Wire Line
+	8200 5000 7900 5000
+Connection ~ 7900 5000
+Wire Wire Line
+	8200 5200 7900 5200
+Connection ~ 7900 5200
+Wire Wire Line
+	8200 5300 7900 5300
+Connection ~ 7900 5300
+$Comp
+L GND #PWR?
+U 1 1 5993DDEA
+P 7900 5600
+F 0 "#PWR?" H 7900 5350 50  0001 C CNN
+F 1 "GND" H 7900 5450 50  0000 C CNN
+F 2 "" H 7900 5600 50  0001 C CNN
+F 3 "" H 7900 5600 50  0001 C CNN
+	1    7900 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8200 4300 7450 4300
+Wire Wire Line
+	8200 4400 8050 4400
+Wire Wire Line
+	8050 4400 8050 4300
+Connection ~ 8050 4300
+Text Label 7500 4300 0    60   ~ 0
+CLK
+Wire Wire Line
+	8200 4500 7450 4500
+Wire Wire Line
+	8200 4600 7450 4600
+Wire Wire Line
+	8200 4700 7450 4700
+Text Label 7500 4500 0    60   ~ 0
+-CLK
+Wire Wire Line
+	9600 4300 10250 4300
+Wire Wire Line
+	9600 4400 10250 4400
+Wire Wire Line
+	9600 4500 10250 4500
+Wire Wire Line
+	9600 4600 10250 4600
+Wire Wire Line
+	9600 4700 10250 4700
+Text Label 7500 4600 0    60   ~ 0
 lateRST
+Text Label 7500 4700 0    60   ~ 0
+-lateRST
+Text HLabel 10250 4300 2    60   Output ~ 0
+CLKOUT1
+Text HLabel 10250 4400 2    60   Output ~ 0
+CLKOUT2
+Text HLabel 10250 4500 2    60   Output ~ 0
+-CLKOUT
+Text HLabel 10250 4600 2    60   Output ~ 0
+lateRST
+Text HLabel 10250 4700 2    60   Output ~ 0
+-lateRST
 $EndSCHEMATC

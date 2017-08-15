@@ -288,27 +288,6 @@ F 3 "" H 8050 2400 50  0001 C CNN
 $EndComp
 Text Notes 8000 6800 2    60   ~ 0
 clock/reset circuit
-$Comp
-L 74LS541 U103
-U 1 1 595B25BA
-P 3700 5400
-F 0 "U103" H 3700 5975 50  0000 C BNN
-F 1 "74HC541" H 3700 4825 50  0000 C TNN
-F 2 "" H 3700 5400 50  0001 C CNN
-F 3 "" H 3700 5400 50  0001 C CNN
-	1    3700 5400
-	1    0    0    -1  
-$EndComp
-Text Label 2450 4900 0    60   ~ 0
-CLK
-Text Label 2450 5000 0    60   ~ 0
-CLK
-Text Label 2450 5100 0    60   ~ 0
--CLK
-Text Label 2450 5200 0    60   ~ 0
-RST
-Text Label 2450 5300 0    60   ~ 0
--RST
 Wire Wire Line
 	3700 1950 6100 1950
 Wire Wire Line
@@ -338,15 +317,7 @@ Wire Wire Line
 Wire Wire Line
 	6900 1350 7200 1350
 Wire Wire Line
-	7200 1350 7200 1650
-Wire Wire Line
-	7200 1650 7200 1950
-Wire Wire Line
-	7200 1950 7200 2250
-Wire Wire Line
-	7200 2250 7200 2550
-Wire Wire Line
-	7200 2550 7200 2850
+	7200 1350 7200 2850
 Wire Wire Line
 	6900 1650 7200 1650
 Connection ~ 7200 1650
@@ -374,9 +345,7 @@ Wire Wire Line
 Wire Wire Line
 	3700 3250 4450 3250
 Wire Wire Line
-	3700 1750 4100 1750
-Wire Wire Line
-	4100 1750 4700 1750
+	3700 1750 4700 1750
 Wire Wire Line
 	4100 1750 4100 3350
 Wire Wire Line
@@ -501,74 +470,15 @@ Wire Wire Line
 Wire Wire Line
 	8050 2600 8050 2400
 Wire Wire Line
-	1400 2050 1100 2050
+	700  2050 1400 2050
 Wire Wire Line
-	1400 2250 1100 2250
-Wire Wire Line
-	3000 4900 2400 4900
-Wire Wire Line
-	3000 5000 2400 5000
-Wire Wire Line
-	3000 5100 2400 5100
-Wire Wire Line
-	3000 5200 2400 5200
-Wire Wire Line
-	3000 5300 2400 5300
-Wire Wire Line
-	4400 4900 4800 4900
-Wire Wire Line
-	4400 5000 4800 5000
-Wire Wire Line
-	4400 5100 4800 5100
-Wire Wire Line
-	4400 5200 4800 5200
-Wire Wire Line
-	4400 5300 4800 5300
-Text HLabel 4800 4900 2    60   Output ~ 0
-CLK1
-Text HLabel 4800 5000 2    60   Output ~ 0
-CLK2
-Text HLabel 4800 5100 2    60   Output ~ 0
+	800  2250 1400 2250
+Text HLabel 4700 1850 2    60   Output ~ 0
 -CLK
-Text HLabel 4800 5200 2    60   Output ~ 0
+Text HLabel 900  2600 2    60   Output ~ 0
 RST
-Text HLabel 4800 5300 2    60   Output ~ 0
+Text HLabel 900  2500 2    60   Output ~ 0
 -RST
-Wire Wire Line
-	3000 5400 2800 5400
-Wire Wire Line
-	2800 5400 2800 5500
-Wire Wire Line
-	2800 5500 2800 5600
-Wire Wire Line
-	2800 5600 2800 5800
-Wire Wire Line
-	2800 5800 2800 5900
-Wire Wire Line
-	2800 5900 2800 6050
-Wire Wire Line
-	3000 5500 2800 5500
-Connection ~ 2800 5500
-Wire Wire Line
-	3000 5600 2800 5600
-Connection ~ 2800 5600
-Wire Wire Line
-	3000 5800 2800 5800
-Connection ~ 2800 5800
-Wire Wire Line
-	3000 5900 2800 5900
-Connection ~ 2800 5900
-$Comp
-L GND #PWR?
-U 1 1 595B35FD
-P 2800 6050
-F 0 "#PWR?" H 2800 5800 50  0001 C CNN
-F 1 "GND" H 2800 5900 50  0000 C CNN
-F 2 "" H 2800 6050 50  0001 C CNN
-F 3 "" H 2800 6050 50  0001 C CNN
-	1    2800 6050
-	1    0    0    -1  
-$EndComp
 Text Label 1150 2250 0    60   ~ 0
 -RST
 Text Label 1150 2050 0    60   ~ 0
@@ -579,4 +489,14 @@ Text Label 4300 1850 0    60   ~ 0
 -CLK
 Text Notes 2000 1050 0    60   ~ 0
 firmware is in protoclock.c
+Text HLabel 4700 1750 2    60   Output ~ 0
+CLK
+Wire Wire Line
+	800  2250 800  2500
+Wire Wire Line
+	800  2500 900  2500
+Wire Wire Line
+	700  2050 700  2600
+Wire Wire Line
+	700  2600 900  2600
 $EndSCHEMATC

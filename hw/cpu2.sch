@@ -125,24 +125,28 @@ F6 "CLK" I L 1350 3150 60
 F7 "-opfetchEnd" I L 1350 3400 60 
 $EndSheet
 $Sheet
-S 3500 700  1200 1450
+S 2950 700  1200 1800
 U 592B9ACE
 F0 "earlyrst" 60
 F1 "earlyrst.sch" 60
-F2 "-RST" I L 3500 900 60 
-F3 "RST" I L 3500 800 60 
-F4 "CLK" I L 3500 1050 60 
-F5 "-lateRST" O R 4700 900 60 
-F6 "ALU0" O R 4700 1350 60 
-F7 "ALU1" O R 4700 1450 60 
-F8 "ALU2" O R 4700 1550 60 
-F9 "ALU3" O R 4700 1650 60 
-F10 "ALU4" O R 4700 1750 60 
-F11 "ALU5" O R 4700 1850 60 
-F12 "ALU6" O R 4700 1950 60 
-F13 "ALU7" O R 4700 2050 60 
-F14 "-wrPC" O R 4700 1200 60 
-F15 "lateRST" O R 4700 800 60 
+F2 "-RST" I L 2950 900 60 
+F3 "RST" I L 2950 800 60 
+F4 "CLK" I L 2950 1050 60 
+F5 "-lateRST" O R 4150 900 60 
+F6 "ALU0" O R 4150 1350 60 
+F7 "ALU1" O R 4150 1450 60 
+F8 "ALU2" O R 4150 1550 60 
+F9 "ALU3" O R 4150 1650 60 
+F10 "ALU4" O R 4150 1750 60 
+F11 "ALU5" O R 4150 1850 60 
+F12 "ALU6" O R 4150 1950 60 
+F13 "ALU7" O R 4150 2050 60 
+F14 "-wrPC" O R 4150 1200 60 
+F15 "lateRST" O R 4150 800 60 
+F16 "-CLK" I L 2950 1150 60 
+F17 "CLKOUT1" O R 4150 2200 60 
+F18 "CLKOUT2" O R 4150 2300 60 
+F19 "-CLKOUT" O R 4150 2400 60 
 $EndSheet
 $Sheet
 S 5850 3600 1200 1700
@@ -182,35 +186,34 @@ F31 "-OE1" I L 5850 4600 60
 F32 "-OE2" I L 5850 4700 60 
 $EndSheet
 $Sheet
-S 1350 1500 950  750 
+S 1550 700  950  750 
 U 59395B62
 F0 "clockrst" 60
 F1 "clockrst.sch" 60
-F2 "CLK1" O R 2300 1850 60 
-F3 "CLK2" O R 2300 1950 60 
-F4 "-CLK" O R 2300 2050 60 
-F5 "RST" O R 2300 1600 60 
-F6 "-RST" O R 2300 1700 60 
+F2 "-CLK" O R 2500 1150 60 
+F3 "RST" O R 2500 800 60 
+F4 "-RST" O R 2500 900 60 
+F5 "CLK" O R 2500 1050 60 
 $EndSheet
-Text Notes 2000 2450 2    60   ~ 0
+Text Notes 2200 1650 2    60   ~ 0
 prefix 100
-Text Notes 4250 2350 2    60   ~ 0
+Text Notes 3750 2700 2    60   ~ 0
 prefix 200
-Text Label 4750 1350 0    60   ~ 0
+Text Label 4200 1350 0    60   ~ 0
 ALU0
-Text Label 4750 1450 0    60   ~ 0
+Text Label 4200 1450 0    60   ~ 0
 ALU1
-Text Label 4750 1550 0    60   ~ 0
+Text Label 4200 1550 0    60   ~ 0
 ALU2
-Text Label 4750 1650 0    60   ~ 0
+Text Label 4200 1650 0    60   ~ 0
 ALU3
-Text Label 4750 1750 0    60   ~ 0
+Text Label 4200 1750 0    60   ~ 0
 ALU4
-Text Label 4750 1850 0    60   ~ 0
+Text Label 4200 1850 0    60   ~ 0
 ALU5
-Text Label 4750 1950 0    60   ~ 0
+Text Label 4200 1950 0    60   ~ 0
 ALU6
-Text Label 4750 2050 0    60   ~ 0
+Text Label 4200 2050 0    60   ~ 0
 ALU7
 Entry Wire Line
 	5000 1350 5100 1450
@@ -495,17 +498,11 @@ Entry Wire Line
 Entry Wire Line
 	7550 11700 7650 11800
 Wire Wire Line
-	3000 800  3500 800 
-Wire Wire Line
-	3000 900  3500 900 
-Wire Wire Line
-	3000 1050 3500 1050
-Wire Wire Line
 	1350 3150 750  3150
 Wire Wire Line
 	1350 3000 750  3000
 Wire Wire Line
-	4700 900  5150 900 
+	4150 900  5150 900 
 Wire Wire Line
 	5400 1800 5850 1800
 Wire Wire Line
@@ -517,21 +514,21 @@ Wire Wire Line
 Wire Wire Line
 	5400 2100 5850 2100
 Wire Wire Line
-	4700 1350 5000 1350
+	4150 1350 5000 1350
 Wire Wire Line
-	4700 1450 5000 1450
+	4150 1450 5000 1450
 Wire Wire Line
-	4700 1550 5000 1550
+	4150 1550 5000 1550
 Wire Wire Line
-	4700 1650 5000 1650
+	4150 1650 5000 1650
 Wire Wire Line
-	4700 1750 5000 1750
+	4150 1750 5000 1750
 Wire Wire Line
-	4700 1850 5000 1850
+	4150 1850 5000 1850
 Wire Wire Line
-	4700 1950 5000 1950
+	4150 1950 5000 1950
 Wire Wire Line
-	4700 2050 5000 2050
+	4150 2050 5000 2050
 Wire Bus Line
 	5100 1450 5100 13100
 Wire Wire Line
@@ -567,7 +564,7 @@ Wire Wire Line
 Wire Wire Line
 	5850 4400 5200 4400
 Wire Wire Line
-	4700 1200 5100 1200
+	4150 1200 5100 1200
 Wire Wire Line
 	5250 4800 5850 4800
 Wire Wire Line
@@ -789,20 +786,14 @@ Wire Wire Line
 Text Label 7000 1800 0    60   ~ 0
 -opReadMem
 Wire Wire Line
-	2300 1600 2750 1600
+	2500 800  2950 800 
 Wire Wire Line
-	2300 1700 2750 1700
+	2500 900  2950 900 
 Wire Wire Line
-	2300 1850 2750 1850
+	2500 1050 2950 1050
 Wire Wire Line
-	2300 2050 2750 2050
-Text Label 2500 1600 0    60   ~ 0
-RST
-Text Label 2500 1700 0    60   ~ 0
--RST
-Text Label 2500 2050 0    60   ~ 0
--CLK
-Text Label 4750 900  0    60   ~ 0
+	2500 1150 2950 1150
+Text Label 4700 900  0    60   ~ 0
 -lateRST
 Text Label 5400 1900 0    60   ~ 0
 -ucode
@@ -822,10 +813,6 @@ Text Label 7000 2000 0    60   ~ 0
 -opfetchEnd
 Text Label 7800 1800 0    60   ~ 0
 -opfetch
-Text Label 3050 800  0    60   ~ 0
-RST
-Text Label 3050 900  0    60   ~ 0
--RST
 Wire Wire Line
 	10150 1700 10700 1700
 Wire Wire Line
@@ -1460,15 +1447,7 @@ Wire Wire Line
 	8300 10100 7850 10100
 Text Label 7850 10100 0    60   ~ 0
 -uAluOut
-Wire Wire Line
-	2300 1950 2750 1950
-Text Label 2500 1850 0    60   ~ 0
-CLK1
-Text Label 2500 1950 0    60   ~ 0
-CLK2
 Text Label 800  3150 0    60   ~ 0
-CLK1
-Text Label 3050 1050 0    60   ~ 0
 CLK1
 Text Label 7800 2000 0    60   ~ 0
 CLK2
@@ -1512,4 +1491,16 @@ Text Label 7950 3750 0    60   ~ 0
 -opReadMem
 Text Label 7950 3850 0    60   ~ 0
 -opfetch
+Wire Wire Line
+	4150 2200 4700 2200
+Wire Wire Line
+	4150 2300 4700 2300
+Wire Wire Line
+	4150 2400 4700 2400
+Text Label 4400 2200 0    60   ~ 0
+CLK1
+Text Label 4400 2300 0    60   ~ 0
+CLK2
+Text Label 4400 2400 0    60   ~ 0
+-CLK
 $EndSCHEMATC
