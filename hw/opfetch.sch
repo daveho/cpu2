@@ -49,8 +49,6 @@ Text HLabel 1100 900  0    60   Input ~ 0
 -RST
 Text HLabel 1100 1800 0    60   Input ~ 0
 CLK
-Text HLabel 1100 2100 0    60   Input ~ 0
--CLK
 Text HLabel 1100 1450 0    60   Input ~ 0
 -DIS
 $Comp
@@ -203,8 +201,6 @@ Wire Wire Line
 	3400 1600 3400 4650
 Wire Wire Line
 	3400 4650 4700 4650
-Wire Wire Line
-	1100 2100 4650 2100
 Wire Wire Line
 	1500 4550 4700 4550
 Wire Wire Line
@@ -474,4 +470,7 @@ F 3 "" H 4500 2900 50  0001 C CNN
 	1    4500 2900
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	4650 2100 1500 2100
+Connection ~ 1500 2100
 $EndSCHEMATC
