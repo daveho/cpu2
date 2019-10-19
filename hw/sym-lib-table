@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name cpu2-rescue)(type Legacy)(uri ${KIPRJMOD}/cpu2-rescue.lib)(options "")(descr ""))
+  (lib (name ttl_ieee)(type Legacy)(uri ${KIPRJMOD}/ttl_ieee.lib)(options "")(descr ""))
+)

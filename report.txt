@@ -1,0 +1,154 @@
+Info: Backing up file "/home/daveho/git/cpu2/hw/sym-lib-table" to file "/home/daveho/git/cpu2/hw/rescue-backup/sym-lib-table-2019-10-19-11-35-58".
+Info: Backing up file "/home/daveho/git/cpu2/hw/cpu2.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/cpu2-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/gpreg.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/gpreg-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/opfetch.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/opfetch-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/phase.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/phase-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/earlyrst.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/earlyrst-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/pc.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/pc-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/clockrst.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/clockrst-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/alu.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/alu-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/ucode2.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/ucode2-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/bus_ar.sch" to file "/home/daveho/git/cpu2/hw/rescue-backup/bus_ar-2019-10-19-11-35-58.sch".
+Info: Backing up file "/home/daveho/git/cpu2/hw/cpu2.pro" to file "/home/daveho/git/cpu2/hw/rescue-backup/cpu2-2019-10-19-11-35-58.pro".
+Info: Backing up file "/home/daveho/git/cpu2/hw/cpu2-cache.lib" to file "/home/daveho/git/cpu2/hw/rescue-backup/cpu2-cache-2019-10-19-11-35-58.lib".
+Info: Backing up file "/home/daveho/git/cpu2/hw/cpu2-rescue.lib" to file "/home/daveho/git/cpu2/hw/rescue-backup/cpu2-rescue-2019-10-19-11-35-58.lib".
+Info: Backing up file "/home/daveho/git/cpu2/hw/cpu2-rescue.dcm" to file "/home/daveho/git/cpu2/hw/rescue-backup/cpu2-rescue-2019-10-19-11-35-58.dcm".
+Info: Adding library "cpu2-rescue", file "${KIPRJMOD}/cpu2-rescue.lib" to project symbol library table.
+Info: Adding library "ttl_ieee", file "${KIPRJMOD}/ttl_ieee.lib" to project symbol library table.
+Symbol "74ls670" mapped to symbol library "cpu2-rescue".
+Symbol "74ls670" mapped to symbol library "cpu2-rescue".
+Symbol "74ls670" mapped to symbol library "cpu2-rescue".
+Symbol "74ls670" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS574" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS393" mapped to symbol library "cpu2-rescue".
+Symbol "74LS393" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS02" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS541" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS393" mapped to symbol library "cpu2-rescue".
+Symbol "74LS393" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "74LS32" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS541" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS191" mapped to symbol library "cpu2-rescue".
+Symbol "74LS191" mapped to symbol library "cpu2-rescue".
+Symbol "74LS191" mapped to symbol library "cpu2-rescue".
+Symbol "74LS191" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS541" mapped to symbol library "cpu2-rescue".
+Symbol "74LS541" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "ATTINY2313-20PU" mapped to symbol library "cpu2-rescue".
+Symbol "ULN2803A" mapped to symbol library "cpu2-rescue".
+Symbol "SW_Push" mapped to symbol library "cpu2-rescue".
+Symbol "SW_Push" mapped to symbol library "cpu2-rescue".
+Symbol "SW_Push" mapped to symbol library "cpu2-rescue".
+Symbol "SW_Push" mapped to symbol library "cpu2-rescue".
+Symbol "SW_Push" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "LED" mapped to symbol library "cpu2-rescue".
+Symbol "R_Network08" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS181" mapped to symbol library "cpu2-rescue".
+Symbol "74LS181" mapped to symbol library "cpu2-rescue".
+Symbol "74LS182" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "R" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS573" mapped to symbol library "cpu2-rescue".
+Symbol "74LS590" mapped to symbol library "ttl_ieee".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "27C64" mapped to symbol library "cpu2-rescue".
+Symbol "27C64" mapped to symbol library "cpu2-rescue".
+Symbol "27C64" mapped to symbol library "cpu2-rescue".
+Symbol "27C64" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "74LS175" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS30" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "74LS00" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS08" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "VCC" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "74LS10" mapped to symbol library "cpu2-rescue".
+Symbol "GND" mapped to symbol library "cpu2-rescue".
+Symbol "74LS245" mapped to symbol library "cpu2-rescue".
+Symbol "74LS573" mapped to symbol library "cpu2-rescue".
+Symbol "74LS573" mapped to symbol library "cpu2-rescue".
+Info: Symbol library table mapping complete!
